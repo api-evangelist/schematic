@@ -1,0 +1,37 @@
+aid: schematic
+name: Schematic
+description: >-
+  Schematic is a feature and entitlement management platform providing pricing,
+  packaging, and metering for SaaS and API products.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - FinOps
+  - Feature Management
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/apis.yml
+created: '2026-03-27'
+modified: '2026-03-27'
+specificationVersion: '0.19'
+apis:
+  - aid: schematic:schematic
+    name: Schematic
+    description: >-
+      Schematic is a feature and entitlement management platform providing
+      pricing, packaging, and metering for SaaS and API products.
+    humanURL: https://schematichq.com/
+    tags:
+      - FinOps
+    properties:
+      - type: Documentation
+        url: https://docs.schematichq.com/
+      - type: Getting Started
+        url: https://docs.schematichq.com/
+common:
+  - type: Website
+    url: https://schematichq.com/
+  - type: Documentation
+    url: https://docs.schematichq.com/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
