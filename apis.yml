@@ -6,8 +6,8 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - FinOps
   - Feature Management
+  - FinOps
 url: >-
   https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/apis.yml
 created: '2026-03-27'
