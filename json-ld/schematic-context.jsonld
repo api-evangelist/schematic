@@ -1,0 +1,66 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "schematic": "https://schematichq.com/vocab#",
+    "billing": "https://schematichq.com/billing/vocab#",
+
+    "Company": "schematic:Company",
+    "User": "schematic:User",
+    "Feature": "schematic:Feature",
+    "FeatureFlag": "schematic:FeatureFlag",
+    "Plan": "schematic:Plan",
+    "PlanEntitlement": "schematic:PlanEntitlement",
+    "CompanyOverride": "schematic:CompanyOverride",
+    "FlagRule": "schematic:FlagRule",
+    "UsageEvent": "schematic:UsageEvent",
+    "BillingProduct": "billing:BillingProduct",
+    "BillingSubscription": "billing:Subscription",
+    "BillingCredit": "billing:Credit",
+    "Webhook": "schematic:Webhook",
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "identifier": "schema:identifier",
+    "dateCreated": "schema:dateCreated",
+    "dateModified": "schema:dateModified",
+
+    "hasFeature": {
+      "@id": "schematic:hasFeature",
+      "@type": "@id"
+    },
+    "hasPlan": {
+      "@id": "schematic:hasPlan",
+      "@type": "@id"
+    },
+    "hasEntitlement": {
+      "@id": "schematic:hasEntitlement",
+      "@type": "@id"
+    },
+    "hasFlag": {
+      "@id": "schematic:hasFlag",
+      "@type": "@id"
+    },
+    "flagEnabled": "schematic:flagEnabled",
+    "featureType": "schematic:featureType",
+    "planType": "schematic:planType",
+    "entitlementValue": "schematic:entitlementValue",
+    "eventName": "schematic:eventName",
+    "externalId": "schematic:externalId",
+    "environmentKey": "schematic:environmentKey",
+
+    "Organization": "schema:Organization",
+    "SoftwareApplication": "schema:SoftwareApplication",
+    "WebAPI": "schema:WebAPI"
+  },
+  "@graph": [
+    {
+      "@id": "https://schematichq.com/",
+      "@type": ["SoftwareApplication", "WebAPI"],
+      "name": "Schematic",
+      "description": "Feature and entitlement management platform for SaaS companies providing pricing, packaging, and metering.",
+      "url": "https://schematichq.com/",
+      "documentation": "https://docs.schematichq.com/"
+    }
+  ]
+}

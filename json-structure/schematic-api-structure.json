@@ -1,0 +1,148 @@
+{
+  "title": "Schematic API Structure",
+  "description": "Document structure for the Schematic feature and entitlement management API.",
+  "baseUrl": "https://api.schematichq.com",
+  "authentication": {
+    "type": "API Key",
+    "header": "X-Schematic-Api-Key",
+    "key_prefixes": {
+      "production": "sch_prod_",
+      "staging": "sch_stag_",
+      "development": "sch_dev_"
+    },
+    "key_types": ["secret", "publishable", "readonly"]
+  },
+  "resource_groups": {
+    "account": {
+      "description": "Account members, API keys, and environments",
+      "endpoints": [
+        "GET /account-members",
+        "GET /api-keys",
+        "POST /api-keys",
+        "PUT /api-keys/{id}",
+        "DELETE /api-keys/{id}"
+      ]
+    },
+    "companies": {
+      "description": "Customer organization management",
+      "endpoints": [
+        "GET /companies",
+        "POST /companies (upsert)",
+        "POST /companies/create",
+        "GET /companies/{id}",
+        "DELETE /companies/{id}",
+        "GET /companies/lookup",
+        "POST /company-traits"
+      ]
+    },
+    "users": {
+      "description": "Individual user management",
+      "endpoints": [
+        "GET /users",
+        "POST /users (upsert)",
+        "POST /users/create",
+        "GET /users/{id}",
+        "DELETE /users/{id}",
+        "GET /users/lookup",
+        "POST /user-traits"
+      ]
+    },
+    "features": {
+      "description": "Product feature definitions",
+      "endpoints": [
+        "GET /features",
+        "POST /features",
+        "GET /features/{id}",
+        "PUT /features/{id}",
+        "DELETE /features/{id}"
+      ]
+    },
+    "flags": {
+      "description": "Feature flags with rule-based evaluation",
+      "endpoints": [
+        "GET /flags",
+        "POST /flags",
+        "POST /flags/check (single)",
+        "POST /flags/check-bulk",
+        "POST /flags/{key}/check",
+        "PUT /flags/{id}/rules",
+        "GET /flags/{id}",
+        "PUT /flags/{id}",
+        "DELETE /flags/{id}"
+      ]
+    },
+    "plans": {
+      "description": "Subscription plan management",
+      "endpoints": [
+        "GET /plans",
+        "POST /plans",
+        "GET /plans/{id}",
+        "PUT /plans/{id}",
+        "DELETE /plans/{id}",
+        "PUT /plans/version/{id}/publish"
+      ]
+    },
+    "entitlements": {
+      "description": "Plan and company entitlement management",
+      "endpoints": [
+        "GET /plan-entitlements",
+        "POST /plan-entitlements",
+        "GET /company-overrides",
+        "POST /company-overrides",
+        "PUT /company-overrides/{id}",
+        "DELETE /company-overrides/{id}"
+      ]
+    },
+    "billing": {
+      "description": "Stripe and billing provider integration",
+      "endpoints": [
+        "POST /billing/customer/upsert",
+        "POST /billing/subscription/upsert",
+        "POST /billing/product/upsert",
+        "POST /billing/price/upsert",
+        "GET /billing/products",
+        "GET /billing/credits",
+        "POST /billing/credits"
+      ]
+    },
+    "events": {
+      "description": "Usage event tracking",
+      "endpoints": [
+        "POST /events",
+        "POST /events/batch",
+        "GET /events"
+      ]
+    },
+    "webhooks": {
+      "description": "Outbound webhook configuration",
+      "endpoints": [
+        "GET /webhooks",
+        "POST /webhooks",
+        "GET /webhooks/{id}",
+        "PUT /webhooks/{id}",
+        "DELETE /webhooks/{id}",
+        "GET /webhook-events"
+      ]
+    },
+    "insights": {
+      "description": "Usage analytics and reporting",
+      "endpoints": [
+        "GET /insights/summary",
+        "GET /insights/activity",
+        "GET /insights/plan-growth",
+        "GET /insights/top-features",
+        "GET /insights/feature-usage-timeseries"
+      ]
+    }
+  },
+  "common_patterns": {
+    "upsert": "POST with keys object to create-or-update by external identifiers",
+    "list": "GET returning paginated array with limit/offset params",
+    "count": "GET /resource/count returning total count",
+    "lookup": "GET /resource/lookup?key=val for key-based lookup",
+    "pagination": {
+      "limit": "integer: items per page",
+      "offset": "integer: items to skip"
+    }
+  }
+}

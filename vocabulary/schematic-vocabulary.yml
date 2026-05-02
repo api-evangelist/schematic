@@ -1,0 +1,146 @@
+aid: schematic
+name: Schematic
+description: >-
+  Vocabulary and taxonomy for the Schematic feature and entitlement management
+  platform covering features, flags, plans, entitlements, billing, and metering.
+version: '1.0'
+created: '2026-05-02'
+modified: '2026-05-02'
+tags:
+  - Billing
+  - Entitlements
+  - Feature Flags
+  - Feature Management
+  - SaaS
+
+terms:
+  - term: Feature
+    definition: >-
+      A product capability defined in Schematic that can be included in
+      subscription plans, targeted by feature flags, and tracked via usage
+      events. Features have a type: boolean (on/off), trait-based, or
+      event-metered.
+    category: Core Object
+
+  - term: Feature Flag
+    definition: >-
+      A named boolean toggle associated with a feature. Flags are evaluated
+      per-company/user based on rules. The check endpoint returns true/false
+      for a given key and context (company + user).
+    category: Core Object
+    aliases:
+      - Flag
+
+  - term: Plan
+    definition: >-
+      A subscription tier in Schematic that bundles feature entitlements for
+      customer billing. Plans can be base subscriptions or add-ons. Plans are
+      versioned and must be published to take effect.
+    category: Core Object
+    aliases:
+      - Subscription Plan
+      - Pricing Tier
+
+  - term: Entitlement
+    definition: >-
+      The right of a company (via their plan) to access a specific feature.
+      Entitlements define whether access is boolean, limited by a numeric value,
+      unlimited, or based on a company trait.
+    category: Core Object
+    value_types:
+      - boolean
+      - numeric
+      - unlimited
+      - trait
+
+  - term: Company
+    definition: >-
+      A customer organization in Schematic. Companies are identified by external
+      keys (Stripe customer ID, Salesforce account ID, etc.) and are the primary
+      unit of plan assignment and feature entitlement.
+    category: Core Object
+
+  - term: User
+    definition: >-
+      An individual associated with a company in Schematic. Users can have
+      individual feature targeting separate from their company's plan.
+    category: Core Object
+
+  - term: Company Override
+    definition: >-
+      A feature access override applied directly to a specific company,
+      taking effect regardless of the company's plan. Overrides are the most
+      generous value when combined with plan entitlements.
+    category: Core Object
+
+  - term: Flag Rule
+    definition: >-
+      A conditional rule attached to a flag that controls when the flag
+      evaluates to true/false for a given company or user. Rules can target
+      by plan, company trait, or user trait.
+    category: Core Object
+
+  - term: Usage Event
+    definition: >-
+      A tracked user or system action submitted to Schematic for metered
+      feature consumption. Events accumulate to drive metered entitlement
+      enforcement (e.g., API call counts, storage usage).
+    category: Core Object
+
+  - term: Billing Credit
+    definition: >-
+      A prepaid usage credit that companies can redeem against metered feature
+      usage. Credits have expiry policies, rollover rules, and burn strategies.
+    category: Billing
+
+  - term: Billing Subscription
+    definition: >-
+      The billing provider (Stripe) subscription record linked to a company's
+      Schematic plan. Schematic syncs subscription state via upsert endpoints.
+    category: Billing
+
+  - term: Environment
+    definition: >-
+      An isolated namespace in Schematic for development, staging, or production.
+      API keys are scoped to environments (sch_prod, sch_stag, sch_dev prefixes).
+    category: Configuration
+
+  - term: Upsert
+    definition: >-
+      A Schematic API pattern for create-or-update operations. Upsert operations
+      use an external keys object to identify existing records and update them
+      if found, or create new records if not found.
+    category: API Pattern
+
+  - term: Check
+    definition: >-
+      The Schematic API operation for evaluating a feature flag for a specific
+      company and user context. Returns a boolean value indicating whether the
+      feature is enabled.
+    category: API Pattern
+
+  - term: Webhook
+    definition: >-
+      An outbound HTTP callback configured in Schematic to notify external
+      systems of events like plan changes, entitlement updates, or usage
+      threshold crossings.
+    category: Integration
+
+  - term: API Key
+    definition: >-
+      Authentication credential for the Schematic API. Keys are environment-scoped
+      (prod/stag/dev) and have three types: secret (full access), publishable
+      (client-side safe), and readonly (GET + flag checks only).
+    category: Security
+    key_types:
+      - secret
+      - publishable
+      - readonly
+
+categories:
+  - Core Object
+  - Billing
+  - Configuration
+  - API Pattern
+  - Integration
+  - Security

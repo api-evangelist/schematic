@@ -1,0 +1,39 @@
+{
+  "title": "Check Feature Flag",
+  "description": "Check whether a feature flag is enabled for a specific company/user using the Schematic API.",
+  "operation": "POST /flags/{key}/check",
+  "operationId": "checkFlag",
+  "method": "POST",
+  "path": "/flags/{key}/check",
+  "baseUrl": "https://api.schematichq.com",
+  "authentication": {
+    "type": "apikey",
+    "header": "X-Schematic-Api-Key",
+    "value": "sch_prod_YOUR_API_KEY"
+  },
+  "request": {
+    "method": "POST",
+    "url": "https://api.schematichq.com/flags/advanced-analytics/check",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Schematic-Api-Key": "sch_prod_YOUR_API_KEY"
+    },
+    "body": {
+      "company": { "id": "comp_01HXYZ123" },
+      "user": { "id": "user_01HXYZ456" }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "data": {
+        "flag": "advanced-analytics",
+        "value": true,
+        "reason": "Company has Pro plan which includes advanced-analytics feature"
+      }
+    }
+  }
+}

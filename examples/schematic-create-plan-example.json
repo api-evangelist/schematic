@@ -1,0 +1,44 @@
+{
+  "title": "Create Plan",
+  "description": "Create a new subscription plan in Schematic with features and pricing.",
+  "operation": "POST /plans",
+  "operationId": "createPlan",
+  "method": "POST",
+  "path": "/plans",
+  "baseUrl": "https://api.schematichq.com",
+  "authentication": {
+    "type": "apikey",
+    "header": "X-Schematic-Api-Key",
+    "value": "sch_prod_YOUR_API_KEY"
+  },
+  "request": {
+    "method": "POST",
+    "url": "https://api.schematichq.com/plans",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Schematic-Api-Key": "sch_prod_YOUR_API_KEY"
+    },
+    "body": {
+      "name": "Professional",
+      "description": "Full-featured plan for growing teams",
+      "planType": "base"
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "data": {
+        "id": "plan_01HXYZ999",
+        "name": "Professional",
+        "description": "Full-featured plan for growing teams",
+        "planType": "base",
+        "current": false,
+        "createdAt": "2026-05-02T14:22:00Z",
+        "updatedAt": "2026-05-02T14:22:00Z"
+      }
+    }
+  }
+}

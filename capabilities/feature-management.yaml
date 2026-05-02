@@ -1,0 +1,228 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Schematic Feature Management"
+  description: >-
+    Unified capability for managing product features, feature flags, and
+    entitlements in Schematic. Enables product and engineering teams to define
+    features, create flags with rule-based evaluation, assign entitlements to
+    subscription plans, and evaluate flag values for customers at runtime.
+  tags:
+    - Entitlements
+    - Feature Flags
+    - Feature Management
+    - Plans
+    - SaaS
+    - Schematic
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SCHEMATIC_API_KEY: SCHEMATIC_API_KEY
+
+capability:
+  consumes:
+    - import: schematic
+      location: ./shared/schematic-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: feature-management-api
+      description: "Unified REST API for Schematic feature and entitlement management."
+      resources:
+        - path: /v1/features
+          name: features
+          description: "Product feature definitions"
+          operations:
+            - method: GET
+              name: list-features
+              description: "List all product features"
+              call: "schematic.list-features"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-feature
+              description: "Create a new product feature"
+              call: "schematic.create-feature"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/flags
+          name: flags
+          description: "Feature flags for runtime evaluation"
+          operations:
+            - method: GET
+              name: list-flags
+              description: "List feature flags"
+              call: "schematic.list-flags"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-flag
+              description: "Create a feature flag"
+              call: "schematic.create-flag"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/flags/check
+          name: flag-check
+          description: "Feature flag evaluation"
+          operations:
+            - method: POST
+              name: check-flag
+              description: "Check a feature flag for a company/user"
+              call: "schematic.check-flag"
+              with:
+                key: "rest.key"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: check-flags-bulk
+              description: "Bulk check multiple feature flags"
+              call: "schematic.check-flags-bulk"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/plans
+          name: plans
+          description: "Subscription plan management"
+          operations:
+            - method: GET
+              name: list-plans
+              description: "List subscription plans"
+              call: "schematic.list-plans"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-plan
+              description: "Create a subscription plan"
+              call: "schematic.create-plan"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/entitlements
+          name: entitlements
+          description: "Feature entitlements for plans"
+          operations:
+            - method: GET
+              name: list-plan-entitlements
+              description: "List plan feature entitlements"
+              call: "schematic.list-plan-entitlements"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-plan-entitlement
+              description: "Add feature entitlement to a plan"
+              call: "schematic.create-plan-entitlement"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: feature-management-mcp
+      transport: http
+      description: "MCP server for AI-assisted feature and entitlement management."
+      tools:
+        - name: list-features
+          description: "List all product features defined in Schematic"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "schematic.list-features"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-feature
+          description: "Create a new product feature in Schematic"
+          hints:
+            readOnly: false
+          call: "schematic.create-feature"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-flags
+          description: "List feature flags in Schematic"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "schematic.list-flags"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: check-flag
+          description: "Check whether a feature flag is enabled for a company and user context"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "schematic.check-flag"
+          with:
+            key: "tools.key"
+            company: "tools.company"
+            user: "tools.user"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: check-flags-bulk
+          description: "Check multiple feature flags at once for a company/user"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "schematic.check-flags-bulk"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-plans
+          description: "List subscription plans in Schematic"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "schematic.list-plans"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-plan
+          description: "Create a new subscription plan"
+          hints:
+            readOnly: false
+          call: "schematic.create-plan"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-plan-entitlements
+          description: "List feature entitlements associated with plans"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "schematic.list-plan-entitlements"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-plan-entitlement
+          description: "Add a feature entitlement to a subscription plan"
+          hints:
+            readOnly: false
+          call: "schematic.create-plan-entitlement"
+          outputParameters:
+            - type: object
+              mapping: "$."

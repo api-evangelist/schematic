@@ -1,0 +1,199 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Schematic Customer Management"
+  description: >-
+    Unified capability for managing customer companies, users, event tracking,
+    and billing integrations in Schematic. Enables SaaS teams to sync customers
+    from CRM and billing systems, track usage events for metering, and manage
+    company-level feature overrides.
+  tags:
+    - Billing
+    - Customer Management
+    - Metering
+    - SaaS
+    - Schematic
+    - Usage Tracking
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SCHEMATIC_API_KEY: SCHEMATIC_API_KEY
+
+capability:
+  consumes:
+    - import: schematic
+      location: ./shared/schematic-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8081
+      namespace: customer-management-api
+      description: "Unified REST API for Schematic customer and usage management."
+      resources:
+        - path: /v1/companies
+          name: companies
+          description: "Customer company records"
+          operations:
+            - method: GET
+              name: list-companies
+              description: "List customer companies"
+              call: "schematic.list-companies"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: upsert-company
+              description: "Create or update a company by external keys"
+              call: "schematic.upsert-company"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/users
+          name: users
+          description: "Customer users"
+          operations:
+            - method: GET
+              name: list-users
+              description: "List users"
+              call: "schematic.list-users"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: upsert-user
+              description: "Create or update a user"
+              call: "schematic.upsert-user"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/events
+          name: events
+          description: "Usage event tracking"
+          operations:
+            - method: POST
+              name: create-event
+              description: "Track a usage event"
+              call: "schematic.create-event"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/insights
+          name: insights
+          description: "Usage analytics"
+          operations:
+            - method: GET
+              name: get-insights-summary
+              description: "Get analytics summary"
+              call: "schematic.get-insights-summary"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: GET
+              name: get-plan-growth
+              description: "Get plan growth metrics"
+              call: "schematic.get-plan-growth"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: GET
+              name: get-top-features
+              description: "Get top features by usage"
+              call: "schematic.get-top-features"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9091
+      namespace: customer-management-mcp
+      transport: http
+      description: "MCP server for AI-assisted customer and usage management."
+      tools:
+        - name: list-companies
+          description: "List customer companies in Schematic"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "schematic.list-companies"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: upsert-company
+          description: "Create or update a company record using external identifiers (Stripe ID, Salesforce ID, etc.)"
+          hints:
+            readOnly: false
+          call: "schematic.upsert-company"
+          with:
+            keys: "tools.keys"
+            name: "tools.name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-users
+          description: "List users associated with companies"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "schematic.list-users"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: upsert-user
+          description: "Create or update a user record"
+          hints:
+            readOnly: false
+          call: "schematic.upsert-user"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: track-usage-event
+          description: "Submit a usage event for metered feature consumption tracking"
+          hints:
+            readOnly: false
+          call: "schematic.create-event"
+          with:
+            event_type: "tools.event_type"
+            name: "tools.name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-insights-summary
+          description: "Get summary analytics across features, plans, and companies"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "schematic.get-insights-summary"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-top-features
+          description: "Get the most-used product features by usage count"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "schematic.get-top-features"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-plan-growth
+          description: "Get plan adoption and growth metrics"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "schematic.get-plan-growth"
+          outputParameters:
+            - type: object
+              mapping: "$."

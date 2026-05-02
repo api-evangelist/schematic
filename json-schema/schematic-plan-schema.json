@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.schematichq.com/schemas/plan",
+  "title": "Schematic Plan",
+  "description": "A subscription plan in Schematic that bundles features and entitlements for customer billing.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique Schematic plan identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the plan."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the plan."
+    },
+    "planType": {
+      "type": "string",
+      "enum": ["base", "add_on"],
+      "description": "Whether this is a base subscription plan or an add-on."
+    },
+    "current": {
+      "type": "boolean",
+      "description": "Whether this plan version is the current published version."
+    },
+    "entitlements": {
+      "type": "array",
+      "description": "Feature entitlements included in this plan.",
+      "items": { "$ref": "#/$defs/Entitlement" }
+    },
+    "billingProduct": {
+      "$ref": "#/$defs/BillingProductRef",
+      "description": "The associated billing product in Stripe or billing provider."
+    },
+    "monthlyPrice": {
+      "$ref": "#/$defs/BillingPriceRef"
+    },
+    "yearlyPrice": {
+      "$ref": "#/$defs/BillingPriceRef"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "name", "planType"],
+  "$defs": {
+    "Entitlement": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "feature": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "name": { "type": "string" }
+          }
+        },
+        "valueType": {
+          "type": "string",
+          "enum": ["boolean", "numeric", "unlimited", "trait"]
+        },
+        "numericValue": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "BillingProductRef": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "externalId": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "BillingPriceRef": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "externalId": { "type": "string" },
+        "price": { "type": "integer" },
+        "currency": { "type": "string" },
+        "interval": { "type": "string", "enum": ["month", "year"] }
+      }
+    }
+  }
+}

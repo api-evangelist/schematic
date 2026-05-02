@@ -1,0 +1,61 @@
+{
+  "title": "Upsert Company",
+  "description": "Create or update a company record in Schematic. If a company with the same keys already exists it is updated, otherwise a new company is created.",
+  "operation": "POST /companies",
+  "operationId": "upsertCompany",
+  "method": "POST",
+  "path": "/companies",
+  "baseUrl": "https://api.schematichq.com",
+  "authentication": {
+    "type": "apikey",
+    "header": "X-Schematic-Api-Key",
+    "value": "sch_prod_YOUR_API_KEY"
+  },
+  "request": {
+    "method": "POST",
+    "url": "https://api.schematichq.com/companies",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Schematic-Api-Key": "sch_prod_YOUR_API_KEY"
+    },
+    "body": {
+      "keys": {
+        "stripe_customer_id": "cus_STRIPE123",
+        "salesforce_account_id": "0011x000003XY4Z"
+      },
+      "name": "Acme Corporation",
+      "traits": {
+        "industry": "Technology",
+        "employee_count": 500,
+        "plan_tier": "enterprise"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "data": {
+        "id": "comp_01HXYZ123",
+        "name": "Acme Corporation",
+        "keys": {
+          "stripe_customer_id": "cus_STRIPE123",
+          "salesforce_account_id": "0011x000003XY4Z"
+        },
+        "traits": {
+          "industry": "Technology",
+          "employee_count": 500,
+          "plan_tier": "enterprise"
+        },
+        "plan": {
+          "id": "plan_01HXYZ789",
+          "name": "Enterprise"
+        },
+        "createdAt": "2026-01-15T10:30:00Z",
+        "updatedAt": "2026-05-02T14:22:00Z"
+      }
+    }
+  }
+}

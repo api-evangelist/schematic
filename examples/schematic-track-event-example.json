@@ -1,0 +1,45 @@
+{
+  "title": "Track Usage Event",
+  "description": "Submit a usage event to Schematic for metered feature tracking.",
+  "operation": "POST /events",
+  "operationId": "createEvent",
+  "method": "POST",
+  "path": "/events",
+  "baseUrl": "https://api.schematichq.com",
+  "authentication": {
+    "type": "apikey",
+    "header": "X-Schematic-Api-Key",
+    "value": "sch_prod_YOUR_API_KEY"
+  },
+  "request": {
+    "method": "POST",
+    "url": "https://api.schematichq.com/events",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Schematic-Api-Key": "sch_prod_YOUR_API_KEY"
+    },
+    "body": {
+      "event_type": "track",
+      "name": "api_call",
+      "company": { "id": "comp_01HXYZ123" },
+      "user": { "id": "user_01HXYZ456" },
+      "traits": {
+        "endpoint": "/v1/analyze",
+        "method": "POST",
+        "duration_ms": 145
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "data": {
+        "id": "evt_01HXYZ000",
+        "status": "processed"
+      }
+    }
+  }
+}

@@ -1,0 +1,101 @@
+extends: spectral:oas
+rules:
+
+  # Schematic API uses consistent resource naming patterns
+  schematic-operation-ids-camel-case:
+    description: Operation IDs should use camelCase naming consistent with Schematic API conventions.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  schematic-summary-title-case:
+    description: Operation summaries should use Title Case for consistency.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"
+
+  schematic-list-operations-return-arrays:
+    description: >-
+      Operations with 'list' in the operationId should return an array or
+      paginated response object.
+    severity: warn
+    given: "$.paths[*].get"
+    then:
+      function: truthy
+
+  schematic-count-endpoints-exist:
+    description: >-
+      Schematic APIs expose count endpoints alongside list endpoints.
+      Count endpoints should follow the /count suffix pattern.
+    severity: info
+    given: "$.paths"
+    then:
+      function: truthy
+
+  schematic-response-data-wrapper:
+    description: >-
+      Schematic API responses wrap data in a 'data' field with a ResponseData
+      schema. Response schemas should follow the *ResponseData naming convention.
+    severity: warn
+    given: "$.components.schemas"
+    then:
+      function: truthy
+
+  schematic-api-key-auth-header:
+    description: >-
+      Schematic API uses X-Schematic-Api-Key header for authentication.
+      All operations should be secured with ApiKeyAuth.
+    severity: error
+    given: "$.components.securitySchemes.ApiKeyAuth"
+    then:
+      function: truthy
+
+  schematic-error-response-schema:
+    description: >-
+      All error responses (4xx, 5xx) should reference the ApiError schema.
+    severity: warn
+    given: "$.paths[*][*].responses[4xx,5xx]"
+    then:
+      function: truthy
+
+  schematic-upsert-operations-use-post:
+    description: >-
+      Schematic upsert operations use POST method. Operations named 'upsert*'
+      should use POST.
+    severity: warn
+    given: "$.paths[*].post.operationId"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "^(get|list|count|delete)"
+
+  schematic-delete-operations-by-id:
+    description: >-
+      Delete operations should target resources by ID path parameter.
+    severity: warn
+    given: "$.paths[*].delete"
+    then:
+      function: truthy
+
+  schematic-bulk-check-operations:
+    description: >-
+      Flag check operations support both single-key (/flags/{key}/check) and
+      bulk (/flags/check-bulk) patterns.
+    severity: info
+    given: "$.paths['/flags/check-bulk']"
+    then:
+      function: truthy
+
+  schematic-pagination-params:
+    description: >-
+      List operations should support pagination via limit and offset parameters.
+    severity: warn
+    given: "$.paths[*].get.parameters[*].name"
+    then:
+      function: truthy

@@ -1,0 +1,501 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Schematic API"
+  description: "Feature and entitlement management REST API for managing features, flags, plans, companies, users, billing, and webhooks."
+  tags:
+    - Billing
+    - Entitlements
+    - Feature Flags
+    - Feature Management
+    - SaaS
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SCHEMATIC_API_KEY: SCHEMATIC_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: schematic
+      baseUri: https://api.schematichq.com
+      description: "Schematic feature and entitlement management API"
+      authentication:
+        type: apikey
+        key: X-Schematic-Api-Key
+        value: "{{SCHEMATIC_API_KEY}}"
+        placement: header
+      resources:
+        - name: flags
+          path: /flags
+          description: "Feature flags with rule-based evaluation"
+          operations:
+            - name: list-flags
+              method: GET
+              description: "List feature flags"
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Number of flags to return"
+                - name: offset
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Number of flags to skip"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-flag
+              method: POST
+              description: "Create a new feature flag"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  description: "{{tools.description}}"
+                  defaultValue: "{{tools.defaultValue}}"
+
+        - name: flag-check
+          path: /flags/check
+          description: "Check feature flag values"
+          operations:
+            - name: check-flag
+              method: POST
+              description: "Check a feature flag for a company/user context"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  key: "{{tools.key}}"
+                  company: "{{tools.company}}"
+                  user: "{{tools.user}}"
+            - name: check-flags-bulk
+              method: POST
+              description: "Check multiple feature flags in one request"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  keys: "{{tools.keys}}"
+                  company: "{{tools.company}}"
+                  user: "{{tools.user}}"
+
+        - name: features
+          path: /features
+          description: "Product feature definitions"
+          operations:
+            - name: list-features
+              method: GET
+              description: "List product features"
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-feature
+              method: POST
+              description: "Create a product feature"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  featureType: "{{tools.featureType}}"
+                  description: "{{tools.description}}"
+
+        - name: plans
+          path: /plans
+          description: "Subscription plan management"
+          operations:
+            - name: list-plans
+              method: GET
+              description: "List subscription plans"
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-plan
+              method: POST
+              description: "Create a subscription plan"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  planType: "{{tools.planType}}"
+                  description: "{{tools.description}}"
+
+        - name: companies
+          path: /companies
+          description: "Customer company management"
+          operations:
+            - name: list-companies
+              method: GET
+              description: "List customer companies"
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                - name: offset
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: upsert-company
+              method: POST
+              description: "Create or update a company by external keys"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  keys: "{{tools.keys}}"
+                  name: "{{tools.name}}"
+                  traits: "{{tools.traits}}"
+
+        - name: users
+          path: /users
+          description: "User management"
+          operations:
+            - name: list-users
+              method: GET
+              description: "List users"
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: upsert-user
+              method: POST
+              description: "Create or update a user by external keys"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  keys: "{{tools.keys}}"
+                  name: "{{tools.name}}"
+                  company: "{{tools.company}}"
+
+        - name: plan-entitlements
+          path: /plan-entitlements
+          description: "Plan feature entitlements"
+          operations:
+            - name: list-plan-entitlements
+              method: GET
+              description: "List feature entitlements for plans"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-plan-entitlement
+              method: POST
+              description: "Add a feature entitlement to a plan"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  featureId: "{{tools.featureId}}"
+                  planId: "{{tools.planId}}"
+                  valueType: "{{tools.valueType}}"
+                  numericValue: "{{tools.numericValue}}"
+
+        - name: events
+          path: /events
+          description: "Usage event tracking"
+          operations:
+            - name: create-event
+              method: POST
+              description: "Track a usage event for a company or user"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  event_type: "{{tools.event_type}}"
+                  name: "{{tools.name}}"
+                  company: "{{tools.company}}"
+                  user: "{{tools.user}}"
+                  traits: "{{tools.traits}}"
+
+        - name: webhooks
+          path: /webhooks
+          description: "Outbound webhook configuration"
+          operations:
+            - name: list-webhooks
+              method: GET
+              description: "List configured webhooks"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-webhook
+              method: POST
+              description: "Create a webhook"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  url: "{{tools.url}}"
+                  eventTypes: "{{tools.eventTypes}}"
+
+        - name: insights
+          path: /insights
+          description: "Usage analytics and reporting"
+          operations:
+            - name: get-insights-summary
+              method: GET
+              description: "Get summary analytics"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-plan-growth
+              method: GET
+              description: "Get plan growth metrics"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-top-features
+              method: GET
+              description: "Get top features by usage"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: schematic-rest
+      resources:
+        - path: /v1/flags
+          name: flags
+          description: "Feature flags"
+          operations:
+            - method: GET
+              name: list-flags
+              description: "List feature flags"
+              call: "schematic.list-flags"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-flag
+              description: "Create a feature flag"
+              call: "schematic.create-flag"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/flags/check
+          name: flag-check
+          description: "Check feature flags"
+          operations:
+            - method: POST
+              name: check-flag
+              description: "Check a flag value"
+              call: "schematic.check-flag"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/features
+          name: features
+          description: "Product features"
+          operations:
+            - method: GET
+              name: list-features
+              description: "List features"
+              call: "schematic.list-features"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/plans
+          name: plans
+          description: "Subscription plans"
+          operations:
+            - method: GET
+              name: list-plans
+              description: "List plans"
+              call: "schematic.list-plans"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/companies
+          name: companies
+          description: "Customer companies"
+          operations:
+            - method: GET
+              name: list-companies
+              description: "List companies"
+              call: "schematic.list-companies"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: schematic-mcp
+      transport: http
+      tools:
+        - name: list-flags
+          description: "List feature flags in Schematic"
+          hints:
+            readOnly: true
+          call: "schematic.list-flags"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: check-flag
+          description: "Check whether a feature flag is enabled for a company/user"
+          hints:
+            readOnly: true
+          call: "schematic.check-flag"
+          with:
+            key: "tools.key"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: check-flags-bulk
+          description: "Check multiple feature flags in one request"
+          hints:
+            readOnly: true
+          call: "schematic.check-flags-bulk"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-features
+          description: "List product features"
+          hints:
+            readOnly: true
+          call: "schematic.list-features"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-plans
+          description: "List subscription plans"
+          hints:
+            readOnly: true
+          call: "schematic.list-plans"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-companies
+          description: "List customer companies"
+          hints:
+            readOnly: true
+          call: "schematic.list-companies"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: upsert-company
+          description: "Create or update a company in Schematic"
+          hints:
+            readOnly: false
+          call: "schematic.upsert-company"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: upsert-user
+          description: "Create or update a user in Schematic"
+          hints:
+            readOnly: false
+          call: "schematic.upsert-user"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-event
+          description: "Track a usage event for metered feature consumption"
+          hints:
+            readOnly: false
+          call: "schematic.create-event"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-plan-entitlements
+          description: "List feature entitlements for subscription plans"
+          hints:
+            readOnly: true
+          call: "schematic.list-plan-entitlements"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-insights-summary
+          description: "Get summary analytics for features and plans"
+          hints:
+            readOnly: true
+          call: "schematic.get-insights-summary"
+          outputParameters:
+            - type: object
+              mapping: "$."

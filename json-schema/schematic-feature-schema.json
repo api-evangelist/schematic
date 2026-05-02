@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.schematichq.com/schemas/feature",
+  "title": "Schematic Feature",
+  "description": "A product feature in Schematic that can be included in plans, targeted by flags, and tracked via events.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique Schematic feature identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the feature."
+    },
+    "featureType": {
+      "type": "string",
+      "enum": ["boolean", "trait", "event"],
+      "description": "Type of feature: boolean (on/off), trait-based, or event-metered."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the feature."
+    },
+    "flag": {
+      "$ref": "#/$defs/FlagRef",
+      "description": "The feature flag associated with this feature."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "name", "featureType"],
+  "$defs": {
+    "FlagRef": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "key": { "type": "string" },
+        "defaultValue": { "type": "boolean" }
+      }
+    }
+  }
+}
