@@ -70,6 +70,30 @@ apis:
         url: https://github.com/SchematicHQ/schematic-php
       - type: SDK C#
         url: https://github.com/SchematicHQ/schematic-csharp
+      - type: SpectralRules
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+      - type: NaftikoCapabilities
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/capabilities/feature-management.yaml
+      - type: NaftikoCapabilities
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/capabilities/customer-management.yaml
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+      - type: JSONStructure
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+      - type: JSONLd
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 common:
   - type: Website
     url: https://schematichq.com/
@@ -87,6 +111,12 @@ common:
     url: https://schematichq.com/pricing
   - type: Changelog
     url: https://schematichq.com/changelog
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/vocabulary/schematic-vocabulary.yml
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/examples/schematic-check-flag-example.json
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

@@ -8,8 +8,11 @@ Schematic is a feature and entitlement management platform for SaaS companies, p
 
 - [Documentation](https://docs.schematichq.com/)
 - [API Reference](https://docs.schematichq.com/api-reference)
-- [GitHub Organization](https://github.com/SchematicHQ)
+- [Pricing](https://schematichq.com/pricing)
 - [Blog](https://schematichq.com/blog)
+- [Changelog](https://schematichq.com/changelog)
+- [GitHub Organization](https://github.com/SchematicHQ)
+- [LinkedIn](https://www.linkedin.com/company/schematichq)
 
 ## SDKs
 
