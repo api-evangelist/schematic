@@ -1,199 +1,487 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Schematic Customer Management"
-  description: >-
-    Unified capability for managing customer companies, users, event tracking,
-    and billing integrations in Schematic. Enables SaaS teams to sync customers
-    from CRM and billing systems, track usage events for metering, and manage
-    company-level feature overrides.
+  label: Schematic Customer Management
+  description: Unified capability for managing customer companies, users, event tracking, and billing integrations in Schematic.
+    Enables SaaS teams to sync customers from CRM and billing systems, track usage events for metering, and manage company-level
+    feature overrides.
   tags:
-    - Billing
-    - Customer Management
-    - Metering
-    - SaaS
-    - Schematic
-    - Usage Tracking
-  created: "2026-05-02"
-  modified: "2026-05-02"
-
+  - Billing
+  - Customer Management
+  - Metering
+  - SaaS
+  - Schematic
+  - Usage Tracking
+  created: '2026-05-02'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      SCHEMATIC_API_KEY: SCHEMATIC_API_KEY
-
+- namespace: env
+  keys:
+    SCHEMATIC_API_KEY: SCHEMATIC_API_KEY
 capability:
   consumes:
-    - import: schematic
-      location: ./shared/schematic-api.yaml
-
+  - type: http
+    namespace: schematic
+    baseUri: https://api.schematichq.com
+    description: Schematic feature and entitlement management API
+    authentication:
+      type: apikey
+      key: X-Schematic-Api-Key
+      value: '{{SCHEMATIC_API_KEY}}'
+      placement: header
+    resources:
+    - name: flags
+      path: /flags
+      description: Feature flags with rule-based evaluation
+      operations:
+      - name: list-flags
+        method: GET
+        description: List feature flags
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Number of flags to return
+        - name: offset
+          in: query
+          type: integer
+          required: false
+          description: Number of flags to skip
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-flag
+        method: POST
+        description: Create a new feature flag
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+            description: '{{tools.description}}'
+            defaultValue: '{{tools.defaultValue}}'
+    - name: flag-check
+      path: /flags/check
+      description: Check feature flag values
+      operations:
+      - name: check-flag
+        method: POST
+        description: Check a feature flag for a company/user context
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            key: '{{tools.key}}'
+            company: '{{tools.company}}'
+            user: '{{tools.user}}'
+      - name: check-flags-bulk
+        method: POST
+        description: Check multiple feature flags in one request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            keys: '{{tools.keys}}'
+            company: '{{tools.company}}'
+            user: '{{tools.user}}'
+    - name: features
+      path: /features
+      description: Product feature definitions
+      operations:
+      - name: list-features
+        method: GET
+        description: List product features
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-feature
+        method: POST
+        description: Create a product feature
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+            featureType: '{{tools.featureType}}'
+            description: '{{tools.description}}'
+    - name: plans
+      path: /plans
+      description: Subscription plan management
+      operations:
+      - name: list-plans
+        method: GET
+        description: List subscription plans
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-plan
+        method: POST
+        description: Create a subscription plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+            planType: '{{tools.planType}}'
+            description: '{{tools.description}}'
+    - name: companies
+      path: /companies
+      description: Customer company management
+      operations:
+      - name: list-companies
+        method: GET
+        description: List customer companies
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+        - name: offset
+          in: query
+          type: integer
+          required: false
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: upsert-company
+        method: POST
+        description: Create or update a company by external keys
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            keys: '{{tools.keys}}'
+            name: '{{tools.name}}'
+            traits: '{{tools.traits}}'
+    - name: users
+      path: /users
+      description: User management
+      operations:
+      - name: list-users
+        method: GET
+        description: List users
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: upsert-user
+        method: POST
+        description: Create or update a user by external keys
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            keys: '{{tools.keys}}'
+            name: '{{tools.name}}'
+            company: '{{tools.company}}'
+    - name: plan-entitlements
+      path: /plan-entitlements
+      description: Plan feature entitlements
+      operations:
+      - name: list-plan-entitlements
+        method: GET
+        description: List feature entitlements for plans
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-plan-entitlement
+        method: POST
+        description: Add a feature entitlement to a plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            featureId: '{{tools.featureId}}'
+            planId: '{{tools.planId}}'
+            valueType: '{{tools.valueType}}'
+            numericValue: '{{tools.numericValue}}'
+    - name: events
+      path: /events
+      description: Usage event tracking
+      operations:
+      - name: create-event
+        method: POST
+        description: Track a usage event for a company or user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            event_type: '{{tools.event_type}}'
+            name: '{{tools.name}}'
+            company: '{{tools.company}}'
+            user: '{{tools.user}}'
+            traits: '{{tools.traits}}'
+    - name: webhooks
+      path: /webhooks
+      description: Outbound webhook configuration
+      operations:
+      - name: list-webhooks
+        method: GET
+        description: List configured webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-webhook
+        method: POST
+        description: Create a webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            url: '{{tools.url}}'
+            eventTypes: '{{tools.eventTypes}}'
+    - name: insights
+      path: /insights
+      description: Usage analytics and reporting
+      operations:
+      - name: get-insights-summary
+        method: GET
+        description: Get summary analytics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-plan-growth
+        method: GET
+        description: Get plan growth metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-top-features
+        method: GET
+        description: Get top features by usage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8081
-      namespace: customer-management-api
-      description: "Unified REST API for Schematic customer and usage management."
-      resources:
-        - path: /v1/companies
-          name: companies
-          description: "Customer company records"
-          operations:
-            - method: GET
-              name: list-companies
-              description: "List customer companies"
-              call: "schematic.list-companies"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: upsert-company
-              description: "Create or update a company by external keys"
-              call: "schematic.upsert-company"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/users
-          name: users
-          description: "Customer users"
-          operations:
-            - method: GET
-              name: list-users
-              description: "List users"
-              call: "schematic.list-users"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: upsert-user
-              description: "Create or update a user"
-              call: "schematic.upsert-user"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/events
-          name: events
-          description: "Usage event tracking"
-          operations:
-            - method: POST
-              name: create-event
-              description: "Track a usage event"
-              call: "schematic.create-event"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/insights
-          name: insights
-          description: "Usage analytics"
-          operations:
-            - method: GET
-              name: get-insights-summary
-              description: "Get analytics summary"
-              call: "schematic.get-insights-summary"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: GET
-              name: get-plan-growth
-              description: "Get plan growth metrics"
-              call: "schematic.get-plan-growth"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: GET
-              name: get-top-features
-              description: "Get top features by usage"
-              call: "schematic.get-top-features"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9091
-      namespace: customer-management-mcp
-      transport: http
-      description: "MCP server for AI-assisted customer and usage management."
-      tools:
-        - name: list-companies
-          description: "List customer companies in Schematic"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "schematic.list-companies"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: upsert-company
-          description: "Create or update a company record using external identifiers (Stripe ID, Salesforce ID, etc.)"
-          hints:
-            readOnly: false
-          call: "schematic.upsert-company"
-          with:
-            keys: "tools.keys"
-            name: "tools.name"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-users
-          description: "List users associated with companies"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "schematic.list-users"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: upsert-user
-          description: "Create or update a user record"
-          hints:
-            readOnly: false
-          call: "schematic.upsert-user"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: track-usage-event
-          description: "Submit a usage event for metered feature consumption tracking"
-          hints:
-            readOnly: false
-          call: "schematic.create-event"
-          with:
-            event_type: "tools.event_type"
-            name: "tools.name"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-insights-summary
-          description: "Get summary analytics across features, plans, and companies"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "schematic.get-insights-summary"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-top-features
-          description: "Get the most-used product features by usage count"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "schematic.get-top-features"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-plan-growth
-          description: "Get plan adoption and growth metrics"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "schematic.get-plan-growth"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8081
+    namespace: customer-management-api
+    description: Unified REST API for Schematic customer and usage management.
+    resources:
+    - path: /v1/companies
+      name: companies
+      description: Customer company records
+      operations:
+      - method: GET
+        name: list-companies
+        description: List customer companies
+        call: schematic.list-companies
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: upsert-company
+        description: Create or update a company by external keys
+        call: schematic.upsert-company
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users
+      name: users
+      description: Customer users
+      operations:
+      - method: GET
+        name: list-users
+        description: List users
+        call: schematic.list-users
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: upsert-user
+        description: Create or update a user
+        call: schematic.upsert-user
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/events
+      name: events
+      description: Usage event tracking
+      operations:
+      - method: POST
+        name: create-event
+        description: Track a usage event
+        call: schematic.create-event
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights
+      name: insights
+      description: Usage analytics
+      operations:
+      - method: GET
+        name: get-insights-summary
+        description: Get analytics summary
+        call: schematic.get-insights-summary
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get-plan-growth
+        description: Get plan growth metrics
+        call: schematic.get-plan-growth
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get-top-features
+        description: Get top features by usage
+        call: schematic.get-top-features
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9091
+    namespace: customer-management-mcp
+    transport: http
+    description: MCP server for AI-assisted customer and usage management.
+    tools:
+    - name: list-companies
+      description: List customer companies in Schematic
+      hints:
+        readOnly: true
+        openWorld: true
+      call: schematic.list-companies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upsert-company
+      description: Create or update a company record using external identifiers (Stripe ID, Salesforce ID, etc.)
+      hints:
+        readOnly: false
+      call: schematic.upsert-company
+      with:
+        keys: tools.keys
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-users
+      description: List users associated with companies
+      hints:
+        readOnly: true
+        openWorld: true
+      call: schematic.list-users
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upsert-user
+      description: Create or update a user record
+      hints:
+        readOnly: false
+      call: schematic.upsert-user
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: track-usage-event
+      description: Submit a usage event for metered feature consumption tracking
+      hints:
+        readOnly: false
+      call: schematic.create-event
+      with:
+        event_type: tools.event_type
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-insights-summary
+      description: Get summary analytics across features, plans, and companies
+      hints:
+        readOnly: true
+        openWorld: true
+      call: schematic.get-insights-summary
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-features
+      description: Get the most-used product features by usage count
+      hints:
+        readOnly: true
+        openWorld: true
+      call: schematic.get-top-features
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-plan-growth
+      description: Get plan adoption and growth metrics
+      hints:
+        readOnly: true
+        openWorld: true
+      call: schematic.get-plan-growth
+      outputParameters:
+      - type: object
+        mapping: $.
