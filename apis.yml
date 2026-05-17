@@ -48,13 +48,13 @@ apis:
       - type: OpenAPI
         url: >-
           https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/openapi/schematic-openapi.yml
-      - type: API Reference
+      - type: APIReference
         url: https://docs.schematichq.com/api-reference
       - type: Authentication
         url: https://docs.schematichq.com/api-reference/authentication.mdx
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.schematichq.com/
-      - type: GitHub Repository
+      - type: GitHubRepository
         url: https://github.com/SchematicHQ
       - type: SDK Python
         url: https://github.com/SchematicHQ/schematic-python
@@ -91,7 +91,7 @@ apis:
       - type: JSONStructure
         url: >-
           https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
-      - type: JSONLd
+      - type: JSONLD
         url: >-
           https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 common:
@@ -99,17 +99,17 @@ common:
     url: https://schematichq.com/
   - type: Documentation
     url: https://docs.schematichq.com/
-  - type: API Reference
+  - type: APIReference
     url: https://docs.schematichq.com/api-reference
   - type: Blog
     url: https://schematichq.com/blog
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/SchematicHQ
   - type: LinkedIn
     url: https://www.linkedin.com/company/schematichq
   - type: Pricing
     url: https://schematichq.com/pricing
-  - type: Changelog
+  - type: ChangeLog
     url: https://schematichq.com/changelog
   - type: Vocabulary
     url: >-
