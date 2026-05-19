@@ -1,0 +1,216 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Schematic API — scheduledcheckout
+  description: 'Schematic API — scheduledcheckout. 4 operations. Lead operation: List scheduled checkouts. Self-contained
+    Naftiko capability covering one Schematic business surface.'
+  tags:
+  - Schematic
+  - scheduledcheckout
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SCHEMATIC_API_KEY: SCHEMATIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: schematic-scheduledcheckout
+    baseUri: https://api.schematichq.com
+    description: Schematic API — scheduledcheckout business capability. Self-contained, no shared references.
+    resources:
+    - name: scheduled-checkout
+      path: /scheduled-checkout
+      operations:
+      - name: listscheduledcheckouts
+        method: GET
+        description: List scheduled checkouts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: company_id
+          in: query
+          type: string
+        - name: status
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+          description: Page limit (default 100)
+        - name: offset
+          in: query
+          type: integer
+          description: Page offset (default 0)
+      - name: createscheduledcheckout
+        method: POST
+        description: Create scheduled checkout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: scheduled-checkout-scheduled_checkout_id
+      path: /scheduled-checkout/{scheduled_checkout_id}
+      operations:
+      - name: getscheduledcheckout
+        method: GET
+        description: Get scheduled checkout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scheduled_checkout_id
+          in: path
+          type: string
+          description: scheduled_checkout_id
+          required: true
+      - name: updatescheduledcheckout
+        method: PUT
+        description: Update scheduled checkout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scheduled_checkout_id
+          in: path
+          type: string
+          description: scheduled_checkout_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Schematic-Api-Key
+      value: '{{env.SCHEMATIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: schematic-scheduledcheckout-rest
+    port: 8080
+    description: REST adapter for Schematic API — scheduledcheckout. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/scheduled-checkout
+      name: scheduled-checkout
+      description: REST surface for scheduled-checkout.
+      operations:
+      - method: GET
+        name: listscheduledcheckouts
+        description: List scheduled checkouts
+        call: schematic-scheduledcheckout.listscheduledcheckouts
+        with:
+          company_id: rest.company_id
+          status: rest.status
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createscheduledcheckout
+        description: Create scheduled checkout
+        call: schematic-scheduledcheckout.createscheduledcheckout
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/scheduled-checkout/{scheduled-checkout-id}
+      name: scheduled-checkout-scheduled-checkout-id
+      description: REST surface for scheduled-checkout-scheduled_checkout_id.
+      operations:
+      - method: GET
+        name: getscheduledcheckout
+        description: Get scheduled checkout
+        call: schematic-scheduledcheckout.getscheduledcheckout
+        with:
+          scheduled_checkout_id: rest.scheduled_checkout_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatescheduledcheckout
+        description: Update scheduled checkout
+        call: schematic-scheduledcheckout.updatescheduledcheckout
+        with:
+          scheduled_checkout_id: rest.scheduled_checkout_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: schematic-scheduledcheckout-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Schematic API — scheduledcheckout. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-scheduled-checkouts
+      description: List scheduled checkouts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-scheduledcheckout.listscheduledcheckouts
+      with:
+        company_id: tools.company_id
+        status: tools.status
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-scheduled-checkout
+      description: Create scheduled checkout
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schematic-scheduledcheckout.createscheduledcheckout
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-scheduled-checkout
+      description: Get scheduled checkout
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-scheduledcheckout.getscheduledcheckout
+      with:
+        scheduled_checkout_id: tools.scheduled_checkout_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-scheduled-checkout
+      description: Update scheduled checkout
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: schematic-scheduledcheckout.updatescheduledcheckout
+      with:
+        scheduled_checkout_id: tools.scheduled_checkout_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

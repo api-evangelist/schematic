@@ -1,0 +1,878 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Schematic API — features
+  description: 'Schematic API — features. 17 operations. Lead operation: List features. Self-contained Naftiko capability
+    covering one Schematic business surface.'
+  tags:
+  - Schematic
+  - features
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SCHEMATIC_API_KEY: SCHEMATIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: schematic-features
+    baseUri: https://api.schematichq.com
+    description: Schematic API — features business capability. Self-contained, no shared references.
+    resources:
+    - name: features
+      path: /features
+      operations:
+      - name: listfeatures
+        method: GET
+        description: List features
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: boolean_require_event
+          in: query
+          type: boolean
+          description: Only return boolean features if there is an associated event. Automatically includes boolean in the
+            feature types filter.
+        - name: feature_type
+          in: query
+          type: array
+          description: Filter by one or more feature types (boolean, event, trait)
+        - name: ids
+          in: query
+          type: array
+        - name: plan_version_id
+          in: query
+          type: string
+          description: Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest
+            published version is used
+        - name: q
+          in: query
+          type: string
+          description: Search by feature name or ID
+        - name: without_company_override_for
+          in: query
+          type: string
+          description: Filter out features that already have a company override for the specified company ID
+        - name: without_plan_entitlement_for
+          in: query
+          type: string
+          description: Filter out features that already have a plan entitlement for the specified plan ID
+        - name: limit
+          in: query
+          type: integer
+          description: Page limit (default 100)
+        - name: offset
+          in: query
+          type: integer
+          description: Page offset (default 0)
+      - name: createfeature
+        method: POST
+        description: Create feature
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: features-billing-linked
+      path: /features/billing-linked
+      operations:
+      - name: upsertfeatureforbillingproduct
+        method: POST
+        description: Upsert feature for billing product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: features-count
+      path: /features/count
+      operations:
+      - name: countfeatures
+        method: GET
+        description: Count features
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: boolean_require_event
+          in: query
+          type: boolean
+          description: Only return boolean features if there is an associated event. Automatically includes boolean in the
+            feature types filter.
+        - name: feature_type
+          in: query
+          type: array
+          description: Filter by one or more feature types (boolean, event, trait)
+        - name: ids
+          in: query
+          type: array
+        - name: plan_version_id
+          in: query
+          type: string
+          description: Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest
+            published version is used
+        - name: q
+          in: query
+          type: string
+          description: Search by feature name or ID
+        - name: without_company_override_for
+          in: query
+          type: string
+          description: Filter out features that already have a company override for the specified company ID
+        - name: without_plan_entitlement_for
+          in: query
+          type: string
+          description: Filter out features that already have a plan entitlement for the specified plan ID
+        - name: limit
+          in: query
+          type: integer
+          description: Page limit (default 100)
+        - name: offset
+          in: query
+          type: integer
+          description: Page offset (default 0)
+    - name: features-feature_id
+      path: /features/{feature_id}
+      operations:
+      - name: getfeature
+        method: GET
+        description: Get feature
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: feature_id
+          in: path
+          type: string
+          description: feature_id
+          required: true
+      - name: updatefeature
+        method: PUT
+        description: Update feature
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: feature_id
+          in: path
+          type: string
+          description: feature_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletefeature
+        method: DELETE
+        description: Delete feature
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: feature_id
+          in: path
+          type: string
+          description: feature_id
+          required: true
+    - name: flags
+      path: /flags
+      operations:
+      - name: listflags
+        method: GET
+        description: List flags
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: feature_id
+          in: query
+          type: string
+        - name: ids
+          in: query
+          type: array
+        - name: q
+          in: query
+          type: string
+          description: Search by flag name, key, or ID
+        - name: limit
+          in: query
+          type: integer
+          description: Page limit (default 100)
+        - name: offset
+          in: query
+          type: integer
+          description: Page offset (default 0)
+      - name: createflag
+        method: POST
+        description: Create flag
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: flags-check
+      path: /flags/check
+      operations:
+      - name: checkflags
+        method: POST
+        description: Check flags
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: flags-check-bulk
+      path: /flags/check-bulk
+      operations:
+      - name: checkflagsbulk
+        method: POST
+        description: Check flags bulk
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: flags-count
+      path: /flags/count
+      operations:
+      - name: countflags
+        method: GET
+        description: Count flags
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: feature_id
+          in: query
+          type: string
+        - name: ids
+          in: query
+          type: array
+        - name: q
+          in: query
+          type: string
+          description: Search by flag name, key, or ID
+        - name: limit
+          in: query
+          type: integer
+          description: Page limit (default 100)
+        - name: offset
+          in: query
+          type: integer
+          description: Page offset (default 0)
+    - name: flags-flag_id
+      path: /flags/{flag_id}
+      operations:
+      - name: getflag
+        method: GET
+        description: Get flag
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: flag_id
+          in: path
+          type: string
+          description: flag_id
+          required: true
+      - name: updateflag
+        method: PUT
+        description: Update flag
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: flag_id
+          in: path
+          type: string
+          description: flag_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteflag
+        method: DELETE
+        description: Delete flag
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: flag_id
+          in: path
+          type: string
+          description: flag_id
+          required: true
+    - name: flags-flag_id-rules
+      path: /flags/{flag_id}/rules
+      operations:
+      - name: updateflagrules
+        method: PUT
+        description: Update flag rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: flag_id
+          in: path
+          type: string
+          description: flag_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: flags-key-check
+      path: /flags/{key}/check
+      operations:
+      - name: checkflag
+        method: POST
+        description: Check flag
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: key
+          in: path
+          type: string
+          description: key
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Schematic-Api-Key
+      value: '{{env.SCHEMATIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: schematic-features-rest
+    port: 8080
+    description: REST adapter for Schematic API — features. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/features
+      name: features
+      description: REST surface for features.
+      operations:
+      - method: GET
+        name: listfeatures
+        description: List features
+        call: schematic-features.listfeatures
+        with:
+          boolean_require_event: rest.boolean_require_event
+          feature_type: rest.feature_type
+          ids: rest.ids
+          plan_version_id: rest.plan_version_id
+          q: rest.q
+          without_company_override_for: rest.without_company_override_for
+          without_plan_entitlement_for: rest.without_plan_entitlement_for
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createfeature
+        description: Create feature
+        call: schematic-features.createfeature
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/features/billing-linked
+      name: features-billing-linked
+      description: REST surface for features-billing-linked.
+      operations:
+      - method: POST
+        name: upsertfeatureforbillingproduct
+        description: Upsert feature for billing product
+        call: schematic-features.upsertfeatureforbillingproduct
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/features/count
+      name: features-count
+      description: REST surface for features-count.
+      operations:
+      - method: GET
+        name: countfeatures
+        description: Count features
+        call: schematic-features.countfeatures
+        with:
+          boolean_require_event: rest.boolean_require_event
+          feature_type: rest.feature_type
+          ids: rest.ids
+          plan_version_id: rest.plan_version_id
+          q: rest.q
+          without_company_override_for: rest.without_company_override_for
+          without_plan_entitlement_for: rest.without_plan_entitlement_for
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/features/{feature-id}
+      name: features-feature-id
+      description: REST surface for features-feature_id.
+      operations:
+      - method: GET
+        name: getfeature
+        description: Get feature
+        call: schematic-features.getfeature
+        with:
+          feature_id: rest.feature_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatefeature
+        description: Update feature
+        call: schematic-features.updatefeature
+        with:
+          feature_id: rest.feature_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletefeature
+        description: Delete feature
+        call: schematic-features.deletefeature
+        with:
+          feature_id: rest.feature_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/flags
+      name: flags
+      description: REST surface for flags.
+      operations:
+      - method: GET
+        name: listflags
+        description: List flags
+        call: schematic-features.listflags
+        with:
+          feature_id: rest.feature_id
+          ids: rest.ids
+          q: rest.q
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createflag
+        description: Create flag
+        call: schematic-features.createflag
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/flags/check
+      name: flags-check
+      description: REST surface for flags-check.
+      operations:
+      - method: POST
+        name: checkflags
+        description: Check flags
+        call: schematic-features.checkflags
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/flags/check-bulk
+      name: flags-check-bulk
+      description: REST surface for flags-check-bulk.
+      operations:
+      - method: POST
+        name: checkflagsbulk
+        description: Check flags bulk
+        call: schematic-features.checkflagsbulk
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/flags/count
+      name: flags-count
+      description: REST surface for flags-count.
+      operations:
+      - method: GET
+        name: countflags
+        description: Count flags
+        call: schematic-features.countflags
+        with:
+          feature_id: rest.feature_id
+          ids: rest.ids
+          q: rest.q
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/flags/{flag-id}
+      name: flags-flag-id
+      description: REST surface for flags-flag_id.
+      operations:
+      - method: GET
+        name: getflag
+        description: Get flag
+        call: schematic-features.getflag
+        with:
+          flag_id: rest.flag_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateflag
+        description: Update flag
+        call: schematic-features.updateflag
+        with:
+          flag_id: rest.flag_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteflag
+        description: Delete flag
+        call: schematic-features.deleteflag
+        with:
+          flag_id: rest.flag_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/flags/{flag-id}/rules
+      name: flags-flag-id-rules
+      description: REST surface for flags-flag_id-rules.
+      operations:
+      - method: PUT
+        name: updateflagrules
+        description: Update flag rules
+        call: schematic-features.updateflagrules
+        with:
+          flag_id: rest.flag_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/flags/{key}/check
+      name: flags-key-check
+      description: REST surface for flags-key-check.
+      operations:
+      - method: POST
+        name: checkflag
+        description: Check flag
+        call: schematic-features.checkflag
+        with:
+          key: rest.key
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: schematic-features-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Schematic API — features. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-features
+      description: List features
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-features.listfeatures
+      with:
+        boolean_require_event: tools.boolean_require_event
+        feature_type: tools.feature_type
+        ids: tools.ids
+        plan_version_id: tools.plan_version_id
+        q: tools.q
+        without_company_override_for: tools.without_company_override_for
+        without_plan_entitlement_for: tools.without_plan_entitlement_for
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-feature
+      description: Create feature
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schematic-features.createfeature
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upsert-feature-billing-product
+      description: Upsert feature for billing product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schematic-features.upsertfeatureforbillingproduct
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: count-features
+      description: Count features
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-features.countfeatures
+      with:
+        boolean_require_event: tools.boolean_require_event
+        feature_type: tools.feature_type
+        ids: tools.ids
+        plan_version_id: tools.plan_version_id
+        q: tools.q
+        without_company_override_for: tools.without_company_override_for
+        without_plan_entitlement_for: tools.without_plan_entitlement_for
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-feature
+      description: Get feature
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-features.getfeature
+      with:
+        feature_id: tools.feature_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-feature
+      description: Update feature
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: schematic-features.updatefeature
+      with:
+        feature_id: tools.feature_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-feature
+      description: Delete feature
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: schematic-features.deletefeature
+      with:
+        feature_id: tools.feature_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-flags
+      description: List flags
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-features.listflags
+      with:
+        feature_id: tools.feature_id
+        ids: tools.ids
+        q: tools.q
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-flag
+      description: Create flag
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schematic-features.createflag
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: check-flags
+      description: Check flags
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: schematic-features.checkflags
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: check-flags-bulk
+      description: Check flags bulk
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: schematic-features.checkflagsbulk
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: count-flags
+      description: Count flags
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-features.countflags
+      with:
+        feature_id: tools.feature_id
+        ids: tools.ids
+        q: tools.q
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-flag
+      description: Get flag
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-features.getflag
+      with:
+        flag_id: tools.flag_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-flag
+      description: Update flag
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: schematic-features.updateflag
+      with:
+        flag_id: tools.flag_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-flag
+      description: Delete flag
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: schematic-features.deleteflag
+      with:
+        flag_id: tools.flag_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-flag-rules
+      description: Update flag rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: schematic-features.updateflagrules
+      with:
+        flag_id: tools.flag_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: check-flag
+      description: Check flag
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: schematic-features.checkflag
+      with:
+        key: tools.key
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

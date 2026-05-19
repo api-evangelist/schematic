@@ -1,0 +1,464 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Schematic API — webhooks
+  description: 'Schematic API — webhooks. 9 operations. Lead operation: List webhook events. Self-contained Naftiko capability
+    covering one Schematic business surface.'
+  tags:
+  - Schematic
+  - webhooks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SCHEMATIC_API_KEY: SCHEMATIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: schematic-webhooks
+    baseUri: https://api.schematichq.com
+    description: Schematic API — webhooks business capability. Self-contained, no shared references.
+    resources:
+    - name: webhook-events
+      path: /webhook-events
+      operations:
+      - name: listwebhookevents
+        method: GET
+        description: List webhook events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: array
+        - name: q
+          in: query
+          type: string
+        - name: webhook_id
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+          description: Page limit (default 100)
+        - name: offset
+          in: query
+          type: integer
+          description: Page offset (default 0)
+    - name: webhook-events-count
+      path: /webhook-events/count
+      operations:
+      - name: countwebhookevents
+        method: GET
+        description: Count webhook events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: array
+        - name: q
+          in: query
+          type: string
+        - name: webhook_id
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+          description: Page limit (default 100)
+        - name: offset
+          in: query
+          type: integer
+          description: Page offset (default 0)
+    - name: webhook-events-webhook_event_id
+      path: /webhook-events/{webhook_event_id}
+      operations:
+      - name: getwebhookevent
+        method: GET
+        description: Get webhook event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_event_id
+          in: path
+          type: string
+          description: webhook_event_id
+          required: true
+    - name: webhooks
+      path: /webhooks
+      operations:
+      - name: listwebhooks
+        method: GET
+        description: List webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+          description: Page limit (default 100)
+        - name: offset
+          in: query
+          type: integer
+          description: Page offset (default 0)
+      - name: createwebhook
+        method: POST
+        description: Create webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: webhooks-count
+      path: /webhooks/count
+      operations:
+      - name: countwebhooks
+        method: GET
+        description: Count webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+          description: Page limit (default 100)
+        - name: offset
+          in: query
+          type: integer
+          description: Page offset (default 0)
+    - name: webhooks-webhook_id
+      path: /webhooks/{webhook_id}
+      operations:
+      - name: getwebhook
+        method: GET
+        description: Get webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+      - name: updatewebhook
+        method: PUT
+        description: Update webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletewebhook
+        method: DELETE
+        description: Delete webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+    authentication:
+      type: apikey
+      key: X-Schematic-Api-Key
+      value: '{{env.SCHEMATIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: schematic-webhooks-rest
+    port: 8080
+    description: REST adapter for Schematic API — webhooks. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/webhook-events
+      name: webhook-events
+      description: REST surface for webhook-events.
+      operations:
+      - method: GET
+        name: listwebhookevents
+        description: List webhook events
+        call: schematic-webhooks.listwebhookevents
+        with:
+          ids: rest.ids
+          q: rest.q
+          webhook_id: rest.webhook_id
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhook-events/count
+      name: webhook-events-count
+      description: REST surface for webhook-events-count.
+      operations:
+      - method: GET
+        name: countwebhookevents
+        description: Count webhook events
+        call: schematic-webhooks.countwebhookevents
+        with:
+          ids: rest.ids
+          q: rest.q
+          webhook_id: rest.webhook_id
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhook-events/{webhook-event-id}
+      name: webhook-events-webhook-event-id
+      description: REST surface for webhook-events-webhook_event_id.
+      operations:
+      - method: GET
+        name: getwebhookevent
+        description: Get webhook event
+        call: schematic-webhooks.getwebhookevent
+        with:
+          webhook_event_id: rest.webhook_event_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks
+      name: webhooks
+      description: REST surface for webhooks.
+      operations:
+      - method: GET
+        name: listwebhooks
+        description: List webhooks
+        call: schematic-webhooks.listwebhooks
+        with:
+          q: rest.q
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createwebhook
+        description: Create webhook
+        call: schematic-webhooks.createwebhook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/count
+      name: webhooks-count
+      description: REST surface for webhooks-count.
+      operations:
+      - method: GET
+        name: countwebhooks
+        description: Count webhooks
+        call: schematic-webhooks.countwebhooks
+        with:
+          q: rest.q
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/{webhook-id}
+      name: webhooks-webhook-id
+      description: REST surface for webhooks-webhook_id.
+      operations:
+      - method: GET
+        name: getwebhook
+        description: Get webhook
+        call: schematic-webhooks.getwebhook
+        with:
+          webhook_id: rest.webhook_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatewebhook
+        description: Update webhook
+        call: schematic-webhooks.updatewebhook
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletewebhook
+        description: Delete webhook
+        call: schematic-webhooks.deletewebhook
+        with:
+          webhook_id: rest.webhook_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: schematic-webhooks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Schematic API — webhooks. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-webhook-events
+      description: List webhook events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-webhooks.listwebhookevents
+      with:
+        ids: tools.ids
+        q: tools.q
+        webhook_id: tools.webhook_id
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: count-webhook-events
+      description: Count webhook events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-webhooks.countwebhookevents
+      with:
+        ids: tools.ids
+        q: tools.q
+        webhook_id: tools.webhook_id
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-webhook-event
+      description: Get webhook event
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-webhooks.getwebhookevent
+      with:
+        webhook_event_id: tools.webhook_event_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-webhooks
+      description: List webhooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-webhooks.listwebhooks
+      with:
+        q: tools.q
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-webhook
+      description: Create webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schematic-webhooks.createwebhook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: count-webhooks
+      description: Count webhooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-webhooks.countwebhooks
+      with:
+        q: tools.q
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-webhook
+      description: Get webhook
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-webhooks.getwebhook
+      with:
+        webhook_id: tools.webhook_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-webhook
+      description: Update webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: schematic-webhooks.updatewebhook
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-webhook
+      description: Delete webhook
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: schematic-webhooks.deletewebhook
+      with:
+        webhook_id: tools.webhook_id
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,1008 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Schematic API — plans
+  description: 'Schematic API — plans. 17 operations. Lead operation: Update company plans. Self-contained Naftiko capability
+    covering one Schematic business surface.'
+  tags:
+  - Schematic
+  - plans
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SCHEMATIC_API_KEY: SCHEMATIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: schematic-plans
+    baseUri: https://api.schematichq.com
+    description: Schematic API — plans business capability. Self-contained, no shared references.
+    resources:
+    - name: company-plans-company_plan_id
+      path: /company-plans/{company_plan_id}
+      operations:
+      - name: updatecompanyplans
+        method: PUT
+        description: Update company plans
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: company_plan_id
+          in: path
+          type: string
+          description: company_plan_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: custom-plan-billings
+      path: /custom-plan-billings
+      operations:
+      - name: listcustomplanbillings
+        method: GET
+        description: List custom plan billings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: company_id
+          in: query
+          type: string
+          description: Filter by company ID
+        - name: plan_id
+          in: query
+          type: string
+          description: Filter by plan ID
+        - name: status
+          in: query
+          type: string
+          description: Filter by billing status
+        - name: statuses
+          in: query
+          type: array
+          description: Filter by multiple billing statuses
+        - name: limit
+          in: query
+          type: integer
+          description: Page limit (default 100)
+        - name: offset
+          in: query
+          type: integer
+          description: Page offset (default 0)
+    - name: custom-plan-billings-custom_plan_billing_id-retry
+      path: /custom-plan-billings/{custom_plan_billing_id}/retry
+      operations:
+      - name: retrycustomplanbilling
+        method: PUT
+        description: Retry custom plan billing
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: custom_plan_billing_id
+          in: path
+          type: string
+          description: custom_plan_billing_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: custom-plans
+      path: /custom-plans
+      operations:
+      - name: createcustomplan
+        method: POST
+        description: Create custom plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: plans
+      path: /plans
+      operations:
+      - name: listplans
+        method: GET
+        description: List plans
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: company_id
+          in: query
+          type: string
+        - name: exclude_company_scoped
+          in: query
+          type: boolean
+          description: Exclude plans that are scoped to a company (custom plans assigned to a company)
+        - name: for_fallback_plan
+          in: query
+          type: boolean
+          description: Filter for plans valid as fallback plans (not linked to billing)
+        - name: for_initial_plan
+          in: query
+          type: boolean
+          description: Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial)
+        - name: for_trial_expiry_plan
+          in: query
+          type: boolean
+          description: Filter for plans valid as trial expiry plans (not linked to billing or free)
+        - name: has_product_id
+          in: query
+          type: boolean
+          description: Filter out plans that do not have a billing product ID
+        - name: ids
+          in: query
+          type: array
+        - name: include_draft_versions
+          in: query
+          type: boolean
+          description: Include billing settings from draft versions for plans which have draft version
+        - name: plan_type
+          in: query
+          type: string
+          description: Filter by plan type
+        - name: q
+          in: query
+          type: string
+        - name: scoped_to_company_id
+          in: query
+          type: string
+          description: Filter plans scoped to a specific company (custom plans)
+        - name: without_entitlement_for
+          in: query
+          type: string
+          description: Filter out plans that already have a plan entitlement for the specified feature ID
+        - name: without_paid_product_id
+          in: query
+          type: boolean
+          description: Filter out plans that have a paid billing product ID
+        - name: limit
+          in: query
+          type: integer
+          description: Page limit (default 100)
+        - name: offset
+          in: query
+          type: integer
+          description: Page offset (default 0)
+      - name: createplan
+        method: POST
+        description: Create plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: plans-billing-linked
+      path: /plans/billing-linked
+      operations:
+      - name: upsertplanforbillingproduct
+        method: POST
+        description: Upsert plan for billing product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: plans-billing-product-match-companies
+      path: /plans/billing-product-match-companies
+      operations:
+      - name: listbillingproductmatchcompanies
+        method: GET
+        description: List billing product match companies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: plan_id
+          in: query
+          type: string
+          description: The plan ID to find billing product match companies for
+          required: true
+        - name: q
+          in: query
+          type: string
+          description: Search for companies by name, keys or string traits
+        - name: limit
+          in: query
+          type: integer
+          description: Page limit (default 100)
+        - name: offset
+          in: query
+          type: integer
+          description: Page offset (default 0)
+    - name: plans-billing-product-match-companies-count
+      path: /plans/billing-product-match-companies/count
+      operations:
+      - name: countbillingproductmatchcompanies
+        method: GET
+        description: Count billing product match companies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: plan_id
+          in: query
+          type: string
+          description: The plan ID to find billing product match companies for
+          required: true
+        - name: q
+          in: query
+          type: string
+          description: Search for companies by name, keys or string traits
+        - name: limit
+          in: query
+          type: integer
+          description: Page limit (default 100)
+        - name: offset
+          in: query
+          type: integer
+          description: Page offset (default 0)
+    - name: plans-count
+      path: /plans/count
+      operations:
+      - name: countplans
+        method: GET
+        description: Count plans
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: company_id
+          in: query
+          type: string
+        - name: exclude_company_scoped
+          in: query
+          type: boolean
+          description: Exclude plans that are scoped to a company (custom plans assigned to a company)
+        - name: for_fallback_plan
+          in: query
+          type: boolean
+          description: Filter for plans valid as fallback plans (not linked to billing)
+        - name: for_initial_plan
+          in: query
+          type: boolean
+          description: Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial)
+        - name: for_trial_expiry_plan
+          in: query
+          type: boolean
+          description: Filter for plans valid as trial expiry plans (not linked to billing or free)
+        - name: has_product_id
+          in: query
+          type: boolean
+          description: Filter out plans that do not have a billing product ID
+        - name: ids
+          in: query
+          type: array
+        - name: include_draft_versions
+          in: query
+          type: boolean
+          description: Include billing settings from draft versions for plans which have draft version
+        - name: plan_type
+          in: query
+          type: string
+          description: Filter by plan type
+        - name: q
+          in: query
+          type: string
+        - name: scoped_to_company_id
+          in: query
+          type: string
+          description: Filter plans scoped to a specific company (custom plans)
+        - name: without_entitlement_for
+          in: query
+          type: string
+          description: Filter out plans that already have a plan entitlement for the specified feature ID
+        - name: without_paid_product_id
+          in: query
+          type: boolean
+          description: Filter out plans that have a paid billing product ID
+        - name: limit
+          in: query
+          type: integer
+          description: Page limit (default 100)
+        - name: offset
+          in: query
+          type: integer
+          description: Page offset (default 0)
+    - name: plans-issues
+      path: /plans/issues
+      operations:
+      - name: listplanissues
+        method: GET
+        description: List plan issues
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: plan_id
+          in: query
+          type: string
+          required: true
+        - name: plan_version_id
+          in: query
+          type: string
+    - name: plans-version-plan_id
+      path: /plans/version/{plan_id}
+      operations:
+      - name: deleteplanversion
+        method: DELETE
+        description: Delete plan version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: plan_id
+          in: path
+          type: string
+          description: plan_id
+          required: true
+        - name: promote_archived_version
+          in: query
+          type: boolean
+    - name: plans-version-plan_id-publish
+      path: /plans/version/{plan_id}/publish
+      operations:
+      - name: publishplanversion
+        method: PUT
+        description: Publish plan version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: plan_id
+          in: path
+          type: string
+          description: plan_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: plans-plan_id
+      path: /plans/{plan_id}
+      operations:
+      - name: getplan
+        method: GET
+        description: Get plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: plan_id
+          in: path
+          type: string
+          description: plan_id
+          required: true
+        - name: plan_version_id
+          in: query
+          type: string
+          description: Fetch billing settings for a specific plan version
+      - name: updateplan
+        method: PUT
+        description: Update plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: plan_id
+          in: path
+          type: string
+          description: plan_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteplan
+        method: DELETE
+        description: Delete plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: plan_id
+          in: path
+          type: string
+          description: plan_id
+          required: true
+    - name: plans-plan_id-billing_products
+      path: /plans/{plan_id}/billing_products
+      operations:
+      - name: upsertbillingproductplan
+        method: PUT
+        description: Upsert billing product plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: plan_id
+          in: path
+          type: string
+          description: plan_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Schematic-Api-Key
+      value: '{{env.SCHEMATIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: schematic-plans-rest
+    port: 8080
+    description: REST adapter for Schematic API — plans. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/company-plans/{company-plan-id}
+      name: company-plans-company-plan-id
+      description: REST surface for company-plans-company_plan_id.
+      operations:
+      - method: PUT
+        name: updatecompanyplans
+        description: Update company plans
+        call: schematic-plans.updatecompanyplans
+        with:
+          company_plan_id: rest.company_plan_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom-plan-billings
+      name: custom-plan-billings
+      description: REST surface for custom-plan-billings.
+      operations:
+      - method: GET
+        name: listcustomplanbillings
+        description: List custom plan billings
+        call: schematic-plans.listcustomplanbillings
+        with:
+          company_id: rest.company_id
+          plan_id: rest.plan_id
+          status: rest.status
+          statuses: rest.statuses
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom-plan-billings/{custom-plan-billing-id}/retry
+      name: custom-plan-billings-custom-plan-billing-id-retry
+      description: REST surface for custom-plan-billings-custom_plan_billing_id-retry.
+      operations:
+      - method: PUT
+        name: retrycustomplanbilling
+        description: Retry custom plan billing
+        call: schematic-plans.retrycustomplanbilling
+        with:
+          custom_plan_billing_id: rest.custom_plan_billing_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom-plans
+      name: custom-plans
+      description: REST surface for custom-plans.
+      operations:
+      - method: POST
+        name: createcustomplan
+        description: Create custom plan
+        call: schematic-plans.createcustomplan
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/plans
+      name: plans
+      description: REST surface for plans.
+      operations:
+      - method: GET
+        name: listplans
+        description: List plans
+        call: schematic-plans.listplans
+        with:
+          company_id: rest.company_id
+          exclude_company_scoped: rest.exclude_company_scoped
+          for_fallback_plan: rest.for_fallback_plan
+          for_initial_plan: rest.for_initial_plan
+          for_trial_expiry_plan: rest.for_trial_expiry_plan
+          has_product_id: rest.has_product_id
+          ids: rest.ids
+          include_draft_versions: rest.include_draft_versions
+          plan_type: rest.plan_type
+          q: rest.q
+          scoped_to_company_id: rest.scoped_to_company_id
+          without_entitlement_for: rest.without_entitlement_for
+          without_paid_product_id: rest.without_paid_product_id
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createplan
+        description: Create plan
+        call: schematic-plans.createplan
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/plans/billing-linked
+      name: plans-billing-linked
+      description: REST surface for plans-billing-linked.
+      operations:
+      - method: POST
+        name: upsertplanforbillingproduct
+        description: Upsert plan for billing product
+        call: schematic-plans.upsertplanforbillingproduct
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/plans/billing-product-match-companies
+      name: plans-billing-product-match-companies
+      description: REST surface for plans-billing-product-match-companies.
+      operations:
+      - method: GET
+        name: listbillingproductmatchcompanies
+        description: List billing product match companies
+        call: schematic-plans.listbillingproductmatchcompanies
+        with:
+          plan_id: rest.plan_id
+          q: rest.q
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/plans/billing-product-match-companies/count
+      name: plans-billing-product-match-companies-count
+      description: REST surface for plans-billing-product-match-companies-count.
+      operations:
+      - method: GET
+        name: countbillingproductmatchcompanies
+        description: Count billing product match companies
+        call: schematic-plans.countbillingproductmatchcompanies
+        with:
+          plan_id: rest.plan_id
+          q: rest.q
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/plans/count
+      name: plans-count
+      description: REST surface for plans-count.
+      operations:
+      - method: GET
+        name: countplans
+        description: Count plans
+        call: schematic-plans.countplans
+        with:
+          company_id: rest.company_id
+          exclude_company_scoped: rest.exclude_company_scoped
+          for_fallback_plan: rest.for_fallback_plan
+          for_initial_plan: rest.for_initial_plan
+          for_trial_expiry_plan: rest.for_trial_expiry_plan
+          has_product_id: rest.has_product_id
+          ids: rest.ids
+          include_draft_versions: rest.include_draft_versions
+          plan_type: rest.plan_type
+          q: rest.q
+          scoped_to_company_id: rest.scoped_to_company_id
+          without_entitlement_for: rest.without_entitlement_for
+          without_paid_product_id: rest.without_paid_product_id
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/plans/issues
+      name: plans-issues
+      description: REST surface for plans-issues.
+      operations:
+      - method: GET
+        name: listplanissues
+        description: List plan issues
+        call: schematic-plans.listplanissues
+        with:
+          plan_id: rest.plan_id
+          plan_version_id: rest.plan_version_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/plans/version/{plan-id}
+      name: plans-version-plan-id
+      description: REST surface for plans-version-plan_id.
+      operations:
+      - method: DELETE
+        name: deleteplanversion
+        description: Delete plan version
+        call: schematic-plans.deleteplanversion
+        with:
+          plan_id: rest.plan_id
+          promote_archived_version: rest.promote_archived_version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/plans/version/{plan-id}/publish
+      name: plans-version-plan-id-publish
+      description: REST surface for plans-version-plan_id-publish.
+      operations:
+      - method: PUT
+        name: publishplanversion
+        description: Publish plan version
+        call: schematic-plans.publishplanversion
+        with:
+          plan_id: rest.plan_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/plans/{plan-id}
+      name: plans-plan-id
+      description: REST surface for plans-plan_id.
+      operations:
+      - method: GET
+        name: getplan
+        description: Get plan
+        call: schematic-plans.getplan
+        with:
+          plan_id: rest.plan_id
+          plan_version_id: rest.plan_version_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateplan
+        description: Update plan
+        call: schematic-plans.updateplan
+        with:
+          plan_id: rest.plan_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteplan
+        description: Delete plan
+        call: schematic-plans.deleteplan
+        with:
+          plan_id: rest.plan_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/plans/{plan-id}/billing-products
+      name: plans-plan-id-billing-products
+      description: REST surface for plans-plan_id-billing_products.
+      operations:
+      - method: PUT
+        name: upsertbillingproductplan
+        description: Upsert billing product plan
+        call: schematic-plans.upsertbillingproductplan
+        with:
+          plan_id: rest.plan_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: schematic-plans-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Schematic API — plans. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: update-company-plans
+      description: Update company plans
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: schematic-plans.updatecompanyplans
+      with:
+        company_plan_id: tools.company_plan_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-custom-plan-billings
+      description: List custom plan billings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-plans.listcustomplanbillings
+      with:
+        company_id: tools.company_id
+        plan_id: tools.plan_id
+        status: tools.status
+        statuses: tools.statuses
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retry-custom-plan-billing
+      description: Retry custom plan billing
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: schematic-plans.retrycustomplanbilling
+      with:
+        custom_plan_billing_id: tools.custom_plan_billing_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-custom-plan
+      description: Create custom plan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schematic-plans.createcustomplan
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-plans
+      description: List plans
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-plans.listplans
+      with:
+        company_id: tools.company_id
+        exclude_company_scoped: tools.exclude_company_scoped
+        for_fallback_plan: tools.for_fallback_plan
+        for_initial_plan: tools.for_initial_plan
+        for_trial_expiry_plan: tools.for_trial_expiry_plan
+        has_product_id: tools.has_product_id
+        ids: tools.ids
+        include_draft_versions: tools.include_draft_versions
+        plan_type: tools.plan_type
+        q: tools.q
+        scoped_to_company_id: tools.scoped_to_company_id
+        without_entitlement_for: tools.without_entitlement_for
+        without_paid_product_id: tools.without_paid_product_id
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-plan
+      description: Create plan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schematic-plans.createplan
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upsert-plan-billing-product
+      description: Upsert plan for billing product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schematic-plans.upsertplanforbillingproduct
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-billing-product-match-companies
+      description: List billing product match companies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-plans.listbillingproductmatchcompanies
+      with:
+        plan_id: tools.plan_id
+        q: tools.q
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: count-billing-product-match-companies
+      description: Count billing product match companies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-plans.countbillingproductmatchcompanies
+      with:
+        plan_id: tools.plan_id
+        q: tools.q
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: count-plans
+      description: Count plans
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-plans.countplans
+      with:
+        company_id: tools.company_id
+        exclude_company_scoped: tools.exclude_company_scoped
+        for_fallback_plan: tools.for_fallback_plan
+        for_initial_plan: tools.for_initial_plan
+        for_trial_expiry_plan: tools.for_trial_expiry_plan
+        has_product_id: tools.has_product_id
+        ids: tools.ids
+        include_draft_versions: tools.include_draft_versions
+        plan_type: tools.plan_type
+        q: tools.q
+        scoped_to_company_id: tools.scoped_to_company_id
+        without_entitlement_for: tools.without_entitlement_for
+        without_paid_product_id: tools.without_paid_product_id
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-plan-issues
+      description: List plan issues
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-plans.listplanissues
+      with:
+        plan_id: tools.plan_id
+        plan_version_id: tools.plan_version_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-plan-version
+      description: Delete plan version
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: schematic-plans.deleteplanversion
+      with:
+        plan_id: tools.plan_id
+        promote_archived_version: tools.promote_archived_version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: publish-plan-version
+      description: Publish plan version
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: schematic-plans.publishplanversion
+      with:
+        plan_id: tools.plan_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-plan
+      description: Get plan
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-plans.getplan
+      with:
+        plan_id: tools.plan_id
+        plan_version_id: tools.plan_version_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-plan
+      description: Update plan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: schematic-plans.updateplan
+      with:
+        plan_id: tools.plan_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-plan
+      description: Delete plan
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: schematic-plans.deleteplan
+      with:
+        plan_id: tools.plan_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upsert-billing-product-plan
+      description: Upsert billing product plan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: schematic-plans.upsertbillingproductplan
+      with:
+        plan_id: tools.plan_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

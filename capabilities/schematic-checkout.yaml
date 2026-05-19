@@ -1,0 +1,341 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Schematic API — checkout
+  description: 'Schematic API — checkout. 7 operations. Lead operation: Checkout internal. Self-contained Naftiko capability
+    covering one Schematic business surface.'
+  tags:
+  - Schematic
+  - checkout
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SCHEMATIC_API_KEY: SCHEMATIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: schematic-checkout
+    baseUri: https://api.schematichq.com
+    description: Schematic API — checkout business capability. Self-contained, no shared references.
+    resources:
+    - name: checkout-internal
+      path: /checkout-internal
+      operations:
+      - name: checkoutinternal
+        method: POST
+        description: Checkout internal
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: checkout-internal-data
+      path: /checkout-internal/data
+      operations:
+      - name: getcheckoutdata
+        method: POST
+        description: Get checkout data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: checkout-internal-preview
+      path: /checkout-internal/preview
+      operations:
+      - name: previewcheckoutinternal
+        method: POST
+        description: Preview checkout internal
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: manage-plan
+      path: /manage-plan
+      operations:
+      - name: manageplan
+        method: POST
+        description: Manage plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: manage-plan-preview
+      path: /manage-plan/preview
+      operations:
+      - name: previewmanageplan
+        method: POST
+        description: Preview manage plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: manage-plan-subscription-cancel
+      path: /manage-plan/subscription/cancel
+      operations:
+      - name: cancelsubscription
+        method: POST
+        description: Cancel subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: subscription-subscription_id-edit-trial-end
+      path: /subscription/{subscription_id}/edit-trial-end
+      operations:
+      - name: updatecustomersubscriptiontrialend
+        method: PUT
+        description: Update customer subscription trial end
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: subscription_id
+          in: path
+          type: string
+          description: subscription_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Schematic-Api-Key
+      value: '{{env.SCHEMATIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: schematic-checkout-rest
+    port: 8080
+    description: REST adapter for Schematic API — checkout. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/checkout-internal
+      name: checkout-internal
+      description: REST surface for checkout-internal.
+      operations:
+      - method: POST
+        name: checkoutinternal
+        description: Checkout internal
+        call: schematic-checkout.checkoutinternal
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/checkout-internal/data
+      name: checkout-internal-data
+      description: REST surface for checkout-internal-data.
+      operations:
+      - method: POST
+        name: getcheckoutdata
+        description: Get checkout data
+        call: schematic-checkout.getcheckoutdata
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/checkout-internal/preview
+      name: checkout-internal-preview
+      description: REST surface for checkout-internal-preview.
+      operations:
+      - method: POST
+        name: previewcheckoutinternal
+        description: Preview checkout internal
+        call: schematic-checkout.previewcheckoutinternal
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/manage-plan
+      name: manage-plan
+      description: REST surface for manage-plan.
+      operations:
+      - method: POST
+        name: manageplan
+        description: Manage plan
+        call: schematic-checkout.manageplan
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/manage-plan/preview
+      name: manage-plan-preview
+      description: REST surface for manage-plan-preview.
+      operations:
+      - method: POST
+        name: previewmanageplan
+        description: Preview manage plan
+        call: schematic-checkout.previewmanageplan
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/manage-plan/subscription/cancel
+      name: manage-plan-subscription-cancel
+      description: REST surface for manage-plan-subscription-cancel.
+      operations:
+      - method: POST
+        name: cancelsubscription
+        description: Cancel subscription
+        call: schematic-checkout.cancelsubscription
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscription/{subscription-id}/edit-trial-end
+      name: subscription-subscription-id-edit-trial-end
+      description: REST surface for subscription-subscription_id-edit-trial-end.
+      operations:
+      - method: PUT
+        name: updatecustomersubscriptiontrialend
+        description: Update customer subscription trial end
+        call: schematic-checkout.updatecustomersubscriptiontrialend
+        with:
+          subscription_id: rest.subscription_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: schematic-checkout-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Schematic API — checkout. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: checkout-internal
+      description: Checkout internal
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schematic-checkout.checkoutinternal
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-checkout-data
+      description: Get checkout data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: schematic-checkout.getcheckoutdata
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: preview-checkout-internal
+      description: Preview checkout internal
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schematic-checkout.previewcheckoutinternal
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: manage-plan
+      description: Manage plan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schematic-checkout.manageplan
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: preview-manage-plan
+      description: Preview manage plan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schematic-checkout.previewmanageplan
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cancel-subscription
+      description: Cancel subscription
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schematic-checkout.cancelsubscription
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-customer-subscription-trial-end
+      description: Update customer subscription trial end
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: schematic-checkout.updatecustomersubscriptiontrialend
+      with:
+        subscription_id: tools.subscription_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

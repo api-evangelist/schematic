@@ -1,0 +1,320 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Schematic API — insights
+  description: 'Schematic API — insights. 6 operations. Lead operation: Get activity. Self-contained Naftiko capability covering
+    one Schematic business surface.'
+  tags:
+  - Schematic
+  - insights
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SCHEMATIC_API_KEY: SCHEMATIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: schematic-insights
+    baseUri: https://api.schematichq.com
+    description: Schematic API — insights business capability. Self-contained, no shared references.
+    resources:
+    - name: insights-activity
+      path: /insights/activity
+      operations:
+      - name: getactivity
+        method: GET
+        description: Get activity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+    - name: insights-feature-usage-timeseries
+      path: /insights/feature-usage-timeseries
+      operations:
+      - name: getenvironmentfeatureusagetimeseries
+        method: GET
+        description: Get environment feature usage time series
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: end_time
+          in: query
+          type: string
+          required: true
+        - name: feature_id
+          in: query
+          type: string
+          required: true
+        - name: granularity
+          in: query
+          type: string
+        - name: start_time
+          in: query
+          type: string
+          required: true
+    - name: insights-plan-growth
+      path: /insights/plan-growth
+      operations:
+      - name: getplangrowth
+        method: GET
+        description: Get plan growth
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: months
+          in: query
+          type: integer
+    - name: insights-summary
+      path: /insights/summary
+      operations:
+      - name: getsummary
+        method: GET
+        description: Get summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: insights-top-features
+      path: /insights/top-features
+      operations:
+      - name: gettopfeaturesbyusage
+        method: GET
+        description: Get top features by usage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: end_time
+          in: query
+          type: string
+          required: true
+        - name: limit
+          in: query
+          type: integer
+        - name: start_time
+          in: query
+          type: string
+          required: true
+    - name: insights-trait-usage-timeseries
+      path: /insights/trait-usage-timeseries
+      operations:
+      - name: getenvironmenttraitusagetimeseries
+        method: GET
+        description: Get environment trait usage time series
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: end_time
+          in: query
+          type: string
+          required: true
+        - name: feature_id
+          in: query
+          type: string
+          required: true
+        - name: granularity
+          in: query
+          type: string
+        - name: start_time
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: X-Schematic-Api-Key
+      value: '{{env.SCHEMATIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: schematic-insights-rest
+    port: 8080
+    description: REST adapter for Schematic API — insights. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/insights/activity
+      name: insights-activity
+      description: REST surface for insights-activity.
+      operations:
+      - method: GET
+        name: getactivity
+        description: Get activity
+        call: schematic-insights.getactivity
+        with:
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/feature-usage-timeseries
+      name: insights-feature-usage-timeseries
+      description: REST surface for insights-feature-usage-timeseries.
+      operations:
+      - method: GET
+        name: getenvironmentfeatureusagetimeseries
+        description: Get environment feature usage time series
+        call: schematic-insights.getenvironmentfeatureusagetimeseries
+        with:
+          end_time: rest.end_time
+          feature_id: rest.feature_id
+          granularity: rest.granularity
+          start_time: rest.start_time
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/plan-growth
+      name: insights-plan-growth
+      description: REST surface for insights-plan-growth.
+      operations:
+      - method: GET
+        name: getplangrowth
+        description: Get plan growth
+        call: schematic-insights.getplangrowth
+        with:
+          months: rest.months
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/summary
+      name: insights-summary
+      description: REST surface for insights-summary.
+      operations:
+      - method: GET
+        name: getsummary
+        description: Get summary
+        call: schematic-insights.getsummary
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/top-features
+      name: insights-top-features
+      description: REST surface for insights-top-features.
+      operations:
+      - method: GET
+        name: gettopfeaturesbyusage
+        description: Get top features by usage
+        call: schematic-insights.gettopfeaturesbyusage
+        with:
+          end_time: rest.end_time
+          limit: rest.limit
+          start_time: rest.start_time
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/trait-usage-timeseries
+      name: insights-trait-usage-timeseries
+      description: REST surface for insights-trait-usage-timeseries.
+      operations:
+      - method: GET
+        name: getenvironmenttraitusagetimeseries
+        description: Get environment trait usage time series
+        call: schematic-insights.getenvironmenttraitusagetimeseries
+        with:
+          end_time: rest.end_time
+          feature_id: rest.feature_id
+          granularity: rest.granularity
+          start_time: rest.start_time
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: schematic-insights-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Schematic API — insights. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-activity
+      description: Get activity
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-insights.getactivity
+      with:
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-environment-feature-usage-time
+      description: Get environment feature usage time series
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-insights.getenvironmentfeatureusagetimeseries
+      with:
+        end_time: tools.end_time
+        feature_id: tools.feature_id
+        granularity: tools.granularity
+        start_time: tools.start_time
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-plan-growth
+      description: Get plan growth
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-insights.getplangrowth
+      with:
+        months: tools.months
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-summary
+      description: Get summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-insights.getsummary
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-features-usage
+      description: Get top features by usage
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-insights.gettopfeaturesbyusage
+      with:
+        end_time: tools.end_time
+        limit: tools.limit
+        start_time: tools.start_time
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-environment-trait-usage-time
+      description: Get environment trait usage time series
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-insights.getenvironmenttraitusagetimeseries
+      with:
+        end_time: tools.end_time
+        feature_id: tools.feature_id
+        granularity: tools.granularity
+        start_time: tools.start_time
+      outputParameters:
+      - type: object
+        mapping: $.

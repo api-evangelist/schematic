@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Schematic API — accesstokens
+  description: 'Schematic API — accesstokens. 1 operations. Lead operation: Issue temporary access token. Self-contained Naftiko
+    capability covering one Schematic business surface.'
+  tags:
+  - Schematic
+  - accesstokens
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SCHEMATIC_API_KEY: SCHEMATIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: schematic-accesstokens
+    baseUri: https://api.schematichq.com
+    description: Schematic API — accesstokens business capability. Self-contained, no shared references.
+    resources:
+    - name: temporary-access-tokens
+      path: /temporary-access-tokens
+      operations:
+      - name: issuetemporaryaccesstoken
+        method: POST
+        description: Issue temporary access token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Schematic-Api-Key
+      value: '{{env.SCHEMATIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: schematic-accesstokens-rest
+    port: 8080
+    description: REST adapter for Schematic API — accesstokens. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/temporary-access-tokens
+      name: temporary-access-tokens
+      description: REST surface for temporary-access-tokens.
+      operations:
+      - method: POST
+        name: issuetemporaryaccesstoken
+        description: Issue temporary access token
+        call: schematic-accesstokens.issuetemporaryaccesstoken
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: schematic-accesstokens-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Schematic API — accesstokens. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: issue-temporary-access-token
+      description: Issue temporary access token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schematic-accesstokens.issuetemporaryaccesstoken
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

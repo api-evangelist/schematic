@@ -1,0 +1,124 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Schematic API — dataexports
+  description: 'Schematic API — dataexports. 2 operations. Lead operation: Create data export. Self-contained Naftiko capability
+    covering one Schematic business surface.'
+  tags:
+  - Schematic
+  - dataexports
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SCHEMATIC_API_KEY: SCHEMATIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: schematic-dataexports
+    baseUri: https://api.schematichq.com
+    description: Schematic API — dataexports business capability. Self-contained, no shared references.
+    resources:
+    - name: data-exports
+      path: /data-exports
+      operations:
+      - name: createdataexport
+        method: POST
+        description: Create data export
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: data-exports-data_export_id-artifact
+      path: /data-exports/{data_export_id}/artifact
+      operations:
+      - name: getdataexportartifact
+        method: GET
+        description: Get data export artifact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: data_export_id
+          in: path
+          type: string
+          description: data_export_id
+          required: true
+    authentication:
+      type: apikey
+      key: X-Schematic-Api-Key
+      value: '{{env.SCHEMATIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: schematic-dataexports-rest
+    port: 8080
+    description: REST adapter for Schematic API — dataexports. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/data-exports
+      name: data-exports
+      description: REST surface for data-exports.
+      operations:
+      - method: POST
+        name: createdataexport
+        description: Create data export
+        call: schematic-dataexports.createdataexport
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/data-exports/{data-export-id}/artifact
+      name: data-exports-data-export-id-artifact
+      description: REST surface for data-exports-data_export_id-artifact.
+      operations:
+      - method: GET
+        name: getdataexportartifact
+        description: Get data export artifact
+        call: schematic-dataexports.getdataexportartifact
+        with:
+          data_export_id: rest.data_export_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: schematic-dataexports-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Schematic API — dataexports. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: create-data-export
+      description: Create data export
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: schematic-dataexports.createdataexport
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-data-export-artifact
+      description: Get data export artifact
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: schematic-dataexports.getdataexportartifact
+      with:
+        data_export_id: tools.data_export_id
+      outputParameters:
+      - type: object
+        mapping: $.
