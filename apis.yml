@@ -22,7 +22,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/apis.yml
 created: '2026-03-27'
-modified: '2026-05-02'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
   - aid: schematic:schematic-api
@@ -117,6 +117,9 @@ common:
   - type: Examples
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/examples/schematic-check-flag-example.json
+  - name: MCP Server
+    url: https://github.com/SchematicHQ/schematic-mcp
+    type: MCPServer
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
