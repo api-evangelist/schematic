@@ -1,0 +1,6630 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Schematic API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Schematic-Api-Key",
+      "value": "{{X-Schematic-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List account members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/account-members",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search filter"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List account members"
+        },
+        {
+          "info": {
+            "name": "Get account member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/account-members/:account_member_id",
+            "params": [
+              {
+                "name": "account_member_id",
+                "value": "",
+                "type": "path",
+                "description": "account_member_id"
+              }
+            ]
+          },
+          "docs": "Get account member"
+        },
+        {
+          "info": {
+            "name": "List api keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/api-keys",
+            "params": [
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "require_environment",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List api keys"
+        },
+        {
+          "info": {
+            "name": "Create api key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/api-keys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create api key"
+        },
+        {
+          "info": {
+            "name": "Get api key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/api-keys/:api_key_id",
+            "params": [
+              {
+                "name": "api_key_id",
+                "value": "",
+                "type": "path",
+                "description": "api_key_id"
+              }
+            ]
+          },
+          "docs": "Get api key"
+        },
+        {
+          "info": {
+            "name": "Update api key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/api-keys/:api_key_id",
+            "params": [
+              {
+                "name": "api_key_id",
+                "value": "",
+                "type": "path",
+                "description": "api_key_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update api key"
+        },
+        {
+          "info": {
+            "name": "Delete api key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/api-keys/:api_key_id",
+            "params": [
+              {
+                "name": "api_key_id",
+                "value": "",
+                "type": "path",
+                "description": "api_key_id"
+              }
+            ]
+          },
+          "docs": "Delete api key"
+        },
+        {
+          "info": {
+            "name": "Count api keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/api-keys/count",
+            "params": [
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "require_environment",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count api keys"
+        },
+        {
+          "info": {
+            "name": "List audit logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/audit-log",
+            "params": [
+              {
+                "name": "actor_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List audit logs"
+        },
+        {
+          "info": {
+            "name": "Get audit log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/audit-log/:audit_log_id",
+            "params": [
+              {
+                "name": "audit_log_id",
+                "value": "",
+                "type": "path",
+                "description": "audit_log_id"
+              }
+            ]
+          },
+          "docs": "Get audit log"
+        },
+        {
+          "info": {
+            "name": "Count audit logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/audit-log/count",
+            "params": [
+              {
+                "name": "actor_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count audit logs"
+        },
+        {
+          "info": {
+            "name": "List environments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/environments",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List environments"
+        },
+        {
+          "info": {
+            "name": "Create environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/environments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create environment"
+        },
+        {
+          "info": {
+            "name": "Get environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/environments/:environment_id",
+            "params": [
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "path",
+                "description": "environment_id"
+              }
+            ]
+          },
+          "docs": "Get environment"
+        },
+        {
+          "info": {
+            "name": "Update environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/environments/:environment_id",
+            "params": [
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "path",
+                "description": "environment_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update environment"
+        },
+        {
+          "info": {
+            "name": "Delete environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/environments/:environment_id",
+            "params": [
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "path",
+                "description": "environment_id"
+              }
+            ]
+          },
+          "docs": "Delete environment"
+        },
+        {
+          "info": {
+            "name": "Quickstart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/quickstart"
+          },
+          "docs": "Quickstart"
+        },
+        {
+          "info": {
+            "name": "Get who am I",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/whoami"
+          },
+          "docs": "Get who am I"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List coupons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/coupons",
+            "params": [
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List coupons"
+        },
+        {
+          "info": {
+            "name": "Upsert billing coupon",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/coupons",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert billing coupon"
+        },
+        {
+          "info": {
+            "name": "Upsert billing customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/customer/upsert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert billing customer"
+        },
+        {
+          "info": {
+            "name": "List customers with subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/customers",
+            "params": [
+              {
+                "name": "company_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "provider_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List customers with subscriptions"
+        },
+        {
+          "info": {
+            "name": "Count customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/customers/count",
+            "params": [
+              {
+                "name": "company_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "provider_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count customers"
+        },
+        {
+          "info": {
+            "name": "List invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/invoices",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customer_external_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "subscription_external_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List invoices"
+        },
+        {
+          "info": {
+            "name": "Upsert invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/invoices",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert invoice"
+        },
+        {
+          "info": {
+            "name": "List meters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/meter",
+            "params": [
+              {
+                "name": "display_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List meters"
+        },
+        {
+          "info": {
+            "name": "Upsert billing meter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/meter/upsert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert billing meter"
+        },
+        {
+          "info": {
+            "name": "List payment methods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/payment-methods",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customer_external_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List payment methods"
+        },
+        {
+          "info": {
+            "name": "Upsert payment method",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/payment-methods",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert payment method"
+        },
+        {
+          "info": {
+            "name": "List billing prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/price",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Filter for prices in a specific currency (e.g. usd, eur)"
+              },
+              {
+                "name": "for_initial_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for prices valid for initial plans (free prices only)"
+              },
+              {
+                "name": "for_trial_expiry_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for prices valid for trial expiry plans (free prices only)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query",
+                "description": "Filter for active prices on active products (defaults to true if not specified)"
+              },
+              {
+                "name": "price",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "product_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "provider_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tiers_mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "usage_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "with_meter",
+                "value": "",
+                "type": "query",
+                "description": "Filter for prices with a meter"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List billing prices"
+        },
+        {
+          "info": {
+            "name": "Upsert billing price",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/price/upsert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert billing price"
+        },
+        {
+          "info": {
+            "name": "Delete billing product",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/billing/product/:billing_id",
+            "params": [
+              {
+                "name": "billing_id",
+                "value": "",
+                "type": "path",
+                "description": "billing_id"
+              }
+            ]
+          },
+          "docs": "Delete billing product"
+        },
+        {
+          "info": {
+            "name": "List billing product prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/product/prices",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Filter for prices in a specific currency (e.g. usd, eur)"
+              },
+              {
+                "name": "for_initial_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for prices valid for initial plans (free prices only)"
+              },
+              {
+                "name": "for_trial_expiry_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for prices valid for trial expiry plans (free prices only)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query",
+                "description": "Filter for active prices on active products (defaults to true if not specified)"
+              },
+              {
+                "name": "price",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "product_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "provider_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tiers_mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "usage_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "with_meter",
+                "value": "",
+                "type": "query",
+                "description": "Filter for prices with a meter"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List billing product prices"
+        },
+        {
+          "info": {
+            "name": "Delete product price",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/billing/product/prices/:billing_id",
+            "params": [
+              {
+                "name": "billing_id",
+                "value": "",
+                "type": "path",
+                "description": "billing_id"
+              }
+            ]
+          },
+          "docs": "Delete product price"
+        },
+        {
+          "info": {
+            "name": "Upsert billing product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/product/upsert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert billing product"
+        },
+        {
+          "info": {
+            "name": "List billing products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/products",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that are active. Defaults to true if not specified"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "price_usage_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "provider_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recurring_charges_only",
+                "value": "",
+                "type": "query",
+                "description": "Filter to products that have at least one recurring price"
+              },
+              {
+                "name": "with_one_time_charges",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that are one time charges"
+              },
+              {
+                "name": "with_prices_only",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that have prices"
+              },
+              {
+                "name": "with_zero_price",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that have zero price for free subscription type"
+              },
+              {
+                "name": "without_linked_to_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that are not linked to any plan"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List billing products"
+        },
+        {
+          "info": {
+            "name": "Count billing products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/products/count",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that are active. Defaults to true if not specified"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "price_usage_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "provider_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recurring_charges_only",
+                "value": "",
+                "type": "query",
+                "description": "Filter to products that have at least one recurring price"
+              },
+              {
+                "name": "with_one_time_charges",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that are one time charges"
+              },
+              {
+                "name": "with_prices_only",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that have prices"
+              },
+              {
+                "name": "with_zero_price",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that have zero price for free subscription type"
+              },
+              {
+                "name": "without_linked_to_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that are not linked to any plan"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count billing products"
+        },
+        {
+          "info": {
+            "name": "Upsert billing subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/subscription/upsert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert billing subscription"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "credits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List billing credits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List billing credits"
+        },
+        {
+          "info": {
+            "name": "Create billing credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/credits",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create billing credit"
+        },
+        {
+          "info": {
+            "name": "Get single billing credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/:credit_id",
+            "params": [
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "path",
+                "description": "credit_id"
+              }
+            ]
+          },
+          "docs": "Get single billing credit"
+        },
+        {
+          "info": {
+            "name": "Update billing credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/billing/credits/:credit_id",
+            "params": [
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "path",
+                "description": "credit_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update billing credit"
+        },
+        {
+          "info": {
+            "name": "Soft delete billing credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/billing/credits/:credit_id",
+            "params": [
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "path",
+                "description": "credit_id"
+              }
+            ]
+          },
+          "docs": "Soft delete billing credit"
+        },
+        {
+          "info": {
+            "name": "List company credit balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/balance",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List company credit balances"
+        },
+        {
+          "info": {
+            "name": "List credit bundles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/bundles",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bundle_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List credit bundles"
+        },
+        {
+          "info": {
+            "name": "Create credit bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/credits/bundles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create credit bundle"
+        },
+        {
+          "info": {
+            "name": "Get credit bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/bundles/:bundle_id",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "bundle_id"
+              }
+            ]
+          },
+          "docs": "Get credit bundle"
+        },
+        {
+          "info": {
+            "name": "Update credit bundle details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/billing/credits/bundles/:bundle_id",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "bundle_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update credit bundle details"
+        },
+        {
+          "info": {
+            "name": "Delete credit bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/billing/credits/bundles/:bundle_id",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "bundle_id"
+              }
+            ]
+          },
+          "docs": "Delete credit bundle"
+        },
+        {
+          "info": {
+            "name": "Count credit bundles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/bundles/count",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bundle_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count credit bundles"
+        },
+        {
+          "info": {
+            "name": "Count billing credits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/count",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count billing credits"
+        },
+        {
+          "info": {
+            "name": "Zero out grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/billing/credits/grants/:grant_id/zero-out",
+            "params": [
+              {
+                "name": "grant_id",
+                "value": "",
+                "type": "path",
+                "description": "grant_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Zero out grant"
+        },
+        {
+          "info": {
+            "name": "Grant billing credits to company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/credits/grants/company",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grant billing credits to company"
+        },
+        {
+          "info": {
+            "name": "Count company grants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/grants/company/count",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count company grants"
+        },
+        {
+          "info": {
+            "name": "List company grants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/grants/company/list",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List company grants"
+        },
+        {
+          "info": {
+            "name": "Count billing credits grants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/grants/count",
+            "params": [
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count billing credits grants"
+        },
+        {
+          "info": {
+            "name": "List grants for credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/grants/list",
+            "params": [
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List grants for credit"
+        },
+        {
+          "info": {
+            "name": "Get enriched credit ledger",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/ledger",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billing_credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Get enriched credit ledger"
+        },
+        {
+          "info": {
+            "name": "Count credit ledger",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/ledger/count",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billing_credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count credit ledger"
+        },
+        {
+          "info": {
+            "name": "List billing plan credit grants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/plan-grants",
+            "params": [
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List billing plan credit grants"
+        },
+        {
+          "info": {
+            "name": "Create billing plan credit grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/credits/plan-grants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create billing plan credit grant"
+        },
+        {
+          "info": {
+            "name": "Get single billing plan credit grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/plan-grants/:plan_grant_id",
+            "params": [
+              {
+                "name": "plan_grant_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_grant_id"
+              }
+            ]
+          },
+          "docs": "Get single billing plan credit grant"
+        },
+        {
+          "info": {
+            "name": "Update billing plan credit grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/billing/credits/plan-grants/:plan_grant_id",
+            "params": [
+              {
+                "name": "plan_grant_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_grant_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update billing plan credit grant"
+        },
+        {
+          "info": {
+            "name": "Delete billing plan credit grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/billing/credits/plan-grants/:plan_grant_id",
+            "params": [
+              {
+                "name": "plan_grant_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_grant_id"
+              },
+              {
+                "name": "apply_to_existing",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete billing plan credit grant"
+        },
+        {
+          "info": {
+            "name": "Count billing plan credit grants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/plan-grants/count",
+            "params": [
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count billing plan credit grants"
+        },
+        {
+          "info": {
+            "name": "List credit event ledger",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/v2/billing/credits/ledger",
+            "params": [
+              {
+                "name": "billing_credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "event_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List credit event ledger"
+        },
+        {
+          "info": {
+            "name": "Count credit event ledger",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/v2/billing/credits/ledger/count",
+            "params": [
+              {
+                "name": "billing_credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "event_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count credit event ledger"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "checkout",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkout internal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/checkout-internal",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Checkout internal"
+        },
+        {
+          "info": {
+            "name": "Get checkout data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/checkout-internal/data",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get checkout data"
+        },
+        {
+          "info": {
+            "name": "Preview checkout internal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/checkout-internal/preview",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Preview checkout internal"
+        },
+        {
+          "info": {
+            "name": "Manage plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/manage-plan",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Manage plan"
+        },
+        {
+          "info": {
+            "name": "Preview manage plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/manage-plan/preview",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Preview manage plan"
+        },
+        {
+          "info": {
+            "name": "Cancel subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/manage-plan/subscription/cancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel subscription"
+        },
+        {
+          "info": {
+            "name": "Update customer subscription trial end",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/subscription/:subscription_id/edit-trial-end",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path",
+                "description": "subscription_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update customer subscription trial end"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/companies",
+            "params": [
+              {
+                "name": "credit_type_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies by one or more credit type IDs (each ID starts with bcrd_)"
+              },
+              {
+                "name": "has_scheduled_downgrade",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies that have a pending scheduled downgrade"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies by multiple company IDs (starts with comp_)"
+              },
+              {
+                "name": "monetized_subscriptions",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies that have monetized subscriptions"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies by plan ID (starts with plan_)"
+              },
+              {
+                "name": "plan_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies by one or more plan IDs (each ID starts with plan_)"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies by plan version ID (starts with plvr_)"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search for companies by name, keys or string traits"
+              },
+              {
+                "name": "sort_order_column",
+                "value": "",
+                "type": "query",
+                "description": "Column to sort by (e.g. name, created_at, last_seen_at)"
+              },
+              {
+                "name": "sort_order_direction",
+                "value": "",
+                "type": "query",
+                "description": "Direction to sort by (asc or desc)"
+              },
+              {
+                "name": "subscription_statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies by one or more subscription statuses"
+              },
+              {
+                "name": "subscription_types",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies by one or more subscription types"
+              },
+              {
+                "name": "with_entitlement_for",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies that have an entitlement (plan entitlement or company override) for the specified feature ID"
+              },
+              {
+                "name": "without_feature_override_for",
+                "value": "",
+                "type": "query",
+                "description": "Filter out companies that already have a company override for the specified feature ID"
+              },
+              {
+                "name": "without_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter out companies that have a plan"
+              },
+              {
+                "name": "without_subscription",
+                "value": "",
+                "type": "query",
+                "description": "Filter out companies that have a subscription"
+              },
+              {
+                "name": "with_subscription",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies that have a subscription"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List companies"
+        },
+        {
+          "info": {
+            "name": "Upsert company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/companies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert company"
+        },
+        {
+          "info": {
+            "name": "Get company",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/companies/:company_id",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "path",
+                "description": "company_id"
+              }
+            ]
+          },
+          "docs": "Get company"
+        },
+        {
+          "info": {
+            "name": "Delete company",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/companies/:company_id",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "path",
+                "description": "company_id"
+              },
+              {
+                "name": "cancel_subscription",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "prorate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete company"
+        },
+        {
+          "info": {
+            "name": "Count companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/companies/count",
+            "params": [
+              {
+                "name": "credit_type_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies by one or more credit type IDs (each ID starts with bcrd_)"
+              },
+              {
+                "name": "has_scheduled_downgrade",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies that have a pending scheduled downgrade"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies by multiple company IDs (starts with comp_)"
+              },
+              {
+                "name": "monetized_subscriptions",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies that have monetized subscriptions"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies by plan ID (starts with plan_)"
+              },
+              {
+                "name": "plan_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies by one or more plan IDs (each ID starts with plan_)"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies by plan version ID (starts with plvr_)"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search for companies by name, keys or string traits"
+              },
+              {
+                "name": "sort_order_column",
+                "value": "",
+                "type": "query",
+                "description": "Column to sort by (e.g. name, created_at, last_seen_at)"
+              },
+              {
+                "name": "sort_order_direction",
+                "value": "",
+                "type": "query",
+                "description": "Direction to sort by (asc or desc)"
+              },
+              {
+                "name": "subscription_statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies by one or more subscription statuses"
+              },
+              {
+                "name": "subscription_types",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies by one or more subscription types"
+              },
+              {
+                "name": "with_entitlement_for",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies that have an entitlement (plan entitlement or company override) for the specified feature ID"
+              },
+              {
+                "name": "without_feature_override_for",
+                "value": "",
+                "type": "query",
+                "description": "Filter out companies that already have a company override for the specified feature ID"
+              },
+              {
+                "name": "without_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter out companies that have a plan"
+              },
+              {
+                "name": "without_subscription",
+                "value": "",
+                "type": "query",
+                "description": "Filter out companies that have a subscription"
+              },
+              {
+                "name": "with_subscription",
+                "value": "",
+                "type": "query",
+                "description": "Filter companies that have a subscription"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count companies"
+        },
+        {
+          "info": {
+            "name": "Create company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/companies/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create company"
+        },
+        {
+          "info": {
+            "name": "Delete company by keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/companies/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete company by keys"
+        },
+        {
+          "info": {
+            "name": "Lookup company",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/companies/lookup",
+            "params": [
+              {
+                "name": "keys",
+                "value": "",
+                "type": "query",
+                "description": "Key/value pairs"
+              }
+            ]
+          },
+          "docs": "Lookup company"
+        },
+        {
+          "info": {
+            "name": "List company memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/company-memberships",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List company memberships"
+        },
+        {
+          "info": {
+            "name": "Get or create company membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/company-memberships",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get or create company membership"
+        },
+        {
+          "info": {
+            "name": "Delete company membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/company-memberships/:company_membership_id",
+            "params": [
+              {
+                "name": "company_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "company_membership_id"
+              }
+            ]
+          },
+          "docs": "Delete company membership"
+        },
+        {
+          "info": {
+            "name": "Get active company subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/company-subscriptions",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "company_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Get active company subscription"
+        },
+        {
+          "info": {
+            "name": "Upsert company trait",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/company-traits",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert company trait"
+        },
+        {
+          "info": {
+            "name": "List entity key definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/entity-key-definitions",
+            "params": [
+              {
+                "name": "entity_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List entity key definitions"
+        },
+        {
+          "info": {
+            "name": "Count entity key definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/entity-key-definitions/count",
+            "params": [
+              {
+                "name": "entity_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count entity key definitions"
+        },
+        {
+          "info": {
+            "name": "List entity trait definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/entity-trait-definitions",
+            "params": [
+              {
+                "name": "entity_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trait_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trait_types",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List entity trait definitions"
+        },
+        {
+          "info": {
+            "name": "Get or create entity trait definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/entity-trait-definitions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get or create entity trait definition"
+        },
+        {
+          "info": {
+            "name": "Get entity trait definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/entity-trait-definitions/:entity_trait_definition_id",
+            "params": [
+              {
+                "name": "entity_trait_definition_id",
+                "value": "",
+                "type": "path",
+                "description": "entity_trait_definition_id"
+              }
+            ]
+          },
+          "docs": "Get entity trait definition"
+        },
+        {
+          "info": {
+            "name": "Update entity trait definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/entity-trait-definitions/:entity_trait_definition_id",
+            "params": [
+              {
+                "name": "entity_trait_definition_id",
+                "value": "",
+                "type": "path",
+                "description": "entity_trait_definition_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update entity trait definition"
+        },
+        {
+          "info": {
+            "name": "Count entity trait definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/entity-trait-definitions/count",
+            "params": [
+              {
+                "name": "entity_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trait_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trait_types",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count entity trait definitions"
+        },
+        {
+          "info": {
+            "name": "Get entity trait values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/entity-trait-values",
+            "params": [
+              {
+                "name": "definition_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Get entity trait values"
+        },
+        {
+          "info": {
+            "name": "List plan changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-changes",
+            "params": [
+              {
+                "name": "action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "base_plan_action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "company_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List plan changes"
+        },
+        {
+          "info": {
+            "name": "Get plan change",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-changes/:plan_change_id",
+            "params": [
+              {
+                "name": "plan_change_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_change_id"
+              }
+            ]
+          },
+          "docs": "Get plan change"
+        },
+        {
+          "info": {
+            "name": "List plan traits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-traits",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trait_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trait_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List plan traits"
+        },
+        {
+          "info": {
+            "name": "Get plan trait",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-traits/:plan_trait_id",
+            "params": [
+              {
+                "name": "plan_trait_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_trait_id"
+              }
+            ]
+          },
+          "docs": "Get plan trait"
+        },
+        {
+          "info": {
+            "name": "Update plan traits bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/plan-traits/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update plan traits bulk"
+        },
+        {
+          "info": {
+            "name": "Count plan traits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-traits/count",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trait_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trait_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count plan traits"
+        },
+        {
+          "info": {
+            "name": "Upsert user trait",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/user-traits",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert user trait"
+        },
+        {
+          "info": {
+            "name": "List users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/users",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter users by company ID (starts with comp_)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter users by multiple user IDs (starts with user_)"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter users by plan ID (starts with plan_)"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search for users by name, keys or string traits"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List users"
+        },
+        {
+          "info": {
+            "name": "Upsert user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert user"
+        },
+        {
+          "info": {
+            "name": "Get user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "user_id"
+              }
+            ]
+          },
+          "docs": "Get user"
+        },
+        {
+          "info": {
+            "name": "Delete user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "user_id"
+              }
+            ]
+          },
+          "docs": "Delete user"
+        },
+        {
+          "info": {
+            "name": "Count users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/users/count",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter users by company ID (starts with comp_)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter users by multiple user IDs (starts with user_)"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter users by plan ID (starts with plan_)"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search for users by name, keys or string traits"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count users"
+        },
+        {
+          "info": {
+            "name": "Create user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/users/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create user"
+        },
+        {
+          "info": {
+            "name": "Delete user by keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/users/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete user by keys"
+        },
+        {
+          "info": {
+            "name": "Lookup user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/users/lookup",
+            "params": [
+              {
+                "name": "keys",
+                "value": "",
+                "type": "query",
+                "description": "Key/value pairs"
+              }
+            ]
+          },
+          "docs": "Lookup user"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "entitlements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List company overrides",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/company-overrides",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by a single company ID (starting with comp_)"
+              },
+              {
+                "name": "company_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by multiple company IDs (starting with comp_)"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by a single feature ID (starting with feat_)"
+              },
+              {
+                "name": "feature_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by multiple feature IDs (starting with feat_)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by multiple company override IDs (starting with cmov_)"
+              },
+              {
+                "name": "without_expired",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by whether they have not expired"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search for company overrides by feature or company name"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List company overrides"
+        },
+        {
+          "info": {
+            "name": "Create company override",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/company-overrides",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create company override"
+        },
+        {
+          "info": {
+            "name": "Get company override",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/company-overrides/:company_override_id",
+            "params": [
+              {
+                "name": "company_override_id",
+                "value": "",
+                "type": "path",
+                "description": "company_override_id"
+              }
+            ]
+          },
+          "docs": "Get company override"
+        },
+        {
+          "info": {
+            "name": "Update company override",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/company-overrides/:company_override_id",
+            "params": [
+              {
+                "name": "company_override_id",
+                "value": "",
+                "type": "path",
+                "description": "company_override_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update company override"
+        },
+        {
+          "info": {
+            "name": "Delete company override",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/company-overrides/:company_override_id",
+            "params": [
+              {
+                "name": "company_override_id",
+                "value": "",
+                "type": "path",
+                "description": "company_override_id"
+              }
+            ]
+          },
+          "docs": "Delete company override"
+        },
+        {
+          "info": {
+            "name": "Count company overrides",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/company-overrides/count",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by a single company ID (starting with comp_)"
+              },
+              {
+                "name": "company_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by multiple company IDs (starting with comp_)"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by a single feature ID (starting with feat_)"
+              },
+              {
+                "name": "feature_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by multiple feature IDs (starting with feat_)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by multiple company override IDs (starting with cmov_)"
+              },
+              {
+                "name": "without_expired",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by whether they have not expired"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search for company overrides by feature or company name"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count company overrides"
+        },
+        {
+          "info": {
+            "name": "List feature companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/feature-companies",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List feature companies"
+        },
+        {
+          "info": {
+            "name": "Count feature companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/feature-companies/count",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count feature companies"
+        },
+        {
+          "info": {
+            "name": "List feature usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/feature-usage",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "company_keys",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_usage_aggregation",
+                "value": "",
+                "type": "query",
+                "description": "Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "without_negative_entitlements",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List feature usage"
+        },
+        {
+          "info": {
+            "name": "Get feature usage time series",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/feature-usage-timeseries",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get feature usage time series"
+        },
+        {
+          "info": {
+            "name": "Count feature usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/feature-usage/count",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "company_keys",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_usage_aggregation",
+                "value": "",
+                "type": "query",
+                "description": "Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "without_negative_entitlements",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count feature usage"
+        },
+        {
+          "info": {
+            "name": "List feature users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/feature-users",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List feature users"
+        },
+        {
+          "info": {
+            "name": "Count feature users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/feature-users/count",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count feature users"
+        },
+        {
+          "info": {
+            "name": "List plan entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-entitlements",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by a single feature ID (starting with feat_)"
+              },
+              {
+                "name": "feature_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by multiple feature IDs (starting with feat_)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by multiple plan entitlement IDs (starting with pltl_)"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by a single plan ID (starting with plan_)"
+              },
+              {
+                "name": "plan_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by multiple plan IDs (starting with plan_)"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by a single plan version ID (starting with plvr_)"
+              },
+              {
+                "name": "plan_version_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by multiple plan version IDs (starting with plvr_)"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search for plan entitlements by feature or company name"
+              },
+              {
+                "name": "with_metered_products",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements only with metered products"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List plan entitlements"
+        },
+        {
+          "info": {
+            "name": "Create plan entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/plan-entitlements",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create plan entitlement"
+        },
+        {
+          "info": {
+            "name": "Get plan entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-entitlements/:plan_entitlement_id",
+            "params": [
+              {
+                "name": "plan_entitlement_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_entitlement_id"
+              }
+            ]
+          },
+          "docs": "Get plan entitlement"
+        },
+        {
+          "info": {
+            "name": "Update plan entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/plan-entitlements/:plan_entitlement_id",
+            "params": [
+              {
+                "name": "plan_entitlement_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_entitlement_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update plan entitlement"
+        },
+        {
+          "info": {
+            "name": "Delete plan entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/plan-entitlements/:plan_entitlement_id",
+            "params": [
+              {
+                "name": "plan_entitlement_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_entitlement_id"
+              }
+            ]
+          },
+          "docs": "Delete plan entitlement"
+        },
+        {
+          "info": {
+            "name": "Upsert plan entitlement for billing product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/plan-entitlements/billing-linked",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert plan entitlement for billing product"
+        },
+        {
+          "info": {
+            "name": "Count plan entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-entitlements/count",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by a single feature ID (starting with feat_)"
+              },
+              {
+                "name": "feature_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by multiple feature IDs (starting with feat_)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by multiple plan entitlement IDs (starting with pltl_)"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by a single plan ID (starting with plan_)"
+              },
+              {
+                "name": "plan_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by multiple plan IDs (starting with plan_)"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by a single plan version ID (starting with plvr_)"
+              },
+              {
+                "name": "plan_version_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by multiple plan version IDs (starting with plvr_)"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search for plan entitlements by feature or company name"
+              },
+              {
+                "name": "with_metered_products",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements only with metered products"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count plan entitlements"
+        },
+        {
+          "info": {
+            "name": "Duplicate plan entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/plan-entitlements/duplicate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Duplicate plan entitlements"
+        },
+        {
+          "info": {
+            "name": "Get feature usage by company",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/usage-by-company",
+            "params": [
+              {
+                "name": "keys",
+                "value": "",
+                "type": "query",
+                "description": "Key/value pairs"
+              }
+            ]
+          },
+          "docs": "Get feature usage by company"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update company plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/company-plans/:company_plan_id",
+            "params": [
+              {
+                "name": "company_plan_id",
+                "value": "",
+                "type": "path",
+                "description": "company_plan_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update company plans"
+        },
+        {
+          "info": {
+            "name": "List custom plan billings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/custom-plan-billings",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by company ID"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by plan ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by billing status"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter by multiple billing statuses"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List custom plan billings"
+        },
+        {
+          "info": {
+            "name": "Retry custom plan billing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/custom-plan-billings/:custom_plan_billing_id/retry",
+            "params": [
+              {
+                "name": "custom_plan_billing_id",
+                "value": "",
+                "type": "path",
+                "description": "custom_plan_billing_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retry custom plan billing"
+        },
+        {
+          "info": {
+            "name": "Create custom plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/custom-plans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create custom plan"
+        },
+        {
+          "info": {
+            "name": "List plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plans",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "exclude_company_scoped",
+                "value": "",
+                "type": "query",
+                "description": "Exclude plans that are scoped to a company (custom plans assigned to a company)"
+              },
+              {
+                "name": "for_fallback_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for plans valid as fallback plans (not linked to billing)"
+              },
+              {
+                "name": "for_initial_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial)"
+              },
+              {
+                "name": "for_trial_expiry_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for plans valid as trial expiry plans (not linked to billing or free)"
+              },
+              {
+                "name": "has_product_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter out plans that do not have a billing product ID"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_draft_versions",
+                "value": "",
+                "type": "query",
+                "description": "Include billing settings from draft versions for plans which have draft version"
+              },
+              {
+                "name": "plan_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by plan type"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scoped_to_company_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plans scoped to a specific company (custom plans)"
+              },
+              {
+                "name": "without_entitlement_for",
+                "value": "",
+                "type": "query",
+                "description": "Filter out plans that already have a plan entitlement for the specified feature ID"
+              },
+              {
+                "name": "without_paid_product_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter out plans that have a paid billing product ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List plans"
+        },
+        {
+          "info": {
+            "name": "Create plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/plans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create plan"
+        },
+        {
+          "info": {
+            "name": "Get plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plans/:plan_id",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_id"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query",
+                "description": "Fetch billing settings for a specific plan version"
+              }
+            ]
+          },
+          "docs": "Get plan"
+        },
+        {
+          "info": {
+            "name": "Update plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/plans/:plan_id",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update plan"
+        },
+        {
+          "info": {
+            "name": "Delete plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/plans/:plan_id",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_id"
+              }
+            ]
+          },
+          "docs": "Delete plan"
+        },
+        {
+          "info": {
+            "name": "Upsert billing product plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/plans/:plan_id/billing_products",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert billing product plan"
+        },
+        {
+          "info": {
+            "name": "Upsert plan for billing product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/plans/billing-linked",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert plan for billing product"
+        },
+        {
+          "info": {
+            "name": "List billing product match companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plans/billing-product-match-companies",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query",
+                "description": "The plan ID to find billing product match companies for"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search for companies by name, keys or string traits"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List billing product match companies"
+        },
+        {
+          "info": {
+            "name": "Count billing product match companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plans/billing-product-match-companies/count",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query",
+                "description": "The plan ID to find billing product match companies for"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search for companies by name, keys or string traits"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count billing product match companies"
+        },
+        {
+          "info": {
+            "name": "Count plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plans/count",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "exclude_company_scoped",
+                "value": "",
+                "type": "query",
+                "description": "Exclude plans that are scoped to a company (custom plans assigned to a company)"
+              },
+              {
+                "name": "for_fallback_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for plans valid as fallback plans (not linked to billing)"
+              },
+              {
+                "name": "for_initial_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial)"
+              },
+              {
+                "name": "for_trial_expiry_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for plans valid as trial expiry plans (not linked to billing or free)"
+              },
+              {
+                "name": "has_product_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter out plans that do not have a billing product ID"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_draft_versions",
+                "value": "",
+                "type": "query",
+                "description": "Include billing settings from draft versions for plans which have draft version"
+              },
+              {
+                "name": "plan_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by plan type"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scoped_to_company_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plans scoped to a specific company (custom plans)"
+              },
+              {
+                "name": "without_entitlement_for",
+                "value": "",
+                "type": "query",
+                "description": "Filter out plans that already have a plan entitlement for the specified feature ID"
+              },
+              {
+                "name": "without_paid_product_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter out plans that have a paid billing product ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count plans"
+        },
+        {
+          "info": {
+            "name": "List plan issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plans/issues",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List plan issues"
+        },
+        {
+          "info": {
+            "name": "Delete plan version",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/plans/version/:plan_id",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_id"
+              },
+              {
+                "name": "promote_archived_version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete plan version"
+        },
+        {
+          "info": {
+            "name": "Publish plan version",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/plans/version/:plan_id/publish",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Publish plan version"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "components",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List components",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/components",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List components"
+        },
+        {
+          "info": {
+            "name": "Create component",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/components",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create component"
+        },
+        {
+          "info": {
+            "name": "Get component",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/components/:component_id",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "component_id"
+              }
+            ]
+          },
+          "docs": "Get component"
+        },
+        {
+          "info": {
+            "name": "Update component",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/components/:component_id",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "component_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update component"
+        },
+        {
+          "info": {
+            "name": "Delete component",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/components/:component_id",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "component_id"
+              }
+            ]
+          },
+          "docs": "Delete component"
+        },
+        {
+          "info": {
+            "name": "Count components",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/components/count",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count components"
+        },
+        {
+          "info": {
+            "name": "Preview component data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/components/preview-data",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Preview component data"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "dataexports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create data export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/data-exports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create data export"
+        },
+        {
+          "info": {
+            "name": "Get data export artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/data-exports/:data_export_id/artifact",
+            "params": [
+              {
+                "name": "data_export_id",
+                "value": "",
+                "type": "path",
+                "description": "data_export_id"
+              }
+            ]
+          },
+          "docs": "Get data export artifact"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create event batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/event-batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create event batch"
+        },
+        {
+          "info": {
+            "name": "Get event summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/event-types",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "event_subtypes",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Get event summaries"
+        },
+        {
+          "info": {
+            "name": "List events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/events",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "event_subtype",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "event_types",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "flag_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "idempotency_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List events"
+        },
+        {
+          "info": {
+            "name": "Create event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create event"
+        },
+        {
+          "info": {
+            "name": "Get event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/events/:event_id",
+            "params": [
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "path",
+                "description": "event_id"
+              }
+            ]
+          },
+          "docs": "Get event"
+        },
+        {
+          "info": {
+            "name": "Get segment integration status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/segment-integration"
+          },
+          "docs": "Get segment integration status"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "features",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List features",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/features",
+            "params": [
+              {
+                "name": "boolean_require_event",
+                "value": "",
+                "type": "query",
+                "description": "Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter."
+              },
+              {
+                "name": "feature_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by one or more feature types (boolean, event, trait)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search by feature name or ID"
+              },
+              {
+                "name": "without_company_override_for",
+                "value": "",
+                "type": "query",
+                "description": "Filter out features that already have a company override for the specified company ID"
+              },
+              {
+                "name": "without_plan_entitlement_for",
+                "value": "",
+                "type": "query",
+                "description": "Filter out features that already have a plan entitlement for the specified plan ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List features"
+        },
+        {
+          "info": {
+            "name": "Create feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/features",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create feature"
+        },
+        {
+          "info": {
+            "name": "Get feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/features/:feature_id",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "path",
+                "description": "feature_id"
+              }
+            ]
+          },
+          "docs": "Get feature"
+        },
+        {
+          "info": {
+            "name": "Update feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/features/:feature_id",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "path",
+                "description": "feature_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update feature"
+        },
+        {
+          "info": {
+            "name": "Delete feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/features/:feature_id",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "path",
+                "description": "feature_id"
+              }
+            ]
+          },
+          "docs": "Delete feature"
+        },
+        {
+          "info": {
+            "name": "Upsert feature for billing product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/features/billing-linked",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert feature for billing product"
+        },
+        {
+          "info": {
+            "name": "Count features",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/features/count",
+            "params": [
+              {
+                "name": "boolean_require_event",
+                "value": "",
+                "type": "query",
+                "description": "Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter."
+              },
+              {
+                "name": "feature_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by one or more feature types (boolean, event, trait)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search by feature name or ID"
+              },
+              {
+                "name": "without_company_override_for",
+                "value": "",
+                "type": "query",
+                "description": "Filter out features that already have a company override for the specified company ID"
+              },
+              {
+                "name": "without_plan_entitlement_for",
+                "value": "",
+                "type": "query",
+                "description": "Filter out features that already have a plan entitlement for the specified plan ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count features"
+        },
+        {
+          "info": {
+            "name": "List flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/flags",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search by flag name, key, or ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List flags"
+        },
+        {
+          "info": {
+            "name": "Create flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/flags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create flag"
+        },
+        {
+          "info": {
+            "name": "Get flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/flags/:flag_id",
+            "params": [
+              {
+                "name": "flag_id",
+                "value": "",
+                "type": "path",
+                "description": "flag_id"
+              }
+            ]
+          },
+          "docs": "Get flag"
+        },
+        {
+          "info": {
+            "name": "Update flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/flags/:flag_id",
+            "params": [
+              {
+                "name": "flag_id",
+                "value": "",
+                "type": "path",
+                "description": "flag_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update flag"
+        },
+        {
+          "info": {
+            "name": "Delete flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/flags/:flag_id",
+            "params": [
+              {
+                "name": "flag_id",
+                "value": "",
+                "type": "path",
+                "description": "flag_id"
+              }
+            ]
+          },
+          "docs": "Delete flag"
+        },
+        {
+          "info": {
+            "name": "Update flag rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/flags/:flag_id/rules",
+            "params": [
+              {
+                "name": "flag_id",
+                "value": "",
+                "type": "path",
+                "description": "flag_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update flag rules"
+        },
+        {
+          "info": {
+            "name": "Check flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/flags/:key/check",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check flag"
+        },
+        {
+          "info": {
+            "name": "Check flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/flags/check",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check flags"
+        },
+        {
+          "info": {
+            "name": "Check flags bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/flags/check-bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check flags bulk"
+        },
+        {
+          "info": {
+            "name": "Count flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/flags/count",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search by flag name, key, or ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count flags"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "insights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/insights/activity",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get activity"
+        },
+        {
+          "info": {
+            "name": "Get environment feature usage time series",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/insights/feature-usage-timeseries",
+            "params": [
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get environment feature usage time series"
+        },
+        {
+          "info": {
+            "name": "Get plan growth",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/insights/plan-growth",
+            "params": [
+              {
+                "name": "months",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get plan growth"
+        },
+        {
+          "info": {
+            "name": "Get summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/insights/summary"
+          },
+          "docs": "Get summary"
+        },
+        {
+          "info": {
+            "name": "Get top features by usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/insights/top-features",
+            "params": [
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get top features by usage"
+        },
+        {
+          "info": {
+            "name": "Get environment trait usage time series",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/insights/trait-usage-timeseries",
+            "params": [
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get environment trait usage time series"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "integrationsapi",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/integration/start/:integration_id",
+            "params": [
+              {
+                "name": "integration_id",
+                "value": "",
+                "type": "path",
+                "description": "integration_id"
+              }
+            ]
+          },
+          "docs": "Run integration"
+        },
+        {
+          "info": {
+            "name": "List integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/integrations",
+            "params": [
+              {
+                "name": "billing_only",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "exclude_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List integrations"
+        },
+        {
+          "info": {
+            "name": "Get integration webhook url",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/integrations/:type/webhook-url",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "type"
+              }
+            ]
+          },
+          "docs": "Get integration webhook url"
+        },
+        {
+          "info": {
+            "name": "Start data import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/integrations/start-data-import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start data import"
+        },
+        {
+          "info": {
+            "name": "Load sample data set V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/integrations/stripe/dataset-sample-v2"
+          },
+          "docs": "Load sample data set V2"
+        },
+        {
+          "info": {
+            "name": "Uninstall integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/integrations/uninstall/:integration_id",
+            "params": [
+              {
+                "name": "integration_id",
+                "value": "",
+                "type": "path",
+                "description": "integration_id"
+              }
+            ]
+          },
+          "docs": "Uninstall integration"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "planbundle",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create plan bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/plan-bundles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create plan bundle"
+        },
+        {
+          "info": {
+            "name": "Update plan bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/plan-bundles/:plan_bundle_id",
+            "params": [
+              {
+                "name": "plan_bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_bundle_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update plan bundle"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "plangroups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get plan group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-groups",
+            "params": [
+              {
+                "name": "include_company_counts",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get plan group"
+        },
+        {
+          "info": {
+            "name": "Create plan group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/plan-groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create plan group"
+        },
+        {
+          "info": {
+            "name": "Update plan group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/plan-groups/:plan_group_id",
+            "params": [
+              {
+                "name": "plan_group_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_group_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update plan group"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "planmigrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List company migrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-version-company-migrations",
+            "params": [
+              {
+                "name": "migration_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List company migrations"
+        },
+        {
+          "info": {
+            "name": "Count company migrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-version-company-migrations/count",
+            "params": [
+              {
+                "name": "migration_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count company migrations"
+        },
+        {
+          "info": {
+            "name": "List migrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-version-migrations",
+            "params": [
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List migrations"
+        },
+        {
+          "info": {
+            "name": "Get migration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-version-migrations/:plan_version_migration_id",
+            "params": [
+              {
+                "name": "plan_version_migration_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_version_migration_id"
+              }
+            ]
+          },
+          "docs": "Get migration"
+        },
+        {
+          "info": {
+            "name": "Count migrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-version-migrations/count",
+            "params": [
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count migrations"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "componentspublic",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get public plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/public/plans"
+          },
+          "docs": "Get public plans"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "scheduledcheckout",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List scheduled checkouts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/scheduled-checkout",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List scheduled checkouts"
+        },
+        {
+          "info": {
+            "name": "Create scheduled checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/scheduled-checkout",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create scheduled checkout"
+        },
+        {
+          "info": {
+            "name": "Get scheduled checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/scheduled-checkout/:scheduled_checkout_id",
+            "params": [
+              {
+                "name": "scheduled_checkout_id",
+                "value": "",
+                "type": "path",
+                "description": "scheduled_checkout_id"
+              }
+            ]
+          },
+          "docs": "Get scheduled checkout"
+        },
+        {
+          "info": {
+            "name": "Update scheduled checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/scheduled-checkout/:scheduled_checkout_id",
+            "params": [
+              {
+                "name": "scheduled_checkout_id",
+                "value": "",
+                "type": "path",
+                "description": "scheduled_checkout_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update scheduled checkout"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "accesstokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Issue temporary access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/temporary-access-tokens",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Issue temporary access token"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhook events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/webhook-events",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List webhook events"
+        },
+        {
+          "info": {
+            "name": "Get webhook event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/webhook-events/:webhook_event_id",
+            "params": [
+              {
+                "name": "webhook_event_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_event_id"
+              }
+            ]
+          },
+          "docs": "Get webhook event"
+        },
+        {
+          "info": {
+            "name": "Count webhook events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/webhook-events/count",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count webhook events"
+        },
+        {
+          "info": {
+            "name": "List webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/webhooks",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List webhooks"
+        },
+        {
+          "info": {
+            "name": "Create webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create webhook"
+        },
+        {
+          "info": {
+            "name": "Get webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              }
+            ]
+          },
+          "docs": "Get webhook"
+        },
+        {
+          "info": {
+            "name": "Update webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update webhook"
+        },
+        {
+          "info": {
+            "name": "Delete webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              }
+            ]
+          },
+          "docs": "Delete webhook"
+        },
+        {
+          "info": {
+            "name": "Count webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/webhooks/count",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count webhooks"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
