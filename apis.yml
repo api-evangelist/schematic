@@ -7,7 +7,7 @@ description: >-
   launched an official Stripe App for entitlement management as a first-class billing primitive. Customers include
   Plotly, Automox, Florence, Blackcloak, Sema4.ai, and Pagos.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Billing
   - Entitlements
