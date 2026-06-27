@@ -106,7 +106,7 @@ common:
   - name: MCP Server
     url: https://github.com/SchematicHQ/schematic-mcp
     type: MCPServer
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.schematichq.com/llms.txt
 maintainers:
   - FN: Kin Lane
