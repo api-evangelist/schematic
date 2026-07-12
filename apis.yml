@@ -82,6 +82,10 @@ apis:
       - type: JSONLD
         url: https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 common:
+  - type: DomainSecurity
+    url: security/schematic-domain-security.yml
+  - type: Authentication
+    url: authentication/schematic-authentication.yml
   - type: Website
     url: https://schematichq.com/
   - type: Documentation
