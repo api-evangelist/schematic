@@ -2,13 +2,14 @@
   "repo": "schematic",
   "feeds": [
     {
-      "source": "https://schematichq.com/blog",
-      "feed_url": "",
+      "source": "https://docs.schematichq.com/api-reference",
+      "feed_url": "https://docs.schematichq.com/api-reference",
+      "title": "",
       "saved": 0,
-      "method": "agent-scrape"
+      "method": "none"
     }
   ],
-  "fetched": "2026-06-27T13:08:52Z",
+  "fetched": "2026-07-11T11:50:51Z",
   "post_count": 4,
-  "agent_pulled": "2026-06-27"
+  "agent_pulled": "2026-07-04"
 }
