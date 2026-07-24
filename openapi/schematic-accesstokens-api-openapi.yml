@@ -1,0 +1,148 @@
+openapi: 3.0.0
+info:
+  title: Schematic accesstokens API
+  version: '0.1'
+  description: Schematic API
+  x-rules-engine-schema-version: v97288f60
+servers:
+- url: https://api.schematichq.com
+security:
+- ApiKeyAuth: []
+tags:
+- name: accesstokens
+paths:
+  /temporary-access-tokens:
+    post:
+      operationId: issueTemporaryAccessToken
+      summary: Issue temporary access token
+      tags:
+      - accesstokens
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IssueTemporaryAccessTokenRequestBody'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/IssueTemporaryAccessTokenResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: IssueTemporaryAccessTokenParams
+                required:
+                - data
+                - params
+                title: IssueTemporaryAccessTokenResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+  schemas:
+    IssueTemporaryAccessTokenResponseData:
+      type: object
+      properties:
+        api_key_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        environment_id:
+          type: string
+        expired_at:
+          type: string
+          format: date-time
+        id:
+          type: string
+        resource_type:
+          $ref: '#/components/schemas/TemporaryAccessTokenResourceType'
+        token:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - environment_id
+      - resource_type
+      - api_key_id
+      - expired_at
+      - created_at
+      - updated_at
+      - token
+      title: IssueTemporaryAccessTokenResponseData
+    IssueTemporaryAccessTokenRequestBody:
+      type: object
+      properties:
+        lookup:
+          additionalProperties:
+            type: string
+          type: object
+        resource_type:
+          $ref: '#/components/schemas/TemporaryAccessTokenResourceType'
+      required:
+      - resource_type
+      - lookup
+      title: IssueTemporaryAccessTokenRequestBody
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+    TemporaryAccessTokenResourceType:
+      type: string
+      enum:
+      - company
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Schematic-Api-Key

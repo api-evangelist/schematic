@@ -1,0 +1,559 @@
+openapi: 3.0.0
+info:
+  title: Schematic accesstokens integrationsapi API
+  version: '0.1'
+  description: Schematic API
+  x-rules-engine-schema-version: v97288f60
+servers:
+- url: https://api.schematichq.com
+security:
+- ApiKeyAuth: []
+tags:
+- name: integrationsapi
+paths:
+  /integration/start/{integration_id}:
+    get:
+      operationId: runIntegration
+      summary: Run integration
+      tags:
+      - integrationsapi
+      parameters:
+      - name: integration_id
+        in: path
+        description: integration_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/IntegrationsResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: RunIntegrationParams
+                required:
+                - data
+                - params
+                title: RunIntegrationResponse
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /integrations:
+    get:
+      operationId: listIntegrations
+      summary: List integrations
+      tags:
+      - integrationsapi
+      parameters:
+      - name: billing_only
+        in: query
+        schema:
+          type: boolean
+      - name: exclude_ids
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+          maxItems: 100
+      - name: id
+        in: query
+        schema:
+          type: string
+      - name: state
+        in: query
+        schema:
+          $ref: '#/components/schemas/IntegrationState'
+      - name: type
+        in: query
+        schema:
+          $ref: '#/components/schemas/IntegrationType'
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/IntegrationsListResponseData'
+                    title: ListIntegrationsResponseData
+                    maxItems: 250
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      billing_only:
+                        type: boolean
+                      exclude_ids:
+                        type: array
+                        items:
+                          type: string
+                        maxItems: 100
+                      id:
+                        type: string
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      state:
+                        $ref: '#/components/schemas/IntegrationState'
+                      type:
+                        $ref: '#/components/schemas/IntegrationType'
+                    title: ListIntegrationsParams
+                required:
+                - data
+                - params
+                title: ListIntegrationsResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /integrations/{type}/webhook-url:
+    get:
+      operationId: getIntegrationWebhookUrl
+      summary: Get integration webhook url
+      tags:
+      - integrationsapi
+      parameters:
+      - name: type
+        in: path
+        description: type
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/IntegrationWebhookUrlResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: GetIntegrationWebhookUrlParams
+                required:
+                - data
+                - params
+                title: GetIntegrationWebhookUrlResponse
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /integrations/start-data-import:
+    post:
+      operationId: startDataImport
+      summary: Start data import
+      tags:
+      - integrationsapi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartDataImportRequestBody'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/IntegrationsResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: StartDataImportParams
+                required:
+                - data
+                - params
+                title: StartDataImportResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /integrations/stripe/dataset-sample-v2:
+    get:
+      operationId: loadSampleDataSetV2
+      summary: Load sample data set V2
+      tags:
+      - integrationsapi
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/IntegrationsDataSetResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: LoadSampleDataSetV2Params
+                required:
+                - data
+                - params
+                title: LoadSampleDataSetV2Response
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /integrations/uninstall/{integration_id}:
+    delete:
+      operationId: uninstallIntegration
+      summary: Uninstall integration
+      tags:
+      - integrationsapi
+      parameters:
+      - name: integration_id
+        in: path
+        description: integration_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/DeleteResponse'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: UninstallIntegrationParams
+                required:
+                - data
+                - params
+                title: UninstallIntegrationResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+  schemas:
+    IntegrationsResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        id:
+          type: string
+        state:
+          $ref: '#/components/schemas/IntegrationState'
+        type:
+          $ref: '#/components/schemas/IntegrationType'
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - created_at
+      - id
+      - state
+      - type
+      - updated_at
+      title: IntegrationsResponseData
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+    StartDataImportRequestBody:
+      type: object
+      properties:
+        company_matching_criteria:
+          allOf:
+          - $ref: '#/components/schemas/CompanyMatchingCriteria'
+          nullable: true
+        company_matching_field:
+          type: string
+          nullable: true
+        integration_id:
+          type: string
+      required:
+      - integration_id
+      title: StartDataImportRequestBody
+    IntegrationType:
+      type: string
+      enum:
+      - clerk
+      - orb
+      - stripe
+      - unknown
+    IntegrationState:
+      type: string
+      enum:
+      - active
+      - created
+      - pending
+    CompanyMatchingCriteria:
+      type: string
+      enum:
+      - billing_meta_object
+      - manual_upsert
+    ClerkIntegrationConfig:
+      type: object
+      properties:
+        first_events_received:
+          type: boolean
+          description: Whether Schematic has received the first webhook event from Clerk after install
+          nullable: true
+        type:
+          type: string
+          description: 'Discriminator: always "clerk" for this variant'
+          enum:
+          - clerk
+        webhook_url:
+          type: string
+          description: URL configured on the Clerk webhook endpoint that delivers events to Schematic
+          nullable: true
+      required:
+      - type
+      title: ClerkIntegrationConfig
+    IntegrationsDataSetResponseData:
+      type: object
+      properties:
+        keys:
+          type: array
+          items:
+            type: string
+          maxItems: 1000
+      required:
+      - keys
+      title: IntegrationsDataSetResponseData
+    IntegrationConfig:
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          clerk: '#/components/schemas/ClerkIntegrationConfig'
+          orb: '#/components/schemas/OrbIntegrationConfig'
+          stripe: '#/components/schemas/StripeIntegrationConfig'
+      oneOf:
+      - $ref: '#/components/schemas/StripeIntegrationConfig'
+      - $ref: '#/components/schemas/OrbIntegrationConfig'
+      - $ref: '#/components/schemas/ClerkIntegrationConfig'
+      title: IntegrationConfig
+    DeleteResponse:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+          description: Whether the delete was successful
+    IntegrationsListResponseData:
+      type: object
+      properties:
+        capabilities:
+          $ref: '#/components/schemas/IntegrationCapabilities'
+        config:
+          $ref: '#/components/schemas/IntegrationConfig'
+        id:
+          type: string
+        is_app_install:
+          type: boolean
+        is_connect_install:
+          type: boolean
+        state:
+          $ref: '#/components/schemas/IntegrationState'
+        type:
+          $ref: '#/components/schemas/IntegrationType'
+      required:
+      - capabilities
+      - id
+      - is_app_install
+      - is_connect_install
+      - state
+      - type
+      title: IntegrationsListResponseData
+    StripeIntegrationConfig:
+      type: object
+      properties:
+        account_id:
+          type: string
+          description: Connected Stripe account ID (acct_*)
+          nullable: true
+        account_name:
+          type: string
+          description: Display name of the connected Stripe account
+          nullable: true
+        company_update_only:
+          type: boolean
+          description: When importing Stripe customers, only update existing companies, do not create new companies
+        is_sandbox:
+          type: boolean
+          description: Whether the integration is connected to a Stripe sandbox account
+        live_mode:
+          type: boolean
+          description: Whether the integration is connected to a live Stripe account
+        onboard_url:
+          type: string
+          description: Onboarding URL returned during the v2 (Connect) install flow before activation
+          nullable: true
+        type:
+          type: string
+          description: 'Discriminator: always "stripe" for this variant'
+          enum:
+          - stripe
+        version:
+          type: integer
+          description: Stripe integration config version (1 = legacy API key install, 2 = Connect/App install)
+      required:
+      - type
+      - is_sandbox
+      - live_mode
+      - version
+      title: StripeIntegrationConfig
+    IntegrationCapabilities:
+      type: object
+      properties:
+        author_plans:
+          type: boolean
+        checkout:
+          type: boolean
+        edit_billing:
+          type: boolean
+      required:
+      - author_plans
+      - checkout
+      - edit_billing
+      title: IntegrationCapabilities
+    OrbIntegrationConfig:
+      type: object
+      properties:
+        external_customer_id_key:
+          type: string
+          description: Schematic company key used to store Orb's external_customer_id; when unset, defaults to orb_external_customer_id
+          nullable: true
+        type:
+          type: string
+          description: 'Discriminator: always "orb" for this variant'
+          enum:
+          - orb
+      required:
+      - type
+      title: OrbIntegrationConfig
+    IntegrationWebhookUrlResponseData:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/IntegrationType'
+        url:
+          type: string
+      required:
+      - url
+      - type
+      title: IntegrationWebhookUrlResponseData
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Schematic-Api-Key

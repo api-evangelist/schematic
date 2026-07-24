@@ -1,0 +1,544 @@
+openapi: 3.0.0
+info:
+  title: Schematic accesstokens planmigrations API
+  version: '0.1'
+  description: Schematic API
+  x-rules-engine-schema-version: v97288f60
+servers:
+- url: https://api.schematichq.com
+security:
+- ApiKeyAuth: []
+tags:
+- name: planmigrations
+paths:
+  /plan-version-company-migrations:
+    get:
+      operationId: listCompanyMigrations
+      summary: List company migrations
+      tags:
+      - planmigrations
+      parameters:
+      - name: migration_id
+        in: query
+        schema:
+          type: string
+      - name: q
+        in: query
+        schema:
+          type: string
+          maxLength: 512
+      - name: status
+        in: query
+        schema:
+          $ref: '#/components/schemas/PlanVersionCompanyMigrationStatus'
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlanVersionCompanyMigrationResponseData'
+                    title: ListCompanyMigrationsResponseData
+                    maxItems: 250
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      migration_id:
+                        type: string
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      q:
+                        type: string
+                        maxLength: 512
+                      status:
+                        $ref: '#/components/schemas/PlanVersionCompanyMigrationStatus'
+                    title: ListCompanyMigrationsParams
+                required:
+                - data
+                - params
+                title: ListCompanyMigrationsResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /plan-version-company-migrations/count:
+    get:
+      operationId: countCompanyMigrations
+      summary: Count company migrations
+      tags:
+      - planmigrations
+      parameters:
+      - name: migration_id
+        in: query
+        schema:
+          type: string
+      - name: q
+        in: query
+        schema:
+          type: string
+          maxLength: 512
+      - name: status
+        in: query
+        schema:
+          $ref: '#/components/schemas/PlanVersionCompanyMigrationStatus'
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CountResponse'
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      migration_id:
+                        type: string
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      q:
+                        type: string
+                        maxLength: 512
+                      status:
+                        $ref: '#/components/schemas/PlanVersionCompanyMigrationStatus'
+                    title: CountCompanyMigrationsParams
+                required:
+                - data
+                - params
+                title: CountCompanyMigrationsResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /plan-version-migrations:
+    get:
+      operationId: listMigrations
+      summary: List migrations
+      tags:
+      - planmigrations
+      parameters:
+      - name: plan_version_id
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          $ref: '#/components/schemas/PlanVersionMigrationStatus'
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlanVersionMigrationResponseData'
+                    title: ListMigrationsResponseData
+                    maxItems: 250
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      plan_version_id:
+                        type: string
+                      status:
+                        $ref: '#/components/schemas/PlanVersionMigrationStatus'
+                    title: ListMigrationsParams
+                required:
+                - data
+                - params
+                title: ListMigrationsResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /plan-version-migrations/{plan_version_migration_id}:
+    get:
+      operationId: getMigration
+      summary: Get migration
+      tags:
+      - planmigrations
+      parameters:
+      - name: plan_version_migration_id
+        in: path
+        description: plan_version_migration_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/PlanVersionMigrationResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: GetMigrationParams
+                required:
+                - data
+                - params
+                title: GetMigrationResponse
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /plan-version-migrations/count:
+    get:
+      operationId: countMigrations
+      summary: Count migrations
+      tags:
+      - planmigrations
+      parameters:
+      - name: plan_version_id
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          $ref: '#/components/schemas/PlanVersionMigrationStatus'
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CountResponse'
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      plan_version_id:
+                        type: string
+                      status:
+                        $ref: '#/components/schemas/PlanVersionMigrationStatus'
+                    title: CountMigrationsParams
+                required:
+                - data
+                - params
+                title: CountMigrationsResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+  schemas:
+    PlanVersionMigrationStrategy:
+      type: string
+      enum:
+      - immediate
+      - leave
+    CountResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The number of resources
+    PlanVersionMigrationStatus:
+      type: string
+      enum:
+      - completed
+      - failed
+      - in_progress
+      - pending
+    PlanVersionCompanyMigrationStatus:
+      type: string
+      enum:
+      - completed
+      - failed
+      - in_progress
+      - pending
+      - skipped
+    PlanVersionCompanyMigrationResponseData:
+      type: object
+      properties:
+        company_id:
+          type: string
+        company_name:
+          type: string
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        error:
+          type: string
+          nullable: true
+        id:
+          type: string
+        migration_id:
+          type: string
+        plan_version_id_from:
+          type: string
+          nullable: true
+        started_at:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          $ref: '#/components/schemas/PlanVersionCompanyMigrationStatus'
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - company_id
+      - company_name
+      - created_at
+      - id
+      - migration_id
+      - status
+      - updated_at
+      title: PlanVersionCompanyMigrationResponseData
+    PlanVersionMigrationResponseData:
+      type: object
+      properties:
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+        completed_companies:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+        error:
+          type: string
+          nullable: true
+        failed_companies:
+          type: integer
+          format: int64
+        id:
+          type: string
+        plan_id:
+          type: string
+        plan_version_id_from:
+          type: string
+          nullable: true
+        plan_version_id_to:
+          type: string
+        skipped_companies:
+          type: integer
+          format: int64
+        started_at:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          $ref: '#/components/schemas/PlanVersionMigrationStatus'
+        strategy:
+          $ref: '#/components/schemas/PlanVersionMigrationStrategy'
+        total_companies:
+          type: integer
+          format: int64
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - completed_companies
+      - created_at
+      - failed_companies
+      - id
+      - plan_id
+      - plan_version_id_to
+      - skipped_companies
+      - status
+      - strategy
+      - total_companies
+      - updated_at
+      title: PlanVersionMigrationResponseData
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Schematic-Api-Key

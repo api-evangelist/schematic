@@ -1,0 +1,201 @@
+openapi: 3.0.0
+info:
+  title: Schematic accesstokens dataexports API
+  version: '0.1'
+  description: Schematic API
+  x-rules-engine-schema-version: v97288f60
+servers:
+- url: https://api.schematichq.com
+security:
+- ApiKeyAuth: []
+tags:
+- name: dataexports
+paths:
+  /data-exports:
+    post:
+      operationId: createDataExport
+      summary: Create data export
+      tags:
+      - dataexports
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDataExportRequestBody'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/DataExportResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: CreateDataExportParams
+                required:
+                - data
+                - params
+                title: CreateDataExportResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /data-exports/{data_export_id}/artifact:
+    get:
+      operationId: getDataExportArtifact
+      summary: Get data export artifact
+      tags:
+      - dataexports
+      parameters:
+      - name: data_export_id
+        in: path
+        description: data_export_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+          headers:
+            Content-Disposition:
+              description: Indicates whether the content is expected to be displayed inline by the client or treated as an attachment to be downloaded.
+              schema:
+                type: string
+                example: attachment; filename="file.csv"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+  schemas:
+    DataExportType:
+      type: string
+      enum:
+      - company-feature-usage
+    DataExportStatus:
+      type: string
+      enum:
+      - failure
+      - pending
+      - success
+    CreateDataExportRequestBody:
+      type: object
+      properties:
+        export_type:
+          $ref: '#/components/schemas/DataExportType'
+        metadata:
+          type: string
+          maxLength: 10240
+        output_file_type:
+          $ref: '#/components/schemas/DataExportOutputFileType'
+      required:
+      - export_type
+      - output_file_type
+      - metadata
+      title: CreateDataExportRequestBody
+    DataExportOutputFileType:
+      type: string
+      enum:
+      - csv
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+    DataExportResponseData:
+      type: object
+      properties:
+        account_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        environment_id:
+          type: string
+        export_type:
+          $ref: '#/components/schemas/DataExportType'
+        id:
+          type: string
+        metadata:
+          type: string
+        output_file_type:
+          $ref: '#/components/schemas/DataExportOutputFileType'
+        status:
+          $ref: '#/components/schemas/DataExportStatus'
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - account_id
+      - environment_id
+      - export_type
+      - status
+      - metadata
+      - output_file_type
+      - created_at
+      - updated_at
+      title: DataExportResponseData
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Schematic-Api-Key

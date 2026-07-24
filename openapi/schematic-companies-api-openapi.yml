@@ -1,0 +1,4881 @@
+openapi: 3.0.0
+info:
+  title: Schematic accesstokens companies API
+  version: '0.1'
+  description: Schematic API
+  x-rules-engine-schema-version: v97288f60
+servers:
+- url: https://api.schematichq.com
+security:
+- ApiKeyAuth: []
+tags:
+- name: companies
+paths:
+  /companies:
+    get:
+      operationId: listCompanies
+      summary: List companies
+      tags:
+      - companies
+      parameters:
+      - name: credit_type_ids
+        in: query
+        description: Filter companies by one or more credit type IDs (each ID starts with bcrd_)
+        schema:
+          type: array
+          description: Filter companies by one or more credit type IDs (each ID starts with bcrd_)
+          items:
+            type: string
+          maxItems: 100
+      - name: has_scheduled_downgrade
+        in: query
+        description: Filter companies that have a pending scheduled downgrade
+        schema:
+          type: boolean
+          description: Filter companies that have a pending scheduled downgrade
+      - name: ids
+        in: query
+        description: Filter companies by multiple company IDs (starts with comp_)
+        schema:
+          type: array
+          description: Filter companies by multiple company IDs (starts with comp_)
+          items:
+            type: string
+          maxItems: 100
+      - name: monetized_subscriptions
+        in: query
+        description: Filter companies that have monetized subscriptions
+        schema:
+          type: boolean
+          description: Filter companies that have monetized subscriptions
+      - name: plan_id
+        in: query
+        description: Filter companies by plan ID (starts with plan_)
+        schema:
+          type: string
+          description: Filter companies by plan ID (starts with plan_)
+      - name: plan_ids
+        in: query
+        description: Filter companies by one or more plan IDs (each ID starts with plan_)
+        schema:
+          type: array
+          description: Filter companies by one or more plan IDs (each ID starts with plan_)
+          items:
+            type: string
+          maxItems: 100
+      - name: plan_version_id
+        in: query
+        description: Filter companies by plan version ID (starts with plvr_)
+        schema:
+          type: string
+          description: Filter companies by plan version ID (starts with plvr_)
+      - name: q
+        in: query
+        description: Search for companies by name, keys or string traits
+        schema:
+          type: string
+          description: Search for companies by name, keys or string traits
+          maxLength: 512
+      - name: sort_order_column
+        in: query
+        description: Column to sort by (e.g. name, created_at, last_seen_at)
+        schema:
+          type: string
+          description: Column to sort by (e.g. name, created_at, last_seen_at)
+          maxLength: 255
+      - name: sort_order_direction
+        in: query
+        description: Direction to sort by (asc or desc)
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/SortDirection'
+          description: Direction to sort by (asc or desc)
+      - name: subscription_statuses
+        in: query
+        description: Filter companies by one or more subscription statuses
+        schema:
+          type: array
+          description: Filter companies by one or more subscription statuses
+          items:
+            $ref: '#/components/schemas/SubscriptionStatus'
+          maxItems: 100
+      - name: subscription_types
+        in: query
+        description: Filter companies by one or more subscription types
+        schema:
+          type: array
+          description: Filter companies by one or more subscription types
+          items:
+            $ref: '#/components/schemas/SubscriptionType'
+          maxItems: 100
+      - name: with_entitlement_for
+        in: query
+        description: Filter companies that have an entitlement (plan entitlement or company override) for the specified feature ID
+        schema:
+          type: string
+          description: Filter companies that have an entitlement (plan entitlement or company override) for the specified feature ID
+      - name: without_feature_override_for
+        in: query
+        description: Filter out companies that already have a company override for the specified feature ID
+        schema:
+          type: string
+          description: Filter out companies that already have a company override for the specified feature ID
+      - name: without_plan
+        in: query
+        description: Filter out companies that have a plan
+        schema:
+          type: boolean
+          description: Filter out companies that have a plan
+      - name: without_subscription
+        in: query
+        description: Filter out companies that have a subscription
+        schema:
+          type: boolean
+          description: Filter out companies that have a subscription
+      - name: with_subscription
+        in: query
+        description: Filter companies that have a subscription
+        schema:
+          type: boolean
+          description: Filter companies that have a subscription
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CompanyDetailResponseData'
+                    title: ListCompaniesResponseData
+                    maxItems: 250
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      credit_type_ids:
+                        type: array
+                        description: Filter companies by one or more credit type IDs (each ID starts with bcrd_)
+                        items:
+                          type: string
+                        maxItems: 100
+                      has_scheduled_downgrade:
+                        type: boolean
+                        description: Filter companies that have a pending scheduled downgrade
+                      ids:
+                        type: array
+                        description: Filter companies by multiple company IDs (starts with comp_)
+                        items:
+                          type: string
+                        maxItems: 100
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      monetized_subscriptions:
+                        type: boolean
+                        description: Filter companies that have monetized subscriptions
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      plan_id:
+                        type: string
+                        description: Filter companies by plan ID (starts with plan_)
+                      plan_ids:
+                        type: array
+                        description: Filter companies by one or more plan IDs (each ID starts with plan_)
+                        items:
+                          type: string
+                        maxItems: 100
+                      plan_version_id:
+                        type: string
+                        description: Filter companies by plan version ID (starts with plvr_)
+                      q:
+                        type: string
+                        description: Search for companies by name, keys or string traits
+                        maxLength: 512
+                      sort_order_column:
+                        type: string
+                        description: Column to sort by (e.g. name, created_at, last_seen_at)
+                        maxLength: 255
+                      sort_order_direction:
+                        allOf:
+                        - $ref: '#/components/schemas/SortDirection'
+                        description: Direction to sort by (asc or desc)
+                      subscription_statuses:
+                        type: array
+                        description: Filter companies by one or more subscription statuses
+                        items:
+                          $ref: '#/components/schemas/SubscriptionStatus'
+                        maxItems: 100
+                      subscription_types:
+                        type: array
+                        description: Filter companies by one or more subscription types
+                        items:
+                          $ref: '#/components/schemas/SubscriptionType'
+                        maxItems: 100
+                      with_entitlement_for:
+                        type: string
+                        description: Filter companies that have an entitlement (plan entitlement or company override) for the specified feature ID
+                      with_subscription:
+                        type: boolean
+                        description: Filter companies that have a subscription
+                      without_feature_override_for:
+                        type: string
+                        description: Filter out companies that already have a company override for the specified feature ID
+                      without_plan:
+                        type: boolean
+                        description: Filter out companies that have a plan
+                      without_subscription:
+                        type: boolean
+                        description: Filter out companies that have a subscription
+                    title: ListCompaniesParams
+                required:
+                - data
+                - params
+                title: ListCompaniesResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      operationId: upsertCompany
+      summary: Upsert company
+      tags:
+      - companies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertCompanyRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CompanyDetailResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: UpsertCompanyParams
+                required:
+                - data
+                - params
+                title: UpsertCompanyResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /companies/{company_id}:
+    get:
+      operationId: getCompany
+      summary: Get company
+      tags:
+      - companies
+      parameters:
+      - name: company_id
+        in: path
+        description: company_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CompanyDetailResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: GetCompanyParams
+                required:
+                - data
+                - params
+                title: GetCompanyResponse
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      operationId: deleteCompany
+      summary: Delete company
+      tags:
+      - companies
+      parameters:
+      - name: company_id
+        in: path
+        description: company_id
+        required: true
+        schema:
+          type: string
+      - name: cancel_subscription
+        in: query
+        schema:
+          type: boolean
+      - name: prorate
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/DeleteResponse'
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      cancel_subscription:
+                        type: boolean
+                      prorate:
+                        type: boolean
+                    title: DeleteCompanyParams
+                required:
+                - data
+                - params
+                title: DeleteCompanyResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /companies/count:
+    get:
+      operationId: countCompanies
+      summary: Count companies
+      tags:
+      - companies
+      parameters:
+      - name: credit_type_ids
+        in: query
+        description: Filter companies by one or more credit type IDs (each ID starts with bcrd_)
+        schema:
+          type: array
+          description: Filter companies by one or more credit type IDs (each ID starts with bcrd_)
+          items:
+            type: string
+          maxItems: 100
+      - name: has_scheduled_downgrade
+        in: query
+        description: Filter companies that have a pending scheduled downgrade
+        schema:
+          type: boolean
+          description: Filter companies that have a pending scheduled downgrade
+      - name: ids
+        in: query
+        description: Filter companies by multiple company IDs (starts with comp_)
+        schema:
+          type: array
+          description: Filter companies by multiple company IDs (starts with comp_)
+          items:
+            type: string
+          maxItems: 100
+      - name: monetized_subscriptions
+        in: query
+        description: Filter companies that have monetized subscriptions
+        schema:
+          type: boolean
+          description: Filter companies that have monetized subscriptions
+      - name: plan_id
+        in: query
+        description: Filter companies by plan ID (starts with plan_)
+        schema:
+          type: string
+          description: Filter companies by plan ID (starts with plan_)
+      - name: plan_ids
+        in: query
+        description: Filter companies by one or more plan IDs (each ID starts with plan_)
+        schema:
+          type: array
+          description: Filter companies by one or more plan IDs (each ID starts with plan_)
+          items:
+            type: string
+          maxItems: 100
+      - name: plan_version_id
+        in: query
+        description: Filter companies by plan version ID (starts with plvr_)
+        schema:
+          type: string
+          description: Filter companies by plan version ID (starts with plvr_)
+      - name: q
+        in: query
+        description: Search for companies by name, keys or string traits
+        schema:
+          type: string
+          description: Search for companies by name, keys or string traits
+          maxLength: 512
+      - name: sort_order_column
+        in: query
+        description: Column to sort by (e.g. name, created_at, last_seen_at)
+        schema:
+          type: string
+          description: Column to sort by (e.g. name, created_at, last_seen_at)
+          maxLength: 255
+      - name: sort_order_direction
+        in: query
+        description: Direction to sort by (asc or desc)
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/SortDirection'
+          description: Direction to sort by (asc or desc)
+      - name: subscription_statuses
+        in: query
+        description: Filter companies by one or more subscription statuses
+        schema:
+          type: array
+          description: Filter companies by one or more subscription statuses
+          items:
+            $ref: '#/components/schemas/SubscriptionStatus'
+          maxItems: 100
+      - name: subscription_types
+        in: query
+        description: Filter companies by one or more subscription types
+        schema:
+          type: array
+          description: Filter companies by one or more subscription types
+          items:
+            $ref: '#/components/schemas/SubscriptionType'
+          maxItems: 100
+      - name: with_entitlement_for
+        in: query
+        description: Filter companies that have an entitlement (plan entitlement or company override) for the specified feature ID
+        schema:
+          type: string
+          description: Filter companies that have an entitlement (plan entitlement or company override) for the specified feature ID
+      - name: without_feature_override_for
+        in: query
+        description: Filter out companies that already have a company override for the specified feature ID
+        schema:
+          type: string
+          description: Filter out companies that already have a company override for the specified feature ID
+      - name: without_plan
+        in: query
+        description: Filter out companies that have a plan
+        schema:
+          type: boolean
+          description: Filter out companies that have a plan
+      - name: without_subscription
+        in: query
+        description: Filter out companies that have a subscription
+        schema:
+          type: boolean
+          description: Filter out companies that have a subscription
+      - name: with_subscription
+        in: query
+        description: Filter companies that have a subscription
+        schema:
+          type: boolean
+          description: Filter companies that have a subscription
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CountResponse'
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      credit_type_ids:
+                        type: array
+                        description: Filter companies by one or more credit type IDs (each ID starts with bcrd_)
+                        items:
+                          type: string
+                        maxItems: 100
+                      has_scheduled_downgrade:
+                        type: boolean
+                        description: Filter companies that have a pending scheduled downgrade
+                      ids:
+                        type: array
+                        description: Filter companies by multiple company IDs (starts with comp_)
+                        items:
+                          type: string
+                        maxItems: 100
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      monetized_subscriptions:
+                        type: boolean
+                        description: Filter companies that have monetized subscriptions
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      plan_id:
+                        type: string
+                        description: Filter companies by plan ID (starts with plan_)
+                      plan_ids:
+                        type: array
+                        description: Filter companies by one or more plan IDs (each ID starts with plan_)
+                        items:
+                          type: string
+                        maxItems: 100
+                      plan_version_id:
+                        type: string
+                        description: Filter companies by plan version ID (starts with plvr_)
+                      q:
+                        type: string
+                        description: Search for companies by name, keys or string traits
+                        maxLength: 512
+                      sort_order_column:
+                        type: string
+                        description: Column to sort by (e.g. name, created_at, last_seen_at)
+                        maxLength: 255
+                      sort_order_direction:
+                        allOf:
+                        - $ref: '#/components/schemas/SortDirection'
+                        description: Direction to sort by (asc or desc)
+                      subscription_statuses:
+                        type: array
+                        description: Filter companies by one or more subscription statuses
+                        items:
+                          $ref: '#/components/schemas/SubscriptionStatus'
+                        maxItems: 100
+                      subscription_types:
+                        type: array
+                        description: Filter companies by one or more subscription types
+                        items:
+                          $ref: '#/components/schemas/SubscriptionType'
+                        maxItems: 100
+                      with_entitlement_for:
+                        type: string
+                        description: Filter companies that have an entitlement (plan entitlement or company override) for the specified feature ID
+                      with_subscription:
+                        type: boolean
+                        description: Filter companies that have a subscription
+                      without_feature_override_for:
+                        type: string
+                        description: Filter out companies that already have a company override for the specified feature ID
+                      without_plan:
+                        type: boolean
+                        description: Filter out companies that have a plan
+                      without_subscription:
+                        type: boolean
+                        description: Filter out companies that have a subscription
+                    title: CountCompaniesParams
+                required:
+                - data
+                - params
+                title: CountCompaniesResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /companies/create:
+    post:
+      operationId: createCompany
+      summary: Create company
+      tags:
+      - companies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertCompanyRequestBody'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CompanyDetailResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: CreateCompanyParams
+                required:
+                - data
+                - params
+                title: CreateCompanyResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /companies/delete:
+    post:
+      operationId: deleteCompanyByKeys
+      summary: Delete company by keys
+      tags:
+      - companies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeysRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CompanyResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: DeleteCompanyByKeysParams
+                required:
+                - data
+                - params
+                title: DeleteCompanyByKeysResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /companies/lookup:
+    get:
+      operationId: lookupCompany
+      summary: Lookup company
+      tags:
+      - companies
+      parameters:
+      - name: keys
+        in: query
+        description: Key/value pairs
+        required: true
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CompanyDetailResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      keys:
+                        additionalProperties:
+                          type: string
+                        type: object
+                    title: LookupCompanyParams
+                required:
+                - data
+                - params
+                title: LookupCompanyResponse
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /company-memberships:
+    get:
+      operationId: listCompanyMemberships
+      summary: List company memberships
+      tags:
+      - companies
+      parameters:
+      - name: company_id
+        in: query
+        schema:
+          type: string
+      - name: user_id
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CompanyMembershipDetailResponseData'
+                    title: ListCompanyMembershipsResponseData
+                    maxItems: 250
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      company_id:
+                        type: string
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      user_id:
+                        type: string
+                    title: ListCompanyMembershipsParams
+                required:
+                - data
+                - params
+                title: ListCompanyMembershipsResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      operationId: getOrCreateCompanyMembership
+      summary: Get or create company membership
+      tags:
+      - companies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetOrCreateCompanyMembershipRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CompanyMembershipDetailResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: GetOrCreateCompanyMembershipParams
+                required:
+                - data
+                - params
+                title: GetOrCreateCompanyMembershipResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /company-memberships/{company_membership_id}:
+    delete:
+      operationId: deleteCompanyMembership
+      summary: Delete company membership
+      tags:
+      - companies
+      parameters:
+      - name: company_membership_id
+        in: path
+        description: company_membership_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/DeleteResponse'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: DeleteCompanyMembershipParams
+                required:
+                - data
+                - params
+                title: DeleteCompanyMembershipResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /company-subscriptions:
+    get:
+      operationId: getActiveCompanySubscription
+      summary: Get active company subscription
+      tags:
+      - companies
+      parameters:
+      - name: company_id
+        in: query
+        schema:
+          type: string
+      - name: company_ids
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+          maxItems: 100
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CompanySubscriptionResponseData'
+                    title: GetActiveCompanySubscriptionResponseData
+                    maxItems: 250
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      company_id:
+                        type: string
+                      company_ids:
+                        type: array
+                        items:
+                          type: string
+                        maxItems: 100
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                    title: GetActiveCompanySubscriptionParams
+                required:
+                - data
+                - params
+                title: GetActiveCompanySubscriptionResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /company-traits:
+    post:
+      operationId: upsertCompanyTrait
+      summary: Upsert company trait
+      tags:
+      - companies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertTraitRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CompanyDetailResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: UpsertCompanyTraitParams
+                required:
+                - data
+                - params
+                title: UpsertCompanyTraitResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /entity-key-definitions:
+    get:
+      operationId: listEntityKeyDefinitions
+      summary: List entity key definitions
+      tags:
+      - companies
+      parameters:
+      - name: entity_type
+        in: query
+        schema:
+          $ref: '#/components/schemas/EntityType'
+      - name: ids
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+          maxItems: 100
+      - name: q
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EntityKeyDefinitionResponseData'
+                    title: ListEntityKeyDefinitionsResponseData
+                    maxItems: 250
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      entity_type:
+                        $ref: '#/components/schemas/EntityType'
+                      ids:
+                        type: array
+                        items:
+                          type: string
+                        maxItems: 100
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      q:
+                        type: string
+                    title: ListEntityKeyDefinitionsParams
+                required:
+                - data
+                - params
+                title: ListEntityKeyDefinitionsResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /entity-key-definitions/count:
+    get:
+      operationId: countEntityKeyDefinitions
+      summary: Count entity key definitions
+      tags:
+      - companies
+      parameters:
+      - name: entity_type
+        in: query
+        schema:
+          $ref: '#/components/schemas/EntityType'
+      - name: ids
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+          maxItems: 100
+      - name: q
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CountResponse'
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      entity_type:
+                        $ref: '#/components/schemas/EntityType'
+                      ids:
+                        type: array
+                        items:
+                          type: string
+                        maxItems: 100
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      q:
+                        type: string
+                    title: CountEntityKeyDefinitionsParams
+                required:
+                - data
+                - params
+                title: CountEntityKeyDefinitionsResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /entity-trait-definitions:
+    get:
+      operationId: listEntityTraitDefinitions
+      summary: List entity trait definitions
+      tags:
+      - companies
+      parameters:
+      - name: entity_type
+        in: query
+        schema:
+          $ref: '#/components/schemas/EntityType'
+      - name: ids
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+          maxItems: 100
+      - name: q
+        in: query
+        schema:
+          type: string
+      - name: trait_type
+        in: query
+        schema:
+          $ref: '#/components/schemas/TraitType'
+      - name: trait_types
+        in: query
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/TraitType'
+          maxItems: 100
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EntityTraitDefinitionResponseData'
+                    title: ListEntityTraitDefinitionsResponseData
+                    maxItems: 250
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      entity_type:
+                        $ref: '#/components/schemas/EntityType'
+                      ids:
+                        type: array
+                        items:
+                          type: string
+                        maxItems: 100
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      q:
+                        type: string
+                      trait_type:
+                        $ref: '#/components/schemas/TraitType'
+                      trait_types:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/TraitType'
+                        maxItems: 100
+                    title: ListEntityTraitDefinitionsParams
+                required:
+                - data
+                - params
+                title: ListEntityTraitDefinitionsResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      operationId: getOrCreateEntityTraitDefinition
+      summary: Get or create entity trait definition
+      tags:
+      - companies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEntityTraitDefinitionRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/EntityTraitDefinitionResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: GetOrCreateEntityTraitDefinitionParams
+                required:
+                - data
+                - params
+                title: GetOrCreateEntityTraitDefinitionResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /entity-trait-definitions/{entity_trait_definition_id}:
+    get:
+      operationId: getEntityTraitDefinition
+      summary: Get entity trait definition
+      tags:
+      - companies
+      parameters:
+      - name: entity_trait_definition_id
+        in: path
+        description: entity_trait_definition_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/EntityTraitDefinitionResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: GetEntityTraitDefinitionParams
+                required:
+                - data
+                - params
+                title: GetEntityTraitDefinitionResponse
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    put:
+      operationId: updateEntityTraitDefinition
+      summary: Update entity trait definition
+      tags:
+      - companies
+      parameters:
+      - name: entity_trait_definition_id
+        in: path
+        description: entity_trait_definition_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEntityTraitDefinitionRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/EntityTraitDefinitionResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: UpdateEntityTraitDefinitionParams
+                required:
+                - data
+                - params
+                title: UpdateEntityTraitDefinitionResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /entity-trait-definitions/count:
+    get:
+      operationId: countEntityTraitDefinitions
+      summary: Count entity trait definitions
+      tags:
+      - companies
+      parameters:
+      - name: entity_type
+        in: query
+        schema:
+          $ref: '#/components/schemas/EntityType'
+      - name: ids
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+          maxItems: 100
+      - name: q
+        in: query
+        schema:
+          type: string
+      - name: trait_type
+        in: query
+        schema:
+          $ref: '#/components/schemas/TraitType'
+      - name: trait_types
+        in: query
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/TraitType'
+          maxItems: 100
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CountResponse'
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      entity_type:
+                        $ref: '#/components/schemas/EntityType'
+                      ids:
+                        type: array
+                        items:
+                          type: string
+                        maxItems: 100
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      q:
+                        type: string
+                      trait_type:
+                        $ref: '#/components/schemas/TraitType'
+                      trait_types:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/TraitType'
+                        maxItems: 100
+                    title: CountEntityTraitDefinitionsParams
+                required:
+                - data
+                - params
+                title: CountEntityTraitDefinitionsResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /entity-trait-values:
+    get:
+      operationId: getEntityTraitValues
+      summary: Get entity trait values
+      tags:
+      - companies
+      parameters:
+      - name: definition_id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: q
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EntityTraitValue'
+                    title: GetEntityTraitValuesResponseData
+                    maxItems: 250
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      definition_id:
+                        type: string
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      q:
+                        type: string
+                    title: GetEntityTraitValuesParams
+                required:
+                - data
+                - params
+                title: GetEntityTraitValuesResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /plan-changes:
+    get:
+      operationId: listPlanChanges
+      summary: List plan changes
+      tags:
+      - companies
+      parameters:
+      - name: action
+        in: query
+        schema:
+          $ref: '#/components/schemas/PlanChangeAction'
+      - name: base_plan_action
+        in: query
+        schema:
+          $ref: '#/components/schemas/PlanChangeBasePlanAction'
+      - name: company_id
+        in: query
+        schema:
+          type: string
+      - name: company_ids
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+          maxItems: 100
+      - name: plan_ids
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+          maxItems: 100
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlanChangeResponseData'
+                    title: ListPlanChangesResponseData
+                    maxItems: 250
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      action:
+                        $ref: '#/components/schemas/PlanChangeAction'
+                      base_plan_action:
+                        $ref: '#/components/schemas/PlanChangeBasePlanAction'
+                      company_id:
+                        type: string
+                      company_ids:
+                        type: array
+                        items:
+                          type: string
+                        maxItems: 100
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      plan_ids:
+                        type: array
+                        items:
+                          type: string
+                        maxItems: 100
+                    title: ListPlanChangesParams
+                required:
+                - data
+                - params
+                title: ListPlanChangesResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /plan-changes/{plan_change_id}:
+    get:
+      operationId: getPlanChange
+      summary: Get plan change
+      tags:
+      - companies
+      parameters:
+      - name: plan_change_id
+        in: path
+        description: plan_change_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/PlanChangeResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: GetPlanChangeParams
+                required:
+                - data
+                - params
+                title: GetPlanChangeResponse
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /plan-traits:
+    get:
+      operationId: listPlanTraits
+      summary: List plan traits
+      tags:
+      - companies
+      parameters:
+      - name: ids
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+          maxItems: 100
+      - name: plan_id
+        in: query
+        schema:
+          type: string
+      - name: trait_id
+        in: query
+        schema:
+          type: string
+      - name: trait_ids
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+          maxItems: 100
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlanTraitResponseData'
+                    title: ListPlanTraitsResponseData
+                    maxItems: 250
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      ids:
+                        type: array
+                        items:
+                          type: string
+                        maxItems: 100
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      plan_id:
+                        type: string
+                      trait_id:
+                        type: string
+                      trait_ids:
+                        type: array
+                        items:
+                          type: string
+                        maxItems: 100
+                    title: ListPlanTraitsParams
+                required:
+                - data
+                - params
+                title: ListPlanTraitsResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /plan-traits/{plan_trait_id}:
+    get:
+      operationId: getPlanTrait
+      summary: Get plan trait
+      tags:
+      - companies
+      parameters:
+      - name: plan_trait_id
+        in: path
+        description: plan_trait_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/PlanTraitResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: GetPlanTraitParams
+                required:
+                - data
+                - params
+                title: GetPlanTraitResponse
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /plan-traits/bulk:
+    post:
+      operationId: updatePlanTraitsBulk
+      summary: Update plan traits bulk
+      tags:
+      - companies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePlanTraitBulkRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlanTraitResponseData'
+                    title: UpdatePlanTraitsBulkResponseData
+                    maxItems: 250
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: UpdatePlanTraitsBulkParams
+                required:
+                - data
+                - params
+                title: UpdatePlanTraitsBulkResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /plan-traits/count:
+    get:
+      operationId: countPlanTraits
+      summary: Count plan traits
+      tags:
+      - companies
+      parameters:
+      - name: ids
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+          maxItems: 100
+      - name: plan_id
+        in: query
+        schema:
+          type: string
+      - name: trait_id
+        in: query
+        schema:
+          type: string
+      - name: trait_ids
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+          maxItems: 100
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CountResponse'
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      ids:
+                        type: array
+                        items:
+                          type: string
+                        maxItems: 100
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      plan_id:
+                        type: string
+                      trait_id:
+                        type: string
+                      trait_ids:
+                        type: array
+                        items:
+                          type: string
+                        maxItems: 100
+                    title: CountPlanTraitsParams
+                required:
+                - data
+                - params
+                title: CountPlanTraitsResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /user-traits:
+    post:
+      operationId: upsertUserTrait
+      summary: Upsert user trait
+      tags:
+      - companies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertTraitRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/UserDetailResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: UpsertUserTraitParams
+                required:
+                - data
+                - params
+                title: UpsertUserTraitResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /users:
+    get:
+      operationId: listUsers
+      summary: List users
+      tags:
+      - companies
+      parameters:
+      - name: company_id
+        in: query
+        description: Filter users by company ID (starts with comp_)
+        schema:
+          type: string
+          description: Filter users by company ID (starts with comp_)
+      - name: ids
+        in: query
+        description: Filter users by multiple user IDs (starts with user_)
+        schema:
+          type: array
+          description: Filter users by multiple user IDs (starts with user_)
+          items:
+            type: string
+          maxItems: 100
+      - name: plan_id
+        in: query
+        description: Filter users by plan ID (starts with plan_)
+        schema:
+          type: string
+          description: Filter users by plan ID (starts with plan_)
+      - name: q
+        in: query
+        description: Search for users by name, keys or string traits
+        schema:
+          type: string
+          description: Search for users by name, keys or string traits
+          maxLength: 512
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UserDetailResponseData'
+                    title: ListUsersResponseData
+                    maxItems: 250
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      company_id:
+                        type: string
+                        description: Filter users by company ID (starts with comp_)
+                      ids:
+                        type: array
+                        description: Filter users by multiple user IDs (starts with user_)
+                        items:
+                          type: string
+                        maxItems: 100
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      plan_id:
+                        type: string
+                        description: Filter users by plan ID (starts with plan_)
+                      q:
+                        type: string
+                        description: Search for users by name, keys or string traits
+                        maxLength: 512
+                    title: ListUsersParams
+                required:
+                - data
+                - params
+                title: ListUsersResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      operationId: upsertUser
+      summary: Upsert user
+      tags:
+      - companies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertUserRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/UserDetailResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: UpsertUserParams
+                required:
+                - data
+                - params
+                title: UpsertUserResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /users/{user_id}:
+    get:
+      operationId: getUser
+      summary: Get user
+      tags:
+      - companies
+      parameters:
+      - name: user_id
+        in: path
+        description: user_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/UserDetailResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: GetUserParams
+                required:
+                - data
+                - params
+                title: GetUserResponse
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      operationId: deleteUser
+      summary: Delete user
+      tags:
+      - companies
+      parameters:
+      - name: user_id
+        in: path
+        description: user_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/DeleteResponse'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: DeleteUserParams
+                required:
+                - data
+                - params
+                title: DeleteUserResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /users/count:
+    get:
+      operationId: countUsers
+      summary: Count users
+      tags:
+      - companies
+      parameters:
+      - name: company_id
+        in: query
+        description: Filter users by company ID (starts with comp_)
+        schema:
+          type: string
+          description: Filter users by company ID (starts with comp_)
+      - name: ids
+        in: query
+        description: Filter users by multiple user IDs (starts with user_)
+        schema:
+          type: array
+          description: Filter users by multiple user IDs (starts with user_)
+          items:
+            type: string
+          maxItems: 100
+      - name: plan_id
+        in: query
+        description: Filter users by plan ID (starts with plan_)
+        schema:
+          type: string
+          description: Filter users by plan ID (starts with plan_)
+      - name: q
+        in: query
+        description: Search for users by name, keys or string traits
+        schema:
+          type: string
+          description: Search for users by name, keys or string traits
+          maxLength: 512
+      - name: limit
+        in: query
+        description: Page limit (default 100)
+        schema:
+          type: integer
+          description: Page limit (default 100)
+          format: int64
+          example: '100'
+      - name: offset
+        in: query
+        description: Page offset (default 0)
+        schema:
+          type: integer
+          description: Page offset (default 0)
+          format: int64
+          example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CountResponse'
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      company_id:
+                        type: string
+                        description: Filter users by company ID (starts with comp_)
+                      ids:
+                        type: array
+                        description: Filter users by multiple user IDs (starts with user_)
+                        items:
+                          type: string
+                        maxItems: 100
+                      limit:
+                        type: integer
+                        description: Page limit (default 100)
+                        format: int64
+                        example: '100'
+                      offset:
+                        type: integer
+                        description: Page offset (default 0)
+                        format: int64
+                        example: '0'
+                      plan_id:
+                        type: string
+                        description: Filter users by plan ID (starts with plan_)
+                      q:
+                        type: string
+                        description: Search for users by name, keys or string traits
+                        maxLength: 512
+                    title: CountUsersParams
+                required:
+                - data
+                - params
+                title: CountUsersResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /users/create:
+    post:
+      operationId: createUser
+      summary: Create user
+      tags:
+      - companies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertUserRequestBody'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/UserDetailResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: CreateUserParams
+                required:
+                - data
+                - params
+                title: CreateUserResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /users/delete:
+    post:
+      operationId: deleteUserByKeys
+      summary: Delete user by keys
+      tags:
+      - companies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeysRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/UserResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    title: DeleteUserByKeysParams
+                required:
+                - data
+                - params
+                title: DeleteUserByKeysResponse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /users/lookup:
+    get:
+      operationId: lookupUser
+      summary: Lookup user
+      tags:
+      - companies
+      parameters:
+      - name: keys
+        in: query
+        description: Key/value pairs
+        required: true
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/UserDetailResponseData'
+                  params:
+                    type: object
+                    description: Input parameters
+                    properties:
+                      keys:
+                        additionalProperties:
+                          type: string
+                        type: object
+                    title: LookupUserParams
+                required:
+                - data
+                - params
+                title: LookupUserResponse
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+  schemas:
+    BillingProductForSubscriptionResponseData:
+      type: object
+      properties:
+        billing_scheme:
+          $ref: '#/components/schemas/BillingPriceScheme'
+        billing_threshold:
+          type: integer
+          format: int64
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        currency:
+          type: string
+        environment_id:
+          type: string
+        external_id:
+          type: string
+        id:
+          type: string
+        interval:
+          type: string
+        meter_id:
+          type: string
+          nullable: true
+        name:
+          type: string
+        package_size:
+          type: integer
+          format: int64
+        price:
+          type: integer
+          format: int64
+        price_decimal:
+          type: string
+          nullable: true
+        price_external_id:
+          type: string
+        price_id:
+          type: string
+        price_tier:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingProductPriceTierResponseData'
+          maxItems: 100
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        quantity:
+          type: number
+        subscription_id:
+          type: string
+        subscription_item_external_id:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+        usage_type:
+          $ref: '#/components/schemas/BillingPriceUsageType'
+      required:
+      - id
+      - created_at
+      - currency
+      - environment_id
+      - external_id
+      - interval
+      - name
+      - package_size
+      - price
+      - price_external_id
+      - price_id
+      - price_tier
+      - provider_type
+      - quantity
+      - billing_scheme
+      - subscription_id
+      - updated_at
+      - usage_type
+      title: BillingProductForSubscriptionResponseData
+    UpdatePlanTraitTraitRequestBody:
+      type: object
+      properties:
+        trait_id:
+          type: string
+        trait_value:
+          type: string
+      required:
+      - trait_id
+      - trait_value
+      title: UpdatePlanTraitTraitRequestBody
+    BillingPlanCreditGrantResetStart:
+      type: string
+      enum:
+      - billing_period
+      - first_of_month
+    CompanyDetailResponseData:
+      type: object
+      properties:
+        add_ons:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyPlanWithBillingSubView'
+          maxItems: 1000
+        billing_credit_balances:
+          additionalProperties:
+            type: number
+          type: object
+          nullable: true
+        billing_subscription:
+          $ref: '#/components/schemas/BillingSubscriptionView'
+        billing_subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingSubscriptionView'
+          maxItems: 1000
+        created_at:
+          type: string
+          format: date-time
+        custom_plan_billings:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomPlanBillingResponseData'
+          maxItems: 1000
+        default_payment_method:
+          $ref: '#/components/schemas/PaymentMethodResponseData'
+        entitlements:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureEntitlement'
+          maxItems: 1000
+        entity_traits:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityTraitDetailResponseData'
+          maxItems: 1000
+        environment_id:
+          type: string
+        id:
+          type: string
+        keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityKeyDetailResponseData'
+          maxItems: 1000
+        last_seen_at:
+          type: string
+          format: date-time
+          nullable: true
+        logo_url:
+          type: string
+          nullable: true
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyEventPeriodMetricsResponseData'
+          maxItems: 1000
+        name:
+          type: string
+        payment_methods:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentMethodResponseData'
+          maxItems: 1000
+        plan:
+          $ref: '#/components/schemas/CompanyPlanWithBillingSubView'
+        plans:
+          type: array
+          items:
+            $ref: '#/components/schemas/GenericPreviewObject'
+          maxItems: 1000
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+          maxItems: 1000
+        scheduled_downgrade:
+          $ref: '#/components/schemas/ScheduledDowngradeResponseData'
+        traits:
+          type: object
+          description: A map of trait names to trait values
+        updated_at:
+          type: string
+          format: date-time
+        user_count:
+          type: integer
+          format: int64
+      required:
+      - created_at
+      - environment_id
+      - id
+      - name
+      - updated_at
+      - add_ons
+      - billing_subscriptions
+      - custom_plan_billings
+      - entitlements
+      - entity_traits
+      - keys
+      - metrics
+      - payment_methods
+      - plans
+      - rules
+      - user_count
+      title: CompanyDetailResponseData
+    BillingPlanCreditGrantResetType:
+      type: string
+      enum:
+      - no_reset
+      - plan_period
+    BillingCreditBurnStrategy:
+      type: string
+      enum:
+      - expiration_priority
+      - first_in_first_out
+      - last_in_first_out
+      - plan_first_then_credit_bundles_first_in_first_out
+    ApiKeyResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        description:
+          type: string
+          nullable: true
+        environment:
+          $ref: '#/components/schemas/EnvironmentResponseData'
+        environment_id:
+          type: string
+          nullable: true
+        id:
+          type: string
+        last_used_at:
+          type: string
+          format: date-time
+          nullable: true
+        name:
+          type: string
+        readonly:
+          type: boolean
+        scopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiKeyScope'
+          maxItems: 50
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - created_at
+      - name
+      - readonly
+      - scopes
+      - updated_at
+      title: ApiKeyResponseData
+    UpsertTraitRequestBody:
+      type: object
+      properties:
+        incr:
+          type: integer
+          description: Amount to increment the trait by (positive or negative)
+          format: int64
+          nullable: true
+        keys:
+          additionalProperties:
+            type: string
+          type: object
+          description: Key/value pairs to identify a company or user
+        set:
+          type: string
+          description: Value to set the trait to
+          nullable: true
+          maxLength: 1024
+        trait:
+          type: string
+          description: Name of the trait to update
+          maxLength: 255
+        update_only:
+          type: boolean
+          description: Unless this is set, the company or user will be created if it does not already exist
+          nullable: true
+      required:
+      - keys
+      - trait
+      title: UpsertTraitRequestBody
+    CustomPlanBillingResponseData:
+      type: object
+      properties:
+        activation_strategy:
+          $ref: '#/components/schemas/CustomPlanActivationStrategy'
+        company_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        days_until_due:
+          type: integer
+          format: int64
+        id:
+          type: string
+        paid_at:
+          type: string
+          format: date-time
+          nullable: true
+        plan_id:
+          type: string
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          $ref: '#/components/schemas/CustomPlanBillingStatus'
+        stripe_invoice_url:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - activation_strategy
+      - company_id
+      - created_at
+      - days_until_due
+      - id
+      - plan_id
+      - status
+      - updated_at
+      title: CustomPlanBillingResponseData
+    CompanyEventPeriodMetricsResponseData:
+      type: object
+      properties:
+        account_id:
+          type: string
+        captured_at_max:
+          type: string
+          format: date-time
+        captured_at_min:
+          type: string
+          format: date-time
+        company_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        environment_id:
+          type: string
+        event_subtype:
+          type: string
+        month_reset:
+          $ref: '#/components/schemas/MetricPeriodMonthReset'
+        period:
+          $ref: '#/components/schemas/MetricPeriod'
+        valid_until:
+          type: string
+          format: date-time
+          nullable: true
+        value:
+          type: integer
+          format: int64
+      required:
+      - account_id
+      - captured_at_max
+      - captured_at_min
+      - company_id
+      - created_at
+      - environment_id
+      - event_subtype
+      - month_reset
+      - period
+      - value
+      title: CompanyEventPeriodMetricsResponseData
+    GetOrCreateCompanyMembershipRequestBody:
+      type: object
+      properties:
+        company_id:
+          type: string
+        user_id:
+          type: string
+      required:
+      - company_id
+      - user_id
+      title: GetOrCreateCompanyMembershipRequestBody
+    UserResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        environment_id:
+          type: string
+        id:
+          type: string
+        last_seen_at:
+          type: string
+          format: date-time
+          nullable: true
+        name:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - environment_id
+      - name
+      - created_at
+      - updated_at
+      title: UserResponseData
+    FeatureEntitlement:
+      type: object
+      properties:
+        allocation:
+          type: integer
+          description: If the company has a numeric entitlement for this feature, the allocated amount
+          format: int64
+          nullable: true
+        credit_id:
+          type: string
+          description: If the company has a credit-based entitlement for this feature, the ID of the credit
+          nullable: true
+        credit_remaining:
+          type: number
+          description: If the company has a credit-based entitlement for this feature, the remaining credit amount
+          nullable: true
+        credit_total:
+          type: number
+          description: If the company has a credit-based entitlement for this feature, the total credit amount
+          nullable: true
+        credit_used:
+          type: number
+          description: If the company has a credit-based entitlement for this feature, the amount of credit used
+          nullable: true
+        event_name:
+          type: string
+          description: If the feature is event-based, the name of the event tracked for usage
+          nullable: true
+        feature_id:
+          type: string
+          description: The ID of the feature
+        feature_key:
+          type: string
+          description: The key of the flag associated with the feature
+        metric_period:
+          allOf:
+          - $ref: '#/components/schemas/MetricPeriod'
+          description: For event-based feature entitlements, the period over which usage is tracked
+          nullable: true
+        metric_reset_at:
+          type: string
+          description: For event-based feature entitlements, when the usage period will reset
+          format: date-time
+          nullable: true
+        month_reset:
+          allOf:
+          - $ref: '#/components/schemas/MetricPeriodMonthReset'
+          description: For event-based feature entitlements that have a monthly period, whether that monthly reset is based on the calendar month or a billing cycle
+          nullable: true
+        soft_limit:
+          type: integer
+          description: For usage-based pricing, the soft limit for overage charges or the next tier boundary
+          format: int64
+          nullable: true
+        usage:
+          type: integer
+          description: If the company has a numeric entitlement for this feature, the current usage amount
+          format: int64
+          nullable: true
+        value_type:
+          allOf:
+          - $ref: '#/components/schemas/EntitlementValueType'
+          description: The type of the entitlement value
+      required:
+      - feature_id
+      - feature_key
+      - value_type
+      title: FeatureEntitlement
+    PlanChangeResponseData:
+      type: object
+      properties:
+        action:
+          $ref: '#/components/schemas/PlanChangeAction'
+        actor_type:
+          $ref: '#/components/schemas/ActorType'
+        add_ons_added:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanSnapshotView'
+          maxItems: 1000
+        add_ons_removed:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanSnapshotView'
+          maxItems: 1000
+        api_key:
+          $ref: '#/components/schemas/ApiKeyResponseData'
+        audit_log:
+          $ref: '#/components/schemas/AuditLogListResponseData'
+        base_plan:
+          $ref: '#/components/schemas/PlanSnapshotView'
+        base_plan_action:
+          allOf:
+          - $ref: '#/components/schemas/PlanChangeBasePlanAction'
+          description: Any special behavior that affected the assignment of the base plan during this change.
+          nullable: true
+        base_plan_version:
+          allOf:
+          - $ref: '#/components/schemas/PlanVersionSnapshotView'
+          description: The plan version that was assigned during this change.
+        company:
+          $ref: '#/components/schemas/CompanyResponseData'
+        company_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        environment_id:
+          type: string
+        id:
+          type: string
+        previous_base_plan:
+          $ref: '#/components/schemas/PlanSnapshotView'
+        previous_base_plan_version:
+          allOf:
+          - $ref: '#/components/schemas/PlanVersionSnapshotView'
+          description: The plan version of the previous base plan before this change.
+        request_id:
+          type: string
+          nullable: true
+        subscription_change_action:
+          allOf:
+          - $ref: '#/components/schemas/PlanChangeSubscriptionAction'
+          description: If a subscription was changed as a part of this plan change, indicates the type of change that was made.
+          nullable: true
+        traits_updated:
+          type: array
+          description: Any traits were updated as part of this plan change (via pay-in-advance entitlements).
+          items:
+            $ref: '#/components/schemas/SubscriptionTraitUpdate'
+          maxItems: 1000
+        updated_at:
+          type: string
+          format: date-time
+        user_id:
+          type: string
+          nullable: true
+        user_name:
+          type: string
+          nullable: true
+      required:
+      - action
+      - actor_type
+      - add_ons_added
+      - add_ons_removed
+      - company_id
+      - created_at
+      - environment_id
+      - id
+      - traits_updated
+      - updated_at
+      title: PlanChangeResponseData
+    CreditCurrencyPrice:
+      type: object
+      properties:
+        currency:
+          type: string
+        price:
+          $ref: '#/components/schemas/BillingPriceView'
+      required:
+      - currency
+      title: CreditCurrencyPrice
+    BillingProductResponseData:
+      type: object
+      properties:
+        account_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        currency:
+          type: string
+          description: Deprecated; currencies are associated with prices, not products
+          nullable: true
+          deprecated: true
+        environment_id:
+          type: string
+        external_id:
+          type: string
+        is_active:
+          type: boolean
+        name:
+          type: string
+        price:
+          type: number
+        price_decimal:
+          type: string
+          nullable: true
+        product_id:
+          type: string
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        quantity:
+          type: number
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - account_id
+      - created_at
+      - environment_id
+      - external_id
+      - is_active
+      - name
+      - price
+      - product_id
+      - provider_type
+      - quantity
+      - updated_at
+      title: BillingProductResponseData
+    SortDirection:
+      type: string
+      enum:
+      - asc
+      - desc
+    CustomPlanBillingStatus:
+      type: string
+      enum:
+      - active
+      - expired
+      - paid
+      - pending
+    EnvironmentType:
+      type: string
+      enum:
+      - development
+      - production
+      - staging
+    EnvironmentResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        environment_type:
+          $ref: '#/components/schemas/EnvironmentType'
+        id:
+          type: string
+        name:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - name
+      - environment_type
+      - created_at
+      - updated_at
+      title: EnvironmentResponseData
+    EntityKeyDefinitionResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        entity_type:
+          $ref: '#/components/schemas/EntityType'
+        id:
+          type: string
+        key:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - entity_type
+      - key
+      - created_at
+      - updated_at
+      title: EntityKeyDefinitionResponseData
+    BillingPriceScheme:
+      type: string
+      enum:
+      - per_unit
+      - tiered
+    BillingProductPriceTierResponseData:
+      type: object
+      properties:
+        flat_amount:
+          type: integer
+          format: int64
+          nullable: true
+        per_unit_price:
+          type: integer
+          format: int64
+          nullable: true
+        per_unit_price_decimal:
+          type: string
+          nullable: true
+        up_to:
+          type: integer
+          format: int64
+          nullable: true
+      title: BillingProductPriceTierResponseData
+    EntitlementValueType:
+      type: string
+      enum:
+      - boolean
+      - credit
+      - numeric
+      - trait
+      - unknown
+      - unlimited
+    ActorType:
+      type: string
+      enum:
+      - api_key
+      - app_user
+      - stripe_app
+      - system
+      - temporary_access_token
+    PlanChangeBasePlanAction:
+      type: string
+      enum:
+      - fallback
+      - initial
+      - trait
+      - trial_expiry
+    UserDetailResponseData:
+      type: object
+      properties:
+        company_memberships:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyMembershipDetailResponseData'
+          maxItems: 1000
+        created_at:
+          type: string
+          format: date-time
+        entity_traits:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityTraitDetailResponseData'
+          maxItems: 1000
+        environment_id:
+          type: string
+        id:
+          type: string
+        keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityKeyDetailResponseData'
+          maxItems: 1000
+        last_seen_at:
+          type: string
+          format: date-time
+          nullable: true
+        name:
+          type: string
+        traits:
+          type: object
+          description: A map of trait names to trait values
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - environment_id
+      - name
+      - created_at
+      - updated_at
+      - keys
+      - entity_traits
+      - company_memberships
+      title: UserDetailResponseData
+    PlanTraitResponseData:
+      type: object
+      properties:
+        account_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        environment_id:
+          type: string
+        id:
+          type: string
+        plan_id:
+          type: string
+        plan_type:
+          type: string
+        trait_id:
+          type: string
+        trait_value:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - account_id
+      - environment_id
+      - plan_id
+      - plan_type
+      - trait_id
+      - trait_value
+      - created_at
+      - updated_at
+      title: PlanTraitResponseData
+    ApiKeyScope:
+      type: string
+      enum:
+      - admin
+      - capture
+      - read
+      - write
+    UpdatePlanTraitBulkRequestBody:
+      type: object
+      properties:
+        apply_to_existing_companies:
+          type: boolean
+        plan_id:
+          type: string
+        traits:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdatePlanTraitTraitRequestBody'
+          maxItems: 100
+      required:
+      - apply_to_existing_companies
+      - plan_id
+      - traits
+      title: UpdatePlanTraitBulkRequestBody
+    EntityType:
+      type: string
+      enum:
+      - company
+      - user
+    MetricPeriodMonthReset:
+      type: string
+      enum:
+      - billing_cycle
+      - first_of_month
+    Rule:
+      type: object
+      properties:
+        account_id:
+          type: string
+        condition_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConditionGroup'
+          maxItems: 1000
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+          maxItems: 1000
+        environment_id:
+          type: string
+        flag_id:
+          type: string
+          nullable: true
+        id:
+          type: string
+        name:
+          type: string
+        priority:
+          type: integer
+          format: int64
+        rule_type:
+          $ref: '#/components/schemas/RuleType'
+        value:
+          type: boolean
+      required:
+      - id
+      - account_id
+      - environment_id
+      - rule_type
+      - name
+      - priority
+      - conditions
+      - condition_groups
+      - value
+      title: Rule
+    EntityTraitDefinitionResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        display_name:
+          type: string
+        entity_type:
+          $ref: '#/components/schemas/EntityType'
+        hierarchy:
+          type: array
+          items:
+            type: string
+          maxItems: 1000
+        id:
+          type: string
+        trait_type:
+          $ref: '#/components/schemas/TraitType'
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - created_at
+      - display_name
+      - entity_type
+      - hierarchy
+      - id
+      - trait_type
+      - updated_at
+      title: EntityTraitDefinitionResponseData
+    UpdateEntityTraitDefinitionRequestBody:
+      type: object
+      properties:
+        display_name:
+          type: string
+          nullable: true
+          maxLength: 255
+        trait_type:
+          $ref: '#/components/schemas/TraitType'
+      required:
+      - trait_type
+      title: UpdateEntityTraitDefinitionRequestBody
+    DeleteResponse:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+          description: Whether the delete was successful
+    ComparableOperator:
+      type: string
+      enum:
+      - eq
+      - gt
+      - gte
+      - is_empty
+      - lt
+      - lte
+      - not_empty
+      - ne
+    EntityKeyDetailResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        definition:
+          $ref: '#/components/schemas/EntityKeyDefinitionResponseData'
+        definition_id:
+          type: string
+        entity_id:
+          type: string
+        entity_type:
+          $ref: '#/components/schemas/EntityType'
+        environment_id:
+          type: string
+        id:
+          type: string
+        key:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+        value:
+          type: string
+      required:
+      - id
+      - environment_id
+      - definition_id
+      - entity_type
+      - entity_id
+      - key
+      - value
+      - created_at
+      - updated_at
+      title: EntityKeyDetailResponseData
+    ConditionGroup:
+      type: object
+      properties:
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+          maxItems: 1000
+      required:
+      - conditions
+      title: ConditionGroup
+    CreateEntityTraitDefinitionRequestBody:
+      type: object
+      properties:
+        display_name:
+          type: string
+          nullable: true
+          maxLength: 255
+        entity_type:
+          $ref: '#/components/schemas/EntityType'
+        hierarchy:
+          type: array
+          items:
+            type: string
+          maxItems: 100
+        trait_type:
+          $ref: '#/components/schemas/TraitType'
+      required:
+      - entity_type
+      - hierarchy
+      - trait_type
+      title: CreateEntityTraitDefinitionRequestBody
+    UpsertCompanyRequestBody:
+      type: object
+      properties:
+        id:
+          type: string
+          description: If you know the Schematic ID, you can use that here instead of keys
+          nullable: true
+        keys:
+          additionalProperties:
+            type: string
+          type: object
+          description: See [Key Management](https://docs.schematichq.com/developer_resources/key_management) for more information
+        last_seen_at:
+          type: string
+          format: date-time
+          nullable: true
+        name:
+          type: string
+          nullable: true
+          maxLength: 256
+        prevent_key_remap:
+          type: boolean
+          nullable: true
+        traits:
+          type: object
+          description: A map of trait names to trait values
+        update_only:
+          type: boolean
+          nullable: true
+      required:
+      - keys
+      title: UpsertCompanyRequestBody
+    PlanVersionSnapshotView:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        version:
+          type: integer
+          format: int64
+      required:
+      - id
+      - name
+      - version
+      title: PlanVersionSnapshotView
+    BillingSubscriptionDiscountView:
+      type: object
+      properties:
+        amount_off:
+          type: integer
+          format: int64
+          nullable: true
+        coupon_id:
+          type: string
+        coupon_name:
+          type: string
+        currency:
+          type: string
+          nullable: true
+        customer_facing_code:
+          type: string
+          nullable: true
+        discount_external_id:
+          type: string
+        duration:
+          type: string
+        duration_in_months:
+          type: integer
+          format: int64
+          nullable: true
+        ended_at:
+          type: string
+          format: date-time
+          nullable: true
+        is_active:
+          type: boolean
+        percent_off:
+          type: number
+          nullable: true
+        promo_code_external_id:
+          type: string
+          nullable: true
+        started_at:
+          type: string
+          format: date-time
+        subscription_external_id:
+          type: string
+      required:
+      - discount_external_id
+      - subscription_external_id
+      - coupon_id
+      - started_at
+      - coupon_name
+      - duration
+      - is_active
+      title: BillingSubscriptionDiscountView
+    ScheduledDowngradeResponseData:
+      type: object
+      properties:
+        currency:
+          type: string
+        effective_after:
+          type: string
+          format: date-time
+        from_plan_id:
+          type: string
+        from_plan_name:
+          type: string
+        from_subscription_price:
+          type: integer
+          format: int64
+        id:
+          type: string
+        interval:
+          type: string
+        scheduled_interval:
+          type: string
+          nullable: true
+        scheduled_price:
+          type: integer
+          format: int64
+          nullable: true
+        to_plan_id:
+          type: string
+        to_plan_name:
+          type: string
+      required:
+      - currency
+      - effective_after
+      - from_plan_id
+      - from_plan_name
+      - from_subscription_price
+      - id
+      - interval
+      - to_plan_id
+      - to_plan_name
+      title: ScheduledDowngradeResponseData
+    MetricPeriod:
+      type: string
+      enum:
+      - all_time
+      - current_day
+      - current_month
+      - current_week
+    GenericPreviewObject:
+      type: object
+      properties:
+        description:
+          type: string
+          nullable: true
+        id:
+          type: string
+        image_url:
+          type: string
+          nullable: true
+        name:
+          type: string
+      required:
+      - id
+      - name
+      title: GenericPreviewObject
+    BillingPriceUsageType:
+      type: string
+      enum:
+      - licensed
+      - metered
+    PlanChangeSubscriptionAction:
+      type: string
+      enum:
+      - adjustment
+      - downgrade
+      - invalid
+      - subscribe
+      - unsubscribe
+      - upgrade
+      - upgrade_trial
+    BillingSubscriptionView:
+      type: object
+      properties:
+        application_id:
+          type: string
+          nullable: true
+        cancel_at:
+          type: integer
+          format: int64
+          nullable: true
+        cancel_at_period_end:
+          type: boolean
+        company_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        currency:
+          type: string
+        customer_external_id:
+          type: string
+        default_payment_method_id:
+          type: string
+          nullable: true
+        discounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingSubscriptionDiscountView'
+          maxItems: 1000
+        expired_at:
+          type: string
+          format: date-time
+          nullable: true
+        id:
+          type: string
+        interval:
+          type: string
+        latest_invoice:
+          $ref: '#/components/schemas/InvoiceResponseData'
+        metadata:
+          type: object
+        payment_method:
+          $ref: '#/components/schemas/PaymentMethodResponseData'
+        period_end:
+          type: integer
+          format: int64
+        period_start:
+          type: integer
+          format: int64
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingProductForSubscriptionResponseData'
+          maxItems: 1000
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        status:
+          type: string
+        subscription_external_id:
+          type: string
+        total_price:
+          type: integer
+          format: int64
+        trial_end:
+          type: integer
+          format: int64
+          nullable: true
+        trial_end_setting:
+          allOf:
+          - $ref: '#/components/schemas/BillingSubscriptionTrialEndSetting'
+          nullable: true
+      required:
+      - cancel_at_period_end
+      - created_at
+      - currency
+      - customer_external_id
+      - subscription_external_id
+      - id
+      - interval
+      - period_end
+      - period_start
+      - total_price
+      - provider_type
+      - status
+      - products
+      - discounts
+      title: BillingSubscriptionView
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+    BillingCreditExpiryUnit:
+      type: string
+      enum:
+      - billing_periods
+      - days
+    BillingCreditExpiryType:
+      type: string
+      enum:
+      - duration
+      - end_of_billing_period
+      - end_of_next_billing_period
+      - end_of_trial
+      - no_expiry
+    PlanCreditGrantView:
+      type: object
+      properties:
+        billing_credit_auto_topup_amount:
+          type: integer
+          format: int64
+          nullable: true
+        billing_credit_auto_topup_amount_type:
+          type: string
+          nullable: true
+        billing_credit_auto_topup_enabled:
+          type: boolean
+        billing_credit_auto_topup_expiry_type:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryType'
+          nullable: true
+        billing_credit_auto_topup_expiry_unit:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
+          nullable: true
+        billing_credit_auto_topup_expiry_unit_count:
+          type: integer
+          format: int64
+          nullable: true
+        billing_credit_auto_topup_threshold_credits:
+          type: integer
+          format: int64
+          nullable: true
+        billing_credit_auto_topup_threshold_percent:
+          type: integer
+          format: int64
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        credit:
+          $ref: '#/components/schemas/BillingCreditView'
+        credit_amount:
+          type: integer
+          format: int64
+        credit_description:
+          type: string
+          description: Deprecated field, will be removed in the future. Use Credit.Description instead.
+          deprecated: true
+        credit_icon:
+          type: string
+          description: Deprecated field, will be removed in the future. Use Credit.Icon instead.
+          nullable: true
+          deprecated: true
+        credit_id:
+          type: string
+        credit_name:
+          type: string
+          description: Deprecated field, will be removed in the future. Use Credit.Name instead.
+          deprecated: true
+        expiry_type:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryType'
+          nullable: true
+        expiry_unit:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
+          nullable: true
+        expiry_unit_count:
+          type: integer
+          format: int64
+          nullable: true
+        id:
+          type: string
+        plan:
+          $ref: '#/components/schemas/GenericPreviewObject'
+        plan_id:
+          type: string
+        plan_version_id:
+          type: string
+          nullable: true
+        plural_name:
+          type: string
+          description: Deprecated field, will be removed in the future. Use Credit.PluralName instead.
+          nullable: true
+          deprecated: true
+        reset_cadence:
+          allOf:
+          - $ref: '#/components/schemas/BillingPlanCreditGrantResetCadence'
+          nullable: true
+        reset_start:
+          allOf:
+          - $ref: '#/components/schemas/BillingPlanCreditGrantResetStart'
+          nullable: true
+        reset_type:
+          $ref: '#/components/schemas/BillingPlanCreditGrantResetType'
+        singular_name:
+          type: string
+          description: Deprecated field, will be removed in the future. Use Credit.SingularName instead.
+          nullable: true
+          deprecated: true
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - credit_id
+      - plan_id
+      - credit_amount
+      - credit_name
+      - credit_description
+      - reset_type
+      - billing_credit_auto_topup_enabled
+      - created_at
+      - updated_at
+      title: PlanCreditGrantView
+    RuleType:
+      type: string
+      enum:
+      - company_override
+      - company_override_usage_exceeded
+      - default
+      - global_override
+      - plan_entitlement
+      - plan_entitlement_usage_exceeded
+      - standard
+    BillingTiersMode:
+      type: string
+      enum:
+      - graduated
+      - volume
+    SubscriptionType:
+      type: string
+      enum:
+      - free
+      - one_time
+      - paid
+      - trial
+    CompanyMembershipDetailResponseData:
+      type: object
+      properties:
+        company:
+          $ref: '#/components/schemas/CompanyResponseData'
+        company_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        id:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+        user_id:
+          type: string
+      required:
+      - id
+      - company_id
+      - user_id
+      - created_at
+      - updated_at
+      title: CompanyMembershipDetailResponseData
+    PlanChangeAction:
+      type: string
+      enum:
+      - checkout
+      - company_upsert
+      - fallback_plan
+      - manage_plan
+      - migration
+      - plan_billing_product_changed
+      - plan_deleted
+      - plan_trait_change
+      - plan_version_migration
+      - quickstart
+      - subscription_change
+    PlanSnapshotView:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+        description:
+          type: string
+        icon:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - deleted
+      - description
+      - id
+      - icon
+      - name
+      title: PlanSnapshotView
+    CompanySubscriptionResponseData:
+      type: object
+      properties:
+        cancel_at:
+          type: string
+          format: date-time
+          nullable: true
+        cancel_at_period_end:
+          type: boolean
+        currency:
+          type: string
+        customer_external_id:
+          type: string
+        discounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingSubscriptionDiscountView'
+          maxItems: 1000
+        expired_at:
+          type: string
+          format: date-time
+          nullable: true
+        interval:
+          type: string
+        latest_invoice:
+          $ref: '#/components/schemas/InvoiceResponseData'
+        payment_method:
+          $ref: '#/components/schemas/PaymentMethodResponseData'
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingProductForSubscriptionResponseData'
+          maxItems: 1000
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        status:
+          type: string
+        subscription_external_id:
+          type: string
+        total_price:
+          type: integer
+          format: int64
+        trial_end:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - customer_external_id
+      - interval
+      - products
+      - discounts
+      - provider_type
+      - subscription_external_id
+      - total_price
+      - status
+      - currency
+      - cancel_at_period_end
+      title: CompanySubscriptionResponseData
+    AuditLogListResponseData:
+      type: object
+      properties:
+        actor_type:
+          $ref: '#/components/schemas/ActorType'
+        api_key_id:
+          type: string
+          nullable: true
+        ended_at:
+          type: string
+          format: date-time
+          nullable: true
+        environment:
+          $ref: '#/components/schemas/EnvironmentResponseData'
+        environment_id:
+          type: string
+          nullable: true
+        id:
+          type: string
+          maxLength: 36
+          minLength: 36
+        method:
+          type: string
+          maxLength: 10
+          minLength: 1
+        resource_id:
+          type: integer
+          format: int64
+          nullable: true
+        resource_id_string:
+          type: string
+          nullable: true
+          maxLength: 256
+        resource_name:
+          type: string
+          nullable: true
+          maxLength: 256
+        resource_type:
+          type: string
+          nullable: true
+          maxLength: 64
+        resp_code:
+          type: integer
+          format: int64
+          nullable: true
+          maximum: 599
+          minimum: 100
+        secondary_resource:
+          type: string
+          nullable: true
+          maxLength: 256
+        started_at:
+          type: string
+          format: date-time
+        url:
+          type: string
+          maxLength: 2048
+          minLength: 1
+        user_name:
+          type: string
+          nullable: true
+          maxLength: 256
+      required:
+      - actor_type
+      - method
+      - id
+      - started_at
+      - url
+      title: AuditLogListResponseData
+    ConditionType:
+      type: string
+      enum:
+      - base_plan
+      - billing_product
+      - company
+      - credit
+      - metric
+      - plan
+      - plan_version
+      - trait
+      - user
+    EntityTraitDetailResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        definition:
+          $ref: '#/components/schemas/EntityTraitDefinitionResponseData'
+        definition_id:
+          type: string
+        environment_id:
+          type: string
+        id:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+        value:
+          type: string
+      required:
+      - id
+      - environment_id
+      - definition_id
+      - value
+      - created_at
+      - updated_at
+      title: EntityTraitDetailResponseData
+    PaymentMethodResponseData:
+      type: object
+      properties:
+        account_last4:
+          type: string
+          nullable: true
+        account_name:
+          type: string
+          nullable: true
+        bank_name:
+          type: string
+          nullable: true
+        billing_email:
+          type: string
+          nullable: true
+        billing_name:
+          type: string
+          nullable: true
+        card_brand:
+          type: string
+          nullable: true
+        card_exp_month:
+          type: integer
+          format: int64
+          nullable: true
+        card_exp_year:
+          type: integer
+          format: int64
+          nullable: true
+        card_last4:
+          type: string
+          nullable: true
+        company_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        customer_external_id:
+          type: string
+        environment_id:
+          type: string
+        external_id:
+          type: string
+        id:
+          type: string
+        payment_method_type:
+          type: string
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - created_at
+      - customer_external_id
+      - environment_id
+      - external_id
+      - payment_method_type
+      - provider_type
+      - updated_at
+      title: PaymentMethodResponseData
+    CompanyPlanWithBillingSubView:
+      type: object
+      properties:
+        added_on:
+          type: string
+          format: date-time
+          nullable: true
+        billing_product_external_id:
+          type: string
+          nullable: true
+        billing_product_id:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        id:
+          type: string
+        image_url:
+          type: string
+          nullable: true
+        included_credit_grants:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanCreditGrantView'
+          maxItems: 1000
+        name:
+          type: string
+        plan_period:
+          type: string
+          nullable: true
+        plan_price:
+          type: integer
+          format: int64
+          nullable: true
+        plan_version_id:
+          type: string
+          nullable: true
+      required:
+      - id
+      - name
+      - included_credit_grants
+      title: CompanyPlanWithBillingSubView
+    BillingProductPriceInterval:
+      type: string
+      enum:
+      - day
+      - month
+      - one-time
+      - year
+    TraitType:
+      type: string
+      enum:
+      - boolean
+      - currency
+      - date
+      - number
+      - string
+      - url
+    BillingSubscriptionTrialEndSetting:
+      type: string
+      enum:
+      - cancel
+      - subscribe
+    UpsertUserRequestBody:
+      type: object
+      properties:
+        companies:
+          type: array
+          description: Optionally specify companies using array of key/value pairs
+          items:
+            additionalProperties:
+              type: string
+            type: object
+          nullable: true
+          maxItems: 100
+        company:
+          additionalProperties:
+            type: string
+          type: object
+          description: Add user to this company. Takes priority over companies. For exhaustive list of companies, use companies
+          nullable: true
+        company_id:
+          type: string
+          description: Add user to this company. Takes priority over company_ids. For exhaustive list of companies, use company_ids
+          nullable: true
+        company_ids:
+          type: array
+          description: Optionally specify companies using Schematic company ID
+          items:
+            type: string
+          nullable: true
+          maxItems: 100
+        id:
+          type: string
+          description: If you know the Schematic ID, you can use that here instead of keys
+          nullable: true
+        keys:
+          additionalProperties:
+            type: string
+          type: object
+          description: See [Key Management](https://docs.schematichq.com/developer_resources/key_management) for more information
+        last_seen_at:
+          type: string
+          format: date-time
+          nullable: true
+        name:
+          type: string
+          nullable: true
+          maxLength: 256
+        traits:
+          type: object
+          description: A map of trait names to trait values
+        update_only:
+          type: boolean
+          nullable: true
+      required:
+      - keys
+      title: UpsertUserRequestBody
+    BillingCreditRolloverPolicy:
+      type: string
+      enum:
+      - expire
+      - none
+      - rollover
+    InvoiceStatus:
+      type: string
+      enum:
+      - draft
+      - open
+      - paid
+      - uncollectible
+      - void
+    SubscriptionStatus:
+      type: string
+      enum:
+      - active
+      - canceled
+      - expired
+      - incomplete
+      - incomplete_expired
+      - past_due
+      - paused
+      - trialing
+      - unpaid
+    BillingProviderType:
+      type: string
+      enum:
+      - orb
+      - schematic
+      - stripe
+    BillingPlanCreditGrantResetCadence:
+      type: string
+      enum:
+      - daily
+      - monthly
+      - weekly
+      - yearly
+    SubscriptionTraitUpdate:
+      type: object
+      properties:
+        feature_id:
+          type: string
+        hierarchy:
+          type: array
+          items:
+            type: string
+          maxItems: 1000
+        reason:
+          type: string
+        trait_id:
+          type: string
+        trait_name:
+          type: string
+        trait_type:
+          $ref: '#/components/schemas/TraitType'
+        value:
+          type: string
+      required:
+      - trait_id
+      - trait_name
+      - hierarchy
+      - trait_type
+      - value
+      - feature_id
+      - reason
+      title: SubscriptionTraitUpdate
+    EntityTraitValue:
+      type: object
+      properties:
+        definition_id:
+          type: string
+        value:
+          type: string
+      required:
+      - definition_id
+      - value
+      title: EntityTraitValue
+    CompanyResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        environment_id:
+          type: string
+        id:
+          type: string
+        last_seen_at:
+          type: string
+          format: date-time
+          nullable: true
+        logo_url:
+          type: string
+          nullable: true
+        name:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - created_at
+      - environment_id
+      - id
+      - name
+      - updated_at
+      title: CompanyResponseData
+    Condition:
+      type: object
+      properties:
+        account_id:
+          type: string
+        comparison_trait_definition:
+          $ref: '#/components/schemas/TraitDefinition'
+        condition_type:
+          $ref: '#/components/schemas/ConditionType'
+        consumption_rate:
+          type: number
+          nullable: true
+        credit_id:
+          type: string
+          nullable: true
+        environment_id:
+          type: string
+        event_subtype:
+          type: string
+          nullable: true
+        id:
+          type: string
+        metric_period:
+          allOf:
+          - $ref: '#/components/schemas/MetricPeriod'
+          nullable: true
+        metric_period_month_reset:
+          allOf:
+          - $ref: '#/components/schemas/MetricPeriodMonthReset'
+          nullable: true
+        metric_value:
+          type: integer
+          format: int64
+          nullable: true
+        operator:
+          $ref: '#/components/schemas/ComparableOperator'
+        resource_ids:
+          type: array
+          items:
+            type: string
+          maxItems: 1000
+        trait_definition:
+          $ref: '#/components/schemas/TraitDefinition'
+        trait_value:
+          type: string
+      required:
+      - id
+      - account_id
+      - environment_id
+      - condition_type
+      - operator
+      - resource_ids
+      - trait_value
+      title: Condition
+    InvoiceResponseData:
+      type: object
+      properties:
+        amount_due:
+          type: integer
+          format: int64
+        amount_paid:
+          type: integer
+          format: int64
+        amount_remaining:
+          type: integer
+          format: int64
+        collection_method:
+          type: string
+        company_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        currency:
+          type: string
+        customer_external_id:
+          type: string
+        due_date:
+          type: string
+          format: date-time
+          nullable: true
+        environment_id:
+          type: string
+        external_id:
+          type: string
+          nullable: true
+        id:
+          type: string
+        payment_method_external_id:
+          type: string
+          nullable: true
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        status:
+          allOf:
+          - $ref: '#/components/schemas/InvoiceStatus'
+          nullable: true
+        subscription_external_id:
+          type: string
+          nullable: true
+        subtotal:
+          type: integer
+          format: int64
+        updated_at:
+          type: string
+          format: date-time
+        url:
+          type: string
+          nullable: true
+      required:
+      - id
+      - amount_due
+      - amount_paid
+      - amount_remaining
+      - collection_method
+      - created_at
+      - currency
+      - customer_external_id
+      - environment_id
+      - provider_type
+      - subtotal
+      - updated_at
+      title: InvoiceResponseData
+    BillingCreditView:
+      type: object
+      properties:
+        account_id:
+          type: string
+        burn_strategy:
+          $ref: '#/components/schemas/BillingCreditBurnStrategy'
+        cost_editable:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        currency_prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreditCurrencyPrice'
+          maxItems: 1000
+        default_expiry_unit:
+          $ref: '#/components/schemas/BillingCreditExpiryUnit'
+        default_expiry_unit_count:
+          type: integer
+          format: int64
+          nullable: true
+        default_rollover_policy:
+          $ref: '#/components/schemas/BillingCreditRolloverPolicy'
+        description:
+          type: string
+        environment_id:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        id:
+          type: string
+        name:
+          type: string
+        plural_name:
+          type: string
+          nullable: true
+        price:
+          $ref: '#/components/schemas/BillingPriceView'
+        price_per_unit:
+          type: integer
+          format: int64
+          nullable: true
+        price_per_unit_decimal:
+          type: string
+          nullable: true
+        product:
+          $ref: '#/components/schemas/BillingProductResponseData'
+        singular_name:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - account_id
+      - environment_id
+      - name
+      - description
+      - default_expiry_unit
+      - default_rollover_policy
+      - burn_strategy
+      - cost_editable
+      - currency_prices
+      - created_at
+      - updated_at
+      title: BillingCreditView
+    TraitDefinition:
+      type: object
+      properties:
+        comparable_type:
+          type: string
+          enum:
+          - bool
+          - date
+          - int
+          - string
+        entity_type:
+          $ref: '#/components/schemas/EntityType'
+        id:
+          type: string
+      required:
+      - id
+      - comparable_type
+      - entity_type
+      title: TraitDefinition
+    CustomPlanActivationStrategy:
+      type: string
+      enum:
+      - on_payment
+      - on_publish
+    CountResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The number of resources
+    KeysRequestBody:
+      type: object
+      properties:
+        keys:
+          additionalProperties:
+            type: string
+          type: object
+      required:
+      - keys
+      title: KeysRequestBody
+    BillingPriceView:
+      type: object
+      properties:
+        billing_scheme:
+          $ref: '#/components/schemas/BillingPriceScheme'
+        created_at:
+          type: string
+          format: date-time
+        currency:
+          type: string
+        id:
+          type: string
+        interval:
+          $ref: '#/components/schemas/BillingProductPriceInterval'
+        is_active:
+          type: boolean
+        meter_event_name:
+          type: string
+          nullable: true
+        meter_event_payload_key:
+          type: string
+          nullable: true
+        meter_id:
+          type: string
+          nullable: true
+        nickname:
+          type: string
+          nullable: true
+        package_size:
+          type: integer
+          format: int64
+        price:
+          type: integer
+          format: int64
+        price_decimal:
+          type: string
+          nullable: true
+        price_external_id:
+          type: string
+        price_id:
+          type: string
+        price_tier:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingProductPriceTierResponseData'
+          maxItems: 100
+        product_external_id:
+          type: string
+        product_id:
+          type: string
+        product_name:
+          type: string
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        tiers_mode:
+          allOf:
+          - $ref: '#/components/schemas/BillingTiersMode'
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+        usage_type:
+          $ref: '#/components/schemas/BillingPriceUsageType'
+      required:
+      - id
+      - billing_scheme
+      - created_at
+      - currency
+      - interval
+      - is_active
+      - package_size
+      - price
+      - price_external_id
+      - product_external_id
+      - provider_type
+      - updated_at
+      - usage_type
+      - price_id
+      - product_id
+      - product_name
+      - price_tier
+      title: BillingPriceView
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Schematic-Api-Key
