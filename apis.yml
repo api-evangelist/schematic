@@ -7,7 +7,20 @@ description: >-
   launched an official Stripe App for entitlement management as a first-class billing primitive. Customers include
   Plotly, Automox, Florence, Blackcloak, Sema4.ai, and Pagos.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/schematic.png
 tags:
   - Billing
   - Entitlements
@@ -22,65 +35,1026 @@ created: '2026-03-27'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: schematic:schematic-api
-    name: Schematic API
-    description: >-
-      The Schematic REST API enables programmatic management of features, flags, plans, companies, users, entitlements,
-      billing credits, and webhooks. Authentication uses API keys sent in the X-Schematic-Api-Key header. Supports
-      production, staging, and development environments with environment-scoped API keys (sch_prod, sch_stag, sch_dev
-      prefixes).
-    humanURL: https://schematichq.com/
-    tags:
-      - Billing
-      - Entitlements
-      - Feature Flags
-      - Feature Management
-      - Metering
-      - Plans
-      - SaaS
-    properties:
-      - type: Documentation
-        url: https://docs.schematichq.com/
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/openapi/schematic-openapi.yml
-      - type: APIReference
-        url: https://docs.schematichq.com/api-reference
-      - type: Authentication
-        url: https://docs.schematichq.com/api-reference/authentication.mdx
-      - type: GettingStarted
-        url: https://docs.schematichq.com/
-      - type: GitHubRepository
-        url: https://github.com/SchematicHQ
-      - type: SDK Python
-        url: https://github.com/SchematicHQ/schematic-python
-      - type: SDK Node
-        url: https://github.com/SchematicHQ/schematic-node
-      - type: SDK Go
-        url: https://github.com/SchematicHQ/schematic-go
-      - type: SDK Ruby
-        url: https://github.com/SchematicHQ/schematic-ruby
-      - type: SDK Java
-        url: https://github.com/SchematicHQ/schematic-java
-      - type: SDK PHP
-        url: https://github.com/SchematicHQ/schematic-php
-      - type: SDK C#
-        url: https://github.com/SchematicHQ/schematic-csharp
-      - type: SpectralRules
-        url: https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
-      - type: JSONLD
-        url: https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-accesstokens-api
+  name: Schematic accesstokens API
+  description: The accesstokens API from Schematic — 1 operation(s) for accesstokens.
+  humanURL: https://schematichq.com/
+  tags:
+  - accesstokens
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-accesstokens-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-accounts-api
+  name: Schematic accounts API
+  description: The accounts API from Schematic — 12 operation(s) for accounts.
+  humanURL: https://schematichq.com/
+  tags:
+  - accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-billing-api
+  name: Schematic billing API
+  description: The billing API from Schematic — 17 operation(s) for billing.
+  humanURL: https://schematichq.com/
+  tags:
+  - billing
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-billing-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-checkout-api
+  name: Schematic checkout API
+  description: The checkout API from Schematic — 7 operation(s) for checkout.
+  humanURL: https://schematichq.com/
+  tags:
+  - checkout
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-checkout-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-companies-api
+  name: Schematic companies API
+  description: The companies API from Schematic — 29 operation(s) for companies.
+  humanURL: https://schematichq.com/
+  tags:
+  - companies
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-companies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-components-api
+  name: Schematic components API
+  description: The components API from Schematic — 4 operation(s) for components.
+  humanURL: https://schematichq.com/
+  tags:
+  - components
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-components-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-componentspublic-api
+  name: Schematic componentspublic API
+  description: The componentspublic API from Schematic — 1 operation(s) for componentspublic.
+  humanURL: https://schematichq.com/
+  tags:
+  - componentspublic
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-componentspublic-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-credits-api
+  name: Schematic credits API
+  description: The credits API from Schematic — 20 operation(s) for credits.
+  humanURL: https://schematichq.com/
+  tags:
+  - credits
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-credits-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-dataexports-api
+  name: Schematic dataexports API
+  description: The dataexports API from Schematic — 2 operation(s) for dataexports.
+  humanURL: https://schematichq.com/
+  tags:
+  - dataexports
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-dataexports-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-entitlements-api
+  name: Schematic entitlements API
+  description: The entitlements API from Schematic — 16 operation(s) for entitlements.
+  humanURL: https://schematichq.com/
+  tags:
+  - entitlements
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-entitlements-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-events-api
+  name: Schematic events API
+  description: The events API from Schematic — 5 operation(s) for events.
+  humanURL: https://schematichq.com/
+  tags:
+  - events
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-events-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-features-api
+  name: Schematic features API
+  description: The features API from Schematic — 11 operation(s) for features.
+  humanURL: https://schematichq.com/
+  tags:
+  - features
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-features-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-insights-api
+  name: Schematic insights API
+  description: The insights API from Schematic — 6 operation(s) for insights.
+  humanURL: https://schematichq.com/
+  tags:
+  - insights
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-insights-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-integrationsapi-api
+  name: Schematic integrationsapi API
+  description: The integrationsapi API from Schematic — 6 operation(s) for integrationsapi.
+  humanURL: https://schematichq.com/
+  tags:
+  - integrationsapi
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-integrationsapi-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-planbundle-api
+  name: Schematic planbundle API
+  description: The planbundle API from Schematic — 2 operation(s) for planbundle.
+  humanURL: https://schematichq.com/
+  tags:
+  - planbundle
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-planbundle-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-plangroups-api
+  name: Schematic plangroups API
+  description: The plangroups API from Schematic — 2 operation(s) for plangroups.
+  humanURL: https://schematichq.com/
+  tags:
+  - plangroups
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-plangroups-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-planmigrations-api
+  name: Schematic planmigrations API
+  description: The planmigrations API from Schematic — 5 operation(s) for planmigrations.
+  humanURL: https://schematichq.com/
+  tags:
+  - planmigrations
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-planmigrations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-plans-api
+  name: Schematic plans API
+  description: The plans API from Schematic — 14 operation(s) for plans.
+  humanURL: https://schematichq.com/
+  tags:
+  - plans
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-plans-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-scheduledcheckout-api
+  name: Schematic scheduledcheckout API
+  description: The scheduledcheckout API from Schematic — 2 operation(s) for scheduledcheckout.
+  humanURL: https://schematichq.com/
+  tags:
+  - scheduledcheckout
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-scheduledcheckout-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
+- aid: schematic:schematic-webhooks-api
+  name: Schematic webhooks API
+  description: The webhooks API from Schematic — 6 operation(s) for webhooks.
+  humanURL: https://schematichq.com/
+  tags:
+  - webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/schematic-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.schematichq.com/
+  - type: APIReference
+    url: https://docs.schematichq.com/api-reference
+  - type: Authentication
+    url: https://docs.schematichq.com/api-reference/authentication.mdx
+  - type: GettingStarted
+    url: https://docs.schematichq.com/
+  - type: GitHubRepository
+    url: https://github.com/SchematicHQ
+  - type: SDK Python
+    url: https://github.com/SchematicHQ/schematic-python
+  - type: SDK Node
+    url: https://github.com/SchematicHQ/schematic-node
+  - type: SDK Go
+    url: https://github.com/SchematicHQ/schematic-go
+  - type: SDK Ruby
+    url: https://github.com/SchematicHQ/schematic-ruby
+  - type: SDK Java
+    url: https://github.com/SchematicHQ/schematic-java
+  - type: SDK PHP
+    url: https://github.com/SchematicHQ/schematic-php
+  - type: SDK C#
+    url: https://github.com/SchematicHQ/schematic-csharp
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/rules/schematic-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-company-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-feature-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-schema/schematic-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-structure/schematic-api-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/schematic-agentic-access.yml
