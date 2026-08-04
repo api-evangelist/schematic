@@ -1,0 +1,30 @@
+generated: '2026-08-04'
+method: harvested
+status: published
+provider_published: true
+source: https://docs.schematichq.com/openapi.json
+description: 'Schematic publishes their OpenAPI at their docs host. Harvested verbatim
+  to _original/. NOTE: the previously archived copy was version 0.1 with 218 operations;
+  the current published spec is version 1.0.0 with 76. The 20 split specs in openapi/
+  are derived from the OLD document and are stale until refine-openapis is re-run
+  against this one.'
+verified: '2026-08-04'
+spec:
+  openapi: 3.1.0
+  title: API Reference
+  version: 1.0.0
+  paths: 46
+  operations: 76
+  servers:
+  - https://api.schematichq.com
+superseded:
+  version: '0.1'
+  paths: 168
+  operations: 218
+  note: archived as schematic-openapi.yml; kept for the record
+evidence:
+- url: https://docs.schematichq.com/openapi.json
+  status: 200
+- url: https://api.schematichq.com/openapi.json
+  status: 404
+  note: not served from the API host — docs host only

@@ -1,0 +1,240 @@
+# robots.txt for AI
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap: https://schematichq.com/sitemap.xml
+
+# Schematic
+
+> Schematic is a billing infrastructure platform that helps SaaS companies convert more users, expand accounts, and prevent churn with better monetization. It provides drop-in components for customer portals, checkout, usage dashboards, paywalls, and more.
+
+Schematic decouples business logic from code, allowing you to implement packaging without maintaining hard-coded policy files, stale customer data, or homegrown feature flags.
+
+## Product & Documentation
+- [Anti-Spam | Schematic](https://schematichq.com/anti-spam)
+- [Avoid Webhook Hell — Simplify Stripe Billing Events with One Clean Integration](https://schematichq.com/use-cases/stripe-webhook-simplification): How do I simplify my Stripe webhooks? Schematic manages Stripe webhooks so you don't have
+- [Billing Components](https://schematichq.com/products/billing-components): Drop in components that convert: customer portals, checkout, usage dashboards, paywalls, and
+- [Billing Tools That Handle Spiky AI Usage (Without Breaking or Losing Revenue)](https://schematichq.com/use-cases/billing-tools-for-spiky-ai-usage): What billing tools work for AI companies with spiky usage patterns? Schematic is Billing
+- [Don’t Hardcode Access Logic — Let Plans Drive Entitlements Automatically](https://schematichq.com/use-cases/feature-entitlements-by-stripe-tier): How can I sync Stripe Plans into my Product? Schematic makes it easy to enforce plan access in your
+- [Enforce Soft and Hard Usage Limits Without Engineering Headaches](https://schematichq.com/use-cases/usage-limits-and-caps): How do I easily implement Usage Limits? Schematic supports Soft & Hard Usage Caps, Without
+- [Feature Entitlements — No More Hardcoding](https://schematichq.com/use-cases/feature-entitlements-without-code): How can I implement Billing without hardcoding? Schematic supports Feature Entitlements without
+- [Founding Account Executive](https://schematichq.com/founding-account-executive): We’re hiring a Founding Account Executive to turn early traction into a repeatable sales motion by
+- [Get billing code out of your app.](https://schematichq.com/get-billing-code-out-of-your-app): Untangle your billing logic—replace complex entitlement code with a single API call. Monitor usage,
+- [Handle Enterprise Exceptions and Billing Overrides Without Breaking Your Pricing System](https://schematichq.com/use-cases/enterprise-pricing-exceptions): What's the easiest way for product to support Enterprise Deals? Schematic allows Sales, Support,
+- [Launch hybrid pricing without the rebuild](https://schematichq.com/hybrid-pricing): Schematic decouples pricing logic so you can ship PLG, usage, and hybrid models at the speed of
+- [Launch Usage-Based Pricing — Without Rebuilding Your Backend](https://schematichq.com/use-cases/easy-usage-based-pricing): What’s the easiest way to support usage-based pricing without heavy engineering work? Schematic is
+- [Mastering Willingness-to-Pay Conversations](https://schematichq.com/lp/wtp-download): A framework & vocabulary that puts you ahead of 90% of founders when it comes to pricing and
+- [Meter API Usage and Convert It Into Billing Events — Without Rebuilding Your Stack](https://schematichq.com/use-cases/api-usage-metering): How do I meter API usage and turn it into billing events? Schematic helps you Turn API Usage into
+- [Metering & Pricing](https://schematichq.com/products/metered-pricing): Set up metered billing fast with Stripe. Track usage in real time, enforce limits, and launch
+- [One entitlement away from chaos? Clean it up with Schematic](https://schematichq.com/clean-pricing): Most pricing infrastructure looks like mom's spaghetti. Knees weak, arms heavy, and one entitlement
+- [Plans & Entitlements](https://schematichq.com/products/plans-entitlements): Define your entire product catalog: plans, add ons, limits, trials, and more - without changing a
+- [PLG shouldn't cost you core revenue](https://schematichq.com/experiment-safely): Launch pricing experiments, test new models, and iterate on packaging without risking production
+- [Pricing should move as fast as your roadmap](https://schematichq.com/ship-faster): The fastest-growing SaaS teams don't just ship features fast—they ship pricing models fast.
+- [Pricing Table Teardown](https://schematichq.com/teardown): Find out if your pricing page is confusing, compelling, and
+- [Proof of Concept · Schematic](https://schematichq.com/poc): Join companies using Schematic to design, manage, and optimize subscription growth — without
+- [Revenue Insights](https://schematichq.com/products/revenue-insights): Identify upgrade opportunities and churn risks, know who’s overusing, underpaying, and ready to
+- [Roadmap | Schematic](https://schematichq.com/roadmap): Keep track of what we're
+- [Roll out usage-based pricing ](https://schematichq.com/roll-out-usage-based-pricing): Launch usage-based pricing without rebuilding your product. Meter events, sync to Stripe, and
+- [Schematic  - Ship pricing faster](https://schematichq.com/papareact): Convert more users, expand accounts, and prevent churn with better monetization powered by
+- [Schematic - Ship pricing faster](https://schematichq.com/): Convert more users, expand accounts, and prevent churn with better monetization powered by
+- [Schematic for Developers: Decouple business logic from code](https://schematichq.com/developers): Implement packaging in your application without maintaining hard-coded policy files, stale customer
+- [Schematic Pricing](https://schematichq.com/pricing): Start using Schematic for free and then pay as you
+- [Set Up Credit Burndown Billing Without Building a Custom Backend](https://schematichq.com/use-cases/credit-burndown-billing): What’s the best way to set up credit burndown for my AI product? Schematic provides credit based
+- [Show Customers Their Usage Without Building a Dashboard From Scratch](https://schematichq.com/use-cases/customer-usage-visualization-stripe): How can I drive insights from my customer's usage? Don’t Build Another Usage Dashboard — Let
+- [Simplify Stripe Pricing, Add-Ons, and Tiers — Without 500 Lines of Code](https://schematichq.com/use-cases/stripe-pricing-addons-simplified): How can I simplify my Stripe Billing setup? Schematic manages Stripe so you don't have
+- [Simplify Stripe Product Modeling — Plans, Add-ons, Tiers, All in One Place](https://schematichq.com/use-cases/unified-pricing-model-stripe): How do I unify my Pricing Model across Stripe and my App? Schematic an Unify Your Product Model,
+- [Smart Flags](https://schematichq.com/products/smart-flags): Schematic flags are built to make paywalls easier, fetch usage, limit and track access in one flag
+- [Stripe Handles Payments — But You Still Have to Build the Lifecycle](https://schematichq.com/use-cases/stripe-subscription-lifecycle-simplified): How Can I Enforce Feature Access Based on my Stripe Plans? Schematic makes it easy to manage
+- [Terms | Schematic](https://schematichq.com/terms)
+- [Testimonials | Schematic](https://schematichq.com/testimonials): SaaS companies love
+- [Track and Bill Usage in Stripe — Without Custom Middleware](https://schematichq.com/use-cases/stripe-usage-metering-alternative): Is there a good alternative to Stripe for Usage Metering? Schematic extends Stripe to easily
+- [Track and enforce credits, without building it all.](https://schematichq.com/track-and-enforce-credits): Track and enforce credit balances in real time. Meter usage, handle top-ups, and keep customers
+- [Unwind your billing complexity.](https://schematichq.com/unwind-your-billing-complexity): Simplify complex billing. Centralize entitlements, usage, and pricing logic so you can iterate
+- [V0 Roadmap | Schematic](https://schematichq.com/roadmap-v0): See what we built in
+- [Waiting Room | Schematic](https://schematichq.com/waiting-room): Thanks for signing up. We'll be in touch with you shortly. In the meantime, check out some
+
+## Blog Posts
+- [12 SaaS Billing Best Practices for Modern Teams](https://schematichq.com/blog/saas-billing-best-practices): Discover 12 SaaS billing best practices, from defining billable units and enforcing billing rules
+- [2025 Year in Review](https://schematichq.com/blog/2025-year-in-review): 2025 was a big year for Schematic. We evolved from a feature management tool to an end-to-end
+- [4 Best Entitlement Management Software in 2026](https://schematichq.com/blog/entitlement-management-software): 4 Best Entitlement Management Software in 2026: 1. Schematic + Stripe 2. Stigg 3. Lago 4.
+- [5 Best Pricing Management Software for SaaS Companies](https://schematichq.com/blog/pricing-management-software): 5 Best Pricing Management Software for SaaS Companies: 1. Schematic + Stripe 2. Stripe Billing 3.
+- [5 Best SaaS Payment Solutions in 2026](https://schematichq.com/blog/saas-payment-solutions): 5 Best SaaS Payment Solutions in 2026 [Key Features Reviewed]: 1. Stripe 2. PayPal Braintree 3.
+- [6 Best Dynamic Pricing Software for SaaS in 2026](https://schematichq.com/blog/best-dynamic-pricing-software): 6 Best Dynamic Pricing Software for SaaS in 2026: 1. Schematic 2. Stripe Billing 3. Orb 4. Lago 5.
+- [6 Best Pricing Optimization Tools for SaaS in 2026](https://schematichq.com/blog/pricing-optimization-tools): 6 Best Pricing Optimization Tools for SaaS in 2026: 1. Schematic + Stripe 2. Metronome 3. Orb 4.
+- [6 Best Subscription Management Software for SaaS in 2026](https://schematichq.com/blog/best-subscription-management-software): 6 Best Subscription Management Software for SaaS in 2026: 1. Schematic 2. Stigg 3. Maxio 4. Lago 5.
+- [6 Best Usage-Based Billing Software for Startups in 2026](https://schematichq.com/blog/best-usage-based-billing-software-for-startups): 6 Best Usage-Based Billing Software for Startups in 2026: 1. Schematic + Stripe 2. Maxio 3. Lago 4.
+- [6 Effective SaaS Pricing Page Examples and Why They Work](https://schematichq.com/blog/saas-pricing-page-examples): Explore six effective SaaS pricing page examples and see how each one is structured and why they
+- [6 Top B2B SaaS Go-to-Market Strategy Examples to Learn From](https://schematichq.com/blog/b2b-saas-go-to-market-strategy-examples): Explore the six best B2B SaaS go-to-market strategy examples you can learn from and see what they
+- [7 Best Chargebee Alternatives for SaaS Billing and Monetization](https://schematichq.com/blog/chargebee-alternatives): 7 Best Chargebee Alternatives for SaaS Billing and Monetization: 1. Schematic + Stripe 2. Metronome
+- [7 Best Metered Billing Software for SaaS Companies in 2026](https://schematichq.com/blog/metered-billing-software): 7 Best Metered Billing Software for SaaS Companies in 2026: 1. Schematic + Stripe 2. Metronome 3.
+- [7 Best Recurring Billing Software for SaaS Teams](https://schematichq.com/blog/recurring-billing-software): 7 Best Recurring Billing Software for SaaS Teams: 1. Schematic + Stripe 2. Stripe Billing 3.
+- [7 Best SaaS Billing Solutions in 2026  (Different Use Cases)](https://schematichq.com/blog/saas-billing-solutions): 7 Best SaaS Billing Solutions in 2026 (Different Use Cases): 1. Schematic + Stripe 2. Metronome 3.
+- [7 Key Stages of the SaaS Subscriber Lifecycle](https://schematichq.com/blog/saas-subscriber-lifecycle): Discover the 7 key stages of the SaaS subscriber lifecycle, learn how to optimize each one, and see
+- [7 SaaS Packaging Challenges That Hold Companies Back](https://schematichq.com/blog/common-packaging-challenges-that-hold-companies-back): Discover the common SaaS packaging challenges that, if addressed, would allow organizations to
+- [9 Best SaaS Automation Tools for Different Use Cases](https://schematichq.com/blog/saas-automation-tools): 9 Best SaaS Automation Tools: 1. Schematic + Stripe 2. HubSpot 3. Pipedrive 4. Zapier 5. Intercom
+- [9 Software Monetization Models for SaaS and AI Products (2026)](https://schematichq.com/blog/software-monetization-models): Explore 9 software monetization models for SaaS and AI products used in 2026 and see the steps to
+- [A Complete Guide to SaaS Access Control](https://schematichq.com/blog/saas-access-control): Explore our full guide to SaaS access control and learn about how it works, the different types,
+- [A Complete Guide to SaaS Entitlement Management](https://schematichq.com/blog/saas-entitlement-management): Explore our detailed guide to SaaS entitlement management and learn all about how it works, why it
+- [A Complete Guide to SaaS Pricing Strategies and Models](https://schematichq.com/blog/saas-pricing-strategies): Explore our detailed guide to SaaS pricing strategies and models, where we break down all the
+- [A Complete Guide to Usage-Based Billing Platforms](https://schematichq.com/blog/usage-based-billing-platforms): Explore our detailed guide to usage-based billing platforms and learn all about how they work, who
+- [A Guide to a Metered Paywall for SaaS and AI Products](https://schematichq.com/blog/metered-paywall): Learn all you need to know about a metered paywall for SaaS and AI products, including how it works
+- [A Guide to Usage-Based Billing for AI Companies](https://schematichq.com/blog/usage-based-billing-for-ai-companies): Explore our guide to usage-based billing for AI companies and see how it works, what challenges to
+- [A Step-by-Step Guide on How to Build Pricing for AI Agents](https://schematichq.com/blog/build-pricing-for-ai-agents): Learn how to build pricing for AI agents, why AI monetization differs from traditional SaaS, and
+- [Agile Monetization Platform: Why You Need Entitlements](https://schematichq.com/blog/agile-monetization-platform): Learn all you need to know about an agile monetization platform, including what it is, how it
+- [AI Credit Overages: A Guide to Usage-Based Pricing](https://schematichq.com/blog/ai-credit-overages): Explore our handy guide to AI credit overages and learn what they mean, how they work, and how to
+- [AI Credit System Explained for SaaS Companies](https://schematichq.com/blog/ai-credit-system): Learn all you need to know about the AI credit system, including how it works, the advantages it
+- [AI Credits for Startups: How They Work and Best Practices](https://schematichq.com/blog/ai-credits-for-startups): Thinking about AI credits for startups? Read our guide to learn how they work, why to use them, and
+- [AI Credits: How They Work, Pricing Models, and Implementation](https://schematichq.com/blog/ai-credits): Learn all you need to know about AI credits, from how they work and when they're useful to how to
+- [AI Monetization: 7 Effective Strategies to Drive Revenue](https://schematichq.com/blog/ai-monetization): Explore our full guide to AI monetization, find 7 effective strategies to drive revenue, the most
+- [AI Pricing Engine: How It Works, Benefits, and Use Cases](https://schematichq.com/blog/ai-pricing-engine): Explore our quick guide to an AI pricing engine and learn all about how it works, the benefits it
+- [AI Revenue Optimization: How It Works and Key Benefits](https://schematichq.com/blog/ai-revenue-optimization): Learn how AI revenue optimization works, the key benefits it can bring to growing SaaS companies,
+- [AI SaaS Monetization: 8 Key Principles to Follow](https://schematichq.com/blog/ai-saas-monetization): Explore our handy guide to AI SaaS monetization and learn what it is, find eight principles to
+- [Are You Launching AI and Moving to Credits?](https://schematichq.com/blog/are-you-launching-ai-and-moving-to-credits): Launching an AI product? Learn how credit-based pricing works, what challenges to expect, and how
+- [B2B SaaS Subscription Management as a Product Infrastructure](https://schematichq.com/blog/b2b-saas-subscription-management): Explore our detailed guide to B2B SaaS subscription management and learn all about what it is, why
+- [Beyond the API: Why Critical Infrastructure is Going Streaming](https://schematichq.com/blog/beyond-the-api-why-critical-infrastructure-is-going-streaming)
+- [Billing vs Entitlements: What's the Difference?](https://schematichq.com/blog/billing-vs-entitlements-whats-the-difference)
+- [Consumption Billing Explained for Fast-Growing Companies](https://schematichq.com/blog/consumption-billing): Discover what consumption billing means, why companies use it, and when to switch. Find the tools
+- [Credit Burndown Pricing Explained For Fast Growing Companies](https://schematichq.com/blog/credit-burndown-pricing-explained-for-fast-growing-companies): Explore our guide to credit burndown pricing and learn all you need to know about how it works, see
+- [Credit-Based Billing: The Anatomy of a Credit Wallet](https://schematichq.com/blog/credit-based-billing-the-anatomy-of-a-credit-wallet): A practical guide to credit-based billing: per-user usage visibility, credit spend limits, runtime
+- [Credit-Based Pricing Explained for SaaS Products](https://schematichq.com/blog/credit-based-pricing): Explore our detailed guide to credit-based pricing for SaaS products and see how it works, how it
+- [Dynamic Pricing SaaS: Types, Benefits, and Best Practices](https://schematichq.com/blog/dynamic-pricing-saas): Explore our detailed guide to dynamic pricing in SaaS and learn all about the different types, main
+- [Early-Stage SaaS Financial Model: Importance and Components](https://schematichq.com/blog/early-stage-saas-financial-model): Explore our early-stage SaaS financial model guide and learn about the key components, metrics, and
+- [Enterprise Entitlement Management System: Why Do You Need It?](https://schematichq.com/blog/enterprise-entitlement-management-system): Explore our handy guide to an enterprise entitlement management system and learn all about how it
+- [Entitlement Checks and Their Role in SaaS Monetization](https://schematichq.com/blog/entitlement-checks): Learn all you need to know about entitlement checks, different types, and their role in monetizing
+- [Entitlement Management System for SaaS (2026 Guide)](https://schematichq.com/blog/entitlement-management-system): Explore our guide to an entitlement management system for SaaS and learn all about what it is, how
+- [Entitlements for Stripe: How Schematic Manages Them](https://schematichq.com/blog/entitlements-for-stripe): Learn all you need to know about entitlements for Stripe, see where Stripe falls short, and when to
+- [Feature Flag Management for SaaS Monetization](https://schematichq.com/blog/feature-flag-management): Explore our feature flag management for SaaS monetization guide to learn how it works, when it
+- [How a Monetization OS Supports Fast-Growing SaaS Companies](https://schematichq.com/blog/monetization-os): Explore our quick guide to a monetization OS and learn all about what makes it important for
+- [How to Compare Subscription Management Platforms for Businesses](https://schematichq.com/blog/how-to-compare-subscription-management-platforms-for-businesses): Learn how to compare subscription management platforms for businesses and see what makes Schematic
+- [How to Launch Usage-Based Pricing: A Guide for SaaS Teams](https://schematichq.com/blog/launch-usage-based-pricing): Learn how to launch usage-based pricing step by step, what you need for a successful
+- [Launch Week Day Five: Schematic in Every Stack](https://schematichq.com/blog/launch-week-day-five-schematic-in-every-stack)
+- [Launch Week Day Four: MCP and AI Tooling](https://schematichq.com/blog/launch-week-day-four-mcp-and-ai-tooling)
+- [Launch Week Day One: Official Schematic Stripe App](https://schematichq.com/blog/launch-week-day-one-official-schematic-stripe-app): Schematic decouples billing state from code and enforces pricing at runtime. Manage entitlements,
+- [Launch Week Day Three: Custom Plans](https://schematichq.com/blog/launch-week-day-three-custom-plans): Schematic decouples billing state from code and enforces pricing at runtime. Manage entitlements,
+- [Metered Billing Explained for SaaS Companies](https://schematichq.com/blog/metered-billing): Explore our detailed metered billing guide for SaaS companies and learn all about how it works,
+- [Outcome-Based Pricing: A Guide for SaaS Companies](https://schematichq.com/blog/outcome-based-pricing): Explore our guide to outcome-based pricing and learn how it works, the main challenges to look out
+- [Overage Pricing 101: Base Plans That Scale with Usage](https://schematichq.com/blog/overage-pricing-101-base-plans-that-scale-with-usage): Learn all you need to know about overage pricing, a simple usage-based model that blends
+- [Pay-As-You-Go at Scale: Safeguards, Enterprise Needs, and How to Evolve Safely](https://schematichq.com/blog/pay-as-you-go-at-scale-safeguards-enterprise-needs-and-how-to-evolve-safely): Discover the advanced challenges of PAYG pricing and how to protect customers, support enterprise
+- [Pay-As-You-Go vs. Pay-As-You-Use Pricing Compared](https://schematichq.com/blog/pay-as-you-go-vs-pay-as-you-use): Explore our pay-as-you-go vs pay-as-you-use comparison guide to see how these pricing models differ
+- [PostHog Pricing: How Much Does PostHog Cost in 2026?](https://schematichq.com/blog/posthog-pricing): Explore our detailed breakdown of PostHog pricing and find out how much the platform costs once you
+- [Pricing and Packaging SaaS: How to Build a Flexible System](https://schematichq.com/blog/how-to-operate-pricing-and-packaging): Explore our quick guide to pricing and packaging SaaS and learn how to successfully build a
+- [Recurly vs. Zuora: Which Is the Better Billing Platform?](https://schematichq.com/blog/recurly-vs-zuora): Looking for a Recurly vs. Zuora comparison? Read our guide to see how these tools stack up and when
+- [Runtime Monetization Is Infrastructure. We’ve Raised $6.5M to Build It.](https://schematichq.com/blog/runtime-monetization-is-infrastructure-weve-raised-usd6-5m-to-build-it)
+- [SaaS Audit Logs and Permissions for Growing Teams](https://schematichq.com/blog/permissions-and-audit-log): Schematic now supports granular user permissions and a detailed audit log, giving teams
+- [SaaS Auto Top-Ups: How Automatic Credit Refills Work](https://schematichq.com/blog/saas-auto-top-ups): Looking for a guide on SaaS auto top-ups? Read to learn all about what they are, how they work,
+- [SaaS Billing Process: Steps, Models, and Best Practices](https://schematichq.com/blog/saas-billing-process): Learn all you need to know about the SaaS billing process, including what it means, the usual
+- [SaaS Entitlement: Monetization Lessons From SaaS Operators](https://schematichq.com/blog/saas-entitlements-a-roundup-of-some-of-the-best-thinking-and-writing-on-the): Explore how key figures think about SaaS entitlement and learn how to improve your approach.
+- [SaaS Financial Modeling: Components, Benefits, and KPIs](https://schematichq.com/blog/saas-financial-modeling): Explore our handy guide to SaaS financial modeling and learn all you need to know about the key
+- [SaaS Go-to-Market Strategy: The Ultimate 2026 Guide](https://schematichq.com/blog/saas-go-to-market): Explore our full guide to a SaaS go-to-market strategy and learn what it is, which types exist, how
+- [SaaS Monetization Implementation: A Step-by-Step Guide](https://schematichq.com/blog/monetization-implementation): Explore our step-by-step SaaS monetization implementation guide and learn how to avoid challenges
+- [SaaS Monetization: 8 Strategies for Revenue Growth](https://schematichq.com/blog/saas-monetization): Explore the eight most common SaaS monetization strategies with examples, and see how Schematic
+- [SaaS Price Increase: When and How to Do It Right?](https://schematichq.com/blog/saas-price-increase): Explore our handy guide to SaaS price increase and learn when to do it, how to do it, and the most
+- [SaaS Pricing and Packaging for Modern B2B Teams](https://schematichq.com/blog/saas-pricing-and-packaging): Explore our SaaS pricing and packaging guide for modern B2B teams. Learn all about the core
+- [SaaS Pricing Tools: Top 7 Options Compared (2026)](https://schematichq.com/blog/saas-pricing-tools): SaaS Pricing Tools: Top 7 Options Compared (2026): 1. Schematic 2. Stripe Billing 3. Chargebee 4.
+- [SaaS Subscription Management: A Practical Guide](https://schematichq.com/blog/saas-subscription-management): Explore our practical guide to SaaS subscription management and learn all about what it is, what it
+- [Schematic vs. Metronome: A practical guide for choosing the right billing architecture](https://schematichq.com/blog/schematic-vs-metronome-a-practical-guide-for-choosing-the-right-billing)
+- [Seat-Based Pricing 101: Full SaaS Model Overview](https://schematichq.com/blog/seat-based-pricing-101-the-classic-saas-model-that-still-works-sometimes): Learn how seat-based pricing works, its limits in modern SaaS, and how teams combine seats with
+- [Software Entitlement vs License: What’s the Difference?](https://schematichq.com/blog/software-entitlement-vs-license): Looking for a software entitlement vs license guide? Read our comparison to see what each does and
+- [Software Entitlements: What They Are and How to Use Them](https://schematichq.com/blog/software-entitlements): Explore our full guide to software entitlements and learn all about what they are, how to use them,
+- [Supabase Pricing Page and Costs Explained (2026)](https://schematichq.com/blog/supabase-pricing): Explore our detailed guide to Supabase pricing and see the breakdown of the pricing plans,
+- [The Consumerization of Software Requires Modern Monetization](https://schematichq.com/blog/the-consumerization-of-digital-products-requires-new-pricing-and-packaging): Learn how the consumerization of software changes monetization and why many companies struggle to
+- [The Ultimate Guide to Freemium Pricing for SaaS Companies](https://schematichq.com/blog/freemium): Explore our detailed guide to freemium pricing for SaaS companies and learn all about what it is,
+- [Tiered Pricing 101: Bulk Discounts That Reward Scale](https://schematichq.com/blog/tiered-pricing-101-bulk-discounts-that-reward-scale): Tiered pricing (volume or graduated) reduces per-unit cost as usage grows. Great for AI requests,
+- [Top 7 SaaS Pricing Software in 2026](https://schematichq.com/blog/pricing-software): Top 7 SaaS Pricing Software in 2026: 1. Schematic + Stripe 2. Stripe Billing 3. Metronome 4. Maxio
+- [Top 9 Usage Billing Software for B2B SaaS in 2026](https://schematichq.com/blog/usage-billing-software): Top 9 Usage Billing Software for B2B SaaS in 2026: 1. Schematic 2. Stripe 3. Metronome 4. Orb 5.
+- [Trial Pricing Strategies and Implementation Tips for SaaS](https://schematichq.com/blog/trial-pricing): Looking for trial pricing strategies? Explore our guide to learn the top 6 strategies and find
+- [Usage-Based Billing Explained for SaaS Teams (2026 Guide)](https://schematichq.com/blog/why-usage-based-billing-is-taking-over-saas): Learn how usage-based billing works for SaaS companies, including common pricing models, benefits,
+- [Value-Based Pricing SaaS: Benefits and How to Get Started](https://schematichq.com/blog/value-based-pricing-saas): Learn all you need to know about value-based pricing SaaS, from what it is and how it works, to its
+- [Vercel Pricing Plans and Hidden Costs Explained (2026)](https://schematichq.com/blog/vercel-pricing): Explore our guide on Vercel pricing and learn all about the plans, hidden costs, limitations, best
+- [What Are AI Credits?](https://schematichq.com/blog/what-are-ai-credits): What are AI credits? Read our guide to learn all about what they are, how they work, what happens
+- [What Is a Billing Engine? Benefits and Use Cases for SaaS](https://schematichq.com/blog/what-is-a-billing-engine): What is a billing engine? Read our handy guide to find the answer, plus all about the key benefits
+- [What Is a Revenue Operating System and Why Do You Need It?](https://schematichq.com/blog/revenue-operating-system): Explore our handy guide to a revenue operating system and learn all about what it is, how it works,
+- [What Is Feature Gating in SaaS?](https://schematichq.com/blog/what-is-feature-gating): What is feature gating in SaaS? Read our guide to find the answer, learn what it is, and how to use
+- [What Is Flexible Pricing in SaaS? (2026 Guide)](https://schematichq.com/blog/flexible-pricing): Explore our handy guide to flexible pricing in SaaS and learn all about how it works, the different
+- [What’s the Best AI Monetization Platform? Top 8 Options](https://schematichq.com/blog/ai-monetization-platform): What’s the Best AI Monetization Platform [Top 8 Options]: 1. Schematic 2. Orb 3. Maxio 4. Chargebee
+- [Why Entitlements Break Down at Scale](https://schematichq.com/blog/why-entitlements-break-down-at-scale): Entitlements at scale: why homegrown systems break down and when to build vs.
+- [Your billing provider doesn't enforce anything at runtime](https://schematichq.com/blog/your-billing-provider-doesnt-enforce-anything-at-runtime): Billing systems handles payments. It doesn't enforce feature access at runtime. Learn why billing
+
+## Podcast Episodes
+- [ How Expo Builds Pricing Agility Despite Wildly Different Customer Types](https://schematichq.com/podcast/how-expo-builds-pricing-agility-despite-wildly-different-customer-types): In this episode of Monetizing AI, Expo’s Joe (Head of Revenue) and John (Head of Product) join host
+- [A teardown of Vercel's pricing page and billing experience](https://schematichq.com/podcast/a-teardown-of-vercels-pricing-page-and-billing-experience)
+- [Agile Pricing and Packaging: 'Selling to How the Customer Needs to Buy' with Jonathan Carlson](https://schematichq.com/podcast/agile-pricing-and-packaging-selling-to-how-the-customer-needs-to-buy-with)
+- [Arming the marketplace rebels - an interview with Nautical Commerce CEO/co-founder Niklas Halusa](https://schematichq.com/podcast/arming-the-marketplace-rebels-an-interview-with-nautical-commerce-ceo-co): In this Monetizing SaaS episode, Nautical Commerce CEO Niklas Halusa shares hard-won lessons on
+- [Asking the hard questions about pricing & packaging -- lessons learned from taking Crossbeam's pricing & packaging from 0-4](https://schematichq.com/podcast/asking-the-hard-questions-about-pricing-and-packaging-lessons-learned-from)
+- [Be long-term greedy. Lessons on pricing & packaging from Farhan Manjiyani of Grafana Labs](https://schematichq.com/podcast/be-long-term-greedy-lessons-on-pricing-and-packaging-from-farhan-manjiyani): Farhan Manjiyani, Senior Manager of Pricing and Commercialization at Grafana Labs, discusses the
+- [Building Monetization Infrastructure in SaaS: Insights from Rob Truesdell, CPO of Pangea Cloud](https://schematichq.com/podcast/building-monetization-infrastructure-in-saas-insights-from-rob-truesdell-cpo)
+- [Building the best community platform for professionals](https://schematichq.com/podcast/building-the-best-community-platform-for-professionals)
+- [Building the customer system of record](https://schematichq.com/podcast/building-the-customer-system-of-record)
+- [Building the future of deal pricing ](https://schematichq.com/podcast/building-the-future-of-deal-pricing)
+- [Building the future of hospitality communication with Slang.ai co-founder/ceo Alex Sambvani](https://schematichq.com/podcast/building-the-future-of-hospitality-communication-with-slang-ai-co-founder)
+- [Building world-class billing and monetization at Supabase](https://schematichq.com/podcast/building-world-class-billing-and-monetization-at-supabase): What does it take to build billing that scales? In this episode of Monetizing SaaS, Supabase’s
+- [Champion the user - Insights on pricing & product with Mandy Singh](https://schematichq.com/podcast/champion-the-user-insights-on-pricing-and-product-with-mandy-singh)
+- [Cost Management, Feature Flags, and Entitlements ](https://schematichq.com/podcast/cost-management-feature-flags-and-entitlements)
+- [Drive growth by aligning your product roadmap with pricing & packaging changes](https://schematichq.com/podcast/drive-growth-by-aligning-your-product-roadmap-with-pricing-and-packaging)
+- [Earning your price & the future of AI Pricing](https://schematichq.com/podcast/earning-your-price-and-the-future-of-ai-pricing)
+- [Establishing the standard for how we build websites with Lindsay Trinkle](https://schematichq.com/podcast/establishing-the-standard-for-how-we-build-websites-with-lindsay-trinkle)
+- [Focus on what makes your beer better. Lessons on Monetization from Ryan Johnson, CPO of CallRail](https://schematichq.com/podcast/focus-on-what-makes-your-beer-better-lessons-on-monetization-from-ryan)
+- [From automation to reasoning: How to price in the age of AI](https://schematichq.com/podcast/from-automation-to-reasoning-how-to-price-in-the-age-of-ai)
+- [From Pricing Consultant to SaaS Product Leader – James Wood on the Evolution of SaaS Pricing | James Wood (Part 1)](https://schematichq.com/podcast/from-pricing-consultant-to-saas-product-leader-james-wood-on-the-evolution)
+- [From seat-based to usage-based pricing ](https://schematichq.com/podcast/from-seat-based-to-usage-based-pricing)
+- [Get new features in the hands of customers](https://schematichq.com/podcast/get-new-features-in-the-hands-of-customers)
+- [Growth, pricing, and leverage with Gaurav Vohra](https://schematichq.com/podcast/growth-pricing-and-leverage-with-gaurav-vohra): In this episode, Gaurav Vohra—early Superhuman leader—shares hard-won lessons on pricing, growth,
+- [Handling multi-product pricing & packaging at Pagos](https://schematichq.com/podcast/handling-multi-product-pricing-and-packaging-at-pagos): In this episode of Monetizing SaaS, Pagos' Ryan Burke unpacks the long-term impact of early pricing
+- [How Naveen Mohan & Otter.ai drive pricing, packaging, and monetization](https://schematichq.com/podcast/how-naveen-mohan-and-otter-ai-drive-pricing-packaging-and-monetization): Otter.ai’s Naveen shares hard-earned lessons on pricing, churn, entitlements, and AI monetization
+- [How PartnerStack evolved its price metric and made pricing a muscle](https://schematichq.com/podcast/how-partnerstack-evolved-its-price-metric-and-made-pricing-a-muscle): PartnerStack CSO Adam Steinberg shares how they restructured pricing from seats to programs, built
+- [How Quote to Cash Drives Strategic Alignment](https://schematichq.com/podcast/how-quote-to-cash-drives-strategic-alignment)
+- [How Shay Willard launched an 8-figure ARR second product at SamCart](https://schematichq.com/podcast/how-shay-willard-launched-an-8-figure-arr-second-product-at-samcart): Shay Willard shares how he launched a new product at SamCart, drove 80K users and 8-figures in
+- [Interview with Fazal Gupta: Insights into the Evolution of Enterprise SaaS ](https://schematichq.com/podcast/interview-with-fazal-gupta-insights-into-the-evolution-of-enterprise-saas)
+- [Interview with Justin Talerico, CMO of Automox](https://schematichq.com/podcast/an-empowered-b2b-saas-customer-customer-centric-tech-and-the-most-common)
+- [Ken Babcock: Lessons from Uber & Tango.ai on operational excellence, pricing, and product-market-fit](https://schematichq.com/podcast/ken-babcock-lessons-from-uber-and-tango-ai-on-operational-excellence-pricing)
+- [LaunchDarkly's Pricing Page ](https://schematichq.com/podcast/launchdarklys-pricing-page): In Part 1 of our LaunchDarkly pricing teardown, we unpack their shift from seat-based to
+- [Lessons from Segment's pricing journey & building Koala](https://schematichq.com/podcast/lessons-from-segments-pricing-journey-and-building-koala): Segment’s former CPO Tido Carriero shares the hard lessons behind pricing missteps, value metrics,
+- [Lessons learned from leading monetization at UIPath, Citrix, and Cisco](https://schematichq.com/podcast/lessons-learned-from-leading-monetization-at-uipath-citrix-and-cisco)
+- [Lessons on billing engineering in SaaS with Aubrey Rhodes CTO of Workful & Ex-Calendly](https://schematichq.com/podcast/lessons-on-billing-engineering-in-saas-with-aubrey-rhodes-cto-of-workful-and)
+- [Let's build a Receipt Tracker SaaS with NEXT.JS 15 (AI Agents, Inngest, Schematic, Stripe, Clerk)](https://schematichq.com/podcast/lets-build-a-receipt-tracker-saas-with-next-js-15-ai-agents-inngest): Build a full-stack SaaS app with Next.js 15, AI-powered receipt processing, and subscription-based
+- [Linear Pricing Page & Billing UX Teardown — What SaaS Founders Can Learn](https://schematichq.com/podcast/linear-pricing-page-and-billing-ux-teardown-what-saas-founders-can-learn): In this episode of Monetizing SaaS, we break down Linear’s pricing strategy—from clean tiers and
+- [Linear Teardown](https://schematichq.com/podcast/linear-teardown)
+- [Make monetization a first class citizen](https://schematichq.com/podcast/make-monetization-a-first-class-citizen)
+- [Mintlify Teardown](https://schematichq.com/podcast/mintlify-teardown)
+- [Monetization is informed by your capital strategy](https://schematichq.com/podcast/monetization-is-informed-by-your-capital-strategy)
+- [Monetization Lessons from Fullstory, Cypress, Interviewing.io, and Tropic](https://schematichq.com/podcast/monetization-lessons-from-fullstory-cypress-interviewing-io-and-tropic)
+- [Monetization lessons from Hashicorp, Vercel, and Clerk](https://schematichq.com/podcast/monetization-lessons-from-hashicorp-vercel-and-clerk)
+- [Monetization Lessons Learned from Crowdstrike & DNS Filter](https://schematichq.com/podcast/monetization-lessons-learned-from-crowdstrike-and-dns-filter)
+- [Navigating the Complex World of B2B SaaS Pricing: A Conversation with Bill Wilson](https://schematichq.com/podcast/navigating-the-complex-world-of-b2b-saas-pricing-insights-from-bill-wilson-episode-1)
+- [PostHog's Pricing Page - Pricing as an extension of brand](https://schematichq.com/podcast/posthogs-pricing-page-pricing-as-an-extension-of-brand)
+- [Price with Confidence. Lessons on pricing, packaging and monetization with Pricing I/O's CEO/Founder, Marcos Rivera](https://schematichq.com/podcast/price-with-confidence-lessons-on-pricing-packaging-and-monetization-with)
+- [Pricing & packaging in B2B SaaS is playing jazz, not a symphony](https://schematichq.com/podcast/pricing-and-packaging-in-b2b-saas-is-playing-jazz-not-a-symphony)
+- [Pricing Discipline in Startups & Scaleups](https://schematichq.com/podcast/pricing-discipline-in-startups-and-scaleups)
+- [Pricing is downstream from positioning ](https://schematichq.com/podcast/pricing-is-downstream-from-positioning): In this episode, pricing expert Dan Balcauski breaks down why SaaS companies struggle with pricing
+- [Pricing lessons from Segment, M3ter, and early thoughts on AI | James Wood (Part 2)](https://schematichq.com/podcast/pricing-lessons-from-segment-m3ter-and-early-thoughts-on-ai)
+- [Product leadership in the age of AI with Claire Vo, CPO of LaunchDarkly](https://schematichq.com/podcast/product-leadership-in-the-age-of-ai-with-claire-vo-cpo-of-launchdarkly)
+- [Simplifying Entitlements in SaaS with Feature Flags](https://schematichq.com/podcast/simplifying-entitlements-in-saas-with-feature-flags)
+- [Solving for risk & reverse engineering pricing decisions ](https://schematichq.com/podcast/solving-for-risk-and-reverse-engineering-pricing-decisions)
+- [Standards are the shi* - standardizing SaaS contracts with Jake Stein](https://schematichq.com/podcast/standards-are-the-shi-standardizing-saas-contracts-with-jake-stein)
+- [Supabase Pricing & Billing Experience Teardown (Part 2)](https://schematichq.com/podcast/supabase-pricing-and-billing-experience-teardown-part-2)
+- [Supabase's Pricing Page -- a masterclass in predictable pricing ](https://schematichq.com/podcast/supabases-pricing-page-a-masterclass-in-predictable-pricing)
+- [Teaching Monetization as a Discipline](https://schematichq.com/podcast/teaching-monetization-as-a-discipline)
+- [The Anatomy of a Great B2B SaaS Pricing Page](https://schematichq.com/podcast/the-anatomy-of-a-great-b2b-saas-pricing-page)
+- [The Components of SaaS Monetization With Tim Olshansky](https://schematichq.com/podcast/the-components-of-saas-monetization-with-tim-olshansky)
+- [The Mechanics of the Customer Journey](https://schematichq.com/podcast/the-mechanics-of-the-customer-journey)
+- [The one constant in startups is that pricing & packaging will change](https://schematichq.com/podcast/the-one-constant-in-startups-is-that-pricing-and-packaging-will-change)
+- [The only thing you can bet on is that pricing & packaging will change](https://schematichq.com/podcast/the-only-thing-you-can-bet-on-is-that-pricing-and-packaging-will-change)
+- [The Power of Small Language Models](https://schematichq.com/podcast/the-power-of-small-language-models)
+- [The pricing page is the most important page on any company's website](https://schematichq.com/podcast/the-pricing-page-is-the-most-important-page-on-any-companys-website)
+- [The Xano Story with Co-Founder/CEO Prakash Chandran ](https://schematichq.com/podcast/tha-xano-story-with-co-founder-ceo-prakash-chandran): Xano CEO Prakash Chandran shares how early underpricing gave way to a smarter, use-case-driven
+- [Treat Pricing as a Product -- Lessons learned from Simon Kucher, Stripe, & Docker](https://schematichq.com/podcast/treat-pricing-as-a-product-lessons-learned-from-simon-kucher-stripe-and)
+- [Turning pricing into a metadata exercise](https://schematichq.com/podcast/turning-pricing-into-a-metadata-exercise)
+- [Using the Pyramid Principle to Drive Pricing as a Practice](https://schematichq.com/podcast/using-the-pyramid-principle-to-drive-pricing-as-a-practice)
+- [Why great pricing strategies don't get implemented](https://schematichq.com/podcast/why-great-pricing-strategies-dont-get-implemented)
+
+## Case Studies
+- [A Paradigm Shift in Monetization: Makeswift + Schematic](https://schematichq.com/case-studies/a-paradigm-shift-in-monetization-makeswift-schematic)
+- [Eliminating Commercial Debt: Automox + Schematic](https://schematichq.com/case-studies/eliminating-commercial-debt-automox-schematic)
+- [Engineering Time Is Expensive. JourneyTMS Doesn’t Waste It on Billing](https://schematichq.com/case-studies/engineering-time-is-expensive-journeytms-doesnt-waste-it-on-billing): Discover how JourneyTMS drastically reduced billing complexity by switching from Stripe to
+- [From Flat-Rate to Flexible: Favordrop's Success Story with Schematic](https://schematichq.com/case-studies/from-flat-rate-to-flexible-favordrops-success-story-with-schematic)
+- [Managing Growth at Speed: Flashnet’s Move to Stripe + Schematic](https://schematichq.com/case-studies/managing-growth-at-speed-flashnets-move-to-stripe-schematic)
+- [Plotly Cloud: Pricing Agility = Revenue Agility ](https://schematichq.com/case-studies/plotly-cloud-pricing-agility-revenue-agility): Plotly paired Stripe Billing with Schematic to launch usage-based pricing faster, cut billing
+- [Scaling Smart: Zep's Success Story with Schematic](https://schematichq.com/case-studies/scaling-smart-zeps-success-story-with-schematic): Zep replaced billing complexity with Schematic—enabling usage-based pricing, limit enforcement, and
+- [Why Pagos Replaced Their Homegrown Billing Stack](https://schematichq.com/case-studies/why-pagos-replaced-their-homegrown-billing-stack): See how Pagos replaced manual billing with a scalable, flexible system using Schematic. Learn how
