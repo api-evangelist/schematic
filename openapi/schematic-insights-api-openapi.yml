@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Schematic accesstokens insights API
+  title: Schematic accesstokens Insights API
   version: '0.1'
   description: Schematic API
   x-rules-engine-schema-version: v97288f60
@@ -331,55 +331,41 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   schemas:
-    TimeSeriesGranularity:
-      type: string
-      enum:
-      - daily
-      - hourly
-      - monthly
-      - weekly
-    EnvironmentFeatureUsageTimeSeriesResponseData:
+    ApiError:
       type: object
       properties:
-        event_subtype:
+        error:
           type: string
+          description: Error message
+      required:
+      - error
+    TopFeatureByUsageResponseData:
+      type: object
+      properties:
+        change_pct:
+          type:
+          - number
+          - 'null'
         feature_id:
           type: string
-        points:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentUsagePointResponseData'
-          maxItems: 1000
-      required:
-      - event_subtype
-      - feature_id
-      - points
-      title: EnvironmentFeatureUsageTimeSeriesResponseData
-    EnvironmentUsagePointResponseData:
-      type: object
-      properties:
-        timestamp:
+        feature_name:
           type: string
-          format: date-time
+        plural_name:
+          type:
+          - string
+          - 'null'
+        prior_usage:
+          type: integer
+          format: int64
         usage:
           type: integer
           format: int64
       required:
-      - timestamp
+      - feature_id
+      - feature_name
+      - prior_usage
       - usage
-      title: EnvironmentUsagePointResponseData
-    MrrResponseData:
-      type: object
-      properties:
-        amount:
-          type: integer
-          format: int64
-        currency:
-          type: string
-      required:
-      - amount
-      - currency
-      title: MrrResponseData
+      title: TopFeatureByUsageResponseData
     TopFeaturesByUsageResponseData:
       type: object
       properties:
@@ -408,68 +394,6 @@ components:
       - points
       - trait_definition_id
       title: EnvironmentTraitUsageTimeSeriesResponseData
-    ActivityEntryResponseData:
-      type: object
-      properties:
-        actor_name:
-          type: string
-        method:
-          type: string
-        resource_name:
-          type: string
-        resource_type:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-        title:
-          type: string
-      required:
-      - actor_name
-      - method
-      - resource_name
-      - resource_type
-      - timestamp
-      - title
-      title: ActivityEntryResponseData
-    PlanGrowthResponseData:
-      type: object
-      properties:
-        points:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlanGrowthPointResponseData'
-          maxItems: 1000
-      required:
-      - points
-      title: PlanGrowthResponseData
-    PlanGrowthPointResponseData:
-      type: object
-      properties:
-        month:
-          type: string
-          format: date-time
-        plan_id:
-          type: string
-        plan_name:
-          type: string
-        subscribers:
-          type: integer
-          format: int64
-      required:
-      - month
-      - plan_id
-      - plan_name
-      - subscribers
-      title: PlanGrowthPointResponseData
-    ApiError:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
     ActivityResponseResponseData:
       type: object
       properties:
@@ -481,31 +405,17 @@ components:
       required:
       - entries
       title: ActivityResponseResponseData
-    TopFeatureByUsageResponseData:
+    PlanGrowthResponseData:
       type: object
       properties:
-        change_pct:
-          type: number
-          nullable: true
-        feature_id:
-          type: string
-        feature_name:
-          type: string
-        plural_name:
-          type: string
-          nullable: true
-        prior_usage:
-          type: integer
-          format: int64
-        usage:
-          type: integer
-          format: int64
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanGrowthPointResponseData'
+          maxItems: 1000
       required:
-      - feature_id
-      - feature_name
-      - prior_usage
-      - usage
-      title: TopFeatureByUsageResponseData
+      - points
+      title: PlanGrowthResponseData
     InsightsSummaryResponseData:
       type: object
       properties:
@@ -536,15 +446,107 @@ components:
       - total_features
       - total_plans
       title: InsightsSummaryResponseData
+    MrrResponseData:
+      type: object
+      properties:
+        amount:
+          type: integer
+          format: int64
+        currency:
+          type: string
+      required:
+      - amount
+      - currency
+      title: MrrResponseData
+    EnvironmentFeatureUsageTimeSeriesResponseData:
+      type: object
+      properties:
+        event_subtype:
+          type: string
+        feature_id:
+          type: string
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentUsagePointResponseData'
+          maxItems: 1000
+      required:
+      - event_subtype
+      - feature_id
+      - points
+      title: EnvironmentFeatureUsageTimeSeriesResponseData
+    EnvironmentUsagePointResponseData:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        usage:
+          type: integer
+          format: int64
+      required:
+      - timestamp
+      - usage
+      title: EnvironmentUsagePointResponseData
+    PlanGrowthPointResponseData:
+      type: object
+      properties:
+        month:
+          type: string
+          format: date-time
+        plan_id:
+          type: string
+        plan_name:
+          type: string
+        subscribers:
+          type: integer
+          format: int64
+      required:
+      - month
+      - plan_id
+      - plan_name
+      - subscribers
+      title: PlanGrowthPointResponseData
+    ActivityEntryResponseData:
+      type: object
+      properties:
+        actor_name:
+          type: string
+        method:
+          type: string
+        resource_name:
+          type: string
+        resource_type:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        title:
+          type: string
+      required:
+      - actor_name
+      - method
+      - resource_name
+      - resource_type
+      - timestamp
+      - title
+      title: ActivityEntryResponseData
+    TimeSeriesGranularity:
+      type: string
+      enum:
+      - daily
+      - hourly
+      - monthly
+      - weekly
   responses:
-    Forbidden:
-      description: Forbidden
+    Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
-    Unauthorized:
-      description: Unauthorized
+    Forbidden:
+      description: Forbidden
       content:
         application/json:
           schema:

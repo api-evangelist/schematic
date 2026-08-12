@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Schematic accesstokens dataexports API
+  title: Schematic accesstokens Dataexports API
   version: '0.1'
   description: Schematic API
   x-rules-engine-schema-version: v97288f60
@@ -91,42 +91,19 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    ServerError:
-      description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
   schemas:
-    DataExportType:
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+    DataExportOutputFileType:
       type: string
       enum:
-      - company-feature-usage
+      - csv
     DataExportStatus:
       type: string
       enum:
@@ -148,18 +125,6 @@ components:
       - output_file_type
       - metadata
       title: CreateDataExportRequestBody
-    DataExportOutputFileType:
-      type: string
-      enum:
-      - csv
-    ApiError:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
     DataExportResponseData:
       type: object
       properties:
@@ -194,6 +159,41 @@ components:
       - created_at
       - updated_at
       title: DataExportResponseData
+    DataExportType:
+      type: string
+      enum:
+      - company-feature-usage
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

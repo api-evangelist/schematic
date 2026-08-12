@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Schematic accesstokens planmigrations API
+  title: Schematic accesstokens Planmigrations API
   version: '0.1'
   description: Schematic API
   x-rules-engine-schema-version: v97288f60
@@ -371,43 +371,23 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    ServerError:
-      description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
   schemas:
-    PlanVersionMigrationStrategy:
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+    PlanVersionCompanyMigrationStatus:
       type: string
       enum:
-      - immediate
-      - leave
+      - completed
+      - failed
+      - in_progress
+      - pending
+      - skipped
     CountResponse:
       type: object
       properties:
@@ -421,63 +401,14 @@ components:
       - failed
       - in_progress
       - pending
-    PlanVersionCompanyMigrationStatus:
-      type: string
-      enum:
-      - completed
-      - failed
-      - in_progress
-      - pending
-      - skipped
-    PlanVersionCompanyMigrationResponseData:
-      type: object
-      properties:
-        company_id:
-          type: string
-        company_name:
-          type: string
-        completed_at:
-          type: string
-          format: date-time
-          nullable: true
-        created_at:
-          type: string
-          format: date-time
-        error:
-          type: string
-          nullable: true
-        id:
-          type: string
-        migration_id:
-          type: string
-        plan_version_id_from:
-          type: string
-          nullable: true
-        started_at:
-          type: string
-          format: date-time
-          nullable: true
-        status:
-          $ref: '#/components/schemas/PlanVersionCompanyMigrationStatus'
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - company_id
-      - company_name
-      - created_at
-      - id
-      - migration_id
-      - status
-      - updated_at
-      title: PlanVersionCompanyMigrationResponseData
     PlanVersionMigrationResponseData:
       type: object
       properties:
         completed_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         completed_companies:
           type: integer
           format: int64
@@ -485,8 +416,9 @@ components:
           type: string
           format: date-time
         error:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         failed_companies:
           type: integer
           format: int64
@@ -495,17 +427,19 @@ components:
         plan_id:
           type: string
         plan_version_id_from:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         plan_version_id_to:
           type: string
         skipped_companies:
           type: integer
           format: int64
         started_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         status:
           $ref: '#/components/schemas/PlanVersionMigrationStatus'
         strategy:
@@ -529,14 +463,88 @@ components:
       - total_companies
       - updated_at
       title: PlanVersionMigrationResponseData
-    ApiError:
+    PlanVersionCompanyMigrationResponseData:
       type: object
       properties:
-        error:
+        company_id:
           type: string
-          description: Error message
+        company_name:
+          type: string
+        completed_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        error:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        migration_id:
+          type: string
+        plan_version_id_from:
+          type:
+          - string
+          - 'null'
+        started_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        status:
+          $ref: '#/components/schemas/PlanVersionCompanyMigrationStatus'
+        updated_at:
+          type: string
+          format: date-time
       required:
-      - error
+      - company_id
+      - company_name
+      - created_at
+      - id
+      - migration_id
+      - status
+      - updated_at
+      title: PlanVersionCompanyMigrationResponseData
+    PlanVersionMigrationStrategy:
+      type: string
+      enum:
+      - immediate
+      - leave
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
