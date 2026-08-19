@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Schematic accesstokens Dataexports API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Schematic-Api-Key",
+      "value": "{{X-Schematic-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "dataexports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create data export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/data-exports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create data export"
+        },
+        {
+          "info": {
+            "name": "Get data export artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/data-exports/:data_export_id/artifact",
+            "params": [
+              {
+                "name": "data_export_id",
+                "value": "",
+                "type": "path",
+                "description": "data_export_id"
+              }
+            ]
+          },
+          "docs": "Get data export artifact"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

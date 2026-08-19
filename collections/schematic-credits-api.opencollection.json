@@ -1,0 +1,945 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Schematic accesstokens Credits API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Schematic-Api-Key",
+      "value": "{{X-Schematic-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "credits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List billing credits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List billing credits"
+        },
+        {
+          "info": {
+            "name": "Create billing credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/credits",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create billing credit"
+        },
+        {
+          "info": {
+            "name": "Get single billing credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/:credit_id",
+            "params": [
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "path",
+                "description": "credit_id"
+              }
+            ]
+          },
+          "docs": "Get single billing credit"
+        },
+        {
+          "info": {
+            "name": "Update billing credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/billing/credits/:credit_id",
+            "params": [
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "path",
+                "description": "credit_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update billing credit"
+        },
+        {
+          "info": {
+            "name": "Soft delete billing credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/billing/credits/:credit_id",
+            "params": [
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "path",
+                "description": "credit_id"
+              }
+            ]
+          },
+          "docs": "Soft delete billing credit"
+        },
+        {
+          "info": {
+            "name": "List company credit balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/balance",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List company credit balances"
+        },
+        {
+          "info": {
+            "name": "List credit bundles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/bundles",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bundle_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List credit bundles"
+        },
+        {
+          "info": {
+            "name": "Create credit bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/credits/bundles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create credit bundle"
+        },
+        {
+          "info": {
+            "name": "Get credit bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/bundles/:bundle_id",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "bundle_id"
+              }
+            ]
+          },
+          "docs": "Get credit bundle"
+        },
+        {
+          "info": {
+            "name": "Update credit bundle details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/billing/credits/bundles/:bundle_id",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "bundle_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update credit bundle details"
+        },
+        {
+          "info": {
+            "name": "Delete credit bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/billing/credits/bundles/:bundle_id",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "bundle_id"
+              }
+            ]
+          },
+          "docs": "Delete credit bundle"
+        },
+        {
+          "info": {
+            "name": "Count credit bundles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/bundles/count",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bundle_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count credit bundles"
+        },
+        {
+          "info": {
+            "name": "Count billing credits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/count",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count billing credits"
+        },
+        {
+          "info": {
+            "name": "Zero out grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/billing/credits/grants/:grant_id/zero-out",
+            "params": [
+              {
+                "name": "grant_id",
+                "value": "",
+                "type": "path",
+                "description": "grant_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Zero out grant"
+        },
+        {
+          "info": {
+            "name": "Grant billing credits to company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/credits/grants/company",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grant billing credits to company"
+        },
+        {
+          "info": {
+            "name": "Count company grants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/grants/company/count",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count company grants"
+        },
+        {
+          "info": {
+            "name": "List company grants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/grants/company/list",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List company grants"
+        },
+        {
+          "info": {
+            "name": "Count billing credits grants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/grants/count",
+            "params": [
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count billing credits grants"
+        },
+        {
+          "info": {
+            "name": "List grants for credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/grants/list",
+            "params": [
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List grants for credit"
+        },
+        {
+          "info": {
+            "name": "Get enriched credit ledger",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/ledger",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billing_credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Get enriched credit ledger"
+        },
+        {
+          "info": {
+            "name": "Count credit ledger",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/ledger/count",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billing_credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count credit ledger"
+        },
+        {
+          "info": {
+            "name": "List billing plan credit grants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/plan-grants",
+            "params": [
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List billing plan credit grants"
+        },
+        {
+          "info": {
+            "name": "Create billing plan credit grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/credits/plan-grants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create billing plan credit grant"
+        },
+        {
+          "info": {
+            "name": "Get single billing plan credit grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/plan-grants/:plan_grant_id",
+            "params": [
+              {
+                "name": "plan_grant_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_grant_id"
+              }
+            ]
+          },
+          "docs": "Get single billing plan credit grant"
+        },
+        {
+          "info": {
+            "name": "Update billing plan credit grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/billing/credits/plan-grants/:plan_grant_id",
+            "params": [
+              {
+                "name": "plan_grant_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_grant_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update billing plan credit grant"
+        },
+        {
+          "info": {
+            "name": "Delete billing plan credit grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/billing/credits/plan-grants/:plan_grant_id",
+            "params": [
+              {
+                "name": "plan_grant_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_grant_id"
+              },
+              {
+                "name": "apply_to_existing",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete billing plan credit grant"
+        },
+        {
+          "info": {
+            "name": "Count billing plan credit grants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/credits/plan-grants/count",
+            "params": [
+              {
+                "name": "credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count billing plan credit grants"
+        },
+        {
+          "info": {
+            "name": "List credit event ledger",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/v2/billing/credits/ledger",
+            "params": [
+              {
+                "name": "billing_credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "event_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List credit event ledger"
+        },
+        {
+          "info": {
+            "name": "Count credit event ledger",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/v2/billing/credits/ledger/count",
+            "params": [
+              {
+                "name": "billing_credit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "event_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count credit event ledger"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

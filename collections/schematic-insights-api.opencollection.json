@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Schematic accesstokens Insights API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Schematic-Api-Key",
+      "value": "{{X-Schematic-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "insights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/insights/activity",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get activity"
+        },
+        {
+          "info": {
+            "name": "Get environment feature usage time series",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/insights/feature-usage-timeseries",
+            "params": [
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get environment feature usage time series"
+        },
+        {
+          "info": {
+            "name": "Get plan growth",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/insights/plan-growth",
+            "params": [
+              {
+                "name": "months",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get plan growth"
+        },
+        {
+          "info": {
+            "name": "Get summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/insights/summary"
+          },
+          "docs": "Get summary"
+        },
+        {
+          "info": {
+            "name": "Get top features by usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/insights/top-features",
+            "params": [
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get top features by usage"
+        },
+        {
+          "info": {
+            "name": "Get environment trait usage time series",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/insights/trait-usage-timeseries",
+            "params": [
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get environment trait usage time series"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

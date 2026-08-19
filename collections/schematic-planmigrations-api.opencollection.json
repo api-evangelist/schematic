@@ -1,0 +1,195 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Schematic accesstokens Planmigrations API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Schematic-Api-Key",
+      "value": "{{X-Schematic-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "planmigrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List company migrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-version-company-migrations",
+            "params": [
+              {
+                "name": "migration_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List company migrations"
+        },
+        {
+          "info": {
+            "name": "Count company migrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-version-company-migrations/count",
+            "params": [
+              {
+                "name": "migration_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count company migrations"
+        },
+        {
+          "info": {
+            "name": "List migrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-version-migrations",
+            "params": [
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List migrations"
+        },
+        {
+          "info": {
+            "name": "Get migration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-version-migrations/:plan_version_migration_id",
+            "params": [
+              {
+                "name": "plan_version_migration_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_version_migration_id"
+              }
+            ]
+          },
+          "docs": "Get migration"
+        },
+        {
+          "info": {
+            "name": "Count migrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-version-migrations/count",
+            "params": [
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count migrations"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

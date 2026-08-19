@@ -1,0 +1,809 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Schematic accesstokens Entitlements API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Schematic-Api-Key",
+      "value": "{{X-Schematic-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "entitlements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List company overrides",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/company-overrides",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by a single company ID (starting with comp_)"
+              },
+              {
+                "name": "company_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by multiple company IDs (starting with comp_)"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by a single feature ID (starting with feat_)"
+              },
+              {
+                "name": "feature_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by multiple feature IDs (starting with feat_)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by multiple company override IDs (starting with cmov_)"
+              },
+              {
+                "name": "without_expired",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by whether they have not expired"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search for company overrides by feature or company name"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List company overrides"
+        },
+        {
+          "info": {
+            "name": "Create company override",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/company-overrides",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create company override"
+        },
+        {
+          "info": {
+            "name": "Get company override",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/company-overrides/:company_override_id",
+            "params": [
+              {
+                "name": "company_override_id",
+                "value": "",
+                "type": "path",
+                "description": "company_override_id"
+              }
+            ]
+          },
+          "docs": "Get company override"
+        },
+        {
+          "info": {
+            "name": "Update company override",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/company-overrides/:company_override_id",
+            "params": [
+              {
+                "name": "company_override_id",
+                "value": "",
+                "type": "path",
+                "description": "company_override_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update company override"
+        },
+        {
+          "info": {
+            "name": "Delete company override",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/company-overrides/:company_override_id",
+            "params": [
+              {
+                "name": "company_override_id",
+                "value": "",
+                "type": "path",
+                "description": "company_override_id"
+              }
+            ]
+          },
+          "docs": "Delete company override"
+        },
+        {
+          "info": {
+            "name": "Count company overrides",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/company-overrides/count",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by a single company ID (starting with comp_)"
+              },
+              {
+                "name": "company_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by multiple company IDs (starting with comp_)"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by a single feature ID (starting with feat_)"
+              },
+              {
+                "name": "feature_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by multiple feature IDs (starting with feat_)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by multiple company override IDs (starting with cmov_)"
+              },
+              {
+                "name": "without_expired",
+                "value": "",
+                "type": "query",
+                "description": "Filter company overrides by whether they have not expired"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search for company overrides by feature or company name"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count company overrides"
+        },
+        {
+          "info": {
+            "name": "List feature companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/feature-companies",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List feature companies"
+        },
+        {
+          "info": {
+            "name": "Count feature companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/feature-companies/count",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count feature companies"
+        },
+        {
+          "info": {
+            "name": "List feature usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/feature-usage",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "company_keys",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_usage_aggregation",
+                "value": "",
+                "type": "query",
+                "description": "Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "without_negative_entitlements",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List feature usage"
+        },
+        {
+          "info": {
+            "name": "Get feature usage time series",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/feature-usage-timeseries",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get feature usage time series"
+        },
+        {
+          "info": {
+            "name": "Count feature usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/feature-usage/count",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "company_keys",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "feature_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_usage_aggregation",
+                "value": "",
+                "type": "query",
+                "description": "Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "without_negative_entitlements",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count feature usage"
+        },
+        {
+          "info": {
+            "name": "List feature users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/feature-users",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List feature users"
+        },
+        {
+          "info": {
+            "name": "Count feature users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/feature-users/count",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count feature users"
+        },
+        {
+          "info": {
+            "name": "List plan entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-entitlements",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by a single feature ID (starting with feat_)"
+              },
+              {
+                "name": "feature_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by multiple feature IDs (starting with feat_)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by multiple plan entitlement IDs (starting with pltl_)"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by a single plan ID (starting with plan_)"
+              },
+              {
+                "name": "plan_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by multiple plan IDs (starting with plan_)"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by a single plan version ID (starting with plvr_)"
+              },
+              {
+                "name": "plan_version_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by multiple plan version IDs (starting with plvr_)"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search for plan entitlements by feature or company name"
+              },
+              {
+                "name": "with_metered_products",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements only with metered products"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List plan entitlements"
+        },
+        {
+          "info": {
+            "name": "Create plan entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/plan-entitlements",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create plan entitlement"
+        },
+        {
+          "info": {
+            "name": "Get plan entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-entitlements/:plan_entitlement_id",
+            "params": [
+              {
+                "name": "plan_entitlement_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_entitlement_id"
+              }
+            ]
+          },
+          "docs": "Get plan entitlement"
+        },
+        {
+          "info": {
+            "name": "Update plan entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/plan-entitlements/:plan_entitlement_id",
+            "params": [
+              {
+                "name": "plan_entitlement_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_entitlement_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update plan entitlement"
+        },
+        {
+          "info": {
+            "name": "Delete plan entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/plan-entitlements/:plan_entitlement_id",
+            "params": [
+              {
+                "name": "plan_entitlement_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_entitlement_id"
+              }
+            ]
+          },
+          "docs": "Delete plan entitlement"
+        },
+        {
+          "info": {
+            "name": "Upsert plan entitlement for billing product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/plan-entitlements/billing-linked",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert plan entitlement for billing product"
+        },
+        {
+          "info": {
+            "name": "Count plan entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-entitlements/count",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by a single feature ID (starting with feat_)"
+              },
+              {
+                "name": "feature_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by multiple feature IDs (starting with feat_)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by multiple plan entitlement IDs (starting with pltl_)"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by a single plan ID (starting with plan_)"
+              },
+              {
+                "name": "plan_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by multiple plan IDs (starting with plan_)"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by a single plan version ID (starting with plvr_)"
+              },
+              {
+                "name": "plan_version_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements by multiple plan version IDs (starting with plvr_)"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search for plan entitlements by feature or company name"
+              },
+              {
+                "name": "with_metered_products",
+                "value": "",
+                "type": "query",
+                "description": "Filter plan entitlements only with metered products"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count plan entitlements"
+        },
+        {
+          "info": {
+            "name": "Duplicate plan entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/plan-entitlements/duplicate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Duplicate plan entitlements"
+        },
+        {
+          "info": {
+            "name": "Get feature usage by company",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/usage-by-company",
+            "params": [
+              {
+                "name": "keys",
+                "value": "",
+                "type": "query",
+                "description": "Key/value pairs"
+              }
+            ]
+          },
+          "docs": "Get feature usage by company"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

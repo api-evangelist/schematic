@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Schematic accesstokens Componentspublic API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Schematic-Api-Key",
+      "value": "{{X-Schematic-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "componentspublic",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get public plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/public/plans"
+          },
+          "docs": "Get public plans"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

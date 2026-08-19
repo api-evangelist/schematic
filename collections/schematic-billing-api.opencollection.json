@@ -1,0 +1,786 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Schematic accesstokens Billing API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Schematic-Api-Key",
+      "value": "{{X-Schematic-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List coupons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/coupons",
+            "params": [
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List coupons"
+        },
+        {
+          "info": {
+            "name": "Upsert billing coupon",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/coupons",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert billing coupon"
+        },
+        {
+          "info": {
+            "name": "Upsert billing customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/customer/upsert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert billing customer"
+        },
+        {
+          "info": {
+            "name": "List customers with subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/customers",
+            "params": [
+              {
+                "name": "company_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "provider_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List customers with subscriptions"
+        },
+        {
+          "info": {
+            "name": "Count customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/customers/count",
+            "params": [
+              {
+                "name": "company_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "provider_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count customers"
+        },
+        {
+          "info": {
+            "name": "List invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/invoices",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customer_external_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "subscription_external_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List invoices"
+        },
+        {
+          "info": {
+            "name": "Upsert invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/invoices",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert invoice"
+        },
+        {
+          "info": {
+            "name": "List meters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/meter",
+            "params": [
+              {
+                "name": "display_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List meters"
+        },
+        {
+          "info": {
+            "name": "Upsert billing meter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/meter/upsert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert billing meter"
+        },
+        {
+          "info": {
+            "name": "List payment methods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/payment-methods",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customer_external_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List payment methods"
+        },
+        {
+          "info": {
+            "name": "Upsert payment method",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/payment-methods",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert payment method"
+        },
+        {
+          "info": {
+            "name": "List billing prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/price",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Filter for prices in a specific currency (e.g. usd, eur)"
+              },
+              {
+                "name": "for_initial_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for prices valid for initial plans (free prices only)"
+              },
+              {
+                "name": "for_trial_expiry_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for prices valid for trial expiry plans (free prices only)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query",
+                "description": "Filter for active prices on active products (defaults to true if not specified)"
+              },
+              {
+                "name": "price",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "product_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "provider_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tiers_mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "usage_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "with_meter",
+                "value": "",
+                "type": "query",
+                "description": "Filter for prices with a meter"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List billing prices"
+        },
+        {
+          "info": {
+            "name": "Upsert billing price",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/price/upsert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert billing price"
+        },
+        {
+          "info": {
+            "name": "Delete billing product",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/billing/product/:billing_id",
+            "params": [
+              {
+                "name": "billing_id",
+                "value": "",
+                "type": "path",
+                "description": "billing_id"
+              }
+            ]
+          },
+          "docs": "Delete billing product"
+        },
+        {
+          "info": {
+            "name": "List billing product prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/product/prices",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Filter for prices in a specific currency (e.g. usd, eur)"
+              },
+              {
+                "name": "for_initial_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for prices valid for initial plans (free prices only)"
+              },
+              {
+                "name": "for_trial_expiry_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for prices valid for trial expiry plans (free prices only)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query",
+                "description": "Filter for active prices on active products (defaults to true if not specified)"
+              },
+              {
+                "name": "price",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "product_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "provider_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tiers_mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "usage_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "with_meter",
+                "value": "",
+                "type": "query",
+                "description": "Filter for prices with a meter"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List billing product prices"
+        },
+        {
+          "info": {
+            "name": "Delete product price",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/billing/product/prices/:billing_id",
+            "params": [
+              {
+                "name": "billing_id",
+                "value": "",
+                "type": "path",
+                "description": "billing_id"
+              }
+            ]
+          },
+          "docs": "Delete product price"
+        },
+        {
+          "info": {
+            "name": "Upsert billing product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/product/upsert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert billing product"
+        },
+        {
+          "info": {
+            "name": "List billing products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/products",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that are active. Defaults to true if not specified"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "price_usage_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "provider_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recurring_charges_only",
+                "value": "",
+                "type": "query",
+                "description": "Filter to products that have at least one recurring price"
+              },
+              {
+                "name": "with_one_time_charges",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that are one time charges"
+              },
+              {
+                "name": "with_prices_only",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that have prices"
+              },
+              {
+                "name": "with_zero_price",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that have zero price for free subscription type"
+              },
+              {
+                "name": "without_linked_to_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that are not linked to any plan"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List billing products"
+        },
+        {
+          "info": {
+            "name": "Count billing products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/billing/products/count",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that are active. Defaults to true if not specified"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "price_usage_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "provider_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recurring_charges_only",
+                "value": "",
+                "type": "query",
+                "description": "Filter to products that have at least one recurring price"
+              },
+              {
+                "name": "with_one_time_charges",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that are one time charges"
+              },
+              {
+                "name": "with_prices_only",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that have prices"
+              },
+              {
+                "name": "with_zero_price",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that have zero price for free subscription type"
+              },
+              {
+                "name": "without_linked_to_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter products that are not linked to any plan"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count billing products"
+        },
+        {
+          "info": {
+            "name": "Upsert billing subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/billing/subscription/upsert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert billing subscription"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

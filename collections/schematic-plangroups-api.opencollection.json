@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Schematic accesstokens Plangroups API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Schematic-Api-Key",
+      "value": "{{X-Schematic-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "plangroups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get plan group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plan-groups",
+            "params": [
+              {
+                "name": "include_company_counts",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get plan group"
+        },
+        {
+          "info": {
+            "name": "Create plan group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/plan-groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create plan group"
+        },
+        {
+          "info": {
+            "name": "Update plan group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/plan-groups/:plan_group_id",
+            "params": [
+              {
+                "name": "plan_group_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_group_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update plan group"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

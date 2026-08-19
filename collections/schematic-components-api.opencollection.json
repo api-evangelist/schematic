@@ -1,0 +1,185 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Schematic accesstokens Components API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Schematic-Api-Key",
+      "value": "{{X-Schematic-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "components",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List components",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/components",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List components"
+        },
+        {
+          "info": {
+            "name": "Create component",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/components",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create component"
+        },
+        {
+          "info": {
+            "name": "Get component",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/components/:component_id",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "component_id"
+              }
+            ]
+          },
+          "docs": "Get component"
+        },
+        {
+          "info": {
+            "name": "Update component",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/components/:component_id",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "component_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update component"
+        },
+        {
+          "info": {
+            "name": "Delete component",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/components/:component_id",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "component_id"
+              }
+            ]
+          },
+          "docs": "Delete component"
+        },
+        {
+          "info": {
+            "name": "Count components",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/components/count",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count components"
+        },
+        {
+          "info": {
+            "name": "Preview component data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/components/preview-data",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Preview component data"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

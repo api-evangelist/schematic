@@ -1,0 +1,600 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Schematic accesstokens Plans API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Schematic-Api-Key",
+      "value": "{{X-Schematic-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update company plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/company-plans/:company_plan_id",
+            "params": [
+              {
+                "name": "company_plan_id",
+                "value": "",
+                "type": "path",
+                "description": "company_plan_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update company plans"
+        },
+        {
+          "info": {
+            "name": "List custom plan billings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/custom-plan-billings",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by company ID"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by plan ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by billing status"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter by multiple billing statuses"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List custom plan billings"
+        },
+        {
+          "info": {
+            "name": "Retry custom plan billing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/custom-plan-billings/:custom_plan_billing_id/retry",
+            "params": [
+              {
+                "name": "custom_plan_billing_id",
+                "value": "",
+                "type": "path",
+                "description": "custom_plan_billing_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retry custom plan billing"
+        },
+        {
+          "info": {
+            "name": "Create custom plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/custom-plans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create custom plan"
+        },
+        {
+          "info": {
+            "name": "List plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plans",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "exclude_company_scoped",
+                "value": "",
+                "type": "query",
+                "description": "Exclude plans that are scoped to a company (custom plans assigned to a company)"
+              },
+              {
+                "name": "for_fallback_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for plans valid as fallback plans (not linked to billing)"
+              },
+              {
+                "name": "for_initial_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial)"
+              },
+              {
+                "name": "for_trial_expiry_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for plans valid as trial expiry plans (not linked to billing or free)"
+              },
+              {
+                "name": "has_product_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter out plans that do not have a billing product ID"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_draft_versions",
+                "value": "",
+                "type": "query",
+                "description": "Include billing settings from draft versions for plans which have draft version"
+              },
+              {
+                "name": "plan_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by plan type"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scoped_to_company_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plans scoped to a specific company (custom plans)"
+              },
+              {
+                "name": "without_entitlement_for",
+                "value": "",
+                "type": "query",
+                "description": "Filter out plans that already have a plan entitlement for the specified feature ID"
+              },
+              {
+                "name": "without_paid_product_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter out plans that have a paid billing product ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List plans"
+        },
+        {
+          "info": {
+            "name": "Create plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/plans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create plan"
+        },
+        {
+          "info": {
+            "name": "Get plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plans/:plan_id",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_id"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query",
+                "description": "Fetch billing settings for a specific plan version"
+              }
+            ]
+          },
+          "docs": "Get plan"
+        },
+        {
+          "info": {
+            "name": "Update plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/plans/:plan_id",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update plan"
+        },
+        {
+          "info": {
+            "name": "Delete plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/plans/:plan_id",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_id"
+              }
+            ]
+          },
+          "docs": "Delete plan"
+        },
+        {
+          "info": {
+            "name": "Upsert billing product plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/plans/:plan_id/billing_products",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert billing product plan"
+        },
+        {
+          "info": {
+            "name": "Upsert plan for billing product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/plans/billing-linked",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert plan for billing product"
+        },
+        {
+          "info": {
+            "name": "List billing product match companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plans/billing-product-match-companies",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query",
+                "description": "The plan ID to find billing product match companies for"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search for companies by name, keys or string traits"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List billing product match companies"
+        },
+        {
+          "info": {
+            "name": "Count billing product match companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plans/billing-product-match-companies/count",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query",
+                "description": "The plan ID to find billing product match companies for"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search for companies by name, keys or string traits"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count billing product match companies"
+        },
+        {
+          "info": {
+            "name": "Count plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plans/count",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "exclude_company_scoped",
+                "value": "",
+                "type": "query",
+                "description": "Exclude plans that are scoped to a company (custom plans assigned to a company)"
+              },
+              {
+                "name": "for_fallback_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for plans valid as fallback plans (not linked to billing)"
+              },
+              {
+                "name": "for_initial_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial)"
+              },
+              {
+                "name": "for_trial_expiry_plan",
+                "value": "",
+                "type": "query",
+                "description": "Filter for plans valid as trial expiry plans (not linked to billing or free)"
+              },
+              {
+                "name": "has_product_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter out plans that do not have a billing product ID"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_draft_versions",
+                "value": "",
+                "type": "query",
+                "description": "Include billing settings from draft versions for plans which have draft version"
+              },
+              {
+                "name": "plan_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by plan type"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scoped_to_company_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plans scoped to a specific company (custom plans)"
+              },
+              {
+                "name": "without_entitlement_for",
+                "value": "",
+                "type": "query",
+                "description": "Filter out plans that already have a plan entitlement for the specified feature ID"
+              },
+              {
+                "name": "without_paid_product_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter out plans that have a paid billing product ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count plans"
+        },
+        {
+          "info": {
+            "name": "List plan issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/plans/issues",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List plan issues"
+        },
+        {
+          "info": {
+            "name": "Delete plan version",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/plans/version/:plan_id",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_id"
+              },
+              {
+                "name": "promote_archived_version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete plan version"
+        },
+        {
+          "info": {
+            "name": "Publish plan version",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/plans/version/:plan_id/publish",
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Publish plan version"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

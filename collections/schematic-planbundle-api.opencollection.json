@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Schematic accesstokens Planbundle API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Schematic-Api-Key",
+      "value": "{{X-Schematic-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "planbundle",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create plan bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/plan-bundles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create plan bundle"
+        },
+        {
+          "info": {
+            "name": "Update plan bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/plan-bundles/:plan_bundle_id",
+            "params": [
+              {
+                "name": "plan_bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "plan_bundle_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update plan bundle"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,483 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Schematic accesstokens Features API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Schematic-Api-Key",
+      "value": "{{X-Schematic-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "features",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List features",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/features",
+            "params": [
+              {
+                "name": "boolean_require_event",
+                "value": "",
+                "type": "query",
+                "description": "Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter."
+              },
+              {
+                "name": "feature_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by one or more feature types (boolean, event, trait)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search by feature name or ID"
+              },
+              {
+                "name": "without_company_override_for",
+                "value": "",
+                "type": "query",
+                "description": "Filter out features that already have a company override for the specified company ID"
+              },
+              {
+                "name": "without_plan_entitlement_for",
+                "value": "",
+                "type": "query",
+                "description": "Filter out features that already have a plan entitlement for the specified plan ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List features"
+        },
+        {
+          "info": {
+            "name": "Create feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/features",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create feature"
+        },
+        {
+          "info": {
+            "name": "Get feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/features/:feature_id",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "path",
+                "description": "feature_id"
+              }
+            ]
+          },
+          "docs": "Get feature"
+        },
+        {
+          "info": {
+            "name": "Update feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/features/:feature_id",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "path",
+                "description": "feature_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update feature"
+        },
+        {
+          "info": {
+            "name": "Delete feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/features/:feature_id",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "path",
+                "description": "feature_id"
+              }
+            ]
+          },
+          "docs": "Delete feature"
+        },
+        {
+          "info": {
+            "name": "Upsert feature for billing product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/features/billing-linked",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert feature for billing product"
+        },
+        {
+          "info": {
+            "name": "Count features",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/features/count",
+            "params": [
+              {
+                "name": "boolean_require_event",
+                "value": "",
+                "type": "query",
+                "description": "Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter."
+              },
+              {
+                "name": "feature_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by one or more feature types (boolean, event, trait)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "plan_version_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search by feature name or ID"
+              },
+              {
+                "name": "without_company_override_for",
+                "value": "",
+                "type": "query",
+                "description": "Filter out features that already have a company override for the specified company ID"
+              },
+              {
+                "name": "without_plan_entitlement_for",
+                "value": "",
+                "type": "query",
+                "description": "Filter out features that already have a plan entitlement for the specified plan ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count features"
+        },
+        {
+          "info": {
+            "name": "List flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/flags",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search by flag name, key, or ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List flags"
+        },
+        {
+          "info": {
+            "name": "Create flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/flags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create flag"
+        },
+        {
+          "info": {
+            "name": "Get flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/flags/:flag_id",
+            "params": [
+              {
+                "name": "flag_id",
+                "value": "",
+                "type": "path",
+                "description": "flag_id"
+              }
+            ]
+          },
+          "docs": "Get flag"
+        },
+        {
+          "info": {
+            "name": "Update flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/flags/:flag_id",
+            "params": [
+              {
+                "name": "flag_id",
+                "value": "",
+                "type": "path",
+                "description": "flag_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update flag"
+        },
+        {
+          "info": {
+            "name": "Delete flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/flags/:flag_id",
+            "params": [
+              {
+                "name": "flag_id",
+                "value": "",
+                "type": "path",
+                "description": "flag_id"
+              }
+            ]
+          },
+          "docs": "Delete flag"
+        },
+        {
+          "info": {
+            "name": "Update flag rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/flags/:flag_id/rules",
+            "params": [
+              {
+                "name": "flag_id",
+                "value": "",
+                "type": "path",
+                "description": "flag_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update flag rules"
+        },
+        {
+          "info": {
+            "name": "Check flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/flags/:key/check",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check flag"
+        },
+        {
+          "info": {
+            "name": "Check flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/flags/check",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check flags"
+        },
+        {
+          "info": {
+            "name": "Check flags bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/flags/check-bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check flags bulk"
+        },
+        {
+          "info": {
+            "name": "Count flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/flags/count",
+            "params": [
+              {
+                "name": "feature_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search by flag name, key, or ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count flags"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

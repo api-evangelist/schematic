@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Schematic accesstokens Integrationsapi API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Schematic-Api-Key",
+      "value": "{{X-Schematic-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "integrationsapi",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/integration/start/:integration_id",
+            "params": [
+              {
+                "name": "integration_id",
+                "value": "",
+                "type": "path",
+                "description": "integration_id"
+              }
+            ]
+          },
+          "docs": "Run integration"
+        },
+        {
+          "info": {
+            "name": "List integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/integrations",
+            "params": [
+              {
+                "name": "billing_only",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "exclude_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List integrations"
+        },
+        {
+          "info": {
+            "name": "Get integration webhook url",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/integrations/:type/webhook-url",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "type"
+              }
+            ]
+          },
+          "docs": "Get integration webhook url"
+        },
+        {
+          "info": {
+            "name": "Start data import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/integrations/start-data-import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start data import"
+        },
+        {
+          "info": {
+            "name": "Load sample data set V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/integrations/stripe/dataset-sample-v2"
+          },
+          "docs": "Load sample data set V2"
+        },
+        {
+          "info": {
+            "name": "Uninstall integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/integrations/uninstall/:integration_id",
+            "params": [
+              {
+                "name": "integration_id",
+                "value": "",
+                "type": "path",
+                "description": "integration_id"
+              }
+            ]
+          },
+          "docs": "Uninstall integration"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

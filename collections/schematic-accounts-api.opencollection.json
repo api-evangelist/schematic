@@ -1,0 +1,474 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Schematic accesstokens Accounts API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Schematic-Api-Key",
+      "value": "{{X-Schematic-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List account members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/account-members",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search filter"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List account members"
+        },
+        {
+          "info": {
+            "name": "Get account member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/account-members/:account_member_id",
+            "params": [
+              {
+                "name": "account_member_id",
+                "value": "",
+                "type": "path",
+                "description": "account_member_id"
+              }
+            ]
+          },
+          "docs": "Get account member"
+        },
+        {
+          "info": {
+            "name": "List api keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/api-keys",
+            "params": [
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "require_environment",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List api keys"
+        },
+        {
+          "info": {
+            "name": "Create api key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/api-keys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create api key"
+        },
+        {
+          "info": {
+            "name": "Get api key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/api-keys/:api_key_id",
+            "params": [
+              {
+                "name": "api_key_id",
+                "value": "",
+                "type": "path",
+                "description": "api_key_id"
+              }
+            ]
+          },
+          "docs": "Get api key"
+        },
+        {
+          "info": {
+            "name": "Update api key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/api-keys/:api_key_id",
+            "params": [
+              {
+                "name": "api_key_id",
+                "value": "",
+                "type": "path",
+                "description": "api_key_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update api key"
+        },
+        {
+          "info": {
+            "name": "Delete api key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/api-keys/:api_key_id",
+            "params": [
+              {
+                "name": "api_key_id",
+                "value": "",
+                "type": "path",
+                "description": "api_key_id"
+              }
+            ]
+          },
+          "docs": "Delete api key"
+        },
+        {
+          "info": {
+            "name": "Count api keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/api-keys/count",
+            "params": [
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "require_environment",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count api keys"
+        },
+        {
+          "info": {
+            "name": "List audit logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/audit-log",
+            "params": [
+              {
+                "name": "actor_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List audit logs"
+        },
+        {
+          "info": {
+            "name": "Get audit log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/audit-log/:audit_log_id",
+            "params": [
+              {
+                "name": "audit_log_id",
+                "value": "",
+                "type": "path",
+                "description": "audit_log_id"
+              }
+            ]
+          },
+          "docs": "Get audit log"
+        },
+        {
+          "info": {
+            "name": "Count audit logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/audit-log/count",
+            "params": [
+              {
+                "name": "actor_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "Count audit logs"
+        },
+        {
+          "info": {
+            "name": "List environments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/environments",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page limit (default 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List environments"
+        },
+        {
+          "info": {
+            "name": "Create environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/environments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create environment"
+        },
+        {
+          "info": {
+            "name": "Get environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/environments/:environment_id",
+            "params": [
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "path",
+                "description": "environment_id"
+              }
+            ]
+          },
+          "docs": "Get environment"
+        },
+        {
+          "info": {
+            "name": "Update environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.schematichq.com/environments/:environment_id",
+            "params": [
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "path",
+                "description": "environment_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update environment"
+        },
+        {
+          "info": {
+            "name": "Delete environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.schematichq.com/environments/:environment_id",
+            "params": [
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "path",
+                "description": "environment_id"
+              }
+            ]
+          },
+          "docs": "Delete environment"
+        },
+        {
+          "info": {
+            "name": "Quickstart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.schematichq.com/quickstart"
+          },
+          "docs": "Quickstart"
+        },
+        {
+          "info": {
+            "name": "Get who am I",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.schematichq.com/whoami"
+          },
+          "docs": "Get who am I"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
