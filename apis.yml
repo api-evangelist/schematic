@@ -30,6 +30,15 @@ tags:
 - FinOps
 - Metering
 - Pricing
+- Software-as-a-Service
+tags_raw:
+- Billing
+- Entitlements
+- Feature Flags
+- Feature Management
+- FinOps
+- Metering
+- Pricing
 - SaaS
 url: https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/apis.yml
 created: '2026-03-27'
@@ -41,6 +50,8 @@ apis:
   description: The accesstokens API from Schematic — 1 operation(s) for accesstokens.
   humanURL: https://schematichq.com/
   tags:
+  - Access Tokens
+  tags_raw:
   - accesstokens
   properties:
   - type: OpenAPI
@@ -86,6 +97,8 @@ apis:
   description: The accounts API from Schematic — 12 operation(s) for accounts.
   humanURL: https://schematichq.com/
   tags:
+  - Account
+  tags_raw:
   - accounts
   properties:
   - type: OpenAPI
@@ -131,6 +144,8 @@ apis:
   description: The billing API from Schematic — 17 operation(s) for billing.
   humanURL: https://schematichq.com/
   tags:
+  - Billing
+  tags_raw:
   - billing
   properties:
   - type: OpenAPI
@@ -176,6 +191,8 @@ apis:
   description: The checkout API from Schematic — 7 operation(s) for checkout.
   humanURL: https://schematichq.com/
   tags:
+  - Checkout
+  tags_raw:
   - checkout
   properties:
   - type: OpenAPI
@@ -221,6 +238,8 @@ apis:
   description: The companies API from Schematic — 29 operation(s) for companies.
   humanURL: https://schematichq.com/
   tags:
+  - Companies
+  tags_raw:
   - companies
   properties:
   - type: OpenAPI
@@ -266,6 +285,8 @@ apis:
   description: The components API from Schematic — 4 operation(s) for components.
   humanURL: https://schematichq.com/
   tags:
+  - Components
+  tags_raw:
   - components
   properties:
   - type: OpenAPI
@@ -356,6 +377,8 @@ apis:
   description: The credits API from Schematic — 20 operation(s) for credits.
   humanURL: https://schematichq.com/
   tags:
+  - Credits
+  tags_raw:
   - credits
   properties:
   - type: OpenAPI
@@ -401,6 +424,8 @@ apis:
   description: The dataexports API from Schematic — 2 operation(s) for dataexports.
   humanURL: https://schematichq.com/
   tags:
+  - Data Exports
+  tags_raw:
   - dataexports
   properties:
   - type: OpenAPI
@@ -446,6 +471,8 @@ apis:
   description: The entitlements API from Schematic — 16 operation(s) for entitlements.
   humanURL: https://schematichq.com/
   tags:
+  - Entitlements
+  tags_raw:
   - entitlements
   properties:
   - type: OpenAPI
@@ -491,6 +518,8 @@ apis:
   description: The events API from Schematic — 5 operation(s) for events.
   humanURL: https://schematichq.com/
   tags:
+  - Event
+  tags_raw:
   - events
   properties:
   - type: OpenAPI
@@ -536,6 +565,8 @@ apis:
   description: The features API from Schematic — 11 operation(s) for features.
   humanURL: https://schematichq.com/
   tags:
+  - Features
+  tags_raw:
   - features
   properties:
   - type: OpenAPI
@@ -581,6 +612,8 @@ apis:
   description: The insights API from Schematic — 6 operation(s) for insights.
   humanURL: https://schematichq.com/
   tags:
+  - Insights
+  tags_raw:
   - insights
   properties:
   - type: OpenAPI
@@ -806,6 +839,8 @@ apis:
   description: The plans API from Schematic — 14 operation(s) for plans.
   humanURL: https://schematichq.com/
   tags:
+  - Plans
+  tags_raw:
   - plans
   properties:
   - type: OpenAPI
@@ -896,6 +931,8 @@ apis:
   description: The webhooks API from Schematic — 6 operation(s) for webhooks.
   humanURL: https://schematichq.com/
   tags:
+  - Webhook
+  tags_raw:
   - webhooks
   properties:
   - type: OpenAPI
