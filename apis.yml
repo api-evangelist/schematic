@@ -8,6 +8,18 @@ description: 'Schematic is a monetization platform that lets developers implemen
   integration, with an official Stripe App for entitlement management. Schematic raised $6.5M in April
   2026.'
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
