@@ -62,7 +62,7 @@ apis:
   description: The accesstokens API from Schematic — 1 operation(s) for accesstokens.
   humanURL: https://schematichq.com/
   tags:
-  - Access Tokens
+  - accesstokens
   tags_raw:
   - accesstokens
   properties:
@@ -203,7 +203,7 @@ apis:
   description: The checkout API from Schematic — 7 operation(s) for checkout.
   humanURL: https://schematichq.com/
   tags:
-  - Checkout
+  - checkout
   tags_raw:
   - checkout
   properties:
@@ -436,7 +436,7 @@ apis:
   description: The dataexports API from Schematic — 2 operation(s) for dataexports.
   humanURL: https://schematichq.com/
   tags:
-  - Data Exports
+  - dataexports
   tags_raw:
   - dataexports
   properties:
@@ -483,7 +483,7 @@ apis:
   description: The entitlements API from Schematic — 16 operation(s) for entitlements.
   humanURL: https://schematichq.com/
   tags:
-  - Entitlements
+  - entitlements
   tags_raw:
   - entitlements
   properties:
@@ -671,6 +671,8 @@ apis:
   description: The integrationsapi API from Schematic — 6 operation(s) for integrationsapi.
   humanURL: https://schematichq.com/
   tags:
+  - Integrations API
+  tags_raw:
   - integrationsapi
   properties:
   - type: OpenAPI
