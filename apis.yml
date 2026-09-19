@@ -379,7 +379,7 @@ apis:
   description: The credits API from Schematic — 20 operation(s) for credits.
   humanURL: https://schematichq.com/
   tags:
-  - Credits
+  - Credit
   tags_raw:
   - credits
   properties:
@@ -1005,6 +1005,8 @@ apis:
   description: The Data Exports API from Schematic — 2 operation(s) for data exports.
   humanURL: https://schematichq.com/
   tags:
+  - Data Export
+  tags_raw:
   - Data Exports
   properties:
   - type: OpenAPI
