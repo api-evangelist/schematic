@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Schematic accesstokens Scheduledcheckout API
+  title: Schematic Scheduledcheckout API
   version: '0.1'
   description: Schematic API
   x-rules-engine-schema-version: v97288f60
@@ -215,52 +215,6 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   schemas:
-    ApiError:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
-    ScheduledCheckoutStatus:
-      type: string
-      enum:
-      - cancelled
-      - error
-      - executing
-      - pending
-      - success
-    CreateScheduledCheckoutRequest:
-      type: object
-      properties:
-        company_id:
-          type: string
-        execute_after:
-          type: string
-          format: date-time
-        from_plan_id:
-          type: string
-        to_plan_id:
-          type: string
-      required:
-      - company_id
-      - execute_after
-      - from_plan_id
-      - to_plan_id
-      title: CreateScheduledCheckoutRequest
-    UpdateScheduledCheckoutRequest:
-      type: object
-      properties:
-        execute_after:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        status:
-          allOf:
-          - $ref: '#/components/schemas/ScheduledCheckoutStatus'
-      title: UpdateScheduledCheckoutRequest
     ScheduledCheckoutResponseData:
       type: object
       properties:
@@ -319,9 +273,61 @@ components:
       - to_plan_id
       - updated_at
       title: ScheduledCheckoutResponseData
+    UpdateScheduledCheckoutRequest:
+      type: object
+      properties:
+        execute_after:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ScheduledCheckoutStatus'
+      title: UpdateScheduledCheckoutRequest
+    CreateScheduledCheckoutRequest:
+      type: object
+      properties:
+        company_id:
+          type: string
+        execute_after:
+          type: string
+          format: date-time
+        from_plan_id:
+          type: string
+        to_plan_id:
+          type: string
+      required:
+      - company_id
+      - execute_after
+      - from_plan_id
+      - to_plan_id
+      title: CreateScheduledCheckoutRequest
+    ScheduledCheckoutStatus:
+      type: string
+      enum:
+      - cancelled
+      - error
+      - executing
+      - pending
+      - success
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
   responses:
     Unauthorized:
       description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:
@@ -334,12 +340,6 @@ components:
             $ref: '#/components/schemas/ApiError'
     Forbidden:
       description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    BadRequest:
-      description: Bad request
       content:
         application/json:
           schema:

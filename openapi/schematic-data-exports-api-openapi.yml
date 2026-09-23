@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Schematic accesstokens Dataexports API
+  title: Schematic Dataexports API
   version: '0.1'
   description: Schematic API
   x-rules-engine-schema-version: v97288f60
@@ -9,14 +9,14 @@ servers:
 security:
 - ApiKeyAuth: []
 tags:
-- name: dataexports
+- name: Data Exports
 paths:
   /data-exports:
     post:
       operationId: createDataExport
       summary: Create data export
       tags:
-      - dataexports
+      - Data Exports
       requestBody:
         content:
           application/json:
@@ -56,7 +56,7 @@ paths:
       operationId: getDataExportArtifact
       summary: Get data export artifact
       tags:
-      - dataexports
+      - Data Exports
       parameters:
       - name: data_export_id
         in: path
@@ -91,25 +91,46 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
   schemas:
-    ApiError:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
+    DataExportType:
+      type: string
+      enum:
+      - company-feature-usage
     DataExportOutputFileType:
       type: string
       enum:
       - csv
-    DataExportStatus:
-      type: string
-      enum:
-      - failure
-      - pending
-      - success
     CreateDataExportRequestBody:
       type: object
       properties:
@@ -125,6 +146,20 @@ components:
       - output_file_type
       - metadata
       title: CreateDataExportRequestBody
+    DataExportStatus:
+      type: string
+      enum:
+      - failure
+      - pending
+      - success
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
     DataExportResponseData:
       type: object
       properties:
@@ -159,41 +194,6 @@ components:
       - created_at
       - updated_at
       title: DataExportResponseData
-    DataExportType:
-      type: string
-      enum:
-      - company-feature-usage
-  responses:
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    ServerError:
-      description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

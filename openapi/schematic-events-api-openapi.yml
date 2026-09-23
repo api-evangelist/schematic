@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Schematic accesstokens Events API
+  title: Schematic Events API
   version: '0.1'
   description: Schematic API
   x-rules-engine-schema-version: v97288f60
@@ -9,14 +9,14 @@ servers:
 security:
 - ApiKeyAuth: []
 tags:
-- name: events
+- name: Events
 paths:
   /event-batch:
     post:
       operationId: createEventBatch
       summary: Create event batch
       tags:
-      - events
+      - Events
       requestBody:
         content:
           application/json:
@@ -56,7 +56,7 @@ paths:
       operationId: getEventSummaries
       summary: Get event summaries
       tags:
-      - events
+      - Events
       parameters:
       - name: q
         in: query
@@ -142,7 +142,7 @@ paths:
       operationId: listEvents
       summary: List events
       tags:
-      - events
+      - Events
       parameters:
       - name: company_id
         in: query
@@ -253,7 +253,7 @@ paths:
       operationId: createEvent
       summary: Create event
       tags:
-      - events
+      - Events
       requestBody:
         content:
           application/json:
@@ -293,7 +293,7 @@ paths:
       operationId: getEvent
       summary: Get event
       tags:
-      - events
+      - Events
       parameters:
       - name: event_id
         in: path
@@ -332,7 +332,7 @@ paths:
       operationId: getSegmentIntegrationStatus
       summary: Get segment integration status
       tags:
-      - events
+      - Events
       responses:
         '200':
           description: OK
@@ -361,103 +361,31 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   schemas:
-    ApiError:
+    EventBodyTrack:
       type: object
       properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
-    EventType:
-      type: string
-      enum:
-      - flag_check
-      - identify
-      - track
-    PreviewObject:
-      type: object
-      properties:
-        description:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-        image_url:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-      required:
-      - id
-      - name
-      title: PreviewObject
-    EventStatus:
-      type: string
-      enum:
-      - enriched
-      - failed
-      - pending
-      - processed
-      - unknown
-    EventBodyFlagCheck:
-      type: object
-      properties:
-        company_id:
-          type:
-          - string
-          - 'null'
-          description: Schematic company ID (starting with 'comp_') of the company evaluated, if any
-        error:
-          type:
-          - string
-          - 'null'
-          description: Report an error that occurred during the flag check
-        flag_id:
-          type:
-          - string
-          - 'null'
-          description: Schematic flag ID (starting with 'flag_') for the flag matching the key, if any
-        flag_key:
-          type: string
-          description: The key of the flag being checked
-        reason:
-          type: string
-          description: The reason why the value was returned
-        req_company:
+        company:
           additionalProperties:
             type: string
-          type:
-          - object
-          - 'null'
-          description: Key-value pairs used to to identify company for which the flag was checked
-        req_user:
+          type: object
+          description: Key-value pairs to identify company associated with track event
+        event:
+          type: string
+          description: The name of the type of track event
+        quantity:
+          type: integer
+          description: Optionally specify the quantity of the event
+        traits:
+          type: object
+          description: A map of trait names to trait values
+        user:
           additionalProperties:
             type: string
-          type:
-          - object
-          - 'null'
-          description: Key-value pairs used to to identify user for which the flag was checked
-        rule_id:
-          type:
-          - string
-          - 'null'
-          description: Schematic rule ID (starting with 'rule_') of the rule that matched for the flag, if any
-        user_id:
-          type:
-          - string
-          - 'null'
-          description: Schematic user ID (starting with 'user_') of the user evaluated, if any
-        value:
-          type: boolean
-          description: The value of the flag for the given company and/or user
+          type: object
+          description: Key-value pairs to identify user associated with track event
       required:
-      - flag_key
-      - reason
-      - value
-      title: EventBodyFlagCheck
+      - event
+      title: EventBodyTrack
     CreateEventBatchRequestBody:
       type: object
       properties:
@@ -469,52 +397,6 @@ components:
       required:
       - events
       title: CreateEventBatchRequestBody
-    RawEventBatchResponseData:
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/RawEventResponseData'
-          maxItems: 1000
-      required:
-      - events
-      title: RawEventBatchResponseData
-    EventSummaryResponseData:
-      type: object
-      properties:
-        company_count:
-          type: integer
-          format: int64
-        environment_id:
-          type: string
-        event_count:
-          type: integer
-          format: int64
-        event_subtype:
-          type: string
-        last_seen_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        user_count:
-          type: integer
-          format: int64
-      required:
-      - company_count
-      - environment_id
-      - event_count
-      - event_subtype
-      - user_count
-      title: EventSummaryResponseData
-    EventBody:
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/EventBodyTrack'
-      - $ref: '#/components/schemas/EventBodyFlagCheck'
-      - $ref: '#/components/schemas/EventBodyIdentify'
-      title: EventBody
     RawEventResponseData:
       type: object
       properties:
@@ -538,30 +420,73 @@ components:
       - remote_ip
       - user_agent
       title: RawEventResponseData
-    CreateEventRequestBody:
+    RawEventBatchResponseData:
       type: object
       properties:
-        body:
-          $ref: '#/components/schemas/EventBody'
-        event_type:
-          allOf:
-          - $ref: '#/components/schemas/EventType'
-          description: Either 'identify' or 'track'
-        idempotency_key:
-          type:
-          - string
-          - 'null'
-          description: Optional client-supplied key. Duplicate events with the same key (scoped to the environment) are dropped for 24h.
-          maxLength: 255
-        sent_at:
-          type:
-          - string
-          - 'null'
-          description: Optionally provide a timestamp at which the event was sent to Schematic
-          format: date-time
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/RawEventResponseData'
+          maxItems: 1000
       required:
-      - event_type
-      title: CreateEventRequestBody
+      - events
+      title: RawEventBatchResponseData
+    EventBody:
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/EventBodyTrack'
+      - $ref: '#/components/schemas/EventBodyFlagCheck'
+      - $ref: '#/components/schemas/EventBodyIdentify'
+      title: EventBody
+    EventStatus:
+      type: string
+      enum:
+      - enriched
+      - failed
+      - pending
+      - processed
+      - unknown
+    EventType:
+      type: string
+      enum:
+      - flag_check
+      - identify
+      - track
+    EventBodyIdentify:
+      type: object
+      properties:
+        company:
+          type: object
+          description: Information about the company associated with the user; required only if it is a new user
+          properties:
+            keys:
+              additionalProperties:
+                type: string
+              type: object
+              description: Key-value pairs to identify the company
+            name:
+              type: string
+              description: The display name of the company; required only if it is a new company
+            traits:
+              type: object
+              description: A map of trait names to trait values
+          required:
+          - keys
+          title: EventBodyIdentifyCompany
+        keys:
+          additionalProperties:
+            type: string
+          type: object
+          description: Key-value pairs to identify the user
+        name:
+          type: string
+          description: The display name of the user being identified; required only if it is a new user
+        traits:
+          type: object
+          description: A map of trait names to trait values
+      required:
+      - keys
+      title: EventBodyIdentify
     EventDetailResponseData:
       type: object
       properties:
@@ -662,66 +587,53 @@ components:
       - status
       - features
       title: EventDetailResponseData
-    EventBodyIdentify:
+    PreviewObject:
       type: object
       properties:
-        company:
-          type: object
-          description: Information about the company associated with the user; required only if it is a new user
-          properties:
-            keys:
-              additionalProperties:
-                type: string
-              type: object
-              description: Key-value pairs to identify the company
-            name:
-              type: string
-              description: The display name of the company; required only if it is a new company
-            traits:
-              type: object
-              description: A map of trait names to trait values
-          required:
-          - keys
-          title: EventBodyIdentifyCompany
-        keys:
-          additionalProperties:
-            type: string
-          type: object
-          description: Key-value pairs to identify the user
+        description:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        image_url:
+          type:
+          - string
+          - 'null'
         name:
           type: string
-          description: The display name of the user being identified; required only if it is a new user
-        traits:
-          type: object
-          description: A map of trait names to trait values
       required:
-      - keys
-      title: EventBodyIdentify
-    EventBodyTrack:
+      - id
+      - name
+      title: PreviewObject
+    EventSummaryResponseData:
       type: object
       properties:
-        company:
-          additionalProperties:
-            type: string
-          type: object
-          description: Key-value pairs to identify company associated with track event
-        event:
-          type: string
-          description: The name of the type of track event
-        quantity:
+        company_count:
           type: integer
-          description: Optionally specify the quantity of the event
-        traits:
-          type: object
-          description: A map of trait names to trait values
-        user:
-          additionalProperties:
-            type: string
-          type: object
-          description: Key-value pairs to identify user associated with track event
+          format: int64
+        environment_id:
+          type: string
+        event_count:
+          type: integer
+          format: int64
+        event_subtype:
+          type: string
+        last_seen_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        user_count:
+          type: integer
+          format: int64
       required:
-      - event
-      title: EventBodyTrack
+      - company_count
+      - environment_id
+      - event_count
+      - event_subtype
+      - user_count
+      title: EventSummaryResponseData
     SegmentStatusResp:
       type: object
       properties:
@@ -738,21 +650,103 @@ components:
       - connected
       - environment_id
       title: SegmentStatusResp
+    CreateEventRequestBody:
+      type: object
+      properties:
+        body:
+          $ref: '#/components/schemas/EventBody'
+        event_type:
+          allOf:
+          - $ref: '#/components/schemas/EventType'
+          description: Either 'identify' or 'track'
+        idempotency_key:
+          type:
+          - string
+          - 'null'
+          description: Optional client-supplied key. Duplicate events with the same key (scoped to the environment) are dropped for 24h.
+          maxLength: 255
+        sent_at:
+          type:
+          - string
+          - 'null'
+          description: Optionally provide a timestamp at which the event was sent to Schematic
+          format: date-time
+      required:
+      - event_type
+      title: CreateEventRequestBody
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+    EventBodyFlagCheck:
+      type: object
+      properties:
+        company_id:
+          type:
+          - string
+          - 'null'
+          description: Schematic company ID (starting with 'comp_') of the company evaluated, if any
+        error:
+          type:
+          - string
+          - 'null'
+          description: Report an error that occurred during the flag check
+        flag_id:
+          type:
+          - string
+          - 'null'
+          description: Schematic flag ID (starting with 'flag_') for the flag matching the key, if any
+        flag_key:
+          type: string
+          description: The key of the flag being checked
+        reason:
+          type: string
+          description: The reason why the value was returned
+        req_company:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+          description: Key-value pairs used to to identify company for which the flag was checked
+        req_user:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+          description: Key-value pairs used to to identify user for which the flag was checked
+        rule_id:
+          type:
+          - string
+          - 'null'
+          description: Schematic rule ID (starting with 'rule_') of the rule that matched for the flag, if any
+        user_id:
+          type:
+          - string
+          - 'null'
+          description: Schematic user ID (starting with 'user_') of the user evaluated, if any
+        value:
+          type: boolean
+          description: The value of the flag for the given company and/or user
+      required:
+      - flag_key
+      - reason
+      - value
+      title: EventBodyFlagCheck
   responses:
-    ServerError:
-      description: Server error
+    Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
     BadRequest:
       description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Unauthorized:
-      description: Unauthorized
       content:
         application/json:
           schema:
@@ -765,6 +759,12 @@ components:
             $ref: '#/components/schemas/ApiError'
     NotFound:
       description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    ServerError:
+      description: Server error
       content:
         application/json:
           schema:

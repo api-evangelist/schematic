@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Schematic accesstokens Webhooks API
+  title: Schematic Webhooks API
   version: '0.1'
   description: Schematic API
   x-rules-engine-schema-version: v97288f60
@@ -9,14 +9,14 @@ servers:
 security:
 - ApiKeyAuth: []
 tags:
-- name: webhooks
+- name: Webhooks
 paths:
   /webhook-events:
     get:
       operationId: listWebhookEvents
       summary: List webhook events
       tags:
-      - webhooks
+      - Webhooks
       parameters:
       - name: ids
         in: query
@@ -106,7 +106,7 @@ paths:
       operationId: getWebhookEvent
       summary: Get webhook event
       tags:
-      - webhooks
+      - Webhooks
       parameters:
       - name: webhook_event_id
         in: path
@@ -145,7 +145,7 @@ paths:
       operationId: countWebhookEvents
       summary: Count webhook events
       tags:
-      - webhooks
+      - Webhooks
       parameters:
       - name: ids
         in: query
@@ -231,7 +231,7 @@ paths:
       operationId: listWebhooks
       summary: List webhooks
       tags:
-      - webhooks
+      - Webhooks
       parameters:
       - name: q
         in: query
@@ -302,7 +302,7 @@ paths:
       operationId: createWebhook
       summary: Create webhook
       tags:
-      - webhooks
+      - Webhooks
       requestBody:
         content:
           application/json:
@@ -342,7 +342,7 @@ paths:
       operationId: getWebhook
       summary: Get webhook
       tags:
-      - webhooks
+      - Webhooks
       parameters:
       - name: webhook_id
         in: path
@@ -380,7 +380,7 @@ paths:
       operationId: updateWebhook
       summary: Update webhook
       tags:
-      - webhooks
+      - Webhooks
       parameters:
       - name: webhook_id
         in: path
@@ -426,7 +426,7 @@ paths:
       operationId: deleteWebhook
       summary: Delete webhook
       tags:
-      - webhooks
+      - Webhooks
       parameters:
       - name: webhook_id
         in: path
@@ -467,7 +467,7 @@ paths:
       operationId: countWebhooks
       summary: Count webhooks
       tags:
-      - webhooks
+      - Webhooks
       parameters:
       - name: q
         in: query
@@ -532,161 +532,6 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   schemas:
-    ApiError:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
-    UpdateWebhookRequestBody:
-      type: object
-      properties:
-        credit_trigger_configs:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CreditTriggerConfig'
-          maxItems: 100
-        entitlement_trigger_configs:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EntitlementTriggerConfig'
-          maxItems: 100
-        name:
-          type:
-          - string
-          - 'null'
-          maxLength: 256
-          minLength: 1
-        request_types:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/WebhookRequestType'
-          maxItems: 50
-        status:
-          allOf:
-          - $ref: '#/components/schemas/WebhookStatus'
-        url:
-          type:
-          - string
-          - 'null'
-          maxLength: 2048
-          minLength: 1
-      title: UpdateWebhookRequestBody
-    CreateWebhookRequestBody:
-      type: object
-      properties:
-        credit_trigger_configs:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CreditTriggerConfig'
-          maxItems: 100
-        entitlement_trigger_configs:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EntitlementTriggerConfig'
-          maxItems: 100
-        name:
-          type: string
-          maxLength: 256
-          minLength: 1
-        request_types:
-          type: array
-          items:
-            $ref: '#/components/schemas/WebhookRequestType'
-          maxItems: 50
-        url:
-          type: string
-          maxLength: 2048
-          minLength: 1
-      required:
-      - name
-      - url
-      - request_types
-      title: CreateWebhookRequestBody
-    CountResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: The number of resources
-    CreditTriggerConfig:
-      type: object
-      properties:
-        credit_id:
-          type: string
-      required:
-      - credit_id
-      title: CreditTriggerConfig
-    WebhookEventStatus:
-      type: string
-      enum:
-      - failure
-      - pending
-      - success
-    WebhookEventDetailResponseData:
-      type: object
-      properties:
-        created_at:
-          type: string
-          format: date-time
-        id:
-          type: string
-        payload:
-          type:
-          - string
-          - 'null'
-        request_type:
-          $ref: '#/components/schemas/WebhookRequestType'
-        response_code:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        sent_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        status:
-          $ref: '#/components/schemas/WebhookEventStatus'
-        updated_at:
-          type: string
-          format: date-time
-        webhook:
-          $ref: '#/components/schemas/WebhookResponseData'
-        webhook_id:
-          type: string
-      required:
-      - id
-      - webhook_id
-      - request_type
-      - status
-      - created_at
-      - updated_at
-      title: WebhookEventDetailResponseData
-    WebhookStatus:
-      type: string
-      enum:
-      - active
-      - inactive
-    DeleteResponse:
-      type: object
-      properties:
-        deleted:
-          type: boolean
-          description: Whether the delete was successful
     WebhookResponseData:
       type: object
       properties:
@@ -735,14 +580,107 @@ components:
       - url
       - updated_at
       title: WebhookResponseData
-    EntitlementTriggerConfig:
+    UpdateWebhookRequestBody:
       type: object
       properties:
-        feature_id:
+        credit_trigger_configs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CreditTriggerConfig'
+          maxItems: 100
+        entitlement_trigger_configs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EntitlementTriggerConfig'
+          maxItems: 100
+        name:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+          minLength: 1
+        request_types:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WebhookRequestType'
+          maxItems: 50
+        status:
+          allOf:
+          - $ref: '#/components/schemas/WebhookStatus'
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          minLength: 1
+      title: UpdateWebhookRequestBody
+    WebhookEventStatus:
+      type: string
+      enum:
+      - failure
+      - pending
+      - success
+    CountResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The number of resources
+    CreateWebhookRequestBody:
+      type: object
+      properties:
+        credit_trigger_configs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CreditTriggerConfig'
+          maxItems: 100
+        entitlement_trigger_configs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EntitlementTriggerConfig'
+          maxItems: 100
+        name:
+          type: string
+          maxLength: 256
+          minLength: 1
+        request_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookRequestType'
+          maxItems: 50
+        url:
+          type: string
+          maxLength: 2048
+          minLength: 1
+      required:
+      - name
+      - url
+      - request_types
+      title: CreateWebhookRequestBody
+    CreditTriggerConfig:
+      type: object
+      properties:
+        credit_id:
           type: string
       required:
-      - feature_id
-      title: EntitlementTriggerConfig
+      - credit_id
+      title: CreditTriggerConfig
+    DeleteResponse:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+          description: Whether the delete was successful
     WebhookRequestType:
       type: string
       enum:
@@ -785,9 +723,77 @@ components:
       - user.updated
       - auto.topup.hard.failure
       - auto.topup.retry.exceeded
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+    WebhookEventDetailResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        id:
+          type: string
+        payload:
+          type:
+          - string
+          - 'null'
+        request_type:
+          $ref: '#/components/schemas/WebhookRequestType'
+        response_code:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        sent_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        status:
+          $ref: '#/components/schemas/WebhookEventStatus'
+        updated_at:
+          type: string
+          format: date-time
+        webhook:
+          $ref: '#/components/schemas/WebhookResponseData'
+        webhook_id:
+          type: string
+      required:
+      - id
+      - webhook_id
+      - request_type
+      - status
+      - created_at
+      - updated_at
+      title: WebhookEventDetailResponseData
+    EntitlementTriggerConfig:
+      type: object
+      properties:
+        feature_id:
+          type: string
+      required:
+      - feature_id
+      title: EntitlementTriggerConfig
+    WebhookStatus:
+      type: string
+      enum:
+      - active
+      - inactive
   responses:
     Unauthorized:
       description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Not found
       content:
         application/json:
           schema:
@@ -798,20 +804,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
-    ServerError:
-      description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
     BadRequest:
       description: Bad request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
+    ServerError:
+      description: Server error
       content:
         application/json:
           schema:

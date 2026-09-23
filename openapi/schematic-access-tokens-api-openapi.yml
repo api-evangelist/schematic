@@ -9,14 +9,14 @@ servers:
 security:
 - ApiKeyAuth: []
 tags:
-- name: accesstokens
+- name: Access Tokens
 paths:
   /temporary-access-tokens:
     post:
       operationId: issueTemporaryAccessToken
       summary: Issue temporary access token
       tags:
-      - accesstokens
+      - Access Tokens
       requestBody:
         content:
           application/json:
@@ -52,28 +52,38 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
   schemas:
-    ApiError:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
-    IssueTemporaryAccessTokenRequestBody:
-      type: object
-      properties:
-        lookup:
-          additionalProperties:
-            type: string
-          type: object
-        resource_type:
-          $ref: '#/components/schemas/TemporaryAccessTokenResourceType'
-      required:
-      - resource_type
-      - lookup
-      title: IssueTemporaryAccessTokenRequestBody
     IssueTemporaryAccessTokenResponseData:
       type: object
       properties:
@@ -106,41 +116,31 @@ components:
       - updated_at
       - token
       title: IssueTemporaryAccessTokenResponseData
+    IssueTemporaryAccessTokenRequestBody:
+      type: object
+      properties:
+        lookup:
+          additionalProperties:
+            type: string
+          type: object
+        resource_type:
+          $ref: '#/components/schemas/TemporaryAccessTokenResourceType'
+      required:
+      - resource_type
+      - lookup
+      title: IssueTemporaryAccessTokenRequestBody
     TemporaryAccessTokenResourceType:
       type: string
       enum:
       - company
-  responses:
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    ServerError:
-      description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
