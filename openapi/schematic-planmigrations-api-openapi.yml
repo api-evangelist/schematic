@@ -372,13 +372,14 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   schemas:
-    PlanVersionMigrationStatus:
-      type: string
-      enum:
-      - completed
-      - failed
-      - in_progress
-      - pending
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
     PlanVersionMigrationResponseData:
       type: object
       properties:
@@ -447,14 +448,6 @@ components:
         count:
           type: integer
           description: The number of resources
-    PlanVersionCompanyMigrationStatus:
-      type: string
-      enum:
-      - completed
-      - failed
-      - in_progress
-      - pending
-      - skipped
     PlanVersionCompanyMigrationResponseData:
       type: object
       properties:
@@ -501,22 +494,29 @@ components:
       - status
       - updated_at
       title: PlanVersionCompanyMigrationResponseData
-    ApiError:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
     PlanVersionMigrationStrategy:
       type: string
       enum:
       - immediate
       - leave
+    PlanVersionMigrationStatus:
+      type: string
+      enum:
+      - completed
+      - failed
+      - in_progress
+      - pending
+    PlanVersionCompanyMigrationStatus:
+      type: string
+      enum:
+      - completed
+      - failed
+      - in_progress
+      - pending
+      - skipped
   responses:
-    Unauthorized:
-      description: Unauthorized
+    Forbidden:
+      description: Forbidden
       content:
         application/json:
           schema:
@@ -533,8 +533,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
-    Forbidden:
-      description: Forbidden
+    Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:

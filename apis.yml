@@ -59,7 +59,7 @@ modified: '2026-08-04'
 specificationVersion: '0.23'
 apis:
 - aid: schematic:schematic-accounts-api
-  name: Schematic accounts API
+  name: Schematic Accounts API
   description: The accounts API from Schematic — 12 operation(s) for accounts.
   humanURL: https://schematichq.com/
   tags:
@@ -112,7 +112,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 - aid: schematic:schematic-billing-api
-  name: Schematic billing API
+  name: Schematic Billing API
   description: The billing API from Schematic — 17 operation(s) for billing.
   humanURL: https://schematichq.com/
   tags:
@@ -165,7 +165,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 - aid: schematic:schematic-checkout-api
-  name: Schematic checkout API
+  name: Schematic Checkout API
   description: The checkout API from Schematic — 7 operation(s) for checkout.
   humanURL: https://schematichq.com/
   tags:
@@ -218,7 +218,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 - aid: schematic:schematic-companies-api
-  name: Schematic companies API
+  name: Schematic Companies API
   description: The companies API from Schematic — 29 operation(s) for companies.
   humanURL: https://schematichq.com/
   tags:
@@ -271,7 +271,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 - aid: schematic:schematic-components-api
-  name: Schematic components API
+  name: Schematic Components API
   description: The components API from Schematic — 4 operation(s) for components.
   humanURL: https://schematichq.com/
   tags:
@@ -324,7 +324,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 - aid: schematic:schematic-componentspublic-api
-  name: Schematic componentspublic API
+  name: Schematic Componentspublic API
   description: The componentspublic API from Schematic — 1 operation(s) for componentspublic.
   humanURL: https://schematichq.com/
   tags:
@@ -375,7 +375,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 - aid: schematic:schematic-credits-api
-  name: Schematic credits API
+  name: Schematic Credits API
   description: The credits API from Schematic — 20 operation(s) for credits.
   humanURL: https://schematichq.com/
   tags:
@@ -428,7 +428,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 - aid: schematic:schematic-entitlements-api
-  name: Schematic entitlements API
+  name: Schematic Entitlements API
   description: The entitlements API from Schematic — 16 operation(s) for entitlements.
   humanURL: https://schematichq.com/
   tags:
@@ -481,7 +481,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 - aid: schematic:schematic-events-api
-  name: Schematic events API
+  name: Schematic Events API
   description: The events API from Schematic — 5 operation(s) for events.
   humanURL: https://schematichq.com/
   tags:
@@ -534,7 +534,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 - aid: schematic:schematic-features-api
-  name: Schematic features API
+  name: Schematic Features API
   description: The features API from Schematic — 11 operation(s) for features.
   humanURL: https://schematichq.com/
   tags:
@@ -587,7 +587,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 - aid: schematic:schematic-insights-api
-  name: Schematic insights API
+  name: Schematic Insights API
   description: The insights API from Schematic — 6 operation(s) for insights.
   humanURL: https://schematichq.com/
   tags:
@@ -640,7 +640,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 - aid: schematic:schematic-planbundle-api
-  name: Schematic planbundle API
+  name: Schematic Planbundle API
   description: The planbundle API from Schematic — 2 operation(s) for planbundle.
   humanURL: https://schematichq.com/
   tags:
@@ -691,7 +691,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 - aid: schematic:schematic-plangroups-api
-  name: Schematic plangroups API
+  name: Schematic Plangroups API
   description: The plangroups API from Schematic — 2 operation(s) for plangroups.
   humanURL: https://schematichq.com/
   tags:
@@ -742,7 +742,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 - aid: schematic:schematic-planmigrations-api
-  name: Schematic planmigrations API
+  name: Schematic Planmigrations API
   description: The planmigrations API from Schematic — 5 operation(s) for planmigrations.
   humanURL: https://schematichq.com/
   tags:
@@ -793,7 +793,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 - aid: schematic:schematic-plans-api
-  name: Schematic plans API
+  name: Schematic Plans API
   description: The plans API from Schematic — 14 operation(s) for plans.
   humanURL: https://schematichq.com/
   tags:
@@ -846,7 +846,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 - aid: schematic:schematic-scheduledcheckout-api
-  name: Schematic scheduledcheckout API
+  name: Schematic Scheduledcheckout API
   description: The scheduledcheckout API from Schematic — 2 operation(s) for scheduledcheckout.
   humanURL: https://schematichq.com/
   tags:
@@ -897,7 +897,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 - aid: schematic:schematic-webhooks-api
-  name: Schematic webhooks API
+  name: Schematic Webhooks API
   description: The webhooks API from Schematic — 6 operation(s) for webhooks.
   humanURL: https://schematichq.com/
   tags:
@@ -1005,8 +1005,6 @@ apis:
   description: The Data Exports API from Schematic — 2 operation(s) for data exports.
   humanURL: https://schematichq.com/
   tags:
-  - Data Export
-  tags_raw:
   - Data Exports
   properties:
   - type: OpenAPI

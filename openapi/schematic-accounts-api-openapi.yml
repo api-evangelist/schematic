@@ -1006,6 +1006,29 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   schemas:
+    UpdateApiKeyRequestBody:
+      type: object
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        name:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+          minLength: 1
+      title: UpdateApiKeyRequestBody
+    QuickstartResp:
+      type: object
+      properties:
+        ok:
+          type: boolean
+      required:
+      - ok
+      title: QuickstartResp
     UpdateEnvironmentRequestBody:
       type: object
       properties:
@@ -1019,123 +1042,57 @@ components:
           maxLength: 256
           minLength: 1
       title: UpdateEnvironmentRequestBody
-    AuditLogListResponseData:
+    EnvironmentDetailResponseData:
       type: object
       properties:
-        actor_type:
-          $ref: '#/components/schemas/ActorType'
-        api_key_id:
-          type:
-          - string
-          - 'null'
-        ended_at:
-          type:
-          - string
-          - 'null'
+        api_keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiKeyResponseData'
+          maxItems: 1000
+        created_at:
+          type: string
           format: date-time
-        environment:
-          $ref: '#/components/schemas/EnvironmentResponseData'
+        environment_type:
+          $ref: '#/components/schemas/EnvironmentType'
+        id:
+          type: string
+        name:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - name
+      - environment_type
+      - created_at
+      - updated_at
+      - api_keys
+      title: EnvironmentDetailResponseData
+    CreateApiKeyRequestBody:
+      type: object
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
         environment_id:
           type:
           - string
           - 'null'
-        id:
+        name:
           type: string
-          maxLength: 36
-          minLength: 36
-        method:
-          type: string
-          maxLength: 10
+          maxLength: 256
           minLength: 1
-        resource_id:
+        readonly:
           type:
-          - integer
+          - boolean
           - 'null'
-          format: int64
-        resource_id_string:
-          type:
-          - string
-          - 'null'
-          maxLength: 256
-        resource_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 256
-        resource_type:
-          type:
-          - string
-          - 'null'
-          maxLength: 64
-        resp_code:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          maximum: 599
-          minimum: 100
-        secondary_resource:
-          type:
-          - string
-          - 'null'
-          maxLength: 256
-        started_at:
-          type: string
-          format: date-time
-        url:
-          type: string
-          maxLength: 2048
-          minLength: 1
-        user_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 256
       required:
-      - actor_type
-      - method
-      - id
-      - started_at
-      - url
-      title: AuditLogListResponseData
-    CountResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: The number of resources
-    AccountMemberRole:
-      type: string
-      enum:
-      - admin
-      - member
-    DeleteResponse:
-      type: object
-      properties:
-        deleted:
-          type: boolean
-          description: Whether the delete was successful
-    ApiKeyScope:
-      type: string
-      enum:
-      - admin
-      - capture
-      - read
-      - write
-    QuickstartResp:
-      type: object
-      properties:
-        ok:
-          type: boolean
-      required:
-      - ok
-      title: QuickstartResp
-    EnvironmentType:
-      type: string
-      enum:
-      - development
-      - production
-      - staging
+      - name
+      title: CreateApiKeyRequestBody
     AuditLogResponseData:
       type: object
       properties:
@@ -1228,76 +1185,64 @@ components:
       - started_at
       - url
       title: AuditLogResponseData
-    AccountMemberResponseData:
+    EnvironmentResponseData:
       type: object
       properties:
         created_at:
           type: string
           format: date-time
-        email:
-          type:
-          - string
-          - 'null'
+        environment_type:
+          $ref: '#/components/schemas/EnvironmentType'
         id:
           type: string
-        image_url:
-          type:
-          - string
-          - 'null'
         name:
-          type:
-          - string
-          - 'null'
-        permissions:
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/AccountMemberPermission'
-            maxItems: 64
-          type: object
-        role:
-          allOf:
-          - $ref: '#/components/schemas/AccountMemberRole'
+          type: string
         updated_at:
           type: string
           format: date-time
       required:
-      - created_at
       - id
-      - permissions
-      - updated_at
-      title: AccountMemberResponseData
-    AccountMemberPermission:
-      type: string
-      enum:
-      - billing_credits_edit
-      - companies_edit
-      - company_users_edit
-      - components_edit
-      - data_exports_edit
-      - features_edit
-      - flag_rules_edit
-      - flags_edit
-      - overrides_edit
-      - plan_billing_edit
-      - plan_entitlements_edit
-      - plan_versions_edit
-      - plans_edit
-      - webhooks_edit
-      - webhooks_reveal_secret
-    CreateEnvironmentRequestBody:
-      type: object
-      properties:
-        environment_type:
-          $ref: '#/components/schemas/EnvironmentType'
-        name:
-          type: string
-          maxLength: 256
-          minLength: 1
-      required:
       - name
       - environment_type
-      title: CreateEnvironmentRequestBody
+      - created_at
+      - updated_at
+      title: EnvironmentResponseData
+    WhoAmIResponseData:
+      type: object
+      properties:
+        account_id:
+          type: string
+        account_name:
+          type: string
+        actor_type:
+          $ref: '#/components/schemas/ActorType'
+        api_key_id:
+          type: string
+        environment_id:
+          type: string
+        environments:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentResponseData'
+          maxItems: 1000
+        stripe_user_id:
+          type: string
+        user_id:
+          type: string
+        user_name:
+          type: string
+      required:
+      - account_id
+      - account_name
+      - actor_type
+      - environments
+      title: WhoAmIResponseData
+    EnvironmentType:
+      type: string
+      enum:
+      - development
+      - production
+      - staging
     ApiKeyCreateResponseData:
       type: object
       properties:
@@ -1344,109 +1289,102 @@ components:
       - updated_at
       - secret
       title: ApiKeyCreateResponseData
-    EnvironmentResponseData:
-      type: object
-      properties:
-        created_at:
-          type: string
-          format: date-time
-        environment_type:
-          $ref: '#/components/schemas/EnvironmentType'
-        id:
-          type: string
-        name:
-          type: string
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - name
-      - environment_type
-      - created_at
-      - updated_at
-      title: EnvironmentResponseData
-    EnvironmentDetailResponseData:
-      type: object
-      properties:
-        api_keys:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiKeyResponseData'
-          maxItems: 1000
-        created_at:
-          type: string
-          format: date-time
-        environment_type:
-          $ref: '#/components/schemas/EnvironmentType'
-        id:
-          type: string
-        name:
-          type: string
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - name
-      - environment_type
-      - created_at
-      - updated_at
-      - api_keys
-      title: EnvironmentDetailResponseData
-    UpdateApiKeyRequestBody:
-      type: object
-      properties:
-        description:
-          type:
-          - string
-          - 'null'
-          maxLength: 256
-        name:
-          type:
-          - string
-          - 'null'
-          maxLength: 256
-          minLength: 1
-      title: UpdateApiKeyRequestBody
-    WhoAmIResponseData:
-      type: object
-      properties:
-        account_id:
-          type: string
-        account_name:
-          type: string
-        actor_type:
-          $ref: '#/components/schemas/ActorType'
-        api_key_id:
-          type: string
-        environment_id:
-          type: string
-        environments:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentResponseData'
-          maxItems: 1000
-        stripe_user_id:
-          type: string
-        user_id:
-          type: string
-        user_name:
-          type: string
-      required:
-      - account_id
-      - account_name
-      - actor_type
-      - environments
-      title: WhoAmIResponseData
-    ActorType:
+    ApiKeyScope:
       type: string
       enum:
-      - api_key
-      - app_user
-      - stripe_app
-      - system
-      - temporary_access_token
+      - admin
+      - capture
+      - read
+      - write
+    CreateEnvironmentRequestBody:
+      type: object
+      properties:
+        environment_type:
+          $ref: '#/components/schemas/EnvironmentType'
+        name:
+          type: string
+          maxLength: 256
+          minLength: 1
+      required:
+      - name
+      - environment_type
+      title: CreateEnvironmentRequestBody
+    CountResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The number of resources
+    AccountMemberPermission:
+      type: string
+      enum:
+      - billing_credits_edit
+      - companies_edit
+      - company_users_edit
+      - components_edit
+      - data_exports_edit
+      - features_edit
+      - flag_rules_edit
+      - flags_edit
+      - overrides_edit
+      - plan_billing_edit
+      - plan_entitlements_edit
+      - plan_versions_edit
+      - plans_edit
+      - webhooks_edit
+      - webhooks_reveal_secret
+    AccountMemberResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        email:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        image_url:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        permissions:
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/AccountMemberPermission'
+            maxItems: 64
+          type: object
+        role:
+          allOf:
+          - $ref: '#/components/schemas/AccountMemberRole'
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - created_at
+      - id
+      - permissions
+      - updated_at
+      title: AccountMemberResponseData
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+    AccountMemberRole:
+      type: string
+      enum:
+      - admin
+      - member
     ApiKeyResponseData:
       type: object
       properties:
@@ -1490,50 +1428,100 @@ components:
       - scopes
       - updated_at
       title: ApiKeyResponseData
-    CreateApiKeyRequestBody:
+    ActorType:
+      type: string
+      enum:
+      - api_key
+      - app_user
+      - stripe_app
+      - system
+      - temporary_access_token
+    AuditLogListResponseData:
       type: object
       properties:
-        description:
+        actor_type:
+          $ref: '#/components/schemas/ActorType'
+        api_key_id:
           type:
           - string
           - 'null'
-          maxLength: 256
+        ended_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        environment:
+          $ref: '#/components/schemas/EnvironmentResponseData'
         environment_id:
           type:
           - string
           - 'null'
-        name:
+        id:
           type: string
-          maxLength: 256
+          maxLength: 36
+          minLength: 36
+        method:
+          type: string
+          maxLength: 10
           minLength: 1
-        readonly:
+        resource_id:
           type:
-          - boolean
+          - integer
           - 'null'
+          format: int64
+        resource_id_string:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        resource_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        resource_type:
+          type:
+          - string
+          - 'null'
+          maxLength: 64
+        resp_code:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          maximum: 599
+          minimum: 100
+        secondary_resource:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        started_at:
+          type: string
+          format: date-time
+        url:
+          type: string
+          maxLength: 2048
+          minLength: 1
+        user_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
       required:
-      - name
-      title: CreateApiKeyRequestBody
-    ApiError:
+      - actor_type
+      - method
+      - id
+      - started_at
+      - url
+      title: AuditLogListResponseData
+    DeleteResponse:
       type: object
       properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
+        deleted:
+          type: boolean
+          description: Whether the delete was successful
   responses:
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
     Forbidden:
       description: Forbidden
       content:
@@ -1548,6 +1536,18 @@ components:
             $ref: '#/components/schemas/ApiError'
     ServerError:
       description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:

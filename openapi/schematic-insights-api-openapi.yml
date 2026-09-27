@@ -330,7 +330,58 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
   schemas:
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+    TimeSeriesGranularity:
+      type: string
+      enum:
+      - daily
+      - hourly
+      - monthly
+      - weekly
+    ActivityResponseResponseData:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityEntryResponseData'
+          maxItems: 1000
+      required:
+      - entries
+      title: ActivityResponseResponseData
     MrrResponseData:
       type: object
       properties:
@@ -343,36 +394,17 @@ components:
       - amount
       - currency
       title: MrrResponseData
-    PlanGrowthPointResponseData:
+    PlanGrowthResponseData:
       type: object
       properties:
-        month:
-          type: string
-          format: date-time
-        plan_id:
-          type: string
-        plan_name:
-          type: string
-        subscribers:
-          type: integer
-          format: int64
-      required:
-      - month
-      - plan_id
-      - plan_name
-      - subscribers
-      title: PlanGrowthPointResponseData
-    TopFeaturesByUsageResponseData:
-      type: object
-      properties:
-        features:
+        points:
           type: array
           items:
-            $ref: '#/components/schemas/TopFeatureByUsageResponseData'
+            $ref: '#/components/schemas/PlanGrowthPointResponseData'
           maxItems: 1000
       required:
-      - features
-      title: TopFeaturesByUsageResponseData
+      - points
+      title: PlanGrowthResponseData
     InsightsSummaryResponseData:
       type: object
       properties:
@@ -403,6 +435,53 @@ components:
       - total_features
       - total_plans
       title: InsightsSummaryResponseData
+    EnvironmentFeatureUsageTimeSeriesResponseData:
+      type: object
+      properties:
+        event_subtype:
+          type: string
+        feature_id:
+          type: string
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentUsagePointResponseData'
+          maxItems: 1000
+      required:
+      - event_subtype
+      - feature_id
+      - points
+      title: EnvironmentFeatureUsageTimeSeriesResponseData
+    PlanGrowthPointResponseData:
+      type: object
+      properties:
+        month:
+          type: string
+          format: date-time
+        plan_id:
+          type: string
+        plan_name:
+          type: string
+        subscribers:
+          type: integer
+          format: int64
+      required:
+      - month
+      - plan_id
+      - plan_name
+      - subscribers
+      title: PlanGrowthPointResponseData
+    TopFeaturesByUsageResponseData:
+      type: object
+      properties:
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/TopFeatureByUsageResponseData'
+          maxItems: 1000
+      required:
+      - features
+      title: TopFeaturesByUsageResponseData
     TopFeatureByUsageResponseData:
       type: object
       properties:
@@ -430,6 +509,30 @@ components:
       - prior_usage
       - usage
       title: TopFeatureByUsageResponseData
+    ActivityEntryResponseData:
+      type: object
+      properties:
+        actor_name:
+          type: string
+        method:
+          type: string
+        resource_name:
+          type: string
+        resource_type:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        title:
+          type: string
+      required:
+      - actor_name
+      - method
+      - resource_name
+      - resource_type
+      - timestamp
+      - title
+      title: ActivityEntryResponseData
     EnvironmentUsagePointResponseData:
       type: object
       properties:
@@ -460,109 +563,6 @@ components:
       - points
       - trait_definition_id
       title: EnvironmentTraitUsageTimeSeriesResponseData
-    PlanGrowthResponseData:
-      type: object
-      properties:
-        points:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlanGrowthPointResponseData'
-          maxItems: 1000
-      required:
-      - points
-      title: PlanGrowthResponseData
-    EnvironmentFeatureUsageTimeSeriesResponseData:
-      type: object
-      properties:
-        event_subtype:
-          type: string
-        feature_id:
-          type: string
-        points:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentUsagePointResponseData'
-          maxItems: 1000
-      required:
-      - event_subtype
-      - feature_id
-      - points
-      title: EnvironmentFeatureUsageTimeSeriesResponseData
-    ActivityResponseResponseData:
-      type: object
-      properties:
-        entries:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActivityEntryResponseData'
-          maxItems: 1000
-      required:
-      - entries
-      title: ActivityResponseResponseData
-    ApiError:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
-    TimeSeriesGranularity:
-      type: string
-      enum:
-      - daily
-      - hourly
-      - monthly
-      - weekly
-    ActivityEntryResponseData:
-      type: object
-      properties:
-        actor_name:
-          type: string
-        method:
-          type: string
-        resource_name:
-          type: string
-        resource_type:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-        title:
-          type: string
-      required:
-      - actor_name
-      - method
-      - resource_name
-      - resource_type
-      - timestamp
-      - title
-      title: ActivityEntryResponseData
-  responses:
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    ServerError:
-      description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
