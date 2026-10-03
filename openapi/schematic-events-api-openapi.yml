@@ -360,114 +360,38 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
   schemas:
-    EventBodyTrack:
-      type: object
-      properties:
-        company:
-          additionalProperties:
-            type: string
-          type: object
-          description: Key-value pairs to identify company associated with track event
-        event:
-          type: string
-          description: The name of the type of track event
-        quantity:
-          type: integer
-          description: Optionally specify the quantity of the event
-        traits:
-          type: object
-          description: A map of trait names to trait values
-        user:
-          additionalProperties:
-            type: string
-          type: object
-          description: Key-value pairs to identify user associated with track event
-      required:
-      - event
-      title: EventBodyTrack
-    EventSummaryResponseData:
-      type: object
-      properties:
-        company_count:
-          type: integer
-          format: int64
-        environment_id:
-          type: string
-        event_count:
-          type: integer
-          format: int64
-        event_subtype:
-          type: string
-        last_seen_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        user_count:
-          type: integer
-          format: int64
-      required:
-      - company_count
-      - environment_id
-      - event_count
-      - event_subtype
-      - user_count
-      title: EventSummaryResponseData
-    EventStatus:
-      type: string
-      enum:
-      - enriched
-      - failed
-      - pending
-      - processed
-      - unknown
-    SegmentStatusResp:
-      type: object
-      properties:
-        connected:
-          type: boolean
-        environment_id:
-          type: string
-        last_event_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      required:
-      - connected
-      - environment_id
-      title: SegmentStatusResp
-    CreateEventRequestBody:
-      type: object
-      properties:
-        body:
-          $ref: '#/components/schemas/EventBody'
-        event_type:
-          allOf:
-          - $ref: '#/components/schemas/EventType'
-          description: Either 'identify' or 'track'
-        idempotency_key:
-          type:
-          - string
-          - 'null'
-          description: Optional client-supplied key. Duplicate events with the same key (scoped to the environment) are dropped for 24h.
-          maxLength: 255
-        sent_at:
-          type:
-          - string
-          - 'null'
-          description: Optionally provide a timestamp at which the event was sent to Schematic
-          format: date-time
-      required:
-      - event_type
-      title: CreateEventRequestBody
-    EventType:
-      type: string
-      enum:
-      - flag_check
-      - identify
-      - track
     EventDetailResponseData:
       type: object
       properties:
@@ -568,49 +492,6 @@ components:
       - status
       - features
       title: EventDetailResponseData
-    EventBodyIdentify:
-      type: object
-      properties:
-        company:
-          type: object
-          description: Information about the company associated with the user; required only if it is a new user
-          properties:
-            keys:
-              additionalProperties:
-                type: string
-              type: object
-              description: Key-value pairs to identify the company
-            name:
-              type: string
-              description: The display name of the company; required only if it is a new company
-            traits:
-              type: object
-              description: A map of trait names to trait values
-          required:
-          - keys
-          title: EventBodyIdentifyCompany
-        keys:
-          additionalProperties:
-            type: string
-          type: object
-          description: Key-value pairs to identify the user
-        name:
-          type: string
-          description: The display name of the user being identified; required only if it is a new user
-        traits:
-          type: object
-          description: A map of trait names to trait values
-      required:
-      - keys
-      title: EventBodyIdentify
-    ApiError:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
     EventBodyFlagCheck:
       type: object
       properties:
@@ -667,28 +548,6 @@ components:
       - reason
       - value
       title: EventBodyFlagCheck
-    RawEventBatchResponseData:
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/RawEventResponseData'
-          maxItems: 1000
-      required:
-      - events
-      title: RawEventBatchResponseData
-    CreateEventBatchRequestBody:
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateEventRequestBody'
-          maxItems: 1000
-      required:
-      - events
-      title: CreateEventBatchRequestBody
     EventBody:
       type: object
       oneOf:
@@ -696,6 +555,74 @@ components:
       - $ref: '#/components/schemas/EventBodyFlagCheck'
       - $ref: '#/components/schemas/EventBodyIdentify'
       title: EventBody
+    EventStatus:
+      type: string
+      enum:
+      - enriched
+      - failed
+      - pending
+      - processed
+      - unknown
+    PreviewObject:
+      type: object
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        image_url:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+      required:
+      - id
+      - name
+      title: PreviewObject
+    EventType:
+      type: string
+      enum:
+      - flag_check
+      - identify
+      - track
+    EventBodyIdentify:
+      type: object
+      properties:
+        company:
+          type: object
+          description: Information about the company associated with the user; required only if it is a new user
+          properties:
+            keys:
+              additionalProperties:
+                type: string
+              type: object
+              description: Key-value pairs to identify the company
+            name:
+              type: string
+              description: The display name of the company; required only if it is a new company
+            traits:
+              type: object
+              description: A map of trait names to trait values
+          required:
+          - keys
+          title: EventBodyIdentifyCompany
+        keys:
+          additionalProperties:
+            type: string
+          type: object
+          description: Key-value pairs to identify the user
+        name:
+          type: string
+          description: The display name of the user being identified; required only if it is a new user
+        traits:
+          type: object
+          description: A map of trait names to trait values
+      required:
+      - keys
+      title: EventBodyIdentify
     RawEventResponseData:
       type: object
       properties:
@@ -719,56 +646,129 @@ components:
       - remote_ip
       - user_agent
       title: RawEventResponseData
-    PreviewObject:
+    EventBodyTrack:
       type: object
       properties:
-        description:
-          type:
-          - string
-          - 'null'
-        id:
+        company:
+          additionalProperties:
+            type: string
+          type: object
+          description: Key-value pairs to identify company associated with track event
+        event:
           type: string
-        image_url:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
+          description: The name of the type of track event
+        quantity:
+          type: integer
+          description: Optionally specify the quantity of the event
+        traits:
+          type: object
+          description: A map of trait names to trait values
+        user:
+          additionalProperties:
+            type: string
+          type: object
+          description: Key-value pairs to identify user associated with track event
       required:
-      - id
-      - name
-      title: PreviewObject
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    ServerError:
-      description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
+      - event
+      title: EventBodyTrack
+    EventSummaryResponseData:
+      type: object
+      properties:
+        company_count:
+          type: integer
+          format: int64
+        environment_id:
+          type: string
+        event_count:
+          type: integer
+          format: int64
+        event_subtype:
+          type: string
+        last_seen_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        user_count:
+          type: integer
+          format: int64
+      required:
+      - company_count
+      - environment_id
+      - event_count
+      - event_subtype
+      - user_count
+      title: EventSummaryResponseData
+    RawEventBatchResponseData:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/RawEventResponseData'
+          maxItems: 1000
+      required:
+      - events
+      title: RawEventBatchResponseData
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+    CreateEventBatchRequestBody:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateEventRequestBody'
+          maxItems: 1000
+      required:
+      - events
+      title: CreateEventBatchRequestBody
+    SegmentStatusResp:
+      type: object
+      properties:
+        connected:
+          type: boolean
+        environment_id:
+          type: string
+        last_event_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - connected
+      - environment_id
+      title: SegmentStatusResp
+    CreateEventRequestBody:
+      type: object
+      properties:
+        body:
+          $ref: '#/components/schemas/EventBody'
+        event_type:
+          allOf:
+          - $ref: '#/components/schemas/EventType'
+          description: Either 'identify' or 'track'
+        idempotency_key:
+          type:
+          - string
+          - 'null'
+          description: Optional client-supplied key. Duplicate events with the same key (scoped to the environment) are dropped for 24h.
+          maxLength: 255
+        sent_at:
+          type:
+          - string
+          - 'null'
+          description: Optionally provide a timestamp at which the event was sent to Schematic
+          format: date-time
+      required:
+      - event_type
+      title: CreateEventRequestBody
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

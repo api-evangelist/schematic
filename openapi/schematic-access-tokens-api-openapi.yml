@@ -52,6 +52,37 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
   schemas:
     ApiError:
       type: object
@@ -65,6 +96,19 @@ components:
       type: string
       enum:
       - company
+    IssueTemporaryAccessTokenRequestBody:
+      type: object
+      properties:
+        lookup:
+          additionalProperties:
+            type: string
+          type: object
+        resource_type:
+          $ref: '#/components/schemas/TemporaryAccessTokenResourceType'
+      required:
+      - resource_type
+      - lookup
+      title: IssueTemporaryAccessTokenRequestBody
     IssueTemporaryAccessTokenResponseData:
       type: object
       properties:
@@ -97,50 +141,6 @@ components:
       - updated_at
       - token
       title: IssueTemporaryAccessTokenResponseData
-    IssueTemporaryAccessTokenRequestBody:
-      type: object
-      properties:
-        lookup:
-          additionalProperties:
-            type: string
-          type: object
-        resource_type:
-          $ref: '#/components/schemas/TemporaryAccessTokenResourceType'
-      required:
-      - resource_type
-      - lookup
-      title: IssueTemporaryAccessTokenRequestBody
-  responses:
-    ServerError:
-      description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

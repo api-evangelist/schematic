@@ -372,14 +372,6 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   schemas:
-    ApiError:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
     PlanVersionMigrationResponseData:
       type: object
       properties:
@@ -442,12 +434,6 @@ components:
       - total_companies
       - updated_at
       title: PlanVersionMigrationResponseData
-    CountResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: The number of resources
     PlanVersionCompanyMigrationResponseData:
       type: object
       properties:
@@ -494,11 +480,6 @@ components:
       - status
       - updated_at
       title: PlanVersionCompanyMigrationResponseData
-    PlanVersionMigrationStrategy:
-      type: string
-      enum:
-      - immediate
-      - leave
     PlanVersionMigrationStatus:
       type: string
       enum:
@@ -506,6 +487,14 @@ components:
       - failed
       - in_progress
       - pending
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
     PlanVersionCompanyMigrationStatus:
       type: string
       enum:
@@ -514,7 +503,24 @@ components:
       - in_progress
       - pending
       - skipped
+    CountResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The number of resources
+    PlanVersionMigrationStrategy:
+      type: string
+      enum:
+      - immediate
+      - leave
   responses:
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
     Forbidden:
       description: Forbidden
       content:
@@ -535,12 +541,6 @@ components:
             $ref: '#/components/schemas/ApiError'
     Unauthorized:
       description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    ServerError:
-      description: Server error
       content:
         application/json:
           schema:

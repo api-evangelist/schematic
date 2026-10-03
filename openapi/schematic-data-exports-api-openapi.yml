@@ -91,44 +91,46 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
   schemas:
-    ApiError:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
     DataExportType:
       type: string
       enum:
       - company-feature-usage
-    DataExportStatus:
-      type: string
-      enum:
-      - failure
-      - pending
-      - success
     DataExportOutputFileType:
       type: string
       enum:
       - csv
-    CreateDataExportRequestBody:
-      type: object
-      properties:
-        export_type:
-          $ref: '#/components/schemas/DataExportType'
-        metadata:
-          type: string
-          maxLength: 10240
-        output_file_type:
-          $ref: '#/components/schemas/DataExportOutputFileType'
-      required:
-      - export_type
-      - output_file_type
-      - metadata
-      title: CreateDataExportRequestBody
     DataExportResponseData:
       type: object
       properties:
@@ -163,37 +165,35 @@ components:
       - created_at
       - updated_at
       title: DataExportResponseData
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    ServerError:
-      description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+    CreateDataExportRequestBody:
+      type: object
+      properties:
+        export_type:
+          $ref: '#/components/schemas/DataExportType'
+        metadata:
+          type: string
+          maxLength: 10240
+        output_file_type:
+          $ref: '#/components/schemas/DataExportOutputFileType'
+      required:
+      - export_type
+      - output_file_type
+      - metadata
+      title: CreateDataExportRequestBody
+    DataExportStatus:
+      type: string
+      enum:
+      - failure
+      - pending
+      - success
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
