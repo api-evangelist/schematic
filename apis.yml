@@ -1005,6 +1005,8 @@ apis:
   description: The Data Exports API from Schematic — 2 operation(s) for data exports.
   humanURL: https://schematichq.com/
   tags:
+  - Data Export
+  tags_raw:
   - Data Exports
   properties:
   - type: OpenAPI
@@ -1103,6 +1105,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/schematic/refs/heads/main/json-ld/schematic-context.jsonld
 common:
+- type: CapabilityMap
+  url: capabilities/schematic-capability-edges.yml
+  name: Schematic Business Capability Map
 - type: AgenticAccess
   url: agentic-access/schematic-agentic-access.yml
 - type: DomainSecurity
