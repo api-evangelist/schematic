@@ -1196,22 +1196,155 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   schemas:
-    BillingTiersMode:
+    DeleteResponse:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+          description: Whether the delete was successful
+    InvoiceResponseData:
+      type: object
+      properties:
+        amount_due:
+          type: integer
+          format: int64
+        amount_paid:
+          type: integer
+          format: int64
+        amount_remaining:
+          type: integer
+          format: int64
+        collection_method:
+          type: string
+        company_id:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+        currency:
+          type: string
+        customer_external_id:
+          type: string
+        due_date:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        environment_id:
+          type: string
+        external_id:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        payment_method_external_id:
+          type:
+          - string
+          - 'null'
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        status:
+          allOf:
+          - $ref: '#/components/schemas/InvoiceStatus'
+        subscription_external_id:
+          type:
+          - string
+          - 'null'
+        subtotal:
+          type: integer
+          format: int64
+        updated_at:
+          type: string
+          format: date-time
+        url:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - amount_due
+      - amount_paid
+      - amount_remaining
+      - collection_method
+      - created_at
+      - currency
+      - customer_external_id
+      - environment_id
+      - provider_type
+      - subtotal
+      - updated_at
+      title: InvoiceResponseData
+    CustomPlanActivationStrategy:
       type: string
       enum:
-      - graduated
-      - volume
-    PlanVersionStatus:
+      - on_payment
+      - on_publish
+    ConditionType:
       type: string
       enum:
-      - published
-      - draft
-      - archived
-    PlanType:
-      type: string
-      enum:
+      - base_plan
+      - billing_product
+      - company
+      - credit
+      - metric
       - plan
-      - add_on
+      - plan_version
+      - trait
+      - user
+    FeatureResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        description:
+          type: string
+        event_subtype:
+          type:
+          - string
+          - 'null'
+        feature_type:
+          $ref: '#/components/schemas/FeatureType'
+        icon:
+          type: string
+        id:
+          type: string
+        lifecycle_phase:
+          allOf:
+          - $ref: '#/components/schemas/FeatureLifecyclePhase'
+        maintainer_account_member_id:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        plural_name:
+          type:
+          - string
+          - 'null'
+        singular_name:
+          type:
+          - string
+          - 'null'
+        trait_id:
+          type:
+          - string
+          - 'null'
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - name
+      - description
+      - feature_type
+      - icon
+      - created_at
+      - updated_at
+      title: FeatureResponseData
     CreatePlanRequestBody:
       type: object
       properties:
@@ -1233,87 +1366,265 @@ components:
       - name
       - plan_type
       title: CreatePlanRequestBody
-    FeatureType:
-      type: string
-      enum:
-      - boolean
-      - event
-      - trait
-    EntityType:
-      type: string
-      enum:
-      - company
-      - user
-    FeatureLifecyclePhase:
-      type: string
-      enum:
-      - add_on
-      - alpha
-      - beta
-      - deprecated
-      - ga
-      - inactive
-      - in_plan
-      - internal_testing
-      - legacy
-    BillingProductPriceInterval:
-      type: string
-      enum:
-      - day
-      - month
-      - one-time
-      - year
-    EntityKeyDefinitionResponseData:
+    BillingProductResponseData:
       type: object
       properties:
-        created_at:
+        account_id:
           type: string
-          format: date-time
-        entity_type:
-          $ref: '#/components/schemas/EntityType'
-        id:
-          type: string
-        key:
-          type: string
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - entity_type
-      - key
-      - created_at
-      - updated_at
-      title: EntityKeyDefinitionResponseData
-    BillingProductForSubscriptionResponseData:
-      type: object
-      properties:
-        billing_scheme:
-          $ref: '#/components/schemas/BillingPriceScheme'
-        billing_threshold:
-          type:
-          - integer
-          - 'null'
-          format: int64
         created_at:
           type: string
           format: date-time
         currency:
-          type: string
+          type:
+          - string
+          - 'null'
+          description: Deprecated; currencies are associated with prices, not products
+          deprecated: true
         environment_id:
           type: string
         external_id:
           type: string
+        is_active:
+          type: boolean
+        name:
+          type: string
+        price:
+          type: number
+        price_decimal:
+          type:
+          - string
+          - 'null'
+        product_id:
+          type: string
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        quantity:
+          type: number
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - account_id
+      - created_at
+      - environment_id
+      - external_id
+      - is_active
+      - name
+      - price
+      - product_id
+      - provider_type
+      - quantity
+      - updated_at
+      title: BillingProductResponseData
+    PreviewObjectResponseData:
+      type: object
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
         id:
           type: string
-        interval:
-          type: string
-        meter_id:
+        image_url:
           type:
           - string
           - 'null'
         name:
           type: string
+      required:
+      - id
+      - name
+      title: PreviewObjectResponseData
+    BillingProductDetailResponseData:
+      type: object
+      properties:
+        account_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        currency:
+          type:
+          - string
+          - 'null'
+          description: Deprecated; currencies are associated with prices, not products
+          deprecated: true
+        environment_id:
+          type: string
+        external_id:
+          type: string
+        is_active:
+          type: boolean
+        name:
+          type: string
+        price:
+          type: number
+        price_decimal:
+          type:
+          - string
+          - 'null'
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingPriceResponseData'
+          maxItems: 1000
+        product_id:
+          type: string
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        quantity:
+          type: number
+        subscription_count:
+          type: integer
+          format: int64
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - account_id
+      - created_at
+      - environment_id
+      - external_id
+      - is_active
+      - name
+      - price
+      - product_id
+      - provider_type
+      - quantity
+      - updated_at
+      - prices
+      - subscription_count
+      title: BillingProductDetailResponseData
+    BillingSubscriptionDiscountView:
+      type: object
+      properties:
+        amount_off:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        coupon_id:
+          type: string
+        coupon_name:
+          type: string
+        currency:
+          type:
+          - string
+          - 'null'
+        customer_facing_code:
+          type:
+          - string
+          - 'null'
+        discount_external_id:
+          type: string
+        duration:
+          type: string
+        duration_in_months:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        ended_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        is_active:
+          type: boolean
+        percent_off:
+          type:
+          - number
+          - 'null'
+        promo_code_external_id:
+          type:
+          - string
+          - 'null'
+        started_at:
+          type: string
+          format: date-time
+        subscription_external_id:
+          type: string
+      required:
+      - discount_external_id
+      - subscription_external_id
+      - coupon_id
+      - started_at
+      - coupon_name
+      - duration
+      - is_active
+      title: BillingSubscriptionDiscountView
+    UpdatePayInAdvanceRequestBody:
+      type: object
+      properties:
+        price_id:
+          type: string
+        quantity:
+          type: integer
+          format: int64
+      required:
+      - price_id
+      - quantity
+      title: UpdatePayInAdvanceRequestBody
+    TraitType:
+      type: string
+      enum:
+      - boolean
+      - currency
+      - date
+      - number
+      - string
+      - url
+    TraitDefinition:
+      type: object
+      properties:
+        comparable_type:
+          type: string
+          enum:
+          - bool
+          - date
+          - int
+          - string
+        entity_type:
+          $ref: '#/components/schemas/EntityType'
+        id:
+          type: string
+      required:
+      - id
+      - comparable_type
+      - entity_type
+      title: TraitDefinition
+    BillingPriceView:
+      type: object
+      properties:
+        billing_scheme:
+          $ref: '#/components/schemas/BillingPriceScheme'
+        created_at:
+          type: string
+          format: date-time
+        currency:
+          type: string
+        id:
+          type: string
+        interval:
+          $ref: '#/components/schemas/BillingProductPriceInterval'
+        is_active:
+          type: boolean
+        meter_event_name:
+          type:
+          - string
+          - 'null'
+        meter_event_payload_key:
+          type:
+          - string
+          - 'null'
+        meter_id:
+          type:
+          - string
+          - 'null'
+        nickname:
+          type:
+          - string
+          - 'null'
         package_size:
           type: integer
           format: int64
@@ -1333,16 +1644,17 @@ components:
           items:
             $ref: '#/components/schemas/BillingProductPriceTierResponseData'
           maxItems: 100
+        product_external_id:
+          type: string
+        product_id:
+          type: string
+        product_name:
+          type: string
         provider_type:
           $ref: '#/components/schemas/BillingProviderType'
-        quantity:
-          type: number
-        subscription_id:
-          type: string
-        subscription_item_external_id:
-          type:
-          - string
-          - 'null'
+        tiers_mode:
+          allOf:
+          - $ref: '#/components/schemas/BillingTiersMode'
         updated_at:
           type: string
           format: date-time
@@ -1350,474 +1662,132 @@ components:
           $ref: '#/components/schemas/BillingPriceUsageType'
       required:
       - id
+      - billing_scheme
       - created_at
       - currency
-      - environment_id
-      - external_id
       - interval
-      - name
+      - is_active
       - package_size
       - price
       - price_external_id
-      - price_id
-      - price_tier
+      - product_external_id
       - provider_type
-      - quantity
-      - billing_scheme
-      - subscription_id
       - updated_at
       - usage_type
-      title: BillingProductForSubscriptionResponseData
-    CreditCurrencyPriceResponseData:
+      - price_id
+      - product_id
+      - product_name
+      - price_tier
+      title: BillingPriceView
+    BillingCreditResponseData:
       type: object
       properties:
-        currency:
-          type: string
-        price:
-          $ref: '#/components/schemas/BillingPriceResponseData'
-      required:
-      - currency
-      title: CreditCurrencyPriceResponseData
-    UpsertBillingProductRequestBody:
-      type: object
-      properties:
-        billing_product_id:
-          type:
-          - string
-          - 'null'
-        charge_type:
-          $ref: '#/components/schemas/ChargeType'
-        currency:
-          type:
-          - string
-          - 'null'
-        currency_prices:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PlanCurrencyPriceRequestBody'
-          maxItems: 50
-        is_trialable:
+        burn_strategy:
+          $ref: '#/components/schemas/BillingCreditBurnStrategy'
+        cost_editable:
           type: boolean
-        monthly_price:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        monthly_price_id:
-          type:
-          - string
-          - 'null'
-        one_time_price:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        one_time_price_id:
-          type:
-          - string
-          - 'null'
-        trial_days:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        yearly_price:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        yearly_price_id:
-          type:
-          - string
-          - 'null'
-      required:
-      - charge_type
-      - is_trialable
-      title: UpsertBillingProductRequestBody
-    UpdatePlanRequestBody:
-      type: object
-      properties:
-        description:
-          type:
-          - string
-          - 'null'
-          maxLength: 1024
-          minLength: 0
-        icon:
-          allOf:
-          - $ref: '#/components/schemas/PlanIcon'
-        name:
-          type: string
-          maxLength: 256
-          minLength: 1
-      required:
-      - name
-      title: UpdatePlanRequestBody
-    ConditionType:
-      type: string
-      enum:
-      - base_plan
-      - billing_product
-      - company
-      - credit
-      - metric
-      - plan
-      - plan_version
-      - trait
-      - user
-    PlanCurrencyPricesResponseData:
-      type: object
-      properties:
-        currency:
-          type: string
-        monthly_price:
-          $ref: '#/components/schemas/BillingPriceResponseData'
-        one_time_price:
-          $ref: '#/components/schemas/BillingPriceResponseData'
-        yearly_price:
-          $ref: '#/components/schemas/BillingPriceResponseData'
-      required:
-      - currency
-      title: PlanCurrencyPricesResponseData
-    PublishPlanVersionRequestBody:
-      type: object
-      properties:
-        activation_strategy:
-          allOf:
-          - $ref: '#/components/schemas/CustomPlanActivationStrategy'
-        customer_email:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        days_until_due:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          maximum: 365
-        excluded_company_ids:
-          type: array
-          items:
-            type: string
-          maxItems: 1000
-        migration_strategy:
-          $ref: '#/components/schemas/PlanVersionMigrationStrategy'
-        pay_in_advance:
-          type: array
-          items:
-            $ref: '#/components/schemas/UpdatePayInAdvanceRequestBody'
-          maxItems: 100
-      required:
-      - excluded_company_ids
-      - migration_strategy
-      - pay_in_advance
-      title: PublishPlanVersionRequestBody
-    PlanDetailResponseData:
-      type: object
-      properties:
-        active_version:
-          $ref: '#/components/schemas/PlanVersionResponseData'
-        audience_type:
-          type:
-          - string
-          - 'null'
-          deprecated: true
-        billing_linked_resource:
-          $ref: '#/components/schemas/BillingLinkedResourceResponseData'
-        billing_product:
-          $ref: '#/components/schemas/BillingProductDetailResponseData'
-        charge_type:
-          $ref: '#/components/schemas/ChargeType'
-        company_count:
-          type: integer
-          format: int64
-        company_id:
-          type:
-          - string
-          - 'null'
-        company_name:
-          type:
-          - string
-          - 'null'
-        controlled_by:
-          $ref: '#/components/schemas/BillingProviderType'
-        copied_from_plan_id:
-          type:
-          - string
-          - 'null'
         created_at:
           type: string
           format: date-time
         currency_prices:
           type: array
           items:
-            $ref: '#/components/schemas/PlanCurrencyPricesResponseData'
-          maxItems: 1000
-        description:
-          type: string
-        draft_version:
-          $ref: '#/components/schemas/PlanVersionResponseData'
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureInPlanResponseData'
-          maxItems: 1000
-        icon:
-          $ref: '#/components/schemas/PlanIcon'
-        id:
-          type: string
-        included_credit_grants:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillingPlanCreditGrantResponseData'
-          maxItems: 1000
-        is_default:
-          type: boolean
-          deprecated: true
-        is_free:
-          type: boolean
-        is_trialable:
-          type: boolean
-        monthly_price:
-          $ref: '#/components/schemas/BillingPriceResponseData'
-        name:
-          type: string
-        one_time_price:
-          $ref: '#/components/schemas/BillingPriceResponseData'
-        plan_type:
-          $ref: '#/components/schemas/PlanType'
-        trial_days:
+            $ref: '#/components/schemas/CreditCurrencyPriceResponseData'
+          maxItems: 256
+        default_expiry_unit:
+          $ref: '#/components/schemas/BillingCreditExpiryUnit'
+        default_expiry_unit_count:
           type:
           - integer
           - 'null'
           format: int64
+        default_rollover_policy:
+          $ref: '#/components/schemas/BillingCreditRolloverPolicy'
+        description:
+          type: string
+        icon:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        name:
+          type: string
+        plural_name:
+          type:
+          - string
+          - 'null'
+        price:
+          $ref: '#/components/schemas/BillingPriceResponseData'
+        product:
+          $ref: '#/components/schemas/BillingProductResponseData'
+        singular_name:
+          type:
+          - string
+          - 'null'
         updated_at:
           type: string
           format: date-time
-        versions:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlanVersionResponseData'
-          maxItems: 1000
-        yearly_price:
-          $ref: '#/components/schemas/BillingPriceResponseData'
       required:
-      - created_at
-      - description
-      - icon
       - id
       - name
-      - plan_type
-      - updated_at
-      - charge_type
-      - company_count
-      - controlled_by
+      - description
+      - default_expiry_unit
+      - default_rollover_policy
+      - burn_strategy
+      - cost_editable
       - currency_prices
-      - features
-      - is_default
-      - is_free
-      - is_trialable
-      - versions
-      title: PlanDetailResponseData
-    BillingProductPriceTierResponseData:
+      - created_at
+      - updated_at
+      title: BillingCreditResponseData
+    RuleDetailResponseData:
       type: object
       properties:
-        flat_amount:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        per_unit_price:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        per_unit_price_decimal:
-          type:
-          - string
-          - 'null'
-        up_to:
-          type:
-          - integer
-          - 'null'
-          format: int64
-      title: BillingProductPriceTierResponseData
-    EntityTraitDetailResponseData:
-      type: object
-      properties:
+        condition_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleConditionGroupDetailResponseData'
+          maxItems: 1000
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleConditionDetailResponseData'
+          maxItems: 1000
         created_at:
           type: string
           format: date-time
-        definition:
-          $ref: '#/components/schemas/EntityTraitDefinitionResponseData'
-        definition_id:
-          type: string
         environment_id:
           type: string
+        flag_id:
+          type:
+          - string
+          - 'null'
         id:
           type: string
+        name:
+          type: string
+        priority:
+          type: integer
+          format: int64
+        rule_type:
+          $ref: '#/components/schemas/RuleType'
         updated_at:
           type: string
           format: date-time
         value:
-          type: string
+          type: boolean
       required:
       - id
       - environment_id
-      - definition_id
+      - priority
+      - name
+      - rule_type
       - value
       - created_at
       - updated_at
-      title: EntityTraitDetailResponseData
-    BillingCreditRolloverPolicy:
-      type: string
-      enum:
-      - expire
-      - none
-      - rollover
-    CreditCurrencyPrice:
-      type: object
-      properties:
-        currency:
-          type: string
-        price:
-          $ref: '#/components/schemas/BillingPriceView'
-      required:
-      - currency
-      title: CreditCurrencyPrice
-    RuleType:
-      type: string
-      enum:
-      - company_override
-      - company_override_usage_exceeded
-      - default
-      - global_override
-      - plan_entitlement
-      - plan_entitlement_usage_exceeded
-      - standard
-    PreviewObject:
-      type: object
-      properties:
-        description:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-        image_url:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-      required:
-      - id
-      - name
-      title: PreviewObject
-    PlanIcon:
-      type: string
-      enum:
-      - amber
-      - blue
-      - blueGray
-      - blueGreen
-      - cyan
-      - emerald
-      - fuchsia
-      - gray
-      - green
-      - indigo
-      - lightBlue
-      - lime
-      - orange
-      - pink
-      - purple
-      - red
-      - redOrange
-      - rose
-      - sky
-      - slate
-      - teal
-      - trueGray
-      - violet
-      - warmGray
-      - yellow
-    ConditionGroup:
-      type: object
-      properties:
-        conditions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Condition'
-          maxItems: 1000
-      required:
       - conditions
-      title: ConditionGroup
-    FlagType:
-      type: string
-      enum:
-      - boolean
-    ScheduledDowngradeResponseData:
-      type: object
-      properties:
-        currency:
-          type: string
-        effective_after:
-          type: string
-          format: date-time
-        from_plan_id:
-          type: string
-        from_plan_name:
-          type: string
-        from_subscription_price:
-          type: integer
-          format: int64
-        id:
-          type: string
-        interval:
-          type: string
-        scheduled_interval:
-          type:
-          - string
-          - 'null'
-        scheduled_price:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        to_plan_id:
-          type: string
-        to_plan_name:
-          type: string
-      required:
-      - currency
-      - effective_after
-      - from_plan_id
-      - from_plan_name
-      - from_subscription_price
-      - id
-      - interval
-      - to_plan_id
-      - to_plan_name
-      title: ScheduledDowngradeResponseData
-    UpdateCompanyPlansRequestBody:
-      type: object
-      properties:
-        add_on_ids:
-          type: array
-          items:
-            type: string
-          maxItems: 100
-        base_plan_id:
-          type:
-          - string
-          - 'null'
-      required:
-      - add_on_ids
-      title: UpdateCompanyPlansRequestBody
+      - condition_groups
+      title: RuleDetailResponseData
     CompanyPlanWithBillingSubView:
       type: object
       properties:
@@ -1869,479 +1839,83 @@ components:
       - name
       - included_credit_grants
       title: CompanyPlanWithBillingSubView
-    CreateCustomPlanRequestBody:
+    InvoiceStatus:
+      type: string
+      enum:
+      - draft
+      - open
+      - paid
+      - uncollectible
+      - void
+    FlagInPlanResponseData:
       type: object
       properties:
-        company_id:
+        created_at:
           type: string
-        copied_from_plan_id:
-          type:
-          - string
-          - 'null'
+          format: date-time
+        default_value:
+          type: boolean
         description:
           type: string
-          maxLength: 1024
-          minLength: 0
-        icon:
-          allOf:
-          - $ref: '#/components/schemas/PlanIcon'
-        name:
-          type: string
-          maxLength: 256
-          minLength: 1
-      required:
-      - company_id
-      - description
-      - name
-      title: CreateCustomPlanRequestBody
-    CompanyDetailResponseData:
-      type: object
-      properties:
-        add_ons:
-          type: array
-          items:
-            $ref: '#/components/schemas/CompanyPlanWithBillingSubView'
-          maxItems: 1000
-        billing_credit_balances:
-          additionalProperties:
-            type: number
-          type:
-          - object
-          - 'null'
-        billing_subscription:
-          $ref: '#/components/schemas/BillingSubscriptionView'
-        billing_subscriptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillingSubscriptionView'
-          maxItems: 1000
-        created_at:
-          type: string
-          format: date-time
-        custom_plan_billings:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomPlanBillingResponseData'
-          maxItems: 1000
-        default_payment_method:
-          $ref: '#/components/schemas/PaymentMethodResponseData'
-        entitlements:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureEntitlement'
-          maxItems: 1000
-        entity_traits:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityTraitDetailResponseData'
-          maxItems: 1000
-        environment_id:
-          type: string
-        id:
-          type: string
-        keys:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityKeyDetailResponseData'
-          maxItems: 1000
-        last_seen_at:
+        feature:
+          $ref: '#/components/schemas/FeatureResponseData'
+        feature_id:
           type:
           - string
           - 'null'
-          format: date-time
-        logo_url:
-          type:
-          - string
-          - 'null'
-        metrics:
-          type: array
-          items:
-            $ref: '#/components/schemas/CompanyEventPeriodMetricsResponseData'
-          maxItems: 1000
-        name:
-          type: string
-        payment_methods:
-          type: array
-          items:
-            $ref: '#/components/schemas/PaymentMethodResponseData'
-          maxItems: 1000
-        plan:
-          $ref: '#/components/schemas/CompanyPlanWithBillingSubView'
-        plans:
-          type: array
-          items:
-            $ref: '#/components/schemas/GenericPreviewObject'
-          maxItems: 1000
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
-          maxItems: 1000
-        scheduled_downgrade:
-          $ref: '#/components/schemas/ScheduledDowngradeResponseData'
-        traits:
-          type: object
-          description: A map of trait names to trait values
-        updated_at:
-          type: string
-          format: date-time
-        user_count:
-          type: integer
-          format: int64
-      required:
-      - created_at
-      - environment_id
-      - id
-      - name
-      - updated_at
-      - add_ons
-      - billing_subscriptions
-      - custom_plan_billings
-      - entitlements
-      - entity_traits
-      - keys
-      - metrics
-      - payment_methods
-      - plans
-      - rules
-      - user_count
-      title: CompanyDetailResponseData
-    BillingProductPlanResponseData:
-      type: object
-      properties:
-        account_id:
-          type: string
-        billing_product_id:
-          type: string
-        charge_type:
-          $ref: '#/components/schemas/ChargeType'
-        controlled_by:
-          $ref: '#/components/schemas/BillingProviderType'
-        environment_id:
-          type: string
-        is_trialable:
-          type: boolean
-        monthly_price_id:
-          type:
-          - string
-          - 'null'
-        one_time_price_id:
-          type:
-          - string
-          - 'null'
-        plan_id:
-          type: string
-        trial_days:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        yearly_price_id:
-          type:
-          - string
-          - 'null'
-      required:
-      - account_id
-      - charge_type
-      - environment_id
-      - plan_id
-      - billing_product_id
-      - controlled_by
-      - is_trialable
-      title: BillingProductPlanResponseData
-    RetryCustomPlanBillingRequestBody:
-      type: object
-      properties:
-        activation_strategy:
-          allOf:
-          - $ref: '#/components/schemas/CustomPlanActivationStrategy'
-        customer_email:
-          type: string
-          maxLength: 255
-        days_until_due:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          maximum: 365
-        pay_in_advance:
-          type: array
-          items:
-            $ref: '#/components/schemas/UpdatePayInAdvanceRequestBody'
-          maxItems: 100
-      required:
-      - customer_email
-      - pay_in_advance
-      title: RetryCustomPlanBillingRequestBody
-    Condition:
-      type: object
-      properties:
-        account_id:
-          type: string
-        comparison_trait_definition:
-          $ref: '#/components/schemas/TraitDefinition'
-        condition_type:
-          $ref: '#/components/schemas/ConditionType'
-        consumption_rate:
-          type:
-          - number
-          - 'null'
-        credit_id:
-          type:
-          - string
-          - 'null'
-        environment_id:
-          type: string
-        event_subtype:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-        metric_period:
-          allOf:
-          - $ref: '#/components/schemas/MetricPeriod'
-        metric_period_month_reset:
-          allOf:
-          - $ref: '#/components/schemas/MetricPeriodMonthReset'
-        metric_value:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        operator:
-          $ref: '#/components/schemas/ComparableOperator'
-        resource_ids:
-          type: array
-          items:
-            type: string
-          maxItems: 1000
-        trait_definition:
-          $ref: '#/components/schemas/TraitDefinition'
-        trait_value:
-          type: string
-      required:
-      - id
-      - account_id
-      - environment_id
-      - condition_type
-      - operator
-      - resource_ids
-      - trait_value
-      title: Condition
-    BillingProviderType:
-      type: string
-      enum:
-      - orb
-      - schematic
-      - stripe
-    PaymentMethodResponseData:
-      type: object
-      properties:
-        account_last4:
-          type:
-          - string
-          - 'null'
-        account_name:
-          type:
-          - string
-          - 'null'
-        bank_name:
-          type:
-          - string
-          - 'null'
-        billing_email:
-          type:
-          - string
-          - 'null'
-        billing_name:
-          type:
-          - string
-          - 'null'
-        card_brand:
-          type:
-          - string
-          - 'null'
-        card_exp_month:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        card_exp_year:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        card_last4:
-          type:
-          - string
-          - 'null'
-        company_id:
-          type:
-          - string
-          - 'null'
-        created_at:
-          type: string
-          format: date-time
-        customer_external_id:
-          type: string
-        environment_id:
-          type: string
-        external_id:
-          type: string
-        id:
-          type: string
-        payment_method_type:
-          type: string
-        provider_type:
-          $ref: '#/components/schemas/BillingProviderType'
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - created_at
-      - customer_external_id
-      - environment_id
-      - external_id
-      - payment_method_type
-      - provider_type
-      - updated_at
-      title: PaymentMethodResponseData
-    CustomPlanBillingStatus:
-      type: string
-      enum:
-      - active
-      - expired
-      - paid
-      - pending
-    EntityTraitDefinitionResponseData:
-      type: object
-      properties:
-        created_at:
-          type: string
-          format: date-time
-        display_name:
-          type: string
-        entity_type:
-          $ref: '#/components/schemas/EntityType'
-        hierarchy:
-          type: array
-          items:
-            type: string
-          maxItems: 1000
-        id:
-          type: string
-        trait_type:
-          $ref: '#/components/schemas/TraitType'
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - created_at
-      - display_name
-      - entity_type
-      - hierarchy
-      - id
-      - trait_type
-      - updated_at
-      title: EntityTraitDefinitionResponseData
-    BillingProductResponseData:
-      type: object
-      properties:
-        account_id:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        currency:
-          type:
-          - string
-          - 'null'
-          description: Deprecated; currencies are associated with prices, not products
-          deprecated: true
-        environment_id:
-          type: string
-        external_id:
-          type: string
-        is_active:
-          type: boolean
-        name:
-          type: string
-        price:
-          type: number
-        price_decimal:
-          type:
-          - string
-          - 'null'
-        product_id:
-          type: string
-        provider_type:
-          $ref: '#/components/schemas/BillingProviderType'
-        quantity:
-          type: number
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - account_id
-      - created_at
-      - environment_id
-      - external_id
-      - is_active
-      - name
-      - price
-      - product_id
-      - provider_type
-      - quantity
-      - updated_at
-      title: BillingProductResponseData
-    BillingCreditExpiryUnit:
-      type: string
-      enum:
-      - billing_periods
-      - days
-    BillingPriceUsageType:
-      type: string
-      enum:
-      - licensed
-      - metered
-    EntityKeyDetailResponseData:
-      type: object
-      properties:
-        created_at:
-          type: string
-          format: date-time
-        definition:
-          $ref: '#/components/schemas/EntityKeyDefinitionResponseData'
-        definition_id:
-          type: string
-        entity_id:
-          type: string
-        entity_type:
-          $ref: '#/components/schemas/EntityType'
-        environment_id:
-          type: string
+        flag_type:
+          $ref: '#/components/schemas/FlagType'
         id:
           type: string
         key:
           type: string
+        last_checked_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        maintainer_account_member_id:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDetailResponseData'
+          maxItems: 1000
         updated_at:
           type: string
           format: date-time
-        value:
-          type: string
       required:
-      - id
-      - environment_id
-      - definition_id
-      - entity_type
-      - entity_id
-      - key
-      - value
       - created_at
+      - default_value
+      - description
+      - flag_type
+      - id
+      - key
+      - name
       - updated_at
-      title: EntityKeyDetailResponseData
+      - rules
+      title: FlagInPlanResponseData
+    FeatureLifecyclePhase:
+      type: string
+      enum:
+      - add_on
+      - alpha
+      - beta
+      - deprecated
+      - ga
+      - inactive
+      - in_plan
+      - internal_testing
+      - legacy
+    PlanType:
+      type: string
+      enum:
+      - plan
+      - add_on
     CreateBillingLinkedPlanRequestBody:
       type: object
       properties:
@@ -2375,99 +1949,56 @@ components:
       - billing_provider
       - external_resource_id
       title: CreateBillingLinkedPlanRequestBody
-    ChargeType:
-      type: string
-      enum:
-      - free
-      - one_time
-      - recurring
-    BillingCreditBurnStrategy:
-      type: string
-      enum:
-      - expiration_priority
-      - first_in_first_out
-      - last_in_first_out
-      - plan_first_then_credit_bundles_first_in_first_out
-    DeleteResponse:
+    BillingProductPriceTierResponseData:
       type: object
       properties:
-        deleted:
-          type: boolean
-          description: Whether the delete was successful
-    CompanyEventPeriodMetricsResponseData:
-      type: object
-      properties:
-        account_id:
-          type: string
-        captured_at_max:
-          type: string
-          format: date-time
-        captured_at_min:
-          type: string
-          format: date-time
-        company_id:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        environment_id:
-          type: string
-        event_subtype:
-          type: string
-        month_reset:
-          $ref: '#/components/schemas/MetricPeriodMonthReset'
-        period:
-          $ref: '#/components/schemas/MetricPeriod'
-        valid_until:
+        flat_amount:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        per_unit_price:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        per_unit_price_decimal:
           type:
           - string
           - 'null'
+        up_to:
+          type:
+          - integer
+          - 'null'
+          format: int64
+      title: BillingProductPriceTierResponseData
+    EntityTraitDetailResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        definition:
+          $ref: '#/components/schemas/EntityTraitDefinitionResponseData'
+        definition_id:
+          type: string
+        environment_id:
+          type: string
+        id:
+          type: string
+        updated_at:
+          type: string
           format: date-time
         value:
-          type: integer
-          format: int64
-      required:
-      - account_id
-      - captured_at_max
-      - captured_at_min
-      - company_id
-      - created_at
-      - environment_id
-      - event_subtype
-      - month_reset
-      - period
-      - value
-      title: CompanyEventPeriodMetricsResponseData
-    PlanCurrencyPriceRequestBody:
-      type: object
-      properties:
-        currency:
           type: string
-          maxLength: 3
-        monthly_price:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        one_time_price:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        yearly_price:
-          type:
-          - integer
-          - 'null'
-          format: int64
       required:
-      - currency
-      title: PlanCurrencyPriceRequestBody
-    CountResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: The number of resources
+      - id
+      - environment_id
+      - definition_id
+      - value
+      - created_at
+      - updated_at
+      title: EntityTraitDetailResponseData
     Rule:
       type: object
       properties:
@@ -2511,13 +2042,12 @@ components:
       - condition_groups
       - value
       title: Rule
-    MetricPeriod:
+    FeatureType:
       type: string
       enum:
-      - all_time
-      - current_day
-      - current_month
-      - current_week
+      - boolean
+      - event
+      - trait
     BillingPlanCreditGrantResponseData:
       type: object
       properties:
@@ -2627,920 +2157,12 @@ components:
       - created_at
       - updated_at
       title: BillingPlanCreditGrantResponseData
-    BillingCreditView:
+    CountResponse:
       type: object
       properties:
-        account_id:
-          type: string
-        burn_strategy:
-          $ref: '#/components/schemas/BillingCreditBurnStrategy'
-        cost_editable:
-          type: boolean
-        created_at:
-          type: string
-          format: date-time
-        currency_prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreditCurrencyPrice'
-          maxItems: 1000
-        default_expiry_unit:
-          $ref: '#/components/schemas/BillingCreditExpiryUnit'
-        default_expiry_unit_count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        default_rollover_policy:
-          $ref: '#/components/schemas/BillingCreditRolloverPolicy'
-        description:
-          type: string
-        environment_id:
-          type: string
-        icon:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-        name:
-          type: string
-        plural_name:
-          type:
-          - string
-          - 'null'
-        price:
-          $ref: '#/components/schemas/BillingPriceView'
-        price_per_unit:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        price_per_unit_decimal:
-          type:
-          - string
-          - 'null'
-        product:
-          $ref: '#/components/schemas/BillingProductResponseData'
-        singular_name:
-          type:
-          - string
-          - 'null'
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - account_id
-      - environment_id
-      - name
-      - description
-      - default_expiry_unit
-      - default_rollover_policy
-      - burn_strategy
-      - cost_editable
-      - currency_prices
-      - created_at
-      - updated_at
-      title: BillingCreditView
-    FeatureResponseData:
-      type: object
-      properties:
-        created_at:
-          type: string
-          format: date-time
-        description:
-          type: string
-        event_subtype:
-          type:
-          - string
-          - 'null'
-        feature_type:
-          $ref: '#/components/schemas/FeatureType'
-        icon:
-          type: string
-        id:
-          type: string
-        lifecycle_phase:
-          allOf:
-          - $ref: '#/components/schemas/FeatureLifecyclePhase'
-        maintainer_account_member_id:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-        plural_name:
-          type:
-          - string
-          - 'null'
-        singular_name:
-          type:
-          - string
-          - 'null'
-        trait_id:
-          type:
-          - string
-          - 'null'
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - name
-      - description
-      - feature_type
-      - icon
-      - created_at
-      - updated_at
-      title: FeatureResponseData
-    ComparableOperator:
-      type: string
-      enum:
-      - eq
-      - gt
-      - gte
-      - is_empty
-      - lt
-      - lte
-      - not_empty
-      - ne
-    BillingCreditExpiryType:
-      type: string
-      enum:
-      - duration
-      - end_of_billing_period
-      - end_of_next_billing_period
-      - end_of_trial
-      - no_expiry
-    RuleConditionDetailResponseData:
-      type: object
-      properties:
-        comparison_trait:
-          $ref: '#/components/schemas/EntityTraitDefinitionResponseData'
-        comparison_trait_id:
-          type:
-          - string
-          - 'null'
-        condition_group_id:
-          type:
-          - string
-          - 'null'
-        condition_type:
-          $ref: '#/components/schemas/ConditionType'
-        created_at:
-          type: string
-          format: date-time
-        environment_id:
-          type: string
-        event_subtype:
-          type:
-          - string
-          - 'null'
-        flag_id:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-        metric_period:
-          allOf:
-          - $ref: '#/components/schemas/MetricPeriod'
-        metric_period_month_reset:
-          allOf:
-          - $ref: '#/components/schemas/MetricPeriodMonthReset'
-        metric_value:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        operator:
-          $ref: '#/components/schemas/ComparableOperator'
-        resource_ids:
-          type: array
-          items:
-            type: string
-          maxItems: 1000
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/PreviewObjectResponseData'
-          maxItems: 1000
-        rule_id:
-          type: string
-        trait:
-          $ref: '#/components/schemas/EntityTraitDefinitionResponseData'
-        trait_entity_type:
-          allOf:
-          - $ref: '#/components/schemas/EntityType'
-        trait_id:
-          type:
-          - string
-          - 'null'
-        trait_value:
-          type: string
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - environment_id
-      - rule_id
-      - condition_type
-      - operator
-      - created_at
-      - updated_at
-      - resource_ids
-      - trait_value
-      - resources
-      title: RuleConditionDetailResponseData
-    BillingPriceScheme:
-      type: string
-      enum:
-      - per_unit
-      - tiered
-    RuleConditionGroupDetailResponseData:
-      type: object
-      properties:
-        conditions:
-          type: array
-          items:
-            $ref: '#/components/schemas/RuleConditionDetailResponseData'
-          maxItems: 1000
-        created_at:
-          type: string
-          format: date-time
-        environment_id:
-          type: string
-        flag_id:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-        rule_id:
-          type: string
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - environment_id
-      - rule_id
-      - created_at
-      - updated_at
-      - conditions
-      title: RuleConditionGroupDetailResponseData
-    UpdatePayInAdvanceRequestBody:
-      type: object
-      properties:
-        price_id:
-          type: string
-        quantity:
+        count:
           type: integer
-          format: int64
-      required:
-      - price_id
-      - quantity
-      title: UpdatePayInAdvanceRequestBody
-    BillingSubscriptionDiscountView:
-      type: object
-      properties:
-        amount_off:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        coupon_id:
-          type: string
-        coupon_name:
-          type: string
-        currency:
-          type:
-          - string
-          - 'null'
-        customer_facing_code:
-          type:
-          - string
-          - 'null'
-        discount_external_id:
-          type: string
-        duration:
-          type: string
-        duration_in_months:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        ended_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        is_active:
-          type: boolean
-        percent_off:
-          type:
-          - number
-          - 'null'
-        promo_code_external_id:
-          type:
-          - string
-          - 'null'
-        started_at:
-          type: string
-          format: date-time
-        subscription_external_id:
-          type: string
-      required:
-      - discount_external_id
-      - subscription_external_id
-      - coupon_id
-      - started_at
-      - coupon_name
-      - duration
-      - is_active
-      title: BillingSubscriptionDiscountView
-    BillingCreditResponseData:
-      type: object
-      properties:
-        burn_strategy:
-          $ref: '#/components/schemas/BillingCreditBurnStrategy'
-        cost_editable:
-          type: boolean
-        created_at:
-          type: string
-          format: date-time
-        currency_prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreditCurrencyPriceResponseData'
-          maxItems: 256
-        default_expiry_unit:
-          $ref: '#/components/schemas/BillingCreditExpiryUnit'
-        default_expiry_unit_count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        default_rollover_policy:
-          $ref: '#/components/schemas/BillingCreditRolloverPolicy'
-        description:
-          type: string
-        icon:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-        name:
-          type: string
-        plural_name:
-          type:
-          - string
-          - 'null'
-        price:
-          $ref: '#/components/schemas/BillingPriceResponseData'
-        product:
-          $ref: '#/components/schemas/BillingProductResponseData'
-        singular_name:
-          type:
-          - string
-          - 'null'
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - name
-      - description
-      - default_expiry_unit
-      - default_rollover_policy
-      - burn_strategy
-      - cost_editable
-      - currency_prices
-      - created_at
-      - updated_at
-      title: BillingCreditResponseData
-    BillingSubscriptionView:
-      type: object
-      properties:
-        application_id:
-          type:
-          - string
-          - 'null'
-        cancel_at:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        cancel_at_period_end:
-          type: boolean
-        company_id:
-          type:
-          - string
-          - 'null'
-        created_at:
-          type: string
-          format: date-time
-        currency:
-          type: string
-        customer_external_id:
-          type: string
-        default_payment_method_id:
-          type:
-          - string
-          - 'null'
-        discounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillingSubscriptionDiscountView'
-          maxItems: 1000
-        expired_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        id:
-          type: string
-        interval:
-          type: string
-        latest_invoice:
-          $ref: '#/components/schemas/InvoiceResponseData'
-        metadata:
-          type: object
-        payment_method:
-          $ref: '#/components/schemas/PaymentMethodResponseData'
-        period_end:
-          type: integer
-          format: int64
-        period_start:
-          type: integer
-          format: int64
-        products:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillingProductForSubscriptionResponseData'
-          maxItems: 1000
-        provider_type:
-          $ref: '#/components/schemas/BillingProviderType'
-        status:
-          type: string
-        subscription_external_id:
-          type: string
-        total_price:
-          type: integer
-          format: int64
-        trial_end:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        trial_end_setting:
-          allOf:
-          - $ref: '#/components/schemas/BillingSubscriptionTrialEndSetting'
-      required:
-      - cancel_at_period_end
-      - created_at
-      - currency
-      - customer_external_id
-      - subscription_external_id
-      - id
-      - interval
-      - period_end
-      - period_start
-      - total_price
-      - provider_type
-      - status
-      - products
-      - discounts
-      title: BillingSubscriptionView
-    MetricPeriodMonthReset:
-      type: string
-      enum:
-      - billing_cycle
-      - first_of_month
-    FlagInPlanResponseData:
-      type: object
-      properties:
-        created_at:
-          type: string
-          format: date-time
-        default_value:
-          type: boolean
-        description:
-          type: string
-        feature:
-          $ref: '#/components/schemas/FeatureResponseData'
-        feature_id:
-          type:
-          - string
-          - 'null'
-        flag_type:
-          $ref: '#/components/schemas/FlagType'
-        id:
-          type: string
-        key:
-          type: string
-        last_checked_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        maintainer_account_member_id:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/RuleDetailResponseData'
-          maxItems: 1000
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - created_at
-      - default_value
-      - description
-      - flag_type
-      - id
-      - key
-      - name
-      - updated_at
-      - rules
-      title: FlagInPlanResponseData
-    FeatureEntitlement:
-      type: object
-      properties:
-        allocation:
-          type:
-          - integer
-          - 'null'
-          description: If the company has a numeric entitlement for this feature, the allocated amount
-          format: int64
-        credit_id:
-          type:
-          - string
-          - 'null'
-          description: If the company has a credit-based entitlement for this feature, the ID of the credit
-        credit_remaining:
-          type:
-          - number
-          - 'null'
-          description: If the company has a credit-based entitlement for this feature, the remaining credit amount
-        credit_total:
-          type:
-          - number
-          - 'null'
-          description: If the company has a credit-based entitlement for this feature, the total credit amount
-        credit_used:
-          type:
-          - number
-          - 'null'
-          description: If the company has a credit-based entitlement for this feature, the amount of credit used
-        event_name:
-          type:
-          - string
-          - 'null'
-          description: If the feature is event-based, the name of the event tracked for usage
-        feature_id:
-          type: string
-          description: The ID of the feature
-        feature_key:
-          type: string
-          description: The key of the flag associated with the feature
-        metric_period:
-          allOf:
-          - $ref: '#/components/schemas/MetricPeriod'
-          description: For event-based feature entitlements, the period over which usage is tracked
-        metric_reset_at:
-          type:
-          - string
-          - 'null'
-          description: For event-based feature entitlements, when the usage period will reset
-          format: date-time
-        month_reset:
-          allOf:
-          - $ref: '#/components/schemas/MetricPeriodMonthReset'
-          description: For event-based feature entitlements that have a monthly period, whether that monthly reset is based on the calendar month or a billing cycle
-        soft_limit:
-          type:
-          - integer
-          - 'null'
-          description: For usage-based pricing, the soft limit for overage charges or the next tier boundary
-          format: int64
-        usage:
-          type:
-          - integer
-          - 'null'
-          description: If the company has a numeric entitlement for this feature, the current usage amount
-          format: int64
-        value_type:
-          allOf:
-          - $ref: '#/components/schemas/EntitlementValueType'
-          description: The type of the entitlement value
-      required:
-      - feature_id
-      - feature_key
-      - value_type
-      title: FeatureEntitlement
-    BillingLinkedResourceResponseData:
-      type: object
-      properties:
-        billing_provider:
-          $ref: '#/components/schemas/BillingProviderType'
-        external_resource_id:
-          type: string
-        originator:
-          $ref: '#/components/schemas/BillingProviderType'
-      required:
-      - billing_provider
-      - external_resource_id
-      - originator
-      title: BillingLinkedResourceResponseData
-    TraitType:
-      type: string
-      enum:
-      - boolean
-      - currency
-      - date
-      - number
-      - string
-      - url
-    PlanVersionResponseData:
-      type: object
-      properties:
-        created_at:
-          type: string
-          format: date-time
-        description:
-          type: string
-        environment_id:
-          type: string
-        icon:
-          $ref: '#/components/schemas/PlanIcon'
-        id:
-          type: string
-        name:
-          type: string
-        original_plan_id:
-          type:
-          - string
-          - 'null'
-        plan_type:
-          $ref: '#/components/schemas/PlanType'
-        status:
-          $ref: '#/components/schemas/PlanVersionStatus'
-        updated_at:
-          type: string
-          format: date-time
-        version:
-          type: integer
-          format: int64
-      required:
-      - created_at
-      - description
-      - environment_id
-      - icon
-      - id
-      - name
-      - plan_type
-      - status
-      - updated_at
-      - version
-      title: PlanVersionResponseData
-    BillingProductDetailResponseData:
-      type: object
-      properties:
-        account_id:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        currency:
-          type:
-          - string
-          - 'null'
-          description: Deprecated; currencies are associated with prices, not products
-          deprecated: true
-        environment_id:
-          type: string
-        external_id:
-          type: string
-        is_active:
-          type: boolean
-        name:
-          type: string
-        price:
-          type: number
-        price_decimal:
-          type:
-          - string
-          - 'null'
-        prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillingPriceResponseData'
-          maxItems: 1000
-        product_id:
-          type: string
-        provider_type:
-          $ref: '#/components/schemas/BillingProviderType'
-        quantity:
-          type: number
-        subscription_count:
-          type: integer
-          format: int64
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - account_id
-      - created_at
-      - environment_id
-      - external_id
-      - is_active
-      - name
-      - price
-      - product_id
-      - provider_type
-      - quantity
-      - updated_at
-      - prices
-      - subscription_count
-      title: BillingProductDetailResponseData
-    FeatureInPlanResponseData:
-      type: object
-      properties:
-        billing_linked_resource:
-          $ref: '#/components/schemas/BillingLinkedResourceResponseData'
-        created_at:
-          type: string
-          format: date-time
-        description:
-          type: string
-        event_subtype:
-          type:
-          - string
-          - 'null'
-        event_summary:
-          $ref: '#/components/schemas/EventSummaryResponseData'
-        feature_type:
-          $ref: '#/components/schemas/FeatureType'
-        flags:
-          type: array
-          items:
-            $ref: '#/components/schemas/FlagInPlanResponseData'
-          maxItems: 1000
-        icon:
-          type: string
-        id:
-          type: string
-        lifecycle_phase:
-          allOf:
-          - $ref: '#/components/schemas/FeatureLifecyclePhase'
-        maintainer_account_member_id:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-        plans:
-          type: array
-          items:
-            $ref: '#/components/schemas/PreviewObject'
-          maxItems: 1000
-        plural_name:
-          type:
-          - string
-          - 'null'
-        singular_name:
-          type:
-          - string
-          - 'null'
-        trait:
-          $ref: '#/components/schemas/EntityTraitDefinitionResponseData'
-        trait_id:
-          type:
-          - string
-          - 'null'
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - name
-      - description
-      - feature_type
-      - icon
-      - created_at
-      - updated_at
-      - flags
-      - plans
-      title: FeatureInPlanResponseData
-    CustomPlanActivationStrategy:
-      type: string
-      enum:
-      - on_payment
-      - on_publish
-    RuleDetailResponseData:
-      type: object
-      properties:
-        condition_groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/RuleConditionGroupDetailResponseData'
-          maxItems: 1000
-        conditions:
-          type: array
-          items:
-            $ref: '#/components/schemas/RuleConditionDetailResponseData'
-          maxItems: 1000
-        created_at:
-          type: string
-          format: date-time
-        environment_id:
-          type: string
-        flag_id:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-        name:
-          type: string
-        priority:
-          type: integer
-          format: int64
-        rule_type:
-          $ref: '#/components/schemas/RuleType'
-        updated_at:
-          type: string
-          format: date-time
-        value:
-          type: boolean
-      required:
-      - id
-      - environment_id
-      - priority
-      - name
-      - rule_type
-      - value
-      - created_at
-      - updated_at
-      - conditions
-      - condition_groups
-      title: RuleDetailResponseData
-    EventSummaryResponseData:
-      type: object
-      properties:
-        company_count:
-          type: integer
-          format: int64
-        environment_id:
-          type: string
-        event_count:
-          type: integer
-          format: int64
-        event_subtype:
-          type: string
-        last_seen_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        user_count:
-          type: integer
-          format: int64
-      required:
-      - company_count
-      - environment_id
-      - event_count
-      - event_subtype
-      - user_count
-      title: EventSummaryResponseData
-    PreviewObjectResponseData:
-      type: object
-      properties:
-        description:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-        image_url:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-      required:
-      - id
-      - name
-      title: PreviewObjectResponseData
+          description: The number of resources
     BillingPlanCreditGrantResetCadence:
       type: string
       enum:
@@ -3548,14 +2170,49 @@ components:
       - monthly
       - weekly
       - yearly
-    ApiError:
+    BillingProductPlanResponseData:
       type: object
       properties:
-        error:
+        account_id:
           type: string
-          description: Error message
+        billing_product_id:
+          type: string
+        charge_type:
+          $ref: '#/components/schemas/ChargeType'
+        controlled_by:
+          $ref: '#/components/schemas/BillingProviderType'
+        environment_id:
+          type: string
+        is_trialable:
+          type: boolean
+        monthly_price_id:
+          type:
+          - string
+          - 'null'
+        one_time_price_id:
+          type:
+          - string
+          - 'null'
+        plan_id:
+          type: string
+        trial_days:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        yearly_price_id:
+          type:
+          - string
+          - 'null'
       required:
-      - error
+      - account_id
+      - charge_type
+      - environment_id
+      - plan_id
+      - billing_product_id
+      - controlled_by
+      - is_trialable
+      title: BillingProductPlanResponseData
     EntitlementValueType:
       type: string
       enum:
@@ -3565,30 +2222,101 @@ components:
       - trait
       - unknown
       - unlimited
-    BillingPlanCreditGrantResetStart:
-      type: string
-      enum:
-      - billing_period
-      - first_of_month
-    BillingPlanCreditGrantResetType:
-      type: string
-      enum:
-      - no_reset
-      - plan_period
-    InvoiceResponseData:
+    CompanyEventPeriodMetricsResponseData:
       type: object
       properties:
-        amount_due:
-          type: integer
-          format: int64
-        amount_paid:
-          type: integer
-          format: int64
-        amount_remaining:
-          type: integer
-          format: int64
-        collection_method:
+        account_id:
           type: string
+        captured_at_max:
+          type: string
+          format: date-time
+        captured_at_min:
+          type: string
+          format: date-time
+        company_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        environment_id:
+          type: string
+        event_subtype:
+          type: string
+        month_reset:
+          $ref: '#/components/schemas/MetricPeriodMonthReset'
+        period:
+          $ref: '#/components/schemas/MetricPeriod'
+        valid_until:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        value:
+          type: integer
+          format: int64
+      required:
+      - account_id
+      - captured_at_max
+      - captured_at_min
+      - company_id
+      - created_at
+      - environment_id
+      - event_subtype
+      - month_reset
+      - period
+      - value
+      title: CompanyEventPeriodMetricsResponseData
+    RuleType:
+      type: string
+      enum:
+      - company_override
+      - company_override_usage_exceeded
+      - default
+      - global_override
+      - plan_entitlement
+      - plan_entitlement_usage_exceeded
+      - standard
+    PaymentMethodResponseData:
+      type: object
+      properties:
+        account_last4:
+          type:
+          - string
+          - 'null'
+        account_name:
+          type:
+          - string
+          - 'null'
+        bank_name:
+          type:
+          - string
+          - 'null'
+        billing_email:
+          type:
+          - string
+          - 'null'
+        billing_name:
+          type:
+          - string
+          - 'null'
+        card_brand:
+          type:
+          - string
+          - 'null'
+        card_exp_month:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        card_exp_year:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        card_last4:
+          type:
+          - string
+          - 'null'
         company_id:
           type:
           - string
@@ -3596,70 +2324,60 @@ components:
         created_at:
           type: string
           format: date-time
-        currency:
-          type: string
         customer_external_id:
           type: string
-        due_date:
-          type:
-          - string
-          - 'null'
-          format: date-time
         environment_id:
           type: string
         external_id:
-          type:
-          - string
-          - 'null'
+          type: string
         id:
           type: string
-        payment_method_external_id:
-          type:
-          - string
-          - 'null'
+        payment_method_type:
+          type: string
         provider_type:
           $ref: '#/components/schemas/BillingProviderType'
-        status:
-          allOf:
-          - $ref: '#/components/schemas/InvoiceStatus'
-        subscription_external_id:
-          type:
-          - string
-          - 'null'
-        subtotal:
-          type: integer
-          format: int64
         updated_at:
           type: string
           format: date-time
-        url:
-          type:
-          - string
-          - 'null'
       required:
       - id
-      - amount_due
-      - amount_paid
-      - amount_remaining
-      - collection_method
       - created_at
-      - currency
       - customer_external_id
       - environment_id
+      - external_id
+      - payment_method_type
       - provider_type
-      - subtotal
       - updated_at
-      title: InvoiceResponseData
-    BillingSubscriptionTrialEndSetting:
+      title: PaymentMethodResponseData
+    BillingProductPriceInterval:
       type: string
       enum:
-      - cancel
-      - subscribe
-    PlanVersionMigrationStrategy:
+      - day
+      - month
+      - one-time
+      - year
+    EntityType:
       type: string
       enum:
-      - immediate
-      - leave
+      - company
+      - user
+    CreditCurrencyPrice:
+      type: object
+      properties:
+        currency:
+          type: string
+        price:
+          $ref: '#/components/schemas/BillingPriceView'
+      required:
+      - currency
+      title: CreditCurrencyPrice
+    MetricPeriod:
+      type: string
+      enum:
+      - all_time
+      - current_day
+      - current_month
+      - current_week
     PlanCreditGrantView:
       type: object
       properties:
@@ -3775,111 +2493,436 @@ components:
       - created_at
       - updated_at
       title: PlanCreditGrantView
-    TraitDefinition:
+    BillingCreditRolloverPolicy:
+      type: string
+      enum:
+      - expire
+      - none
+      - rollover
+    UpdatePlanRequestBody:
       type: object
       properties:
-        comparable_type:
-          type: string
-          enum:
-          - bool
-          - date
-          - int
+        description:
+          type:
           - string
+          - 'null'
+          maxLength: 1024
+          minLength: 0
+        icon:
+          allOf:
+          - $ref: '#/components/schemas/PlanIcon'
+        name:
+          type: string
+          maxLength: 256
+          minLength: 1
+      required:
+      - name
+      title: UpdatePlanRequestBody
+    PlanCurrencyPriceRequestBody:
+      type: object
+      properties:
+        currency:
+          type: string
+          maxLength: 3
+        monthly_price:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        one_time_price:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        yearly_price:
+          type:
+          - integer
+          - 'null'
+          format: int64
+      required:
+      - currency
+      title: PlanCurrencyPriceRequestBody
+    EntityKeyDefinitionResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
         entity_type:
           $ref: '#/components/schemas/EntityType'
         id:
           type: string
-      required:
-      - id
-      - comparable_type
-      - entity_type
-      title: TraitDefinition
-    BillingPriceView:
-      type: object
-      properties:
-        billing_scheme:
-          $ref: '#/components/schemas/BillingPriceScheme'
-        created_at:
+        key:
           type: string
-          format: date-time
-        currency:
-          type: string
-        id:
-          type: string
-        interval:
-          $ref: '#/components/schemas/BillingProductPriceInterval'
-        is_active:
-          type: boolean
-        meter_event_name:
-          type:
-          - string
-          - 'null'
-        meter_event_payload_key:
-          type:
-          - string
-          - 'null'
-        meter_id:
-          type:
-          - string
-          - 'null'
-        nickname:
-          type:
-          - string
-          - 'null'
-        package_size:
-          type: integer
-          format: int64
-        price:
-          type: integer
-          format: int64
-        price_decimal:
-          type:
-          - string
-          - 'null'
-        price_external_id:
-          type: string
-        price_id:
-          type: string
-        price_tier:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillingProductPriceTierResponseData'
-          maxItems: 100
-        product_external_id:
-          type: string
-        product_id:
-          type: string
-        product_name:
-          type: string
-        provider_type:
-          $ref: '#/components/schemas/BillingProviderType'
-        tiers_mode:
-          allOf:
-          - $ref: '#/components/schemas/BillingTiersMode'
         updated_at:
           type: string
           format: date-time
-        usage_type:
-          $ref: '#/components/schemas/BillingPriceUsageType'
       required:
       - id
-      - billing_scheme
+      - entity_type
+      - key
       - created_at
-      - currency
-      - interval
-      - is_active
-      - package_size
-      - price
-      - price_external_id
-      - product_external_id
-      - provider_type
       - updated_at
-      - usage_type
-      - price_id
-      - product_id
-      - product_name
-      - price_tier
-      title: BillingPriceView
+      title: EntityKeyDefinitionResponseData
+    ScheduledDowngradeResponseData:
+      type: object
+      properties:
+        currency:
+          type: string
+        effective_after:
+          type: string
+          format: date-time
+        from_plan_id:
+          type: string
+        from_plan_name:
+          type: string
+        from_subscription_price:
+          type: integer
+          format: int64
+        id:
+          type: string
+        interval:
+          type: string
+        scheduled_interval:
+          type:
+          - string
+          - 'null'
+        scheduled_price:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        to_plan_id:
+          type: string
+        to_plan_name:
+          type: string
+      required:
+      - currency
+      - effective_after
+      - from_plan_id
+      - from_plan_name
+      - from_subscription_price
+      - id
+      - interval
+      - to_plan_id
+      - to_plan_name
+      title: ScheduledDowngradeResponseData
+    PlanVersionStatus:
+      type: string
+      enum:
+      - published
+      - draft
+      - archived
+    RuleConditionGroupDetailResponseData:
+      type: object
+      properties:
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleConditionDetailResponseData'
+          maxItems: 1000
+        created_at:
+          type: string
+          format: date-time
+        environment_id:
+          type: string
+        flag_id:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        rule_id:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - environment_id
+      - rule_id
+      - created_at
+      - updated_at
+      - conditions
+      title: RuleConditionGroupDetailResponseData
+    BillingProviderType:
+      type: string
+      enum:
+      - orb
+      - schematic
+      - stripe
+    CustomPlanBillingStatus:
+      type: string
+      enum:
+      - active
+      - expired
+      - paid
+      - pending
+    EntityTraitDefinitionResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        display_name:
+          type: string
+        entity_type:
+          $ref: '#/components/schemas/EntityType'
+        hierarchy:
+          type: array
+          items:
+            type: string
+          maxItems: 1000
+        id:
+          type: string
+        trait_type:
+          $ref: '#/components/schemas/TraitType'
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - created_at
+      - display_name
+      - entity_type
+      - hierarchy
+      - id
+      - trait_type
+      - updated_at
+      title: EntityTraitDefinitionResponseData
+    EntityKeyDetailResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        definition:
+          $ref: '#/components/schemas/EntityKeyDefinitionResponseData'
+        definition_id:
+          type: string
+        entity_id:
+          type: string
+        entity_type:
+          $ref: '#/components/schemas/EntityType'
+        environment_id:
+          type: string
+        id:
+          type: string
+        key:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+        value:
+          type: string
+      required:
+      - id
+      - environment_id
+      - definition_id
+      - entity_type
+      - entity_id
+      - key
+      - value
+      - created_at
+      - updated_at
+      title: EntityKeyDetailResponseData
+    GenericPreviewObject:
+      type: object
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        image_url:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+      required:
+      - id
+      - name
+      title: GenericPreviewObject
+    FeatureInPlanResponseData:
+      type: object
+      properties:
+        billing_linked_resource:
+          $ref: '#/components/schemas/BillingLinkedResourceResponseData'
+        created_at:
+          type: string
+          format: date-time
+        description:
+          type: string
+        event_subtype:
+          type:
+          - string
+          - 'null'
+        event_summary:
+          $ref: '#/components/schemas/EventSummaryResponseData'
+        feature_type:
+          $ref: '#/components/schemas/FeatureType'
+        flags:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlagInPlanResponseData'
+          maxItems: 1000
+        icon:
+          type: string
+        id:
+          type: string
+        lifecycle_phase:
+          allOf:
+          - $ref: '#/components/schemas/FeatureLifecyclePhase'
+        maintainer_account_member_id:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        plans:
+          type: array
+          items:
+            $ref: '#/components/schemas/PreviewObject'
+          maxItems: 1000
+        plural_name:
+          type:
+          - string
+          - 'null'
+        singular_name:
+          type:
+          - string
+          - 'null'
+        trait:
+          $ref: '#/components/schemas/EntityTraitDefinitionResponseData'
+        trait_id:
+          type:
+          - string
+          - 'null'
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - name
+      - description
+      - feature_type
+      - icon
+      - created_at
+      - updated_at
+      - flags
+      - plans
+      title: FeatureInPlanResponseData
+    PlanCurrencyPricesResponseData:
+      type: object
+      properties:
+        currency:
+          type: string
+        monthly_price:
+          $ref: '#/components/schemas/BillingPriceResponseData'
+        one_time_price:
+          $ref: '#/components/schemas/BillingPriceResponseData'
+        yearly_price:
+          $ref: '#/components/schemas/BillingPriceResponseData'
+      required:
+      - currency
+      title: PlanCurrencyPricesResponseData
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+    CreateCustomPlanRequestBody:
+      type: object
+      properties:
+        company_id:
+          type: string
+        copied_from_plan_id:
+          type:
+          - string
+          - 'null'
+        description:
+          type: string
+          maxLength: 1024
+          minLength: 0
+        icon:
+          allOf:
+          - $ref: '#/components/schemas/PlanIcon'
+        name:
+          type: string
+          maxLength: 256
+          minLength: 1
+      required:
+      - company_id
+      - description
+      - name
+      title: CreateCustomPlanRequestBody
+    RetryCustomPlanBillingRequestBody:
+      type: object
+      properties:
+        activation_strategy:
+          allOf:
+          - $ref: '#/components/schemas/CustomPlanActivationStrategy'
+        customer_email:
+          type: string
+          maxLength: 255
+        days_until_due:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          maximum: 365
+        pay_in_advance:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdatePayInAdvanceRequestBody'
+          maxItems: 100
+      required:
+      - customer_email
+      - pay_in_advance
+      title: RetryCustomPlanBillingRequestBody
+    BillingPlanCreditGrantResetType:
+      type: string
+      enum:
+      - no_reset
+      - plan_period
+    PublishPlanVersionRequestBody:
+      type: object
+      properties:
+        activation_strategy:
+          allOf:
+          - $ref: '#/components/schemas/CustomPlanActivationStrategy'
+        customer_email:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        days_until_due:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          maximum: 365
+        excluded_company_ids:
+          type: array
+          items:
+            type: string
+          maxItems: 1000
+        migration_strategy:
+          $ref: '#/components/schemas/PlanVersionMigrationStrategy'
+        pay_in_advance:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdatePayInAdvanceRequestBody'
+          maxItems: 100
+      required:
+      - excluded_company_ids
+      - migration_strategy
+      - pay_in_advance
+      title: PublishPlanVersionRequestBody
     PlanIssueResponseData:
       type: object
       properties:
@@ -3895,6 +2938,456 @@ components:
       - code
       - description
       title: PlanIssueResponseData
+    CreditCurrencyPriceResponseData:
+      type: object
+      properties:
+        currency:
+          type: string
+        price:
+          $ref: '#/components/schemas/BillingPriceResponseData'
+      required:
+      - currency
+      title: CreditCurrencyPriceResponseData
+    BillingSubscriptionView:
+      type: object
+      properties:
+        application_id:
+          type:
+          - string
+          - 'null'
+        cancel_at:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        cancel_at_period_end:
+          type: boolean
+        company_id:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+        currency:
+          type: string
+        customer_external_id:
+          type: string
+        default_payment_method_id:
+          type:
+          - string
+          - 'null'
+        discounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingSubscriptionDiscountView'
+          maxItems: 1000
+        expired_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        id:
+          type: string
+        interval:
+          type: string
+        latest_invoice:
+          $ref: '#/components/schemas/InvoiceResponseData'
+        metadata:
+          type: object
+        payment_method:
+          $ref: '#/components/schemas/PaymentMethodResponseData'
+        period_end:
+          type: integer
+          format: int64
+        period_start:
+          type: integer
+          format: int64
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingProductForSubscriptionResponseData'
+          maxItems: 1000
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        status:
+          type: string
+        subscription_external_id:
+          type: string
+        total_price:
+          type: integer
+          format: int64
+        trial_end:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        trial_end_setting:
+          allOf:
+          - $ref: '#/components/schemas/BillingSubscriptionTrialEndSetting'
+      required:
+      - cancel_at_period_end
+      - created_at
+      - currency
+      - customer_external_id
+      - subscription_external_id
+      - id
+      - interval
+      - period_end
+      - period_start
+      - total_price
+      - provider_type
+      - status
+      - products
+      - discounts
+      title: BillingSubscriptionView
+    PreviewObject:
+      type: object
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        image_url:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+      required:
+      - id
+      - name
+      title: PreviewObject
+    FlagType:
+      type: string
+      enum:
+      - boolean
+    PlanDetailResponseData:
+      type: object
+      properties:
+        active_version:
+          $ref: '#/components/schemas/PlanVersionResponseData'
+        audience_type:
+          type:
+          - string
+          - 'null'
+          deprecated: true
+        billing_linked_resource:
+          $ref: '#/components/schemas/BillingLinkedResourceResponseData'
+        billing_product:
+          $ref: '#/components/schemas/BillingProductDetailResponseData'
+        charge_type:
+          $ref: '#/components/schemas/ChargeType'
+        company_count:
+          type: integer
+          format: int64
+        company_id:
+          type:
+          - string
+          - 'null'
+        company_name:
+          type:
+          - string
+          - 'null'
+        controlled_by:
+          $ref: '#/components/schemas/BillingProviderType'
+        copied_from_plan_id:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+        currency_prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanCurrencyPricesResponseData'
+          maxItems: 1000
+        description:
+          type: string
+        draft_version:
+          $ref: '#/components/schemas/PlanVersionResponseData'
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureInPlanResponseData'
+          maxItems: 1000
+        icon:
+          $ref: '#/components/schemas/PlanIcon'
+        id:
+          type: string
+        included_credit_grants:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingPlanCreditGrantResponseData'
+          maxItems: 1000
+        is_default:
+          type: boolean
+          deprecated: true
+        is_free:
+          type: boolean
+        is_trialable:
+          type: boolean
+        monthly_price:
+          $ref: '#/components/schemas/BillingPriceResponseData'
+        name:
+          type: string
+        one_time_price:
+          $ref: '#/components/schemas/BillingPriceResponseData'
+        plan_type:
+          $ref: '#/components/schemas/PlanType'
+        trial_days:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        updated_at:
+          type: string
+          format: date-time
+        versions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanVersionResponseData'
+          maxItems: 1000
+        yearly_price:
+          $ref: '#/components/schemas/BillingPriceResponseData'
+      required:
+      - created_at
+      - description
+      - icon
+      - id
+      - name
+      - plan_type
+      - updated_at
+      - charge_type
+      - company_count
+      - controlled_by
+      - currency_prices
+      - features
+      - is_default
+      - is_free
+      - is_trialable
+      - versions
+      title: PlanDetailResponseData
+    ChargeType:
+      type: string
+      enum:
+      - free
+      - one_time
+      - recurring
+    BillingCreditExpiryType:
+      type: string
+      enum:
+      - duration
+      - end_of_billing_period
+      - end_of_next_billing_period
+      - end_of_trial
+      - no_expiry
+    BillingCreditView:
+      type: object
+      properties:
+        account_id:
+          type: string
+        burn_strategy:
+          $ref: '#/components/schemas/BillingCreditBurnStrategy'
+        cost_editable:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        currency_prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreditCurrencyPrice'
+          maxItems: 1000
+        default_expiry_unit:
+          $ref: '#/components/schemas/BillingCreditExpiryUnit'
+        default_expiry_unit_count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        default_rollover_policy:
+          $ref: '#/components/schemas/BillingCreditRolloverPolicy'
+        description:
+          type: string
+        environment_id:
+          type: string
+        icon:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        name:
+          type: string
+        plural_name:
+          type:
+          - string
+          - 'null'
+        price:
+          $ref: '#/components/schemas/BillingPriceView'
+        price_per_unit:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        price_per_unit_decimal:
+          type:
+          - string
+          - 'null'
+        product:
+          $ref: '#/components/schemas/BillingProductResponseData'
+        singular_name:
+          type:
+          - string
+          - 'null'
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - account_id
+      - environment_id
+      - name
+      - description
+      - default_expiry_unit
+      - default_rollover_policy
+      - burn_strategy
+      - cost_editable
+      - currency_prices
+      - created_at
+      - updated_at
+      title: BillingCreditView
+    PlanVersionMigrationStrategy:
+      type: string
+      enum:
+      - immediate
+      - leave
+    PlanVersionResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        description:
+          type: string
+        environment_id:
+          type: string
+        icon:
+          $ref: '#/components/schemas/PlanIcon'
+        id:
+          type: string
+        name:
+          type: string
+        original_plan_id:
+          type:
+          - string
+          - 'null'
+        plan_type:
+          $ref: '#/components/schemas/PlanType'
+        status:
+          $ref: '#/components/schemas/PlanVersionStatus'
+        updated_at:
+          type: string
+          format: date-time
+        version:
+          type: integer
+          format: int64
+      required:
+      - created_at
+      - description
+      - environment_id
+      - icon
+      - id
+      - name
+      - plan_type
+      - status
+      - updated_at
+      - version
+      title: PlanVersionResponseData
+    FeatureEntitlement:
+      type: object
+      properties:
+        allocation:
+          type:
+          - integer
+          - 'null'
+          description: If the company has a numeric entitlement for this feature, the allocated amount
+          format: int64
+        credit_id:
+          type:
+          - string
+          - 'null'
+          description: If the company has a credit-based entitlement for this feature, the ID of the credit
+        credit_remaining:
+          type:
+          - number
+          - 'null'
+          description: If the company has a credit-based entitlement for this feature, the remaining credit amount
+        credit_total:
+          type:
+          - number
+          - 'null'
+          description: If the company has a credit-based entitlement for this feature, the total credit amount
+        credit_used:
+          type:
+          - number
+          - 'null'
+          description: If the company has a credit-based entitlement for this feature, the amount of credit used
+        event_name:
+          type:
+          - string
+          - 'null'
+          description: If the feature is event-based, the name of the event tracked for usage
+        feature_id:
+          type: string
+          description: The ID of the feature
+        feature_key:
+          type: string
+          description: The key of the flag associated with the feature
+        metric_period:
+          allOf:
+          - $ref: '#/components/schemas/MetricPeriod'
+          description: For event-based feature entitlements, the period over which usage is tracked
+        metric_reset_at:
+          type:
+          - string
+          - 'null'
+          description: For event-based feature entitlements, when the usage period will reset
+          format: date-time
+        month_reset:
+          allOf:
+          - $ref: '#/components/schemas/MetricPeriodMonthReset'
+          description: For event-based feature entitlements that have a monthly period, whether that monthly reset is based on the calendar month or a billing cycle
+        soft_limit:
+          type:
+          - integer
+          - 'null'
+          description: For usage-based pricing, the soft limit for overage charges or the next tier boundary
+          format: int64
+        usage:
+          type:
+          - integer
+          - 'null'
+          description: If the company has a numeric entitlement for this feature, the current usage amount
+          format: int64
+        value_type:
+          allOf:
+          - $ref: '#/components/schemas/EntitlementValueType'
+          description: The type of the entitlement value
+      required:
+      - feature_id
+      - feature_key
+      - value_type
+      title: FeatureEntitlement
+    BillingPriceUsageType:
+      type: string
+      enum:
+      - licensed
+      - metered
     BillingPriceResponseData:
       type: object
       properties:
@@ -3930,25 +3423,424 @@ components:
       - provider_type
       - scheme
       title: BillingPriceResponseData
-    GenericPreviewObject:
+    ComparableOperator:
+      type: string
+      enum:
+      - eq
+      - gt
+      - gte
+      - is_empty
+      - lt
+      - lte
+      - not_empty
+      - ne
+    BillingPriceScheme:
+      type: string
+      enum:
+      - per_unit
+      - tiered
+    CompanyDetailResponseData:
       type: object
       properties:
-        description:
+        add_ons:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyPlanWithBillingSubView'
+          maxItems: 1000
+        billing_credit_balances:
+          additionalProperties:
+            type: number
+          type:
+          - object
+          - 'null'
+        billing_subscription:
+          $ref: '#/components/schemas/BillingSubscriptionView'
+        billing_subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingSubscriptionView'
+          maxItems: 1000
+        created_at:
+          type: string
+          format: date-time
+        custom_plan_billings:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomPlanBillingResponseData'
+          maxItems: 1000
+        default_payment_method:
+          $ref: '#/components/schemas/PaymentMethodResponseData'
+        entitlements:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureEntitlement'
+          maxItems: 1000
+        entity_traits:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityTraitDetailResponseData'
+          maxItems: 1000
+        environment_id:
+          type: string
+        id:
+          type: string
+        keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityKeyDetailResponseData'
+          maxItems: 1000
+        last_seen_at:
           type:
           - string
           - 'null'
+          format: date-time
+        logo_url:
+          type:
+          - string
+          - 'null'
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyEventPeriodMetricsResponseData'
+          maxItems: 1000
+        name:
+          type: string
+        payment_methods:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentMethodResponseData'
+          maxItems: 1000
+        plan:
+          $ref: '#/components/schemas/CompanyPlanWithBillingSubView'
+        plans:
+          type: array
+          items:
+            $ref: '#/components/schemas/GenericPreviewObject'
+          maxItems: 1000
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+          maxItems: 1000
+        scheduled_downgrade:
+          $ref: '#/components/schemas/ScheduledDowngradeResponseData'
+        traits:
+          type: object
+          description: A map of trait names to trait values
+        updated_at:
+          type: string
+          format: date-time
+        user_count:
+          type: integer
+          format: int64
+      required:
+      - created_at
+      - environment_id
+      - id
+      - name
+      - updated_at
+      - add_ons
+      - billing_subscriptions
+      - custom_plan_billings
+      - entitlements
+      - entity_traits
+      - keys
+      - metrics
+      - payment_methods
+      - plans
+      - rules
+      - user_count
+      title: CompanyDetailResponseData
+    BillingProductForSubscriptionResponseData:
+      type: object
+      properties:
+        billing_scheme:
+          $ref: '#/components/schemas/BillingPriceScheme'
+        billing_threshold:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+        currency:
+          type: string
+        environment_id:
+          type: string
+        external_id:
+          type: string
         id:
           type: string
-        image_url:
+        interval:
+          type: string
+        meter_id:
           type:
           - string
           - 'null'
         name:
           type: string
+        package_size:
+          type: integer
+          format: int64
+        price:
+          type: integer
+          format: int64
+        price_decimal:
+          type:
+          - string
+          - 'null'
+        price_external_id:
+          type: string
+        price_id:
+          type: string
+        price_tier:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingProductPriceTierResponseData'
+          maxItems: 100
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        quantity:
+          type: number
+        subscription_id:
+          type: string
+        subscription_item_external_id:
+          type:
+          - string
+          - 'null'
+        updated_at:
+          type: string
+          format: date-time
+        usage_type:
+          $ref: '#/components/schemas/BillingPriceUsageType'
       required:
       - id
+      - created_at
+      - currency
+      - environment_id
+      - external_id
+      - interval
       - name
-      title: GenericPreviewObject
+      - package_size
+      - price
+      - price_external_id
+      - price_id
+      - price_tier
+      - provider_type
+      - quantity
+      - billing_scheme
+      - subscription_id
+      - updated_at
+      - usage_type
+      title: BillingProductForSubscriptionResponseData
+    RuleConditionDetailResponseData:
+      type: object
+      properties:
+        comparison_trait:
+          $ref: '#/components/schemas/EntityTraitDefinitionResponseData'
+        comparison_trait_id:
+          type:
+          - string
+          - 'null'
+        condition_group_id:
+          type:
+          - string
+          - 'null'
+        condition_type:
+          $ref: '#/components/schemas/ConditionType'
+        created_at:
+          type: string
+          format: date-time
+        environment_id:
+          type: string
+        event_subtype:
+          type:
+          - string
+          - 'null'
+        flag_id:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        metric_period:
+          allOf:
+          - $ref: '#/components/schemas/MetricPeriod'
+        metric_period_month_reset:
+          allOf:
+          - $ref: '#/components/schemas/MetricPeriodMonthReset'
+        metric_value:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        operator:
+          $ref: '#/components/schemas/ComparableOperator'
+        resource_ids:
+          type: array
+          items:
+            type: string
+          maxItems: 1000
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/PreviewObjectResponseData'
+          maxItems: 1000
+        rule_id:
+          type: string
+        trait:
+          $ref: '#/components/schemas/EntityTraitDefinitionResponseData'
+        trait_entity_type:
+          allOf:
+          - $ref: '#/components/schemas/EntityType'
+        trait_id:
+          type:
+          - string
+          - 'null'
+        trait_value:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - environment_id
+      - rule_id
+      - condition_type
+      - operator
+      - created_at
+      - updated_at
+      - resource_ids
+      - trait_value
+      - resources
+      title: RuleConditionDetailResponseData
+    UpdateCompanyPlansRequestBody:
+      type: object
+      properties:
+        add_on_ids:
+          type: array
+          items:
+            type: string
+          maxItems: 100
+        base_plan_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - add_on_ids
+      title: UpdateCompanyPlansRequestBody
+    Condition:
+      type: object
+      properties:
+        account_id:
+          type: string
+        comparison_trait_definition:
+          $ref: '#/components/schemas/TraitDefinition'
+        condition_type:
+          $ref: '#/components/schemas/ConditionType'
+        consumption_rate:
+          type:
+          - number
+          - 'null'
+        credit_id:
+          type:
+          - string
+          - 'null'
+        environment_id:
+          type: string
+        event_subtype:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        metric_period:
+          allOf:
+          - $ref: '#/components/schemas/MetricPeriod'
+        metric_period_month_reset:
+          allOf:
+          - $ref: '#/components/schemas/MetricPeriodMonthReset'
+        metric_value:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        operator:
+          $ref: '#/components/schemas/ComparableOperator'
+        resource_ids:
+          type: array
+          items:
+            type: string
+          maxItems: 1000
+        trait_definition:
+          $ref: '#/components/schemas/TraitDefinition'
+        trait_value:
+          type: string
+      required:
+      - id
+      - account_id
+      - environment_id
+      - condition_type
+      - operator
+      - resource_ids
+      - trait_value
+      title: Condition
+    MetricPeriodMonthReset:
+      type: string
+      enum:
+      - billing_cycle
+      - first_of_month
+    EventSummaryResponseData:
+      type: object
+      properties:
+        company_count:
+          type: integer
+          format: int64
+        environment_id:
+          type: string
+        event_count:
+          type: integer
+          format: int64
+        event_subtype:
+          type: string
+        last_seen_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        user_count:
+          type: integer
+          format: int64
+      required:
+      - company_count
+      - environment_id
+      - event_count
+      - event_subtype
+      - user_count
+      title: EventSummaryResponseData
+    BillingCreditBurnStrategy:
+      type: string
+      enum:
+      - expiration_priority
+      - first_in_first_out
+      - last_in_first_out
+      - plan_first_then_credit_bundles_first_in_first_out
+    BillingPlanCreditGrantResetStart:
+      type: string
+      enum:
+      - billing_period
+      - first_of_month
+    BillingSubscriptionTrialEndSetting:
+      type: string
+      enum:
+      - cancel
+      - subscribe
+    BillingTiersMode:
+      type: string
+      enum:
+      - graduated
+      - volume
     CustomPlanBillingResponseData:
       type: object
       properties:
@@ -3995,14 +3887,122 @@ components:
       - status
       - updated_at
       title: CustomPlanBillingResponseData
-    InvoiceStatus:
+    ConditionGroup:
+      type: object
+      properties:
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+          maxItems: 1000
+      required:
+      - conditions
+      title: ConditionGroup
+    PlanIcon:
       type: string
       enum:
-      - draft
-      - open
-      - paid
-      - uncollectible
-      - void
+      - amber
+      - blue
+      - blueGray
+      - blueGreen
+      - cyan
+      - emerald
+      - fuchsia
+      - gray
+      - green
+      - indigo
+      - lightBlue
+      - lime
+      - orange
+      - pink
+      - purple
+      - red
+      - redOrange
+      - rose
+      - sky
+      - slate
+      - teal
+      - trueGray
+      - violet
+      - warmGray
+      - yellow
+    BillingLinkedResourceResponseData:
+      type: object
+      properties:
+        billing_provider:
+          $ref: '#/components/schemas/BillingProviderType'
+        external_resource_id:
+          type: string
+        originator:
+          $ref: '#/components/schemas/BillingProviderType'
+      required:
+      - billing_provider
+      - external_resource_id
+      - originator
+      title: BillingLinkedResourceResponseData
+    BillingCreditExpiryUnit:
+      type: string
+      enum:
+      - billing_periods
+      - days
+    UpsertBillingProductRequestBody:
+      type: object
+      properties:
+        billing_product_id:
+          type:
+          - string
+          - 'null'
+        charge_type:
+          $ref: '#/components/schemas/ChargeType'
+        currency:
+          type:
+          - string
+          - 'null'
+        currency_prices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PlanCurrencyPriceRequestBody'
+          maxItems: 50
+        is_trialable:
+          type: boolean
+        monthly_price:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        monthly_price_id:
+          type:
+          - string
+          - 'null'
+        one_time_price:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        one_time_price_id:
+          type:
+          - string
+          - 'null'
+        trial_days:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        yearly_price:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        yearly_price_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - charge_type
+      - is_trialable
+      title: UpsertBillingProductRequestBody
   responses:
     BadRequest:
       description: Bad request
@@ -4016,14 +4016,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
-    Forbidden:
-      description: Forbidden
+    Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
-    Unauthorized:
-      description: Unauthorized
+    Forbidden:
+      description: Forbidden
       content:
         application/json:
           schema:

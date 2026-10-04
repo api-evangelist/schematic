@@ -305,106 +305,101 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    ServerError:
-      description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
   schemas:
-    IntegrationsListResponseData:
+    StartDataImportRequestBody:
       type: object
       properties:
-        capabilities:
-          $ref: '#/components/schemas/IntegrationCapabilities'
-        config:
-          $ref: '#/components/schemas/IntegrationConfig'
+        company_matching_criteria:
+          allOf:
+          - $ref: '#/components/schemas/CompanyMatchingCriteria'
+        company_matching_field:
+          type:
+          - string
+          - 'null'
+        integration_id:
+          type: string
+      required:
+      - integration_id
+      title: StartDataImportRequestBody
+    IntegrationsResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
         id:
           type: string
-        is_app_install:
-          type: boolean
-        is_connect_install:
-          type: boolean
         state:
           $ref: '#/components/schemas/IntegrationState'
         type:
           $ref: '#/components/schemas/IntegrationType'
+        updated_at:
+          type: string
+          format: date-time
       required:
-      - capabilities
+      - created_at
       - id
-      - is_app_install
-      - is_connect_install
       - state
       - type
-      title: IntegrationsListResponseData
-    ClerkIntegrationConfig:
-      type: object
-      properties:
-        first_events_received:
-          type:
-          - boolean
-          - 'null'
-          description: Whether Schematic has received the first webhook event from Clerk after install
-        type:
-          type: string
-          description: 'Discriminator: always "clerk" for this variant'
-          enum:
-          - clerk
-        webhook_url:
-          type:
-          - string
-          - 'null'
-          description: URL configured on the Clerk webhook endpoint that delivers events to Schematic
-      required:
-      - type
-      title: ClerkIntegrationConfig
-    OrbIntegrationConfig:
-      type: object
-      properties:
-        external_customer_id_key:
-          type:
-          - string
-          - 'null'
-          description: Schematic company key used to store Orb's external_customer_id; when unset, defaults to orb_external_customer_id
-        type:
-          type: string
-          description: 'Discriminator: always "orb" for this variant'
-          enum:
-          - orb
-      required:
-      - type
-      title: OrbIntegrationConfig
+      - updated_at
+      title: IntegrationsResponseData
+    IntegrationState:
+      type: string
+      enum:
+      - active
+      - created
+      - pending
     DeleteResponse:
       type: object
       properties:
         deleted:
           type: boolean
           description: Whether the delete was successful
+    IntegrationsDataSetResponseData:
+      type: object
+      properties:
+        keys:
+          type: array
+          items:
+            type: string
+          maxItems: 1000
+      required:
+      - keys
+      title: IntegrationsDataSetResponseData
+    IntegrationConfig:
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          clerk: '#/components/schemas/ClerkIntegrationConfig'
+          orb: '#/components/schemas/OrbIntegrationConfig'
+          stripe: '#/components/schemas/StripeIntegrationConfig'
+      oneOf:
+      - $ref: '#/components/schemas/StripeIntegrationConfig'
+      - $ref: '#/components/schemas/OrbIntegrationConfig'
+      - $ref: '#/components/schemas/ClerkIntegrationConfig'
+      title: IntegrationConfig
+    IntegrationCapabilities:
+      type: object
+      properties:
+        author_plans:
+          type: boolean
+        checkout:
+          type: boolean
+        edit_billing:
+          type: boolean
+      required:
+      - author_plans
+      - checkout
+      - edit_billing
+      title: IntegrationCapabilities
+    IntegrationType:
+      type: string
+      enum:
+      - clerk
+      - orb
+      - stripe
+      - unknown
     StripeIntegrationConfig:
       type: object
       properties:
@@ -451,46 +446,47 @@ components:
       enum:
       - billing_meta_object
       - manual_upsert
-    IntegrationsDataSetResponseData:
+    OrbIntegrationConfig:
       type: object
       properties:
-        keys:
-          type: array
-          items:
-            type: string
-          maxItems: 1000
-      required:
-      - keys
-      title: IntegrationsDataSetResponseData
-    IntegrationType:
-      type: string
-      enum:
-      - clerk
-      - orb
-      - stripe
-      - unknown
-    IntegrationCapabilities:
-      type: object
-      properties:
-        author_plans:
-          type: boolean
-        checkout:
-          type: boolean
-        edit_billing:
-          type: boolean
-      required:
-      - author_plans
-      - checkout
-      - edit_billing
-      title: IntegrationCapabilities
-    ApiError:
-      type: object
-      properties:
-        error:
+        external_customer_id_key:
+          type:
+          - string
+          - 'null'
+          description: Schematic company key used to store Orb's external_customer_id; when unset, defaults to orb_external_customer_id
+        type:
           type: string
-          description: Error message
+          description: 'Discriminator: always "orb" for this variant'
+          enum:
+          - orb
       required:
-      - error
+      - type
+      title: OrbIntegrationConfig
+    IntegrationsListResponseData:
+      type: object
+      properties:
+        capabilities:
+          $ref: '#/components/schemas/IntegrationCapabilities'
+        config:
+          $ref: '#/components/schemas/IntegrationConfig'
+        id:
+          type: string
+        is_app_install:
+          type: boolean
+        is_connect_install:
+          type: boolean
+        state:
+          $ref: '#/components/schemas/IntegrationState'
+        type:
+          $ref: '#/components/schemas/IntegrationType'
+      required:
+      - capabilities
+      - id
+      - is_app_install
+      - is_connect_install
+      - state
+      - type
+      title: IntegrationsListResponseData
     IntegrationWebhookUrlResponseData:
       type: object
       properties:
@@ -502,62 +498,66 @@ components:
       - url
       - type
       title: IntegrationWebhookUrlResponseData
-    IntegrationState:
-      type: string
-      enum:
-      - active
-      - created
-      - pending
-    IntegrationConfig:
-      type: object
-      discriminator:
-        propertyName: type
-        mapping:
-          clerk: '#/components/schemas/ClerkIntegrationConfig'
-          orb: '#/components/schemas/OrbIntegrationConfig'
-          stripe: '#/components/schemas/StripeIntegrationConfig'
-      oneOf:
-      - $ref: '#/components/schemas/StripeIntegrationConfig'
-      - $ref: '#/components/schemas/OrbIntegrationConfig'
-      - $ref: '#/components/schemas/ClerkIntegrationConfig'
-      title: IntegrationConfig
-    IntegrationsResponseData:
+    ClerkIntegrationConfig:
       type: object
       properties:
-        created_at:
-          type: string
-          format: date-time
-        id:
-          type: string
-        state:
-          $ref: '#/components/schemas/IntegrationState'
+        first_events_received:
+          type:
+          - boolean
+          - 'null'
+          description: Whether Schematic has received the first webhook event from Clerk after install
         type:
-          $ref: '#/components/schemas/IntegrationType'
-        updated_at:
           type: string
-          format: date-time
-      required:
-      - created_at
-      - id
-      - state
-      - type
-      - updated_at
-      title: IntegrationsResponseData
-    StartDataImportRequestBody:
-      type: object
-      properties:
-        company_matching_criteria:
-          allOf:
-          - $ref: '#/components/schemas/CompanyMatchingCriteria'
-        company_matching_field:
+          description: 'Discriminator: always "clerk" for this variant'
+          enum:
+          - clerk
+        webhook_url:
           type:
           - string
           - 'null'
-        integration_id:
-          type: string
+          description: URL configured on the Clerk webhook endpoint that delivers events to Schematic
       required:
-      - integration_id
-      title: StartDataImportRequestBody
+      - type
+      title: ClerkIntegrationConfig
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+  responses:
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

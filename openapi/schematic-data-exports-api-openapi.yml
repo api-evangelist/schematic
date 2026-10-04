@@ -92,8 +92,20 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
     ServerError:
       description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:
@@ -110,18 +122,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
   schemas:
     DataExportType:
       type: string
@@ -131,6 +131,21 @@ components:
       type: string
       enum:
       - csv
+    CreateDataExportRequestBody:
+      type: object
+      properties:
+        export_type:
+          $ref: '#/components/schemas/DataExportType'
+        metadata:
+          type: string
+          maxLength: 10240
+        output_file_type:
+          $ref: '#/components/schemas/DataExportOutputFileType'
+      required:
+      - export_type
+      - output_file_type
+      - metadata
+      title: CreateDataExportRequestBody
     DataExportResponseData:
       type: object
       properties:
@@ -173,21 +188,6 @@ components:
           description: Error message
       required:
       - error
-    CreateDataExportRequestBody:
-      type: object
-      properties:
-        export_type:
-          $ref: '#/components/schemas/DataExportType'
-        metadata:
-          type: string
-          maxLength: 10240
-        output_file_type:
-          $ref: '#/components/schemas/DataExportOutputFileType'
-      required:
-      - export_type
-      - output_file_type
-      - metadata
-      title: CreateDataExportRequestBody
     DataExportStatus:
       type: string
       enum:

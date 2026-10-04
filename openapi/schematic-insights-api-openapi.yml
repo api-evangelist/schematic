@@ -331,20 +331,14 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   responses:
-    ServerError:
-      description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
     NotFound:
       description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    ServerError:
+      description: Server error
       content:
         application/json:
           schema:
@@ -355,7 +349,164 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
   schemas:
+    ActivityResponseResponseData:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityEntryResponseData'
+          maxItems: 1000
+      required:
+      - entries
+      title: ActivityResponseResponseData
+    TopFeatureByUsageResponseData:
+      type: object
+      properties:
+        change_pct:
+          type:
+          - number
+          - 'null'
+        feature_id:
+          type: string
+        feature_name:
+          type: string
+        plural_name:
+          type:
+          - string
+          - 'null'
+        prior_usage:
+          type: integer
+          format: int64
+        usage:
+          type: integer
+          format: int64
+      required:
+      - feature_id
+      - feature_name
+      - prior_usage
+      - usage
+      title: TopFeatureByUsageResponseData
+    MrrResponseData:
+      type: object
+      properties:
+        amount:
+          type: integer
+          format: int64
+        currency:
+          type: string
+      required:
+      - amount
+      - currency
+      title: MrrResponseData
+    EnvironmentTraitUsageTimeSeriesResponseData:
+      type: object
+      properties:
+        feature_id:
+          type: string
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentUsagePointResponseData'
+          maxItems: 1000
+        trait_definition_id:
+          type: string
+      required:
+      - feature_id
+      - points
+      - trait_definition_id
+      title: EnvironmentTraitUsageTimeSeriesResponseData
+    TopFeaturesByUsageResponseData:
+      type: object
+      properties:
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/TopFeatureByUsageResponseData'
+          maxItems: 1000
+      required:
+      - features
+      title: TopFeaturesByUsageResponseData
+    EnvironmentFeatureUsageTimeSeriesResponseData:
+      type: object
+      properties:
+        event_subtype:
+          type: string
+        feature_id:
+          type: string
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentUsagePointResponseData'
+          maxItems: 1000
+      required:
+      - event_subtype
+      - feature_id
+      - points
+      title: EnvironmentFeatureUsageTimeSeriesResponseData
+    EnvironmentUsagePointResponseData:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        usage:
+          type: integer
+          format: int64
+      required:
+      - timestamp
+      - usage
+      title: EnvironmentUsagePointResponseData
+    ActivityEntryResponseData:
+      type: object
+      properties:
+        actor_name:
+          type: string
+        method:
+          type: string
+        resource_name:
+          type: string
+        resource_type:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        title:
+          type: string
+      required:
+      - actor_name
+      - method
+      - resource_name
+      - resource_type
+      - timestamp
+      - title
+      title: ActivityEntryResponseData
+    PlanGrowthResponseData:
+      type: object
+      properties:
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanGrowthPointResponseData'
+          maxItems: 1000
+      required:
+      - points
+      title: PlanGrowthResponseData
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
     InsightsSummaryResponseData:
       type: object
       properties:
@@ -386,51 +537,6 @@ components:
       - total_features
       - total_plans
       title: InsightsSummaryResponseData
-    TopFeatureByUsageResponseData:
-      type: object
-      properties:
-        change_pct:
-          type:
-          - number
-          - 'null'
-        feature_id:
-          type: string
-        feature_name:
-          type: string
-        plural_name:
-          type:
-          - string
-          - 'null'
-        prior_usage:
-          type: integer
-          format: int64
-        usage:
-          type: integer
-          format: int64
-      required:
-      - feature_id
-      - feature_name
-      - prior_usage
-      - usage
-      title: TopFeatureByUsageResponseData
-    PlanGrowthResponseData:
-      type: object
-      properties:
-        points:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlanGrowthPointResponseData'
-          maxItems: 1000
-      required:
-      - points
-      title: PlanGrowthResponseData
-    TimeSeriesGranularity:
-      type: string
-      enum:
-      - daily
-      - hourly
-      - monthly
-      - weekly
     PlanGrowthPointResponseData:
       type: object
       properties:
@@ -450,119 +556,13 @@ components:
       - plan_name
       - subscribers
       title: PlanGrowthPointResponseData
-    ApiError:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
-    ActivityEntryResponseData:
-      type: object
-      properties:
-        actor_name:
-          type: string
-        method:
-          type: string
-        resource_name:
-          type: string
-        resource_type:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-        title:
-          type: string
-      required:
-      - actor_name
-      - method
-      - resource_name
-      - resource_type
-      - timestamp
-      - title
-      title: ActivityEntryResponseData
-    EnvironmentTraitUsageTimeSeriesResponseData:
-      type: object
-      properties:
-        feature_id:
-          type: string
-        points:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentUsagePointResponseData'
-          maxItems: 1000
-        trait_definition_id:
-          type: string
-      required:
-      - feature_id
-      - points
-      - trait_definition_id
-      title: EnvironmentTraitUsageTimeSeriesResponseData
-    EnvironmentFeatureUsageTimeSeriesResponseData:
-      type: object
-      properties:
-        event_subtype:
-          type: string
-        feature_id:
-          type: string
-        points:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentUsagePointResponseData'
-          maxItems: 1000
-      required:
-      - event_subtype
-      - feature_id
-      - points
-      title: EnvironmentFeatureUsageTimeSeriesResponseData
-    ActivityResponseResponseData:
-      type: object
-      properties:
-        entries:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActivityEntryResponseData'
-          maxItems: 1000
-      required:
-      - entries
-      title: ActivityResponseResponseData
-    EnvironmentUsagePointResponseData:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-        usage:
-          type: integer
-          format: int64
-      required:
-      - timestamp
-      - usage
-      title: EnvironmentUsagePointResponseData
-    MrrResponseData:
-      type: object
-      properties:
-        amount:
-          type: integer
-          format: int64
-        currency:
-          type: string
-      required:
-      - amount
-      - currency
-      title: MrrResponseData
-    TopFeaturesByUsageResponseData:
-      type: object
-      properties:
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/TopFeatureByUsageResponseData'
-          maxItems: 1000
-      required:
-      - features
-      title: TopFeaturesByUsageResponseData
+    TimeSeriesGranularity:
+      type: string
+      enum:
+      - daily
+      - hourly
+      - monthly
+      - weekly
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

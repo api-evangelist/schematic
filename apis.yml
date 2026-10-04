@@ -1005,8 +1005,6 @@ apis:
   description: The Data Exports API from Schematic — 2 operation(s) for data exports.
   humanURL: https://schematichq.com/
   tags:
-  - Data Export
-  tags_raw:
   - Data Exports
   properties:
   - type: OpenAPI

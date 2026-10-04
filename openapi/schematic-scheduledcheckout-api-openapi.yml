@@ -214,38 +214,25 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
-  responses:
-    ServerError:
-      description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
   schemas:
+    CreateScheduledCheckoutRequest:
+      type: object
+      properties:
+        company_id:
+          type: string
+        execute_after:
+          type: string
+          format: date-time
+        from_plan_id:
+          type: string
+        to_plan_id:
+          type: string
+      required:
+      - company_id
+      - execute_after
+      - from_plan_id
+      - to_plan_id
+      title: CreateScheduledCheckoutRequest
     ScheduledCheckoutResponseData:
       type: object
       properties:
@@ -304,40 +291,6 @@ components:
       - to_plan_id
       - updated_at
       title: ScheduledCheckoutResponseData
-    ApiError:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
-    CreateScheduledCheckoutRequest:
-      type: object
-      properties:
-        company_id:
-          type: string
-        execute_after:
-          type: string
-          format: date-time
-        from_plan_id:
-          type: string
-        to_plan_id:
-          type: string
-      required:
-      - company_id
-      - execute_after
-      - from_plan_id
-      - to_plan_id
-      title: CreateScheduledCheckoutRequest
-    ScheduledCheckoutStatus:
-      type: string
-      enum:
-      - cancelled
-      - error
-      - executing
-      - pending
-      - success
     UpdateScheduledCheckoutRequest:
       type: object
       properties:
@@ -350,6 +303,53 @@ components:
           allOf:
           - $ref: '#/components/schemas/ScheduledCheckoutStatus'
       title: UpdateScheduledCheckoutRequest
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+    ScheduledCheckoutStatus:
+      type: string
+      enum:
+      - cancelled
+      - error
+      - executing
+      - pending
+      - success
+  responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

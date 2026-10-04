@@ -371,7 +371,46 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
   schemas:
+    PlanVersionCompanyMigrationStatus:
+      type: string
+      enum:
+      - completed
+      - failed
+      - in_progress
+      - pending
+      - skipped
     PlanVersionMigrationResponseData:
       type: object
       properties:
@@ -480,13 +519,12 @@ components:
       - status
       - updated_at
       title: PlanVersionCompanyMigrationResponseData
-    PlanVersionMigrationStatus:
-      type: string
-      enum:
-      - completed
-      - failed
-      - in_progress
-      - pending
+    CountResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The number of resources
     ApiError:
       type: object
       properties:
@@ -495,56 +533,18 @@ components:
           description: Error message
       required:
       - error
-    PlanVersionCompanyMigrationStatus:
+    PlanVersionMigrationStatus:
       type: string
       enum:
       - completed
       - failed
       - in_progress
       - pending
-      - skipped
-    CountResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: The number of resources
     PlanVersionMigrationStrategy:
       type: string
       enum:
       - immediate
       - leave
-  responses:
-    ServerError:
-      description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

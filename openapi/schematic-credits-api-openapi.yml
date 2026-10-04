@@ -1947,222 +1947,54 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
   schemas:
-    UpdateBillingPlanCreditGrantRequestBody:
+    DeleteResponse:
       type: object
       properties:
-        apply_to_existing:
-          type:
-          - boolean
-          - 'null'
-        auto_topup_amount:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 1
-        auto_topup_amount_type:
-          allOf:
-          - $ref: '#/components/schemas/CreditAutoTopupAmountType'
-        auto_topup_enabled:
-          type:
-          - boolean
-          - 'null'
-        auto_topup_expiry_type:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditExpiryType'
-        auto_topup_expiry_unit:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
-        auto_topup_expiry_unit_count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 1
-        auto_topup_threshold_credits:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 0
-        auto_topup_threshold_percent:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          maximum: 100
-          minimum: 1
-        credit_amount:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          maximum: 9999999999
-          minimum: 0
-        expiry_type:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditExpiryType'
-        expiry_unit:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
-        expiry_unit_count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 1
-        reset_cadence:
-          $ref: '#/components/schemas/BillingPlanCreditGrantResetCadence'
-        reset_start:
-          $ref: '#/components/schemas/BillingPlanCreditGrantResetStart'
-        reset_type:
-          allOf:
-          - $ref: '#/components/schemas/BillingPlanCreditGrantResetType'
-      required:
-      - reset_cadence
-      - reset_start
-      title: UpdateBillingPlanCreditGrantRequestBody
-    CreateCreditBundleRequestBody:
+        deleted:
+          type: boolean
+          description: Whether the delete was successful
+    CreditCurrencyPriceResponseData:
       type: object
       properties:
-        bundle_name:
-          type: string
-          maxLength: 256
-        bundle_type:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditBundleType'
-        credit_id:
-          type: string
         currency:
           type: string
-        currency_prices:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CreditBundleCurrencyPriceRequestBody'
-          maxItems: 50
-        expiry_type:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditExpiryType'
-        expiry_unit:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
-        expiry_unit_count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 1
-        price_per_unit:
-          type: integer
-          format: int64
-          minimum: 0
-        price_per_unit_decimal:
-          type:
-          - string
-          - 'null'
-        quantity:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 1
-        status:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditBundleStatus'
-      required:
-      - credit_id
-      - currency
-      - bundle_name
-      - price_per_unit
-      title: CreateCreditBundleRequestBody
-    BillingCreditBundleResponseData:
-      type: object
-      properties:
-        billing_invoice_id:
-          type:
-          - string
-          - 'null'
-        bundle_type:
-          $ref: '#/components/schemas/BillingCreditBundleType'
-        created_at:
-          type: string
-          format: date-time
-        credit_description:
-          type: string
-        credit_icon:
-          type:
-          - string
-          - 'null'
-        credit_id:
-          type: string
-        credit_name:
-          type: string
-        currency_prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreditBundleCurrencyPriceResponseData'
-          maxItems: 256
-        expiry_type:
-          $ref: '#/components/schemas/BillingCreditExpiryType'
-        expiry_unit:
-          $ref: '#/components/schemas/BillingCreditExpiryUnit'
-        expiry_unit_count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        has_grants:
-          type: boolean
-        id:
-          type: string
-        name:
-          type: string
-        plural_name:
-          type:
-          - string
-          - 'null'
         price:
           $ref: '#/components/schemas/BillingPriceResponseData'
-        quantity:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        singular_name:
-          type:
-          - string
-          - 'null'
-        status:
-          $ref: '#/components/schemas/BillingCreditBundleStatus'
-        unit_price:
-          $ref: '#/components/schemas/BillingPriceResponseData'
-        updated_at:
-          type: string
-          format: date-time
       required:
-      - id
-      - credit_id
-      - name
-      - status
-      - bundle_type
-      - expiry_unit
-      - expiry_type
-      - credit_name
-      - currency_prices
-      - has_grants
-      - created_at
-      - updated_at
-      title: BillingCreditBundleResponseData
-    ZeroOutGrantRequestBody:
-      type: object
-      properties:
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditGrantZeroedOutReason'
-      title: ZeroOutGrantRequestBody
+      - currency
+      title: CreditCurrencyPriceResponseData
     BillingCreditGrantZeroedOutReason:
       type: string
       enum:
@@ -2170,6 +2002,91 @@ components:
       - manual
       - plan_change
       - plan_period_reset
+    BillingCreditBurnStrategy:
+      type: string
+      enum:
+      - expiration_priority
+      - first_in_first_out
+      - last_in_first_out
+      - plan_first_then_credit_bundles_first_in_first_out
+    BillingPlanCreditGrantResetStart:
+      type: string
+      enum:
+      - billing_period
+      - first_of_month
+    BillingCreditBundleType:
+      type: string
+      enum:
+      - fixed
+    CreateBillingCreditRequestBody:
+      type: object
+      properties:
+        burn_strategy:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditBurnStrategy'
+        currency:
+          type: string
+        currency_prices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CreditCurrencyPriceRequestBody'
+          maxItems: 50
+        default_expiry_unit:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
+        default_expiry_unit_count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 1
+        default_rollover_policy:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditRolloverPolicy'
+        description:
+          type: string
+          maxLength: 1024
+        icon:
+          type:
+          - string
+          - 'null'
+          maxLength: 64
+        name:
+          type: string
+          maxLength: 255
+        per_unit_price:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        per_unit_price_decimal:
+          type:
+          - string
+          - 'null'
+        plural_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 512
+        singular_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 512
+      required:
+      - name
+      - description
+      - currency
+      title: CreateBillingCreditRequestBody
+    BillingProductPriceInterval:
+      type: string
+      enum:
+      - day
+      - month
+      - one-time
+      - year
     BillingProductResponseData:
       type: object
       properties:
@@ -2220,26 +2137,66 @@ components:
       - quantity
       - updated_at
       title: BillingProductResponseData
-    BillingCreditExpiryUnit:
-      type: string
-      enum:
-      - billing_periods
-      - days
-    BillingCreditRolloverPolicy:
-      type: string
-      enum:
-      - expire
-      - none
-      - rollover
-    BillingCreditBundleStatus:
-      type: string
-      enum:
-      - active
-      - inactive
-    CreditAutoTopupAmountType:
-      type: string
-      enum:
-      - credit
+    UpdateBillingCreditRequestBody:
+      type: object
+      properties:
+        burn_strategy:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditBurnStrategy'
+        currency_prices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CreditCurrencyPriceRequestBody'
+          maxItems: 50
+        default_expiry_unit:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
+        default_expiry_unit_count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 1
+        default_rollover_policy:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditRolloverPolicy'
+        description:
+          type: string
+          maxLength: 1024
+        icon:
+          type:
+          - string
+          - 'null'
+          maxLength: 64
+        name:
+          type: string
+          maxLength: 255
+        per_unit_price:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 1
+        per_unit_price_decimal:
+          type:
+          - string
+          - 'null'
+        plural_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 512
+        singular_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 512
+      required:
+      - name
+      - description
+      title: UpdateBillingCreditRequestBody
     BillingCreditGrantResponseData:
       type: object
       properties:
@@ -2331,63 +2288,119 @@ components:
       - grant_reason
       - renewal_enabled
       title: BillingCreditGrantResponseData
-    CompanyLedgerResponseData:
+    BillingCreditGrantReason:
+      type: string
+      enum:
+      - adjustment
+      - billing_credit_auto_topup
+      - free
+      - plan
+      - purchased
+    UpdateCreditBundleDetailsRequestBody:
       type: object
       properties:
-        id:
+        bundle_name:
           type: string
-        logo_url:
+          maxLength: 256
+        currency_prices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CreditBundleCurrencyPriceRequestBody'
+          maxItems: 50
+        expiry_type:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryType'
+        expiry_unit:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
+        expiry_unit_count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 1
+        price_per_unit:
+          type: integer
+          format: int64
+          minimum: 0
+        price_per_unit_decimal:
           type:
           - string
           - 'null'
-        name:
-          type: string
+        quantity:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 1
+        status:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditBundleStatus'
       required:
-      - id
-      - name
-      title: CompanyLedgerResponseData
-    BillingCreditBurnStrategy:
-      type: string
-      enum:
-      - expiration_priority
-      - first_in_first_out
-      - last_in_first_out
-      - plan_first_then_credit_bundles_first_in_first_out
-    FeatureLedgerResponseData:
+      - bundle_name
+      - price_per_unit
+      title: UpdateCreditBundleDetailsRequestBody
+    PreviewObjectResponseData:
       type: object
       properties:
         description:
           type:
           - string
           - 'null'
-        icon:
+        id:
+          type: string
+        image_url:
           type:
           - string
           - 'null'
-        id:
-          type: string
         name:
           type: string
       required:
       - id
       - name
-      title: FeatureLedgerResponseData
-    DeleteResponse:
-      type: object
-      properties:
-        deleted:
-          type: boolean
-          description: Whether the delete was successful
-    CreditBundleCurrencyPriceResponseData:
+      title: PreviewObjectResponseData
+    BillingCreditRolloverPolicy:
+      type: string
+      enum:
+      - expire
+      - none
+      - rollover
+    CreditEventType:
+      type: string
+      enum:
+      - grant
+      - transfer
+      - usage
+      - zero_out
+    BillingCreditExpiryType:
+      type: string
+      enum:
+      - duration
+      - end_of_billing_period
+      - end_of_next_billing_period
+      - end_of_trial
+      - no_expiry
+    CreditBundleCurrencyPriceRequestBody:
       type: object
       properties:
         currency:
           type: string
-        price:
-          $ref: '#/components/schemas/BillingPriceResponseData'
+          maxLength: 3
+        price_per_unit:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 0
+        price_per_unit_decimal:
+          type:
+          - string
+          - 'null'
       required:
       - currency
-      title: CreditBundleCurrencyPriceResponseData
+      title: CreditBundleCurrencyPriceRequestBody
     CreditEventLedgerResponseData:
       type: object
       properties:
@@ -2504,6 +2517,142 @@ components:
       - company_id
       - environment_id
       title: CreditEventLedgerResponseData
+    UpdateBillingPlanCreditGrantRequestBody:
+      type: object
+      properties:
+        apply_to_existing:
+          type:
+          - boolean
+          - 'null'
+        auto_topup_amount:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 1
+        auto_topup_amount_type:
+          allOf:
+          - $ref: '#/components/schemas/CreditAutoTopupAmountType'
+        auto_topup_enabled:
+          type:
+          - boolean
+          - 'null'
+        auto_topup_expiry_type:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryType'
+        auto_topup_expiry_unit:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
+        auto_topup_expiry_unit_count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 1
+        auto_topup_threshold_credits:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 0
+        auto_topup_threshold_percent:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          maximum: 100
+          minimum: 1
+        credit_amount:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          maximum: 9999999999
+          minimum: 0
+        expiry_type:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryType'
+        expiry_unit:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
+        expiry_unit_count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 1
+        reset_cadence:
+          $ref: '#/components/schemas/BillingPlanCreditGrantResetCadence'
+        reset_start:
+          $ref: '#/components/schemas/BillingPlanCreditGrantResetStart'
+        reset_type:
+          allOf:
+          - $ref: '#/components/schemas/BillingPlanCreditGrantResetType'
+      required:
+      - reset_cadence
+      - reset_start
+      title: UpdateBillingPlanCreditGrantRequestBody
+    BillingCreditResponseData:
+      type: object
+      properties:
+        burn_strategy:
+          $ref: '#/components/schemas/BillingCreditBurnStrategy'
+        cost_editable:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        currency_prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreditCurrencyPriceResponseData'
+          maxItems: 256
+        default_expiry_unit:
+          $ref: '#/components/schemas/BillingCreditExpiryUnit'
+        default_expiry_unit_count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        default_rollover_policy:
+          $ref: '#/components/schemas/BillingCreditRolloverPolicy'
+        description:
+          type: string
+        icon:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        name:
+          type: string
+        plural_name:
+          type:
+          - string
+          - 'null'
+        price:
+          $ref: '#/components/schemas/BillingPriceResponseData'
+        product:
+          $ref: '#/components/schemas/BillingProductResponseData'
+        singular_name:
+          type:
+          - string
+          - 'null'
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - name
+      - description
+      - default_expiry_unit
+      - default_rollover_policy
+      - burn_strategy
+      - cost_editable
+      - currency_prices
+      - created_at
+      - updated_at
+      title: BillingCreditResponseData
     CreditCurrencyPriceRequestBody:
       type: object
       properties:
@@ -2523,50 +2672,395 @@ components:
       required:
       - currency
       title: CreditCurrencyPriceRequestBody
-    CountResponse:
+    CreditAutoTopupAmountType:
+      type: string
+      enum:
+      - credit
+    CreditGrantSortOrder:
+      type: string
+      enum:
+      - created_at
+      - expires_at
+      - quantity
+      - quantity_remaining
+    ZeroOutGrantRequestBody:
       type: object
       properties:
-        count:
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditGrantZeroedOutReason'
+      title: ZeroOutGrantRequestBody
+    BillingPriceResponseData:
+      type: object
+      properties:
+        currency:
+          type: string
+        external_price_id:
+          type: string
+        id:
+          type: string
+        interval:
+          $ref: '#/components/schemas/BillingProductPriceInterval'
+        nickname:
+          type:
+          - string
+          - 'null'
+        price:
           type: integer
-          description: The number of resources
-    CreditLedgerPeriod:
-      type: string
-      enum:
-      - daily
-      - monthly
-      - raw
-      - weekly
-    SortDirection:
-      type: string
-      enum:
-      - asc
-      - desc
-    PreviewObjectResponseData:
+          format: int64
+        price_decimal:
+          type:
+          - string
+          - 'null'
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        scheme:
+          $ref: '#/components/schemas/BillingPriceScheme'
+      required:
+      - currency
+      - external_price_id
+      - id
+      - interval
+      - price
+      - provider_type
+      - scheme
+      title: BillingPriceResponseData
+    FeatureLedgerResponseData:
       type: object
       properties:
         description:
           type:
           - string
           - 'null'
-        id:
-          type: string
-        image_url:
+        icon:
           type:
           - string
           - 'null'
+        id:
+          type: string
         name:
           type: string
       required:
       - id
       - name
-      title: PreviewObjectResponseData
-    BillingPlanCreditGrantResetCadence:
+      title: FeatureLedgerResponseData
+    BillingProviderType:
       type: string
       enum:
-      - daily
-      - monthly
-      - weekly
-      - yearly
+      - orb
+      - schematic
+      - stripe
+    BillingCreditBundleStatus:
+      type: string
+      enum:
+      - active
+      - inactive
+    BillingPriceScheme:
+      type: string
+      enum:
+      - per_unit
+      - tiered
+    CreateCreditBundleRequestBody:
+      type: object
+      properties:
+        bundle_name:
+          type: string
+          maxLength: 256
+        bundle_type:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditBundleType'
+        credit_id:
+          type: string
+        currency:
+          type: string
+        currency_prices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CreditBundleCurrencyPriceRequestBody'
+          maxItems: 50
+        expiry_type:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryType'
+        expiry_unit:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
+        expiry_unit_count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 1
+        price_per_unit:
+          type: integer
+          format: int64
+          minimum: 0
+        price_per_unit_decimal:
+          type:
+          - string
+          - 'null'
+        quantity:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 1
+        status:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditBundleStatus'
+      required:
+      - credit_id
+      - currency
+      - bundle_name
+      - price_per_unit
+      title: CreateCreditBundleRequestBody
+    BillingCreditLedgerResponseData:
+      type: object
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
+        icon:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        name:
+          type: string
+        plural_name:
+          type:
+          - string
+          - 'null'
+        singular_name:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+      title: BillingCreditLedgerResponseData
+    CreateBillingPlanCreditGrantRequestBody:
+      type: object
+      properties:
+        apply_to_existing:
+          type:
+          - boolean
+          - 'null'
+        auto_topup_amount:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 1
+        auto_topup_amount_type:
+          allOf:
+          - $ref: '#/components/schemas/CreditAutoTopupAmountType'
+        auto_topup_enabled:
+          type:
+          - boolean
+          - 'null'
+        auto_topup_expiry_type:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryType'
+        auto_topup_expiry_unit:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
+        auto_topup_expiry_unit_count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 1
+        auto_topup_threshold_credits:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 0
+        auto_topup_threshold_percent:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          maximum: 100
+          minimum: 1
+        credit_amount:
+          type: integer
+          format: int64
+          maximum: 9999999999
+          minimum: 0
+        credit_id:
+          type: string
+        expiry_type:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryType'
+        expiry_unit:
+          allOf:
+          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
+        expiry_unit_count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 1
+        plan_id:
+          type: string
+        plan_version_id:
+          type:
+          - string
+          - 'null'
+        reset_cadence:
+          $ref: '#/components/schemas/BillingPlanCreditGrantResetCadence'
+        reset_start:
+          $ref: '#/components/schemas/BillingPlanCreditGrantResetStart'
+        reset_type:
+          allOf:
+          - $ref: '#/components/schemas/BillingPlanCreditGrantResetType'
+      required:
+      - reset_cadence
+      - reset_start
+      - credit_id
+      - plan_id
+      - credit_amount
+      title: CreateBillingPlanCreditGrantRequestBody
+    BillingCreditBundleResponseData:
+      type: object
+      properties:
+        billing_invoice_id:
+          type:
+          - string
+          - 'null'
+        bundle_type:
+          $ref: '#/components/schemas/BillingCreditBundleType'
+        created_at:
+          type: string
+          format: date-time
+        credit_description:
+          type: string
+        credit_icon:
+          type:
+          - string
+          - 'null'
+        credit_id:
+          type: string
+        credit_name:
+          type: string
+        currency_prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreditBundleCurrencyPriceResponseData'
+          maxItems: 256
+        expiry_type:
+          $ref: '#/components/schemas/BillingCreditExpiryType'
+        expiry_unit:
+          $ref: '#/components/schemas/BillingCreditExpiryUnit'
+        expiry_unit_count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        has_grants:
+          type: boolean
+        id:
+          type: string
+        name:
+          type: string
+        plural_name:
+          type:
+          - string
+          - 'null'
+        price:
+          $ref: '#/components/schemas/BillingPriceResponseData'
+        quantity:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        singular_name:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/BillingCreditBundleStatus'
+        unit_price:
+          $ref: '#/components/schemas/BillingPriceResponseData'
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - credit_id
+      - name
+      - status
+      - bundle_type
+      - expiry_unit
+      - expiry_type
+      - credit_name
+      - currency_prices
+      - has_grants
+      - created_at
+      - updated_at
+      title: BillingCreditBundleResponseData
+    CreditBundleCurrencyPriceResponseData:
+      type: object
+      properties:
+        currency:
+          type: string
+        price:
+          $ref: '#/components/schemas/BillingPriceResponseData'
+      required:
+      - currency
+      title: CreditBundleCurrencyPriceResponseData
+    CreditTransferResponseData:
+      type: object
+      properties:
+        amount:
+          type: number
+        created_at:
+          type: string
+          format: date-time
+        direction:
+          type: string
+        id:
+          type: string
+        reason:
+          type: string
+        related_grant_id:
+          type: string
+      required:
+      - amount
+      - created_at
+      - direction
+      - id
+      - reason
+      - related_grant_id
+      title: CreditTransferResponseData
+    CompanyCreditBalanceResponseData:
+      type: object
+      properties:
+        credit_id:
+          type: string
+        remaining:
+          type: number
+        source:
+          $ref: '#/components/schemas/BillingProviderType'
+        total:
+          type:
+          - number
+          - 'null'
+      required:
+      - credit_id
+      - remaining
+      - source
+      title: CompanyCreditBalanceResponseData
+    SortDirection:
+      type: string
+      enum:
+      - asc
+      - desc
     BillingPlanCreditGrantResponseData:
       type: object
       properties:
@@ -2676,273 +3170,6 @@ components:
       - created_at
       - updated_at
       title: BillingPlanCreditGrantResponseData
-    UpdateBillingCreditRequestBody:
-      type: object
-      properties:
-        burn_strategy:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditBurnStrategy'
-        currency_prices:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CreditCurrencyPriceRequestBody'
-          maxItems: 50
-        default_expiry_unit:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
-        default_expiry_unit_count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 1
-        default_rollover_policy:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditRolloverPolicy'
-        description:
-          type: string
-          maxLength: 1024
-        icon:
-          type:
-          - string
-          - 'null'
-          maxLength: 64
-        name:
-          type: string
-          maxLength: 255
-        per_unit_price:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 1
-        per_unit_price_decimal:
-          type:
-          - string
-          - 'null'
-        plural_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 512
-        singular_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 512
-      required:
-      - name
-      - description
-      title: UpdateBillingCreditRequestBody
-    ApiError:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
-    CreateBillingCreditRequestBody:
-      type: object
-      properties:
-        burn_strategy:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditBurnStrategy'
-        currency:
-          type: string
-        currency_prices:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CreditCurrencyPriceRequestBody'
-          maxItems: 50
-        default_expiry_unit:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
-        default_expiry_unit_count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 1
-        default_rollover_policy:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditRolloverPolicy'
-        description:
-          type: string
-          maxLength: 1024
-        icon:
-          type:
-          - string
-          - 'null'
-          maxLength: 64
-        name:
-          type: string
-          maxLength: 255
-        per_unit_price:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        per_unit_price_decimal:
-          type:
-          - string
-          - 'null'
-        plural_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 512
-        singular_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 512
-      required:
-      - name
-      - description
-      - currency
-      title: CreateBillingCreditRequestBody
-    CreateBillingPlanCreditGrantRequestBody:
-      type: object
-      properties:
-        apply_to_existing:
-          type:
-          - boolean
-          - 'null'
-        auto_topup_amount:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 1
-        auto_topup_amount_type:
-          allOf:
-          - $ref: '#/components/schemas/CreditAutoTopupAmountType'
-        auto_topup_enabled:
-          type:
-          - boolean
-          - 'null'
-        auto_topup_expiry_type:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditExpiryType'
-        auto_topup_expiry_unit:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
-        auto_topup_expiry_unit_count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 1
-        auto_topup_threshold_credits:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 0
-        auto_topup_threshold_percent:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          maximum: 100
-          minimum: 1
-        credit_amount:
-          type: integer
-          format: int64
-          maximum: 9999999999
-          minimum: 0
-        credit_id:
-          type: string
-        expiry_type:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditExpiryType'
-        expiry_unit:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
-        expiry_unit_count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 1
-        plan_id:
-          type: string
-        plan_version_id:
-          type:
-          - string
-          - 'null'
-        reset_cadence:
-          $ref: '#/components/schemas/BillingPlanCreditGrantResetCadence'
-        reset_start:
-          $ref: '#/components/schemas/BillingPlanCreditGrantResetStart'
-        reset_type:
-          allOf:
-          - $ref: '#/components/schemas/BillingPlanCreditGrantResetType'
-      required:
-      - reset_cadence
-      - reset_start
-      - credit_id
-      - plan_id
-      - credit_amount
-      title: CreateBillingPlanCreditGrantRequestBody
-    UpdateCreditBundleDetailsRequestBody:
-      type: object
-      properties:
-        bundle_name:
-          type: string
-          maxLength: 256
-        currency_prices:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CreditBundleCurrencyPriceRequestBody'
-          maxItems: 50
-        expiry_type:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditExpiryType'
-        expiry_unit:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditExpiryUnit'
-        expiry_unit_count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 1
-        price_per_unit:
-          type: integer
-          format: int64
-          minimum: 0
-        price_per_unit_decimal:
-          type:
-          - string
-          - 'null'
-        quantity:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 1
-        status:
-          allOf:
-          - $ref: '#/components/schemas/BillingCreditBundleStatus'
-      required:
-      - bundle_name
-      - price_per_unit
-      title: UpdateCreditBundleDetailsRequestBody
-    BillingProductPriceInterval:
-      type: string
-      enum:
-      - day
-      - month
-      - one-time
-      - year
     CreateCompanyCreditGrant:
       type: object
       properties:
@@ -2997,40 +3224,12 @@ components:
       - quantity
       - reason
       title: CreateCompanyCreditGrant
-    BillingPlanCreditGrantResetStart:
-      type: string
-      enum:
-      - billing_period
-      - first_of_month
-    BillingPlanCreditGrantResetType:
-      type: string
-      enum:
-      - no_reset
-      - plan_period
-    CreditTransferResponseData:
+    CountResponse:
       type: object
       properties:
-        amount:
-          type: number
-        created_at:
-          type: string
-          format: date-time
-        direction:
-          type: string
-        id:
-          type: string
-        reason:
-          type: string
-        related_grant_id:
-          type: string
-      required:
-      - amount
-      - created_at
-      - direction
-      - id
-      - reason
-      - related_grant_id
-      title: CreditTransferResponseData
+        count:
+          type: integer
+          description: The number of resources
     CreditLedgerEnrichedEntryResponseData:
       type: object
       properties:
@@ -3113,252 +3312,53 @@ components:
       - plan_grant_count
       - purchased_grant_count
       title: CreditLedgerEnrichedEntryResponseData
-    CreditEventType:
+    CreditLedgerPeriod:
       type: string
       enum:
-      - grant
-      - transfer
-      - usage
-      - zero_out
-    BillingCreditExpiryType:
+      - daily
+      - monthly
+      - raw
+      - weekly
+    BillingPlanCreditGrantResetCadence:
       type: string
       enum:
-      - duration
-      - end_of_billing_period
-      - end_of_next_billing_period
-      - end_of_trial
-      - no_expiry
-    BillingPriceScheme:
-      type: string
-      enum:
-      - per_unit
-      - tiered
-    BillingProviderType:
-      type: string
-      enum:
-      - orb
-      - schematic
-      - stripe
-    CreditCurrencyPriceResponseData:
+      - daily
+      - monthly
+      - weekly
+      - yearly
+    ApiError:
       type: object
       properties:
-        currency:
+        error:
           type: string
-        price:
-          $ref: '#/components/schemas/BillingPriceResponseData'
+          description: Error message
       required:
-      - currency
-      title: CreditCurrencyPriceResponseData
-    BillingCreditBundleType:
+      - error
+    BillingCreditExpiryUnit:
       type: string
       enum:
-      - fixed
-    BillingCreditGrantReason:
-      type: string
-      enum:
-      - adjustment
-      - billing_credit_auto_topup
-      - free
-      - plan
-      - purchased
-    CreditBundleCurrencyPriceRequestBody:
+      - billing_periods
+      - days
+    CompanyLedgerResponseData:
       type: object
       properties:
-        currency:
-          type: string
-          maxLength: 3
-        price_per_unit:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 0
-        price_per_unit_decimal:
-          type:
-          - string
-          - 'null'
-      required:
-      - currency
-      title: CreditBundleCurrencyPriceRequestBody
-    BillingPriceResponseData:
-      type: object
-      properties:
-        currency:
-          type: string
-        external_price_id:
-          type: string
         id:
           type: string
-        interval:
-          $ref: '#/components/schemas/BillingProductPriceInterval'
-        nickname:
+        logo_url:
           type:
           - string
           - 'null'
-        price:
-          type: integer
-          format: int64
-        price_decimal:
-          type:
-          - string
-          - 'null'
-        provider_type:
-          $ref: '#/components/schemas/BillingProviderType'
-        scheme:
-          $ref: '#/components/schemas/BillingPriceScheme'
-      required:
-      - currency
-      - external_price_id
-      - id
-      - interval
-      - price
-      - provider_type
-      - scheme
-      title: BillingPriceResponseData
-    BillingCreditLedgerResponseData:
-      type: object
-      properties:
-        description:
-          type:
-          - string
-          - 'null'
-        icon:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
         name:
           type: string
-        plural_name:
-          type:
-          - string
-          - 'null'
-        singular_name:
-          type:
-          - string
-          - 'null'
       required:
       - id
       - name
-      title: BillingCreditLedgerResponseData
-    CompanyCreditBalanceResponseData:
-      type: object
-      properties:
-        credit_id:
-          type: string
-        remaining:
-          type: number
-        source:
-          $ref: '#/components/schemas/BillingProviderType'
-        total:
-          type:
-          - number
-          - 'null'
-      required:
-      - credit_id
-      - remaining
-      - source
-      title: CompanyCreditBalanceResponseData
-    BillingCreditResponseData:
-      type: object
-      properties:
-        burn_strategy:
-          $ref: '#/components/schemas/BillingCreditBurnStrategy'
-        cost_editable:
-          type: boolean
-        created_at:
-          type: string
-          format: date-time
-        currency_prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreditCurrencyPriceResponseData'
-          maxItems: 256
-        default_expiry_unit:
-          $ref: '#/components/schemas/BillingCreditExpiryUnit'
-        default_expiry_unit_count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        default_rollover_policy:
-          $ref: '#/components/schemas/BillingCreditRolloverPolicy'
-        description:
-          type: string
-        icon:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-        name:
-          type: string
-        plural_name:
-          type:
-          - string
-          - 'null'
-        price:
-          $ref: '#/components/schemas/BillingPriceResponseData'
-        product:
-          $ref: '#/components/schemas/BillingProductResponseData'
-        singular_name:
-          type:
-          - string
-          - 'null'
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - name
-      - description
-      - default_expiry_unit
-      - default_rollover_policy
-      - burn_strategy
-      - cost_editable
-      - currency_prices
-      - created_at
-      - updated_at
-      title: BillingCreditResponseData
-    CreditGrantSortOrder:
+      title: CompanyLedgerResponseData
+    BillingPlanCreditGrantResetType:
       type: string
       enum:
-      - created_at
-      - expires_at
-      - quantity
-      - quantity_remaining
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    ServerError:
-      description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
+      - no_reset
+      - plan_period
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
