@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.schematichq.com/openapi.json",
+ "requested_url": "https://docs.schematichq.com/openapi.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 309907,
+ "sha256": "b052190007b266d156eff4db9ca6025bf793237bb0c19cb69f1afb9af16610ad",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.95), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
