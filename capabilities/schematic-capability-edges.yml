@@ -1,0 +1,108 @@
+slug: schematic
+provider: Schematic
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 9
+edges:
+- tag: Billing
+  spec_file: schematic-billing-api-openapi.yml
+  capability_id: BC-4250
+  capability_id_l1: BC-4250
+  capability_name: Subscription Billing & Revenue Management
+  confidence: 0.9
+  evidence: GET /billing/invoices  listInvoices; POST /billing/meter/upsert  upsertBillingMeter; GET /billing/payment-methods  listPaymentMethods
+  reason: Operations cover subscription billing customers, invoices, usage meters, payment methods and
+    prices — squarely Subscription Billing & Revenue Management. Left at L1 because the surface spans
+    metering, invoicing and payment collection rather than one sub-capability.
+- tag: Checkout
+  spec_file: schematic-checkout-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.88
+  evidence: POST /manage-plan  managePlan; POST /manage-plan/subscription/cancel  cancelSubscription;
+    PUT /subscription/{subscription_id}/edit-trial-end  updateCustomerSubscriptionTrialEnd
+  reason: Plan selection, subscription change preview, cancellation and trial-end edits with PlanEntitlementResponseData
+    schemas realise the SaaS subscription commercial lifecycle. Spans modification, cancellation and contracting,
+    so only the L1 is asserted.
+- tag: Plans
+  spec_file: schematic-plans-api-openapi.yml
+  capability_id: BC-4240.10
+  capability_id_l1: BC-4240
+  capability_name: Plan & Entitlement Design
+  confidence: 0.85
+  evidence: POST /plans createPlan; PUT /plans/{plan_id}/billing_products upsertBillingProductPlan; schemas
+    PublishPlanVersionRequestBody, PlanCurrencyPricesResponseData, CreatePlanRequestBody
+  reason: Creation, versioning, publishing and billing-product linkage of pricing plans (including custom
+    plans) is directly the design of plans and the entitlements/pricing attached to them.
+- tag: planbundle
+  spec_file: schematic-planbundle-api-openapi.yml
+  capability_id: BC-4240.10
+  capability_id_l1: BC-4240
+  capability_name: Plan & Entitlement Design
+  confidence: 0.82
+  evidence: POST /plan-bundles createPlanBundle 'Create plan bundle'; schemas CreatePlanRequestBody, PlanType,
+    BillingProductPriceTierResponseData
+  reason: Schematic is a monetization/entitlement platform; this tag creates and updates bundles of billing
+    plans, i.e. definition of plans and the packaging/entitlement rules — Plan & Entitlement Design within
+    Subscription Lifecycle Management.
+- tag: plangroups
+  spec_file: schematic-plangroups-api-openapi.yml
+  capability_id: BC-4240.10
+  capability_id_l1: BC-4240
+  capability_name: Plan & Entitlement Design
+  confidence: 0.82
+  evidence: createPlanGroup 'Create plan group'; schemas FlagInPlanResponseData, PlanVersionResponseData,
+    PlanGroupPlanEntitlementsOrder, ScheduledDowngradeConfigBehavior
+  reason: Operations define and version groups of plans with their feature entitlements — plan and entitlement
+    design for the SaaS commercial model, not runtime enforcement.
+- tag: Credits
+  spec_file: schematic-credits-api-openapi.yml
+  capability_id: BC-4250
+  capability_id_l1: BC-4250
+  capability_name: Subscription Billing & Revenue Management
+  confidence: 0.8
+  evidence: GET /billing/credits/balance listCompanyCreditBalances; GET /billing/credits/bundles listCreditBundles;
+    schemas BillingCreditGrantResponseData, CompanyLedgerResponseData, BillingCreditBurnStrategy, CreditAutoTopupAmountType
+  reason: Prepaid billing credits, grants, bundles with currency prices, burn strategies and ledgers are
+    part of subscription billing/charging mechanics. L1 is clear; the exact sub-capability straddles rating/charging
+    and payment collection, so L2 is left unset.
+- tag: Entitlements
+  spec_file: schematic-entitlements-api-openapi.yml
+  capability_id: BC-4240.70
+  capability_id_l1: BC-4240
+  capability_name: Entitlement Enforcement
+  confidence: 0.8
+  evidence: POST /company-overrides createCompanyOverride; GET /feature-usage listFeatureUsage; schemas
+    PlanEntitlementResponseData, EntitlementType, UpdatePlanEntitlementRequestBody
+  reason: Operations resolve and override per-company feature entitlements and track feature usage against
+    limits — runtime entitlement resolution and enforcement for subscriptions.
+- tag: Webhooks
+  spec_file: schematic-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.7
+  evidence: POST /webhooks createWebhook; GET /webhook-events listWebhookEvents; schemas WebhookStatus,
+    EntitlementTriggerConfig, WebhookEventStatus
+  reason: Lifecycle of outbound webhook subscriptions plus delivery-event inspection matches the named
+    webhook/event subscription capability in this frame, though it remains integration plumbing in character.
+- tag: planmigrations
+  spec_file: schematic-planmigrations-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.7
+  evidence: GET /plan-version-company-migrations listCompanyMigrations 'List company migrations'; PlanVersionMigrationStrategy
+  reason: Tracks migration of customer companies from one plan version to another — part of the subscription
+    lifecycle (in-life plan change), though the read-only reporting surface makes the exact sub-capability
+    ambiguous between plan design and subscription modification.
