@@ -360,38 +360,33 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
-  responses:
-    ServerError:
-      description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
   schemas:
+    PreviewObject:
+      type: object
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        image_url:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+      required:
+      - id
+      - name
+      title: PreviewObject
+    EventBody:
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/EventBodyTrack'
+      - $ref: '#/components/schemas/EventBodyFlagCheck'
+      - $ref: '#/components/schemas/EventBodyIdentify'
+      title: EventBody
     EventSummaryResponseData:
       type: object
       properties:
@@ -420,74 +415,23 @@ components:
       - event_subtype
       - user_count
       title: EventSummaryResponseData
-    EventStatus:
+    RawEventBatchResponseData:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/RawEventResponseData'
+          maxItems: 1000
+      required:
+      - events
+      title: RawEventBatchResponseData
+    EventType:
       type: string
       enum:
-      - enriched
-      - failed
-      - pending
-      - processed
-      - unknown
-    SegmentStatusResp:
-      type: object
-      properties:
-        connected:
-          type: boolean
-        environment_id:
-          type: string
-        last_event_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      required:
-      - connected
-      - environment_id
-      title: SegmentStatusResp
-    EventBodyTrack:
-      type: object
-      properties:
-        company:
-          additionalProperties:
-            type: string
-          type: object
-          description: Key-value pairs to identify company associated with track event
-        event:
-          type: string
-          description: The name of the type of track event
-        quantity:
-          type: integer
-          description: Optionally specify the quantity of the event
-        traits:
-          type: object
-          description: A map of trait names to trait values
-        user:
-          additionalProperties:
-            type: string
-          type: object
-          description: Key-value pairs to identify user associated with track event
-      required:
-      - event
-      title: EventBodyTrack
-    PreviewObject:
-      type: object
-      properties:
-        description:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-        image_url:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-      required:
-      - id
-      - name
-      title: PreviewObject
+      - flag_check
+      - identify
+      - track
     EventDetailResponseData:
       type: object
       properties:
@@ -588,17 +532,31 @@ components:
       - status
       - features
       title: EventDetailResponseData
-    RawEventBatchResponseData:
+    EventBodyTrack:
       type: object
       properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/RawEventResponseData'
-          maxItems: 1000
+        company:
+          additionalProperties:
+            type: string
+          type: object
+          description: Key-value pairs to identify company associated with track event
+        event:
+          type: string
+          description: The name of the type of track event
+        quantity:
+          type: integer
+          description: Optionally specify the quantity of the event
+        traits:
+          type: object
+          description: A map of trait names to trait values
+        user:
+          additionalProperties:
+            type: string
+          type: object
+          description: Key-value pairs to identify user associated with track event
       required:
-      - events
-      title: RawEventBatchResponseData
+      - event
+      title: EventBodyTrack
     RawEventResponseData:
       type: object
       properties:
@@ -622,17 +580,6 @@ components:
       - remote_ip
       - user_agent
       title: RawEventResponseData
-    CreateEventBatchRequestBody:
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateEventRequestBody'
-          maxItems: 1000
-      required:
-      - events
-      title: CreateEventBatchRequestBody
     EventBodyFlagCheck:
       type: object
       properties:
@@ -689,12 +636,6 @@ components:
       - reason
       - value
       title: EventBodyFlagCheck
-    EventType:
-      type: string
-      enum:
-      - flag_check
-      - identify
-      - track
     CreateEventRequestBody:
       type: object
       properties:
@@ -719,21 +660,33 @@ components:
       required:
       - event_type
       title: CreateEventRequestBody
-    EventBody:
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/EventBodyTrack'
-      - $ref: '#/components/schemas/EventBodyFlagCheck'
-      - $ref: '#/components/schemas/EventBodyIdentify'
-      title: EventBody
-    ApiError:
+    CreateEventBatchRequestBody:
       type: object
       properties:
-        error:
-          type: string
-          description: Error message
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateEventRequestBody'
+          maxItems: 1000
       required:
-      - error
+      - events
+      title: CreateEventBatchRequestBody
+    SegmentStatusResp:
+      type: object
+      properties:
+        connected:
+          type: boolean
+        environment_id:
+          type: string
+        last_event_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - connected
+      - environment_id
+      title: SegmentStatusResp
     EventBodyIdentify:
       type: object
       properties:
@@ -769,6 +722,53 @@ components:
       required:
       - keys
       title: EventBodyIdentify
+    EventStatus:
+      type: string
+      enum:
+      - enriched
+      - failed
+      - pending
+      - processed
+      - unknown
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

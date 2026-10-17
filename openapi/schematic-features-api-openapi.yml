@@ -1017,207 +1017,15 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   schemas:
-    CreateOrUpdateConditionRequestBody:
-      type: object
-      properties:
-        comparison_trait_id:
-          type:
-          - string
-          - 'null'
-          description: Optionally provide a trait ID to compare a metric or trait value against instead of a value
-        condition_type:
-          $ref: '#/components/schemas/ConditionType'
-        credit_cost:
-          type:
-          - number
-          - 'null'
-          description: Cost of credit to use to measure this condition
-        credit_id:
-          type:
-          - string
-          - 'null'
-          description: ID of credit to use to measure this condition
-        event_subtype:
-          type:
-          - string
-          - 'null'
-          description: Name of track event type used to measure this condition
-        id:
-          type:
-          - string
-          - 'null'
-        metric_period:
-          allOf:
-          - $ref: '#/components/schemas/MetricPeriod'
-          description: Period of time over which to measure the track event metric
-        metric_period_month_reset:
-          allOf:
-          - $ref: '#/components/schemas/MetricPeriodMonthReset'
-          description: When metric_period=current_month, specify whether the month restarts based on the calendar month or the billing period
-        metric_value:
-          type:
-          - integer
-          - 'null'
-          description: Value to compare the track event metric against
-          format: int64
-        operator:
-          $ref: '#/components/schemas/ComparableOperator'
-        resource_ids:
-          type: array
-          description: List of resource IDs (companies, users, or plans) targeted by this condition
-          items:
-            type: string
-          maxItems: 1000
-        trait_id:
-          type:
-          - string
-          - 'null'
-          description: ID of trait to use to measure this condition
-        trait_value:
-          type:
-          - string
-          - 'null'
-          description: Value to compare the trait value against
-      required:
-      - condition_type
-      - operator
-      - resource_ids
-      title: CreateOrUpdateConditionRequestBody
-    DeleteResponse:
-      type: object
-      properties:
-        deleted:
-          type: boolean
-          description: Whether the delete was successful
-    EventSummaryResponseData:
-      type: object
-      properties:
-        company_count:
-          type: integer
-          format: int64
-        environment_id:
-          type: string
-        event_count:
-          type: integer
-          format: int64
-        event_subtype:
-          type: string
-        last_seen_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        user_count:
-          type: integer
-          format: int64
-      required:
-      - company_count
-      - environment_id
-      - event_count
-      - event_subtype
-      - user_count
-      title: EventSummaryResponseData
-    EntitlementValueType:
+    TraitType:
       type: string
       enum:
       - boolean
-      - credit
-      - numeric
-      - trait
-      - unknown
-      - unlimited
-    DatastreamCompanyPlan:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        trial_end_date:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        trial_status:
-          allOf:
-          - $ref: '#/components/schemas/TrialStatus'
-      required:
-      - id
-      - name
-      title: DatastreamCompanyPlan
-    RuleType:
-      type: string
-      enum:
-      - company_override
-      - company_override_usage_exceeded
-      - default
-      - global_override
-      - plan_entitlement
-      - plan_entitlement_usage_exceeded
-      - standard
-    ConditionType:
-      type: string
-      enum:
-      - base_plan
-      - billing_product
-      - company
-      - credit
-      - metric
-      - plan
-      - plan_version
-      - trait
-      - user
-    FeatureResponseData:
-      type: object
-      properties:
-        created_at:
-          type: string
-          format: date-time
-        description:
-          type: string
-        event_subtype:
-          type:
-          - string
-          - 'null'
-        feature_type:
-          $ref: '#/components/schemas/FeatureType'
-        icon:
-          type: string
-        id:
-          type: string
-        lifecycle_phase:
-          allOf:
-          - $ref: '#/components/schemas/FeatureLifecyclePhase'
-        maintainer_account_member_id:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-        plural_name:
-          type:
-          - string
-          - 'null'
-        singular_name:
-          type:
-          - string
-          - 'null'
-        trait_id:
-          type:
-          - string
-          - 'null'
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - name
-      - description
-      - feature_type
-      - icon
-      - created_at
-      - updated_at
-      title: FeatureResponseData
+      - currency
+      - date
+      - number
+      - string
+      - url
     PreviewObject:
       type: object
       properties:
@@ -1237,6 +1045,424 @@ components:
       - id
       - name
       title: PreviewObject
+    RuleDetailResponseData:
+      type: object
+      properties:
+        condition_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleConditionGroupDetailResponseData'
+          maxItems: 1000
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleConditionDetailResponseData'
+          maxItems: 1000
+        created_at:
+          type: string
+          format: date-time
+        environment_id:
+          type: string
+        flag_id:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        name:
+          type: string
+        priority:
+          type: integer
+          format: int64
+        rule_type:
+          $ref: '#/components/schemas/RuleType'
+        updated_at:
+          type: string
+          format: date-time
+        value:
+          type: boolean
+      required:
+      - id
+      - environment_id
+      - priority
+      - name
+      - rule_type
+      - value
+      - created_at
+      - updated_at
+      - conditions
+      - condition_groups
+      title: RuleDetailResponseData
+    AccountMemberPermission:
+      type: string
+      enum:
+      - billing_credits_edit
+      - companies_edit
+      - company_users_edit
+      - components_edit
+      - data_exports_edit
+      - features_edit
+      - flag_rules_edit
+      - flags_edit
+      - overrides_edit
+      - plan_billing_edit
+      - plan_entitlements_edit
+      - plan_versions_edit
+      - plans_edit
+      - webhooks_edit
+      - webhooks_reveal_secret
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+    TrialStatus:
+      type: string
+      enum:
+      - active
+      - converted
+      - expired
+    PreviewObjectResponseData:
+      type: object
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        image_url:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+      required:
+      - id
+      - name
+      title: PreviewObjectResponseData
+    CreateBillingLinkedFeatureRequestBody:
+      type: object
+      properties:
+        billing_provider:
+          $ref: '#/components/schemas/BillingProviderType'
+        description:
+          type: string
+          maxLength: 1024
+        event_subtype:
+          type:
+          - string
+          - 'null'
+        external_resource_id:
+          type: string
+          maxLength: 255
+        feature_type:
+          $ref: '#/components/schemas/FeatureType'
+        flag:
+          $ref: '#/components/schemas/CreateOrUpdateFlagRequestBody'
+        icon:
+          type:
+          - string
+          - 'null'
+        lifecycle_phase:
+          allOf:
+          - $ref: '#/components/schemas/FeatureLifecyclePhase'
+        maintainer_account_member_id:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+          maxLength: 512
+        plural_name:
+          type:
+          - string
+          - 'null'
+        singular_name:
+          type:
+          - string
+          - 'null'
+        trait_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - description
+      - feature_type
+      - name
+      - billing_provider
+      - external_resource_id
+      title: CreateBillingLinkedFeatureRequestBody
+    FeatureLifecyclePhase:
+      type: string
+      enum:
+      - add_on
+      - alpha
+      - beta
+      - deprecated
+      - ga
+      - inactive
+      - in_plan
+      - internal_testing
+      - legacy
+    CreateOrUpdateConditionGroupRequestBody:
+      type: object
+      properties:
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateOrUpdateConditionRequestBody'
+          maxItems: 100
+        flag_id:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+      required:
+      - conditions
+      title: CreateOrUpdateConditionGroupRequestBody
+    DatastreamCompanyPlan:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        trial_end_date:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        trial_status:
+          allOf:
+          - $ref: '#/components/schemas/TrialStatus'
+      required:
+      - id
+      - name
+      title: DatastreamCompanyPlan
+    AccountMemberRole:
+      type: string
+      enum:
+      - admin
+      - member
+    CreateFeatureRequestBody:
+      type: object
+      properties:
+        description:
+          type: string
+          maxLength: 1024
+        event_subtype:
+          type:
+          - string
+          - 'null'
+        feature_type:
+          $ref: '#/components/schemas/FeatureType'
+        flag:
+          $ref: '#/components/schemas/CreateOrUpdateFlagRequestBody'
+        icon:
+          type:
+          - string
+          - 'null'
+        lifecycle_phase:
+          allOf:
+          - $ref: '#/components/schemas/FeatureLifecyclePhase'
+        maintainer_account_member_id:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+          maxLength: 512
+        plural_name:
+          type:
+          - string
+          - 'null'
+        singular_name:
+          type:
+          - string
+          - 'null'
+        trait_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - description
+      - feature_type
+      - name
+      title: CreateFeatureRequestBody
+    EntityType:
+      type: string
+      enum:
+      - company
+      - user
+    CheckFlagsBulkResponseData:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CheckFlagsResponseData'
+          maxItems: 1000
+      required:
+      - data
+      title: CheckFlagsBulkResponseData
+    CheckFlagsResponseData:
+      type: object
+      properties:
+        flags:
+          type: array
+          items:
+            $ref: '#/components/schemas/CheckFlagResponseData'
+          maxItems: 1000
+        plan:
+          $ref: '#/components/schemas/DatastreamCompanyPlan'
+      required:
+      - flags
+      title: CheckFlagsResponseData
+    FeatureDetailResponseData:
+      type: object
+      properties:
+        billing_linked_resource:
+          $ref: '#/components/schemas/BillingLinkedResourceResponseData'
+        created_at:
+          type: string
+          format: date-time
+        description:
+          type: string
+        event_subtype:
+          type:
+          - string
+          - 'null'
+        event_summary:
+          $ref: '#/components/schemas/EventSummaryResponseData'
+        feature_type:
+          $ref: '#/components/schemas/FeatureType'
+        flags:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlagDetailResponseData'
+          maxItems: 1000
+        icon:
+          type: string
+        id:
+          type: string
+        lifecycle_phase:
+          allOf:
+          - $ref: '#/components/schemas/FeatureLifecyclePhase'
+        maintainer:
+          $ref: '#/components/schemas/AccountMemberResponseData'
+        maintainer_account_member_id:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        plans:
+          type: array
+          items:
+            $ref: '#/components/schemas/PreviewObject'
+          maxItems: 1000
+        plural_name:
+          type:
+          - string
+          - 'null'
+        singular_name:
+          type:
+          - string
+          - 'null'
+        trait:
+          $ref: '#/components/schemas/EntityTraitDefinitionResponseData'
+        trait_id:
+          type:
+          - string
+          - 'null'
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - name
+      - description
+      - feature_type
+      - icon
+      - created_at
+      - updated_at
+      - flags
+      - plans
+      title: FeatureDetailResponseData
+    FlagDetailResponseData:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        default_value:
+          type: boolean
+        description:
+          type: string
+        feature:
+          $ref: '#/components/schemas/FeatureResponseData'
+        feature_id:
+          type:
+          - string
+          - 'null'
+        flag_type:
+          $ref: '#/components/schemas/FlagType'
+        id:
+          type: string
+        key:
+          type: string
+        last_checked_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        maintainer:
+          $ref: '#/components/schemas/AccountMemberResponseData'
+        maintainer_account_member_id:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDetailResponseData'
+          maxItems: 1000
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - created_at
+      - default_value
+      - description
+      - flag_type
+      - id
+      - key
+      - name
+      - updated_at
+      - rules
+      title: FlagDetailResponseData
+    DeleteResponse:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+          description: Whether the delete was successful
+    MetricPeriod:
+      type: string
+      enum:
+      - all_time
+      - current_day
+      - current_month
+      - current_week
     CheckFlagResponseData:
       type: object
       properties:
@@ -1319,33 +1545,132 @@ components:
       - reason
       - value
       title: CheckFlagResponseData
-    CheckFlagsBulkResponseData:
+    CheckFlagRequestBody:
       type: object
       properties:
-        data:
+        company:
+          additionalProperties:
+            type: string
+            maxLength: 255
+          type:
+          - object
+          - 'null'
+        user:
+          additionalProperties:
+            type: string
+            maxLength: 255
+          type:
+          - object
+          - 'null'
+      title: CheckFlagRequestBody
+    EventSummaryResponseData:
+      type: object
+      properties:
+        company_count:
+          type: integer
+          format: int64
+        environment_id:
+          type: string
+        event_count:
+          type: integer
+          format: int64
+        event_subtype:
+          type: string
+        last_seen_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        user_count:
+          type: integer
+          format: int64
+      required:
+      - company_count
+      - environment_id
+      - event_count
+      - event_subtype
+      - user_count
+      title: EventSummaryResponseData
+    RulesDetailResponseData:
+      type: object
+      properties:
+        flag:
+          $ref: '#/components/schemas/FlagResponseData'
+        rules:
           type: array
           items:
-            $ref: '#/components/schemas/CheckFlagsResponseData'
+            $ref: '#/components/schemas/RuleDetailResponseData'
           maxItems: 1000
       required:
-      - data
-      title: CheckFlagsBulkResponseData
-    FlagType:
-      type: string
-      enum:
-      - boolean
-    CheckFlagsBulkRequestBody:
+      - rules
+      title: RulesDetailResponseData
+    RuleConditionGroupDetailResponseData:
       type: object
       properties:
-        contexts:
+        conditions:
           type: array
           items:
-            $ref: '#/components/schemas/CheckFlagRequestBody'
-          maxItems: 100
-          minItems: 1
+            $ref: '#/components/schemas/RuleConditionDetailResponseData'
+          maxItems: 1000
+        created_at:
+          type: string
+          format: date-time
+        environment_id:
+          type: string
+        flag_id:
+          type:
+          - string
+          - 'null'
+        id:
+          type: string
+        rule_id:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
       required:
-      - contexts
-      title: CheckFlagsBulkRequestBody
+      - id
+      - environment_id
+      - rule_id
+      - created_at
+      - updated_at
+      - conditions
+      title: RuleConditionGroupDetailResponseData
+    CreateOrUpdateRuleRequestBody:
+      type: object
+      properties:
+        condition_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateOrUpdateConditionGroupRequestBody'
+          maxItems: 100
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateOrUpdateConditionRequestBody'
+          maxItems: 100
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+          maxLength: 512
+        priority:
+          type: integer
+          format: int64
+        rule_type:
+          allOf:
+          - $ref: '#/components/schemas/RuleType'
+        value:
+          type: boolean
+      required:
+      - condition_groups
+      - conditions
+      - name
+      - priority
+      - value
+      title: CreateOrUpdateRuleRequestBody
     AccountMemberResponseData:
       type: object
       properties:
@@ -1385,73 +1710,7 @@ components:
       - permissions
       - updated_at
       title: AccountMemberResponseData
-    EntityType:
-      type: string
-      enum:
-      - company
-      - user
-    MetricPeriod:
-      type: string
-      enum:
-      - all_time
-      - current_day
-      - current_month
-      - current_week
-    CreateOrUpdateFlagRequestBody:
-      type: object
-      properties:
-        default_value:
-          type: boolean
-        description:
-          type: string
-          maxLength: 1024
-        feature_id:
-          type:
-          - string
-          - 'null'
-        flag_type:
-          $ref: '#/components/schemas/FlagType'
-        id:
-          type:
-          - string
-          - 'null'
-        key:
-          type: string
-          maxLength: 512
-        maintainer_account_member_id:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-          maxLength: 512
-      required:
-      - default_value
-      - description
-      - flag_type
-      - key
-      - name
-      title: CreateOrUpdateFlagRequestBody
-    PreviewObjectResponseData:
-      type: object
-      properties:
-        description:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-        image_url:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-      required:
-      - id
-      - name
-      title: PreviewObjectResponseData
-    FlagDetailResponseData:
+    FlagResponseData:
       type: object
       properties:
         created_at:
@@ -1461,8 +1720,6 @@ components:
           type: boolean
         description:
           type: string
-        feature:
-          $ref: '#/components/schemas/FeatureResponseData'
         feature_id:
           type:
           - string
@@ -1473,24 +1730,12 @@ components:
           type: string
         key:
           type: string
-        last_checked_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        maintainer:
-          $ref: '#/components/schemas/AccountMemberResponseData'
         maintainer_account_member_id:
           type:
           - string
           - 'null'
         name:
           type: string
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/RuleDetailResponseData'
-          maxItems: 1000
         updated_at:
           type: string
           format: date-time
@@ -1503,283 +1748,11 @@ components:
       - key
       - name
       - updated_at
-      - rules
-      title: FlagDetailResponseData
-    TraitType:
+      title: FlagResponseData
+    FlagType:
       type: string
       enum:
       - boolean
-      - currency
-      - date
-      - number
-      - string
-      - url
-    AccountMemberRole:
-      type: string
-      enum:
-      - admin
-      - member
-    RulesDetailResponseData:
-      type: object
-      properties:
-        flag:
-          $ref: '#/components/schemas/FlagResponseData'
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/RuleDetailResponseData'
-          maxItems: 1000
-      required:
-      - rules
-      title: RulesDetailResponseData
-    FeatureEntitlement:
-      type: object
-      properties:
-        allocation:
-          type:
-          - integer
-          - 'null'
-          description: If the company has a numeric entitlement for this feature, the allocated amount
-          format: int64
-        credit_id:
-          type:
-          - string
-          - 'null'
-          description: If the company has a credit-based entitlement for this feature, the ID of the credit
-        credit_remaining:
-          type:
-          - number
-          - 'null'
-          description: If the company has a credit-based entitlement for this feature, the remaining credit amount
-        credit_total:
-          type:
-          - number
-          - 'null'
-          description: If the company has a credit-based entitlement for this feature, the total credit amount
-        credit_used:
-          type:
-          - number
-          - 'null'
-          description: If the company has a credit-based entitlement for this feature, the amount of credit used
-        event_name:
-          type:
-          - string
-          - 'null'
-          description: If the feature is event-based, the name of the event tracked for usage
-        feature_id:
-          type: string
-          description: The ID of the feature
-        feature_key:
-          type: string
-          description: The key of the flag associated with the feature
-        metric_period:
-          allOf:
-          - $ref: '#/components/schemas/MetricPeriod'
-          description: For event-based feature entitlements, the period over which usage is tracked
-        metric_reset_at:
-          type:
-          - string
-          - 'null'
-          description: For event-based feature entitlements, when the usage period will reset
-          format: date-time
-        month_reset:
-          allOf:
-          - $ref: '#/components/schemas/MetricPeriodMonthReset'
-          description: For event-based feature entitlements that have a monthly period, whether that monthly reset is based on the calendar month or a billing cycle
-        soft_limit:
-          type:
-          - integer
-          - 'null'
-          description: For usage-based pricing, the soft limit for overage charges or the next tier boundary
-          format: int64
-        usage:
-          type:
-          - integer
-          - 'null'
-          description: If the company has a numeric entitlement for this feature, the current usage amount
-          format: int64
-        value_type:
-          allOf:
-          - $ref: '#/components/schemas/EntitlementValueType'
-          description: The type of the entitlement value
-      required:
-      - feature_id
-      - feature_key
-      - value_type
-      title: FeatureEntitlement
-    CreateBillingLinkedFeatureRequestBody:
-      type: object
-      properties:
-        billing_provider:
-          $ref: '#/components/schemas/BillingProviderType'
-        description:
-          type: string
-          maxLength: 1024
-        event_subtype:
-          type:
-          - string
-          - 'null'
-        external_resource_id:
-          type: string
-          maxLength: 255
-        feature_type:
-          $ref: '#/components/schemas/FeatureType'
-        flag:
-          $ref: '#/components/schemas/CreateOrUpdateFlagRequestBody'
-        icon:
-          type:
-          - string
-          - 'null'
-        lifecycle_phase:
-          allOf:
-          - $ref: '#/components/schemas/FeatureLifecyclePhase'
-        maintainer_account_member_id:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-          maxLength: 512
-        plural_name:
-          type:
-          - string
-          - 'null'
-        singular_name:
-          type:
-          - string
-          - 'null'
-        trait_id:
-          type:
-          - string
-          - 'null'
-      required:
-      - description
-      - feature_type
-      - name
-      - billing_provider
-      - external_resource_id
-      title: CreateBillingLinkedFeatureRequestBody
-    RuleConditionGroupDetailResponseData:
-      type: object
-      properties:
-        conditions:
-          type: array
-          items:
-            $ref: '#/components/schemas/RuleConditionDetailResponseData'
-          maxItems: 1000
-        created_at:
-          type: string
-          format: date-time
-        environment_id:
-          type: string
-        flag_id:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-        rule_id:
-          type: string
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - environment_id
-      - rule_id
-      - created_at
-      - updated_at
-      - conditions
-      title: RuleConditionGroupDetailResponseData
-    FeatureDetailResponseData:
-      type: object
-      properties:
-        billing_linked_resource:
-          $ref: '#/components/schemas/BillingLinkedResourceResponseData'
-        created_at:
-          type: string
-          format: date-time
-        description:
-          type: string
-        event_subtype:
-          type:
-          - string
-          - 'null'
-        event_summary:
-          $ref: '#/components/schemas/EventSummaryResponseData'
-        feature_type:
-          $ref: '#/components/schemas/FeatureType'
-        flags:
-          type: array
-          items:
-            $ref: '#/components/schemas/FlagDetailResponseData'
-          maxItems: 1000
-        icon:
-          type: string
-        id:
-          type: string
-        lifecycle_phase:
-          allOf:
-          - $ref: '#/components/schemas/FeatureLifecyclePhase'
-        maintainer:
-          $ref: '#/components/schemas/AccountMemberResponseData'
-        maintainer_account_member_id:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-        plans:
-          type: array
-          items:
-            $ref: '#/components/schemas/PreviewObject'
-          maxItems: 1000
-        plural_name:
-          type:
-          - string
-          - 'null'
-        singular_name:
-          type:
-          - string
-          - 'null'
-        trait:
-          $ref: '#/components/schemas/EntityTraitDefinitionResponseData'
-        trait_id:
-          type:
-          - string
-          - 'null'
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - name
-      - description
-      - feature_type
-      - icon
-      - created_at
-      - updated_at
-      - flags
-      - plans
-      title: FeatureDetailResponseData
-    AccountMemberPermission:
-      type: string
-      enum:
-      - billing_credits_edit
-      - companies_edit
-      - company_users_edit
-      - components_edit
-      - data_exports_edit
-      - features_edit
-      - flag_rules_edit
-      - flags_edit
-      - overrides_edit
-      - plan_billing_edit
-      - plan_entitlements_edit
-      - plan_versions_edit
-      - plans_edit
-      - webhooks_edit
-      - webhooks_reveal_secret
     CreateFlagRequestBody:
       type: object
       properties:
@@ -1822,27 +1795,107 @@ components:
       - lte
       - not_empty
       - ne
-    CreateFeatureRequestBody:
+    CreateOrUpdateConditionRequestBody:
       type: object
       properties:
-        description:
-          type: string
-          maxLength: 1024
+        comparison_trait_id:
+          type:
+          - string
+          - 'null'
+          description: Optionally provide a trait ID to compare a metric or trait value against instead of a value
+        condition_type:
+          $ref: '#/components/schemas/ConditionType'
+        credit_cost:
+          type:
+          - number
+          - 'null'
+          description: Cost of credit to use to measure this condition
+        credit_id:
+          type:
+          - string
+          - 'null'
+          description: ID of credit to use to measure this condition
         event_subtype:
           type:
           - string
           - 'null'
-        feature_type:
-          $ref: '#/components/schemas/FeatureType'
-        flag:
-          $ref: '#/components/schemas/CreateOrUpdateFlagRequestBody'
-        icon:
+          description: Name of track event type used to measure this condition
+        id:
           type:
           - string
           - 'null'
-        lifecycle_phase:
+        metric_period:
           allOf:
-          - $ref: '#/components/schemas/FeatureLifecyclePhase'
+          - $ref: '#/components/schemas/MetricPeriod'
+          description: Period of time over which to measure the track event metric
+        metric_period_month_reset:
+          allOf:
+          - $ref: '#/components/schemas/MetricPeriodMonthReset'
+          description: When metric_period=current_month, specify whether the month restarts based on the calendar month or the billing period
+        metric_value:
+          type:
+          - integer
+          - 'null'
+          description: Value to compare the track event metric against
+          format: int64
+        operator:
+          $ref: '#/components/schemas/ComparableOperator'
+        resource_ids:
+          type: array
+          description: List of resource IDs (companies, users, or plans) targeted by this condition
+          items:
+            type: string
+          maxItems: 1000
+        trait_id:
+          type:
+          - string
+          - 'null'
+          description: ID of trait to use to measure this condition
+        trait_value:
+          type:
+          - string
+          - 'null'
+          description: Value to compare the trait value against
+      required:
+      - condition_type
+      - operator
+      - resource_ids
+      title: CreateOrUpdateConditionRequestBody
+    BillingLinkedResourceResponseData:
+      type: object
+      properties:
+        billing_provider:
+          $ref: '#/components/schemas/BillingProviderType'
+        external_resource_id:
+          type: string
+        originator:
+          $ref: '#/components/schemas/BillingProviderType'
+      required:
+      - billing_provider
+      - external_resource_id
+      - originator
+      title: BillingLinkedResourceResponseData
+    CreateOrUpdateFlagRequestBody:
+      type: object
+      properties:
+        default_value:
+          type: boolean
+        description:
+          type: string
+          maxLength: 1024
+        feature_id:
+          type:
+          - string
+          - 'null'
+        flag_type:
+          $ref: '#/components/schemas/FlagType'
+        id:
+          type:
+          - string
+          - 'null'
+        key:
+          type: string
+          maxLength: 512
         maintainer_account_member_id:
           type:
           - string
@@ -1850,23 +1903,30 @@ components:
         name:
           type: string
           maxLength: 512
-        plural_name:
-          type:
-          - string
-          - 'null'
-        singular_name:
-          type:
-          - string
-          - 'null'
-        trait_id:
-          type:
-          - string
-          - 'null'
       required:
+      - default_value
       - description
-      - feature_type
+      - flag_type
+      - key
       - name
-      title: CreateFeatureRequestBody
+      title: CreateOrUpdateFlagRequestBody
+    BillingProviderType:
+      type: string
+      enum:
+      - orb
+      - schematic
+      - stripe
+    MetricPeriodMonthReset:
+      type: string
+      enum:
+      - billing_cycle
+      - first_of_month
+    CountResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The number of resources
     UpdateFeatureRequestBody:
       type: object
       properties:
@@ -1913,90 +1973,6 @@ components:
           - string
           - 'null'
       title: UpdateFeatureRequestBody
-    RuleDetailResponseData:
-      type: object
-      properties:
-        condition_groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/RuleConditionGroupDetailResponseData'
-          maxItems: 1000
-        conditions:
-          type: array
-          items:
-            $ref: '#/components/schemas/RuleConditionDetailResponseData'
-          maxItems: 1000
-        created_at:
-          type: string
-          format: date-time
-        environment_id:
-          type: string
-        flag_id:
-          type:
-          - string
-          - 'null'
-        id:
-          type: string
-        name:
-          type: string
-        priority:
-          type: integer
-          format: int64
-        rule_type:
-          $ref: '#/components/schemas/RuleType'
-        updated_at:
-          type: string
-          format: date-time
-        value:
-          type: boolean
-      required:
-      - id
-      - environment_id
-      - priority
-      - name
-      - rule_type
-      - value
-      - created_at
-      - updated_at
-      - conditions
-      - condition_groups
-      title: RuleDetailResponseData
-    BillingProviderType:
-      type: string
-      enum:
-      - orb
-      - schematic
-      - stripe
-    CheckFlagRequestBody:
-      type: object
-      properties:
-        company:
-          additionalProperties:
-            type: string
-            maxLength: 255
-          type:
-          - object
-          - 'null'
-        user:
-          additionalProperties:
-            type: string
-            maxLength: 255
-          type:
-          - object
-          - 'null'
-      title: CheckFlagRequestBody
-    FeatureLifecyclePhase:
-      type: string
-      enum:
-      - add_on
-      - alpha
-      - beta
-      - deprecated
-      - ga
-      - inactive
-      - in_plan
-      - internal_testing
-      - legacy
     EntityTraitDefinitionResponseData:
       type: object
       properties:
@@ -2028,41 +2004,28 @@ components:
       - trait_type
       - updated_at
       title: EntityTraitDefinitionResponseData
-    CreateOrUpdateRuleRequestBody:
+    CheckFlagsBulkRequestBody:
       type: object
       properties:
-        condition_groups:
+        contexts:
           type: array
           items:
-            $ref: '#/components/schemas/CreateOrUpdateConditionGroupRequestBody'
+            $ref: '#/components/schemas/CheckFlagRequestBody'
           maxItems: 100
-        conditions:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateOrUpdateConditionRequestBody'
-          maxItems: 100
-        id:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-          maxLength: 512
-        priority:
-          type: integer
-          format: int64
-        rule_type:
-          allOf:
-          - $ref: '#/components/schemas/RuleType'
-        value:
-          type: boolean
+          minItems: 1
       required:
-      - condition_groups
-      - conditions
-      - name
-      - priority
-      - value
-      title: CreateOrUpdateRuleRequestBody
+      - contexts
+      title: CheckFlagsBulkRequestBody
+    RuleType:
+      type: string
+      enum:
+      - company_override
+      - company_override_usage_exceeded
+      - default
+      - global_override
+      - plan_entitlement
+      - plan_entitlement_usage_exceeded
+      - standard
     RuleConditionDetailResponseData:
       type: object
       properties:
@@ -2144,56 +2107,66 @@ components:
       - trait_value
       - resources
       title: RuleConditionDetailResponseData
-    CheckFlagsResponseData:
-      type: object
-      properties:
-        flags:
-          type: array
-          items:
-            $ref: '#/components/schemas/CheckFlagResponseData'
-          maxItems: 1000
-        plan:
-          $ref: '#/components/schemas/DatastreamCompanyPlan'
-      required:
-      - flags
-      title: CheckFlagsResponseData
-    FeatureType:
+    EntitlementValueType:
       type: string
       enum:
       - boolean
-      - event
+      - credit
+      - numeric
       - trait
-    TrialStatus:
-      type: string
-      enum:
-      - active
-      - converted
-      - expired
-    CountResponse:
+      - unknown
+      - unlimited
+    FeatureResponseData:
       type: object
       properties:
-        count:
-          type: integer
-          description: The number of resources
-    BillingLinkedResourceResponseData:
-      type: object
-      properties:
-        billing_provider:
-          $ref: '#/components/schemas/BillingProviderType'
-        external_resource_id:
+        created_at:
           type: string
-        originator:
-          $ref: '#/components/schemas/BillingProviderType'
+          format: date-time
+        description:
+          type: string
+        event_subtype:
+          type:
+          - string
+          - 'null'
+        feature_type:
+          $ref: '#/components/schemas/FeatureType'
+        icon:
+          type: string
+        id:
+          type: string
+        lifecycle_phase:
+          allOf:
+          - $ref: '#/components/schemas/FeatureLifecyclePhase'
+        maintainer_account_member_id:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        plural_name:
+          type:
+          - string
+          - 'null'
+        singular_name:
+          type:
+          - string
+          - 'null'
+        trait_id:
+          type:
+          - string
+          - 'null'
+        updated_at:
+          type: string
+          format: date-time
       required:
-      - billing_provider
-      - external_resource_id
-      - originator
-      title: BillingLinkedResourceResponseData
-    MetricPeriodMonthReset:
-      type: string
-      enum:
-      - billing_cycle
-      - first_of_month
+      - id
+      - name
+      - description
+      - feature_type
+      - icon
+      - created_at
+      - updated_at
+      title: FeatureResponseData
     UpdateFlagRulesRequestBody:
       type: object
       properties:
@@ -2205,81 +2178,108 @@ components:
       required:
       - rules
       title: UpdateFlagRulesRequestBody
-    ApiError:
+    FeatureEntitlement:
       type: object
       properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
-    CreateOrUpdateConditionGroupRequestBody:
-      type: object
-      properties:
-        conditions:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateOrUpdateConditionRequestBody'
-          maxItems: 100
-        flag_id:
+        allocation:
+          type:
+          - integer
+          - 'null'
+          description: If the company has a numeric entitlement for this feature, the allocated amount
+          format: int64
+        credit_id:
           type:
           - string
           - 'null'
-        id:
+          description: If the company has a credit-based entitlement for this feature, the ID of the credit
+        credit_remaining:
+          type:
+          - number
+          - 'null'
+          description: If the company has a credit-based entitlement for this feature, the remaining credit amount
+        credit_total:
+          type:
+          - number
+          - 'null'
+          description: If the company has a credit-based entitlement for this feature, the total credit amount
+        credit_used:
+          type:
+          - number
+          - 'null'
+          description: If the company has a credit-based entitlement for this feature, the amount of credit used
+        event_name:
           type:
           - string
           - 'null'
-      required:
-      - conditions
-      title: CreateOrUpdateConditionGroupRequestBody
-    FlagResponseData:
-      type: object
-      properties:
-        created_at:
-          type: string
-          format: date-time
-        default_value:
-          type: boolean
-        description:
-          type: string
+          description: If the feature is event-based, the name of the event tracked for usage
         feature_id:
+          type: string
+          description: The ID of the feature
+        feature_key:
+          type: string
+          description: The key of the flag associated with the feature
+        metric_period:
+          allOf:
+          - $ref: '#/components/schemas/MetricPeriod'
+          description: For event-based feature entitlements, the period over which usage is tracked
+        metric_reset_at:
           type:
           - string
           - 'null'
-        flag_type:
-          $ref: '#/components/schemas/FlagType'
-        id:
-          type: string
-        key:
-          type: string
-        maintainer_account_member_id:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-        updated_at:
-          type: string
+          description: For event-based feature entitlements, when the usage period will reset
           format: date-time
+        month_reset:
+          allOf:
+          - $ref: '#/components/schemas/MetricPeriodMonthReset'
+          description: For event-based feature entitlements that have a monthly period, whether that monthly reset is based on the calendar month or a billing cycle
+        soft_limit:
+          type:
+          - integer
+          - 'null'
+          description: For usage-based pricing, the soft limit for overage charges or the next tier boundary
+          format: int64
+        usage:
+          type:
+          - integer
+          - 'null'
+          description: If the company has a numeric entitlement for this feature, the current usage amount
+          format: int64
+        value_type:
+          allOf:
+          - $ref: '#/components/schemas/EntitlementValueType'
+          description: The type of the entitlement value
       required:
-      - created_at
-      - default_value
-      - description
-      - flag_type
-      - id
-      - key
-      - name
-      - updated_at
-      title: FlagResponseData
+      - feature_id
+      - feature_key
+      - value_type
+      title: FeatureEntitlement
+    ConditionType:
+      type: string
+      enum:
+      - base_plan
+      - billing_product
+      - company
+      - credit
+      - metric
+      - plan
+      - plan_version
+      - trait
+      - user
+    FeatureType:
+      type: string
+      enum:
+      - boolean
+      - event
+      - trait
   responses:
-    ServerError:
-      description: Server error
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
+    ServerError:
+      description: Server error
       content:
         application/json:
           schema:
@@ -2290,14 +2290,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
-    Forbidden:
-      description: Forbidden
+    NotFound:
+      description: Not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
-    BadRequest:
-      description: Bad request
+    Forbidden:
+      description: Forbidden
       content:
         application/json:
           schema:

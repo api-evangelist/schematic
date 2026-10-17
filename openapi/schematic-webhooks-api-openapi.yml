@@ -532,79 +532,19 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   schemas:
-    WebhookRequestType:
-      type: string
-      enum:
-      - subscription.trial.ended
-      - company.created
-      - company.deleted
-      - company.override.created
-      - company.override.deleted
-      - company.override.expired
-      - company.override.updated
-      - company.plan_changed
-      - company.scheduled_downgrade
-      - company.updated
-      - credit.limit.reached
-      - credit.limit.warning
-      - entitlement.limit.reached
-      - entitlement.limit.warning
-      - entitlement.soft_limit.reached
-      - entitlement.soft_limit.warning
-      - entitlement.tier_limit.reached
-      - entitlement.tier_limit.warning
-      - feature.created
-      - feature.deleted
-      - feature.updated
-      - flag.created
-      - flag.deleted
-      - flag_rules.updated
-      - flag.updated
-      - plan.created
-      - plan.deleted
-      - plan.entitlement.created
-      - plan.entitlement.deleted
-      - plan.entitlement.updated
-      - plan.updated
-      - plan_version.deleted
-      - rule.deleted
-      - test.send
-      - user.created
-      - user.deleted
-      - user.updated
-      - auto.topup.hard.failure
-      - auto.topup.retry.exceeded
-    DeleteResponse:
-      type: object
-      properties:
-        deleted:
-          type: boolean
-          description: Whether the delete was successful
-    WebhookEventStatus:
-      type: string
-      enum:
-      - failure
-      - pending
-      - success
-    EntitlementTriggerConfig:
-      type: object
-      properties:
-        feature_id:
-          type: string
-      required:
-      - feature_id
-      title: EntitlementTriggerConfig
     WebhookStatus:
       type: string
       enum:
       - active
       - inactive
-    CountResponse:
+    CreditTriggerConfig:
       type: object
       properties:
-        count:
-          type: integer
-          description: The number of resources
+        credit_id:
+          type: string
+      required:
+      - credit_id
+      title: CreditTriggerConfig
     CreateWebhookRequestBody:
       type: object
       properties:
@@ -640,22 +580,6 @@ components:
       - url
       - request_types
       title: CreateWebhookRequestBody
-    CreditTriggerConfig:
-      type: object
-      properties:
-        credit_id:
-          type: string
-      required:
-      - credit_id
-      title: CreditTriggerConfig
-    ApiError:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-      required:
-      - error
     WebhookEventDetailResponseData:
       type: object
       properties:
@@ -737,6 +661,48 @@ components:
           maxLength: 2048
           minLength: 1
       title: UpdateWebhookRequestBody
+    WebhookRequestType:
+      type: string
+      enum:
+      - subscription.trial.ended
+      - company.created
+      - company.deleted
+      - company.override.created
+      - company.override.deleted
+      - company.override.expired
+      - company.override.updated
+      - company.plan_changed
+      - company.scheduled_downgrade
+      - company.updated
+      - credit.limit.reached
+      - credit.limit.warning
+      - entitlement.limit.reached
+      - entitlement.limit.warning
+      - entitlement.soft_limit.reached
+      - entitlement.soft_limit.warning
+      - entitlement.tier_limit.reached
+      - entitlement.tier_limit.warning
+      - feature.created
+      - feature.deleted
+      - feature.updated
+      - flag.created
+      - flag.deleted
+      - flag_rules.updated
+      - flag.updated
+      - plan.created
+      - plan.deleted
+      - plan.entitlement.created
+      - plan.entitlement.deleted
+      - plan.entitlement.updated
+      - plan.updated
+      - plan_version.deleted
+      - rule.deleted
+      - test.send
+      - user.created
+      - user.deleted
+      - user.updated
+      - auto.topup.hard.failure
+      - auto.topup.retry.exceeded
     WebhookResponseData:
       type: object
       properties:
@@ -785,7 +751,47 @@ components:
       - url
       - updated_at
       title: WebhookResponseData
+    CountResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The number of resources
+    EntitlementTriggerConfig:
+      type: object
+      properties:
+        feature_id:
+          type: string
+      required:
+      - feature_id
+      title: EntitlementTriggerConfig
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+      - error
+    WebhookEventStatus:
+      type: string
+      enum:
+      - failure
+      - pending
+      - success
+    DeleteResponse:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+          description: Whether the delete was successful
   responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
     NotFound:
       description: Not found
       content:
@@ -794,12 +800,6 @@ components:
             $ref: '#/components/schemas/ApiError'
     ServerError:
       description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Unauthorized:
-      description: Unauthorized
       content:
         application/json:
           schema:

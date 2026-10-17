@@ -1613,45 +1613,6 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   schemas:
-    BillingCustomerResponseData:
-      type: object
-      properties:
-        company_id:
-          type:
-          - string
-          - 'null'
-        deleted_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        email:
-          type: string
-        external_id:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        provider_type:
-          $ref: '#/components/schemas/BillingProviderType'
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - email
-      - external_id
-      - id
-      - name
-      - provider_type
-      - updated_at
-      title: BillingCustomerResponseData
-    DeleteResponse:
-      type: object
-      properties:
-        deleted:
-          type: boolean
-          description: Whether the delete was successful
     InvoiceResponseData:
       type: object
       properties:
@@ -1727,45 +1688,167 @@ components:
       - subtotal
       - updated_at
       title: InvoiceResponseData
-    BillingCustomerWithSubscriptionsResponseData:
+    BillingTiersMode:
+      type: string
+      enum:
+      - graduated
+      - volume
+    CreateBillingProductRequestBody:
       type: object
       properties:
+        external_id:
+          type: string
+          maxLength: 255
+        is_active:
+          type:
+          - boolean
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        price:
+          type: number
+        provider_type:
+          allOf:
+          - $ref: '#/components/schemas/BillingProviderType'
+      required:
+      - price
+      - external_id
+      title: CreateBillingProductRequestBody
+    BillingSubscriptionResponseData:
+      type: object
+      properties:
+        application_id:
+          type:
+          - string
+          - 'null'
+        cancel_at:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        cancel_at_period_end:
+          type: boolean
         company_id:
           type:
           - string
           - 'null'
-        deleted_at:
+        created_at:
+          type: string
+          format: date-time
+        currency:
+          type: string
+        customer_external_id:
+          type: string
+        default_payment_method_id:
+          type:
+          - string
+          - 'null'
+        expired_at:
           type:
           - string
           - 'null'
           format: date-time
-        email:
+        id:
+          type: string
+        interval:
+          type: string
+        metadata:
+          type: object
+        period_end:
+          type: integer
+          format: int64
+        period_start:
+          type: integer
+          format: int64
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        status:
+          type: string
+        subscription_external_id:
+          type: string
+        total_price:
+          type: integer
+          format: int64
+        trial_end:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        trial_end_setting:
+          allOf:
+          - $ref: '#/components/schemas/BillingSubscriptionTrialEndSetting'
+      required:
+      - cancel_at_period_end
+      - created_at
+      - currency
+      - customer_external_id
+      - subscription_external_id
+      - id
+      - interval
+      - period_end
+      - period_start
+      - total_price
+      - provider_type
+      - status
+      title: BillingSubscriptionResponseData
+    BillingProductResponseData:
+      type: object
+      properties:
+        account_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        currency:
+          type:
+          - string
+          - 'null'
+          description: Deprecated; currencies are associated with prices, not products
+          deprecated: true
+        environment_id:
           type: string
         external_id:
           type: string
-        id:
-          type: string
+        is_active:
+          type: boolean
         name:
+          type: string
+        price:
+          type: number
+        price_decimal:
+          type:
+          - string
+          - 'null'
+        product_id:
           type: string
         provider_type:
           $ref: '#/components/schemas/BillingProviderType'
-        subscriptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillingCustomerSubscription'
-          maxItems: 1000
+        quantity:
+          type: number
         updated_at:
           type: string
           format: date-time
       required:
-      - email
+      - account_id
+      - created_at
+      - environment_id
       - external_id
-      - id
+      - is_active
       - name
+      - price
+      - product_id
       - provider_type
-      - subscriptions
+      - quantity
       - updated_at
-      title: BillingCustomerWithSubscriptionsResponseData
+      title: BillingProductResponseData
+    BillingPriceUsageType:
+      type: string
+      enum:
+      - licensed
+      - metered
     BillingProductPriceInterval:
       type: string
       enum:
@@ -1773,6 +1856,82 @@ components:
       - month
       - one-time
       - year
+    DeleteResponse:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+          description: Whether the delete was successful
+    BillingCouponResponseData:
+      type: object
+      properties:
+        account_id:
+          type: string
+        amount_off:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        currency:
+          type:
+          - string
+          - 'null'
+        duration:
+          type:
+          - string
+          - 'null'
+        duration_in_months:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        environment_id:
+          type: string
+        external_id:
+          type: string
+        id:
+          type: string
+        is_active:
+          type: boolean
+        max_redemptions:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        metadata:
+          type: object
+        name:
+          type: string
+        percent_off:
+          type:
+          - number
+          - 'null'
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        times_redeemed:
+          type: integer
+          format: int64
+        valid_from:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        valid_until:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - id
+      - account_id
+      - environment_id
+      - external_id
+      - is_active
+      - metadata
+      - name
+      - provider_type
+      - times_redeemed
+      title: BillingCouponResponseData
     CreateBillingSubscriptionRequestBody:
       type: object
       properties:
@@ -1867,76 +2026,173 @@ components:
       - discounts
       - cancel_at_period_end
       title: CreateBillingSubscriptionRequestBody
-    BillingCouponResponseData:
+    BillingPriceResponseData:
       type: object
       properties:
-        account_id:
-          type: string
-        amount_off:
-          type:
-          - integer
-          - 'null'
-          format: int64
         currency:
+          type: string
+        external_price_id:
+          type: string
+        id:
+          type: string
+        interval:
+          $ref: '#/components/schemas/BillingProductPriceInterval'
+        nickname:
           type:
           - string
           - 'null'
-        duration:
-          type:
-          - string
-          - 'null'
-        duration_in_months:
-          type:
-          - integer
-          - 'null'
+        price:
+          type: integer
           format: int64
-        environment_id:
+        price_decimal:
+          type:
+          - string
+          - 'null'
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        scheme:
+          $ref: '#/components/schemas/BillingPriceScheme'
+      required:
+      - currency
+      - external_price_id
+      - id
+      - interval
+      - price
+      - provider_type
+      - scheme
+      title: BillingPriceResponseData
+    InvoiceStatus:
+      type: string
+      enum:
+      - draft
+      - open
+      - paid
+      - uncollectible
+      - void
+    BillingCustomerResponseData:
+      type: object
+      properties:
+        company_id:
+          type:
+          - string
+          - 'null'
+        deleted_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        email:
           type: string
         external_id:
           type: string
         id:
           type: string
-        is_active:
-          type: boolean
-        max_redemptions:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        metadata:
-          type: object
         name:
           type: string
-        percent_off:
-          type:
-          - number
-          - 'null'
         provider_type:
           $ref: '#/components/schemas/BillingProviderType'
-        times_redeemed:
-          type: integer
-          format: int64
-        valid_from:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        valid_until:
-          type:
-          - string
-          - 'null'
+        updated_at:
+          type: string
           format: date-time
       required:
-      - id
-      - account_id
-      - environment_id
+      - email
       - external_id
-      - is_active
-      - metadata
+      - id
       - name
       - provider_type
-      - times_redeemed
-      title: BillingCouponResponseData
+      - updated_at
+      title: BillingCustomerResponseData
+    CreateMeterRequestBody:
+      type: object
+      properties:
+        display_name:
+          type: string
+          maxLength: 255
+        event_name:
+          type: string
+          maxLength: 255
+        event_payload_key:
+          type: string
+          maxLength: 255
+        external_id:
+          type: string
+          maxLength: 255
+        provider_type:
+          allOf:
+          - $ref: '#/components/schemas/BillingProviderType'
+      required:
+      - external_id
+      - display_name
+      - event_name
+      - event_payload_key
+      title: CreateMeterRequestBody
+    BillingPriceScheme:
+      type: string
+      enum:
+      - per_unit
+      - tiered
+    BillingCustomerWithSubscriptionsResponseData:
+      type: object
+      properties:
+        company_id:
+          type:
+          - string
+          - 'null'
+        deleted_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        email:
+          type: string
+        external_id:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingCustomerSubscription'
+          maxItems: 1000
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - email
+      - external_id
+      - id
+      - name
+      - provider_type
+      - subscriptions
+      - updated_at
+      title: BillingCustomerWithSubscriptionsResponseData
+    BillingMeterResponseData:
+      type: object
+      properties:
+        dispaly_name:
+          type: string
+        event_name:
+          type: string
+        event_payload_key:
+          type: string
+        external_price_id:
+          type: string
+        id:
+          type: string
+        provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+      required:
+      - dispaly_name
+      - event_name
+      - event_payload_key
+      - external_price_id
+      - id
+      - provider_type
+      title: BillingMeterResponseData
     PaymentMethodResponseData:
       type: object
       properties:
@@ -2010,56 +2266,6 @@ components:
       - provider_type
       - updated_at
       title: PaymentMethodResponseData
-    BillingProductResponseData:
-      type: object
-      properties:
-        account_id:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        currency:
-          type:
-          - string
-          - 'null'
-          description: Deprecated; currencies are associated with prices, not products
-          deprecated: true
-        environment_id:
-          type: string
-        external_id:
-          type: string
-        is_active:
-          type: boolean
-        name:
-          type: string
-        price:
-          type: number
-        price_decimal:
-          type:
-          - string
-          - 'null'
-        product_id:
-          type: string
-        provider_type:
-          $ref: '#/components/schemas/BillingProviderType'
-        quantity:
-          type: number
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - account_id
-      - created_at
-      - environment_id
-      - external_id
-      - is_active
-      - name
-      - price
-      - product_id
-      - provider_type
-      - quantity
-      - updated_at
-      title: BillingProductResponseData
     CreateCouponRequestBody:
       type: object
       properties:
@@ -2101,42 +2307,193 @@ components:
       - duration
       - duration_in_months
       title: CreateCouponRequestBody
-    CreateBillingPriceTierRequestBody:
+    BillingProviderType:
+      type: string
+      enum:
+      - orb
+      - schematic
+      - stripe
+    BillingPriceView:
       type: object
       properties:
-        flat_amount:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        per_unit_decimal:
+        billing_scheme:
+          $ref: '#/components/schemas/BillingPriceScheme'
+        created_at:
+          type: string
+          format: date-time
+        currency:
+          type: string
+        id:
+          type: string
+        interval:
+          $ref: '#/components/schemas/BillingProductPriceInterval'
+        is_active:
+          type: boolean
+        meter_event_name:
           type:
           - string
           - 'null'
-        per_unit_price:
+        meter_event_payload_key:
           type:
-          - integer
+          - string
           - 'null'
+        meter_id:
+          type:
+          - string
+          - 'null'
+        nickname:
+          type:
+          - string
+          - 'null'
+        package_size:
+          type: integer
           format: int64
+        price:
+          type: integer
+          format: int64
+        price_decimal:
+          type:
+          - string
+          - 'null'
         price_external_id:
           type: string
-          maxLength: 255
+        price_id:
+          type: string
+        price_tier:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingProductPriceTierResponseData'
+          maxItems: 100
+        product_external_id:
+          type: string
+        product_id:
+          type: string
+        product_name:
+          type: string
         provider_type:
+          $ref: '#/components/schemas/BillingProviderType'
+        tiers_mode:
           allOf:
-          - $ref: '#/components/schemas/BillingProviderType'
-        up_to:
+          - $ref: '#/components/schemas/BillingTiersMode'
+        updated_at:
+          type: string
+          format: date-time
+        usage_type:
+          $ref: '#/components/schemas/BillingPriceUsageType'
+      required:
+      - id
+      - billing_scheme
+      - created_at
+      - currency
+      - interval
+      - is_active
+      - package_size
+      - price
+      - price_external_id
+      - product_external_id
+      - provider_type
+      - updated_at
+      - usage_type
+      - price_id
+      - product_id
+      - product_name
+      - price_tier
+      title: BillingPriceView
+    CountResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The number of resources
+    BillingCustomerSubscription:
+      type: object
+      properties:
+        currency:
+          type: string
+        expired_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        interval:
+          type: string
+        metered_usage:
+          type: boolean
+        per_unit_price:
+          type: integer
+          format: int64
+        total_price:
+          type: integer
+          format: int64
+      required:
+      - total_price
+      - interval
+      - metered_usage
+      - per_unit_price
+      - currency
+      title: BillingCustomerSubscription
+    CreatePaymentMethodRequestBody:
+      type: object
+      properties:
+        account_last4:
+          type:
+          - string
+          - 'null'
+          maxLength: 4
+        account_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        bank_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        billing_email:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        billing_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        card_brand:
+          type:
+          - string
+          - 'null'
+          maxLength: 32
+        card_exp_month:
           type:
           - integer
           - 'null'
           format: int64
+        card_exp_year:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        card_last4:
+          type:
+          - string
+          - 'null'
+          maxLength: 4
+        customer_external_id:
+          type: string
+          maxLength: 255
+        external_id:
+          type: string
+          maxLength: 255
+        payment_method_type:
+          type: string
+          maxLength: 32
       required:
-      - price_external_id
-      title: CreateBillingPriceTierRequestBody
-    BillingSubscriptionTrialEndSetting:
-      type: string
-      enum:
-      - cancel
-      - subscribe
+      - external_id
+      - customer_external_id
+      - payment_method_type
+      title: CreatePaymentMethodRequestBody
     BillingSubscriptionDiscount:
       type: object
       properties:
@@ -2232,377 +2589,34 @@ components:
       - prices
       - subscription_count
       title: BillingProductDetailResponseData
-    CreateMeterRequestBody:
+    BillingProductPriceTierResponseData:
       type: object
       properties:
-        display_name:
-          type: string
-          maxLength: 255
-        event_name:
-          type: string
-          maxLength: 255
-        event_payload_key:
-          type: string
-          maxLength: 255
-        external_id:
-          type: string
-          maxLength: 255
-        provider_type:
-          allOf:
-          - $ref: '#/components/schemas/BillingProviderType'
-      required:
-      - external_id
-      - display_name
-      - event_name
-      - event_payload_key
-      title: CreateMeterRequestBody
-    CreateInvoiceRequestBody:
-      type: object
-      properties:
-        amount_due:
-          type: integer
-          format: int64
-        amount_paid:
-          type: integer
-          format: int64
-        amount_remaining:
-          type: integer
-          format: int64
-        collection_method:
-          type: string
-          maxLength: 32
-        currency:
-          type: string
-          maxLength: 16
-        customer_external_id:
-          type: string
-          maxLength: 255
-        due_date:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        external_id:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        payment_method_external_id:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        status:
-          allOf:
-          - $ref: '#/components/schemas/InvoiceStatus'
-        subscription_external_id:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        subtotal:
-          type: integer
-          format: int64
-        url:
-          type:
-          - string
-          - 'null'
-          maxLength: 512
-      required:
-      - amount_due
-      - amount_paid
-      - amount_remaining
-      - collection_method
-      - currency
-      - customer_external_id
-      - subtotal
-      title: CreateInvoiceRequestBody
-    BillingTiersMode:
-      type: string
-      enum:
-      - graduated
-      - volume
-    BillingPriceView:
-      type: object
-      properties:
-        billing_scheme:
-          $ref: '#/components/schemas/BillingPriceScheme'
-        created_at:
-          type: string
-          format: date-time
-        currency:
-          type: string
-        id:
-          type: string
-        interval:
-          $ref: '#/components/schemas/BillingProductPriceInterval'
-        is_active:
-          type: boolean
-        meter_event_name:
-          type:
-          - string
-          - 'null'
-        meter_event_payload_key:
-          type:
-          - string
-          - 'null'
-        meter_id:
-          type:
-          - string
-          - 'null'
-        nickname:
-          type:
-          - string
-          - 'null'
-        package_size:
-          type: integer
-          format: int64
-        price:
-          type: integer
-          format: int64
-        price_decimal:
-          type:
-          - string
-          - 'null'
-        price_external_id:
-          type: string
-        price_id:
-          type: string
-        price_tier:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillingProductPriceTierResponseData'
-          maxItems: 100
-        product_external_id:
-          type: string
-        product_id:
-          type: string
-        product_name:
-          type: string
-        provider_type:
-          $ref: '#/components/schemas/BillingProviderType'
-        tiers_mode:
-          allOf:
-          - $ref: '#/components/schemas/BillingTiersMode'
-        updated_at:
-          type: string
-          format: date-time
-        usage_type:
-          $ref: '#/components/schemas/BillingPriceUsageType'
-      required:
-      - id
-      - billing_scheme
-      - created_at
-      - currency
-      - interval
-      - is_active
-      - package_size
-      - price
-      - price_external_id
-      - product_external_id
-      - provider_type
-      - updated_at
-      - usage_type
-      - price_id
-      - product_id
-      - product_name
-      - price_tier
-      title: BillingPriceView
-    BillingProductPricing:
-      type: object
-      properties:
-        billing_threshold:
+        flat_amount:
           type:
           - integer
           - 'null'
           format: int64
-          maximum: 9999999999999
-          minimum: 50
-        currency:
-          type: string
-          maxLength: 3
-        interval:
-          type: string
-          maxLength: 255
-        meter_id:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        package_size:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        price:
-          type: integer
-          format: int64
-        price_decimal:
-          type:
-          - string
-          - 'null'
-        price_external_id:
-          type: string
-          maxLength: 255
-        product_external_id:
-          type: string
-          maxLength: 255
-        quantity:
-          type: integer
-          format: int64
-        subscription_item_external_id:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        usage_type:
-          $ref: '#/components/schemas/BillingPriceUsageType'
-      required:
-      - product_external_id
-      - price
-      - quantity
-      - interval
-      - currency
-      - usage_type
-      - price_external_id
-      title: BillingProductPricing
-    BillingPriceUsageType:
-      type: string
-      enum:
-      - licensed
-      - metered
-    BillingCustomerSubscription:
-      type: object
-      properties:
-        currency:
-          type: string
-        expired_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        interval:
-          type: string
-        metered_usage:
-          type: boolean
         per_unit_price:
-          type: integer
-          format: int64
-        total_price:
-          type: integer
-          format: int64
-      required:
-      - total_price
-      - interval
-      - metered_usage
-      - per_unit_price
-      - currency
-      title: BillingCustomerSubscription
-    BillingPriceResponseData:
-      type: object
-      properties:
-        currency:
-          type: string
-        external_price_id:
-          type: string
-        id:
-          type: string
-        interval:
-          $ref: '#/components/schemas/BillingProductPriceInterval'
-        nickname:
-          type:
-          - string
-          - 'null'
-        price:
-          type: integer
-          format: int64
-        price_decimal:
-          type:
-          - string
-          - 'null'
-        provider_type:
-          $ref: '#/components/schemas/BillingProviderType'
-        scheme:
-          $ref: '#/components/schemas/BillingPriceScheme'
-      required:
-      - currency
-      - external_price_id
-      - id
-      - interval
-      - price
-      - provider_type
-      - scheme
-      title: BillingPriceResponseData
-    CreatePaymentMethodRequestBody:
-      type: object
-      properties:
-        account_last4:
-          type:
-          - string
-          - 'null'
-          maxLength: 4
-        account_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        bank_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        billing_email:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        billing_name:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-        card_brand:
-          type:
-          - string
-          - 'null'
-          maxLength: 32
-        card_exp_month:
           type:
           - integer
           - 'null'
           format: int64
-        card_exp_year:
+        per_unit_price_decimal:
+          type:
+          - string
+          - 'null'
+        up_to:
           type:
           - integer
           - 'null'
           format: int64
-        card_last4:
-          type:
-          - string
-          - 'null'
-          maxLength: 4
-        customer_external_id:
-          type: string
-          maxLength: 255
-        external_id:
-          type: string
-          maxLength: 255
-        payment_method_type:
-          type: string
-          maxLength: 32
-      required:
-      - external_id
-      - customer_external_id
-      - payment_method_type
-      title: CreatePaymentMethodRequestBody
-    InvoiceStatus:
+      title: BillingProductPriceTierResponseData
+    BillingSubscriptionTrialEndSetting:
       type: string
       enum:
-      - draft
-      - open
-      - paid
-      - uncollectible
-      - void
+      - cancel
+      - subscribe
     CreateBillingPriceRequestBody:
       type: object
       properties:
@@ -2672,17 +2686,6 @@ components:
       - product_external_id
       - usage_type
       title: CreateBillingPriceRequestBody
-    BillingProviderType:
-      type: string
-      enum:
-      - orb
-      - schematic
-      - stripe
-    BillingPriceScheme:
-      type: string
-      enum:
-      - per_unit
-      - tiered
     CreateBillingCustomerRequestBody:
       type: object
       properties:
@@ -2716,136 +2719,64 @@ components:
       - meta
       - name
       title: CreateBillingCustomerRequestBody
-    BillingProductPriceTierResponseData:
+    BillingProductPricing:
       type: object
       properties:
-        flat_amount:
+        billing_threshold:
           type:
           - integer
           - 'null'
           format: int64
-        per_unit_price:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        per_unit_price_decimal:
-          type:
-          - string
-          - 'null'
-        up_to:
-          type:
-          - integer
-          - 'null'
-          format: int64
-      title: BillingProductPriceTierResponseData
-    CountResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: The number of resources
-    BillingSubscriptionResponseData:
-      type: object
-      properties:
-        application_id:
-          type:
-          - string
-          - 'null'
-        cancel_at:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        cancel_at_period_end:
-          type: boolean
-        company_id:
-          type:
-          - string
-          - 'null'
-        created_at:
-          type: string
-          format: date-time
+          maximum: 9999999999999
+          minimum: 50
         currency:
           type: string
-        customer_external_id:
-          type: string
-        default_payment_method_id:
-          type:
-          - string
-          - 'null'
-        expired_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        id:
-          type: string
+          maxLength: 3
         interval:
           type: string
-        metadata:
-          type: object
-        period_end:
-          type: integer
-          format: int64
-        period_start:
-          type: integer
-          format: int64
-        provider_type:
-          $ref: '#/components/schemas/BillingProviderType'
-        status:
-          type: string
-        subscription_external_id:
-          type: string
-        total_price:
-          type: integer
-          format: int64
-        trial_end:
+          maxLength: 255
+        meter_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        package_size:
           type:
           - integer
           - 'null'
           format: int64
-        trial_end_setting:
-          allOf:
-          - $ref: '#/components/schemas/BillingSubscriptionTrialEndSetting'
-      required:
-      - cancel_at_period_end
-      - created_at
-      - currency
-      - customer_external_id
-      - subscription_external_id
-      - id
-      - interval
-      - period_end
-      - period_start
-      - total_price
-      - provider_type
-      - status
-      title: BillingSubscriptionResponseData
-    CreateBillingProductRequestBody:
-      type: object
-      properties:
-        external_id:
+        price:
+          type: integer
+          format: int64
+        price_decimal:
+          type:
+          - string
+          - 'null'
+        price_external_id:
           type: string
           maxLength: 255
-        is_active:
-          type:
-          - boolean
-          - 'null'
-        name:
+        product_external_id:
+          type: string
+          maxLength: 255
+        quantity:
+          type: integer
+          format: int64
+        subscription_item_external_id:
           type:
           - string
           - 'null'
           maxLength: 255
-        price:
-          type: number
-        provider_type:
-          allOf:
-          - $ref: '#/components/schemas/BillingProviderType'
+        usage_type:
+          $ref: '#/components/schemas/BillingPriceUsageType'
       required:
+      - product_external_id
       - price
-      - external_id
-      title: CreateBillingProductRequestBody
+      - quantity
+      - interval
+      - currency
+      - usage_type
+      - price_external_id
+      title: BillingProductPricing
     ApiError:
       type: object
       properties:
@@ -2854,38 +2785,107 @@ components:
           description: Error message
       required:
       - error
-    BillingMeterResponseData:
+    CreateInvoiceRequestBody:
       type: object
       properties:
-        dispaly_name:
+        amount_due:
+          type: integer
+          format: int64
+        amount_paid:
+          type: integer
+          format: int64
+        amount_remaining:
+          type: integer
+          format: int64
+        collection_method:
           type: string
-        event_name:
+          maxLength: 32
+        currency:
           type: string
-        event_payload_key:
+          maxLength: 16
+        customer_external_id:
           type: string
-        external_price_id:
-          type: string
-        id:
-          type: string
-        provider_type:
-          $ref: '#/components/schemas/BillingProviderType'
+          maxLength: 255
+        due_date:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        external_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        payment_method_external_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        status:
+          allOf:
+          - $ref: '#/components/schemas/InvoiceStatus'
+        subscription_external_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        subtotal:
+          type: integer
+          format: int64
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 512
       required:
-      - dispaly_name
-      - event_name
-      - event_payload_key
-      - external_price_id
-      - id
-      - provider_type
-      title: BillingMeterResponseData
+      - amount_due
+      - amount_paid
+      - amount_remaining
+      - collection_method
+      - currency
+      - customer_external_id
+      - subtotal
+      title: CreateInvoiceRequestBody
+    CreateBillingPriceTierRequestBody:
+      type: object
+      properties:
+        flat_amount:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        per_unit_decimal:
+          type:
+          - string
+          - 'null'
+        per_unit_price:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        price_external_id:
+          type: string
+          maxLength: 255
+        provider_type:
+          allOf:
+          - $ref: '#/components/schemas/BillingProviderType'
+        up_to:
+          type:
+          - integer
+          - 'null'
+          format: int64
+      required:
+      - price_external_id
+      title: CreateBillingPriceTierRequestBody
   responses:
-    ServerError:
-      description: Server error
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
-    NotFound:
-      description: Not found
+    ServerError:
+      description: Server error
       content:
         application/json:
           schema:
@@ -2896,14 +2896,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
-    Forbidden:
-      description: Forbidden
+    NotFound:
+      description: Not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
-    BadRequest:
-      description: Bad request
+    Forbidden:
+      description: Forbidden
       content:
         application/json:
           schema:

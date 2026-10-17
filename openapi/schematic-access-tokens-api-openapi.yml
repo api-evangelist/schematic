@@ -53,6 +53,10 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   schemas:
+    TemporaryAccessTokenResourceType:
+      type: string
+      enum:
+      - company
     IssueTemporaryAccessTokenRequestBody:
       type: object
       properties:
@@ -66,10 +70,6 @@ components:
       - resource_type
       - lookup
       title: IssueTemporaryAccessTokenRequestBody
-    TemporaryAccessTokenResourceType:
-      type: string
-      enum:
-      - company
     IssueTemporaryAccessTokenResponseData:
       type: object
       properties:
@@ -111,6 +111,12 @@ components:
       required:
       - error
   responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
     NotFound:
       description: Not found
       content:
@@ -119,12 +125,6 @@ components:
             $ref: '#/components/schemas/ApiError'
     ServerError:
       description: Server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    Unauthorized:
-      description: Unauthorized
       content:
         application/json:
           schema:
