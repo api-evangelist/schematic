@@ -1,444 +1,1161 @@
 {
+  "info": {
+    "_postman_id": "1812ba65-49ab-4b0b-9a1a-23d91f2ee513",
+    "name": "Schematic Scheduledcheckout API",
+    "description": "Schematic API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:39:24.000Z",
+    "updatedAt": "2026-10-21T20:39:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1812ba65-49ab-4b0b-9a1a-23d91f2ee513"
+  },
   "item": [
     {
-      "id": "a9fb90ad-2ca9-44fd-aa96-958f7e286b72",
-      "name": "scheduledcheckout",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "scheduled-checkout",
       "item": [
         {
-          "id": "d2437ef3-fd73-4e5d-849f-6caf880644ec",
-          "name": "List scheduled checkouts",
-          "request": {
-            "name": "List scheduled checkouts",
-            "description": {},
-            "url": {
-              "path": [
-                "scheduled-checkout"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "{scheduled_checkout_id}",
+          "item": [
+            {
+              "name": "Get scheduled checkout",
+              "id": "ad9f0486-1a5c-4f50-9a62-b5a138aabf41",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scheduled-checkout/:scheduled_checkout_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scheduled-checkout",
+                    ":scheduled_checkout_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e4f45885-7702-4919-9321-5604ffab01d2",
+                      "key": "scheduled_checkout_id",
+                      "value": "<string>",
+                      "description": "(Required) scheduled_checkout_id"
+                    }
+                  ]
+                }
+              },
+              "response": [
                 {
-                  "disabled": false,
-                  "key": "company_id",
-                  "value": "<string>"
+                  "id": "f53c69ef-08ea-4111-9637-359a521469dd",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scheduled-checkout/:scheduled_checkout_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scheduled-checkout",
+                        ":scheduled_checkout_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduled_checkout_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"actor_type\": \"<string>\",\n    \"company_id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"execute_after\": \"<dateTime>\",\n    \"from_plan_id\": \"<string>\",\n    \"id\": \"<string>\",\n    \"status\": \"pending\",\n    \"to_plan_id\": \"<string>\",\n    \"updated_at\": \"<dateTime>\",\n    \"completed_at\": \"<string,null-date-time>\",\n    \"error_message\": \"<string,null>\",\n    \"scheduled_interval\": \"<string,null>\",\n    \"scheduled_price\": \"<integer,null-int64>\",\n    \"started_at\": \"<string,null-date-time>\"\n  },\n  \"params\": {}\n}",
+                  "createdAt": "2026-10-21T20:39:25.000Z",
+                  "updatedAt": "2026-10-21T20:39:25.000Z",
+                  "uid": "35240-f53c69ef-08ea-4111-9637-359a521469dd"
                 },
                 {
-                  "disabled": false,
-                  "key": "status",
-                  "value": "<string>"
+                  "id": "47f50823-50ad-4db8-b0d3-a745f9c7edfb",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scheduled-checkout/:scheduled_checkout_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scheduled-checkout",
+                        ":scheduled_checkout_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduled_checkout_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:25.000Z",
+                  "updatedAt": "2026-10-21T20:39:25.000Z",
+                  "uid": "35240-47f50823-50ad-4db8-b0d3-a745f9c7edfb"
                 },
                 {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "<long>",
-                  "description": "Page limit (default 100)"
+                  "id": "f602cc55-6f7a-404b-9aad-7cf894ce78fc",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scheduled-checkout/:scheduled_checkout_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scheduled-checkout",
+                        ":scheduled_checkout_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduled_checkout_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:25.000Z",
+                  "updatedAt": "2026-10-21T20:39:25.000Z",
+                  "uid": "35240-f602cc55-6f7a-404b-9aad-7cf894ce78fc"
                 },
                 {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "<long>",
-                  "description": "Page offset (default 0)"
+                  "id": "612b0b76-20f6-4ad3-a69d-4066b69d02e5",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scheduled-checkout/:scheduled_checkout_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scheduled-checkout",
+                        ":scheduled_checkout_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduled_checkout_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:25.000Z",
+                  "updatedAt": "2026-10-21T20:39:25.000Z",
+                  "uid": "35240-612b0b76-20f6-4ad3-a69d-4066b69d02e5"
+                },
+                {
+                  "id": "c242d229-0a42-461d-ba95-4da1bf499496",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scheduled-checkout/:scheduled_checkout_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scheduled-checkout",
+                        ":scheduled_checkout_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduled_checkout_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:25.000Z",
+                  "updatedAt": "2026-10-21T20:39:25.000Z",
+                  "uid": "35240-c242d229-0a42-461d-ba95-4da1bf499496"
                 }
               ],
-              "variable": []
+              "createdAt": "2026-10-21T20:39:25.000Z",
+              "updatedAt": "2026-10-21T20:39:25.000Z",
+              "uid": "35240-ad9f0486-1a5c-4f50-9a62-b5a138aabf41"
             },
+            {
+              "name": "Update scheduled checkout",
+              "id": "9e50a696-c5e1-4536-b22b-b0c7f6f61104",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"execute_after\": \"<string,null-date-time>\",\n  \"status\": \"success\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/scheduled-checkout/:scheduled_checkout_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scheduled-checkout",
+                    ":scheduled_checkout_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "25ed7a25-d871-4e91-9690-fd50de68f302",
+                      "key": "scheduled_checkout_id",
+                      "value": "<string>",
+                      "description": "(Required) scheduled_checkout_id"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "6b6f6298-f8c8-4b67-ad35-191d7cad6374",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"execute_after\": \"<string,null-date-time>\",\n  \"status\": \"success\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/scheduled-checkout/:scheduled_checkout_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scheduled-checkout",
+                        ":scheduled_checkout_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduled_checkout_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"actor_type\": \"<string>\",\n    \"company_id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"execute_after\": \"<dateTime>\",\n    \"from_plan_id\": \"<string>\",\n    \"id\": \"<string>\",\n    \"status\": \"error\",\n    \"to_plan_id\": \"<string>\",\n    \"updated_at\": \"<dateTime>\",\n    \"completed_at\": \"<string,null-date-time>\",\n    \"error_message\": \"<string,null>\",\n    \"scheduled_interval\": \"<string,null>\",\n    \"scheduled_price\": \"<integer,null-int64>\",\n    \"started_at\": \"<string,null-date-time>\"\n  },\n  \"params\": {}\n}",
+                  "createdAt": "2026-10-21T20:39:25.000Z",
+                  "updatedAt": "2026-10-21T20:39:25.000Z",
+                  "uid": "35240-6b6f6298-f8c8-4b67-ad35-191d7cad6374"
+                },
+                {
+                  "id": "8160ca55-3dce-481d-bec2-d1d3c847765b",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"execute_after\": \"<string,null-date-time>\",\n  \"status\": \"success\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/scheduled-checkout/:scheduled_checkout_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scheduled-checkout",
+                        ":scheduled_checkout_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduled_checkout_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:25.000Z",
+                  "updatedAt": "2026-10-21T20:39:25.000Z",
+                  "uid": "35240-8160ca55-3dce-481d-bec2-d1d3c847765b"
+                },
+                {
+                  "id": "a97a70aa-3a0b-41b6-b28b-c8a13459b81e",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"execute_after\": \"<string,null-date-time>\",\n  \"status\": \"success\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/scheduled-checkout/:scheduled_checkout_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scheduled-checkout",
+                        ":scheduled_checkout_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduled_checkout_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:25.000Z",
+                  "updatedAt": "2026-10-21T20:39:25.000Z",
+                  "uid": "35240-a97a70aa-3a0b-41b6-b28b-c8a13459b81e"
+                },
+                {
+                  "id": "bc6f8e0e-2d5f-4bff-a975-396d06401146",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"execute_after\": \"<string,null-date-time>\",\n  \"status\": \"success\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/scheduled-checkout/:scheduled_checkout_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scheduled-checkout",
+                        ":scheduled_checkout_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduled_checkout_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:25.000Z",
+                  "updatedAt": "2026-10-21T20:39:25.000Z",
+                  "uid": "35240-bc6f8e0e-2d5f-4bff-a975-396d06401146"
+                },
+                {
+                  "id": "25583d35-4a1c-4b8e-8440-b953eaa6a900",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"execute_after\": \"<string,null-date-time>\",\n  \"status\": \"success\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/scheduled-checkout/:scheduled_checkout_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scheduled-checkout",
+                        ":scheduled_checkout_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduled_checkout_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:25.000Z",
+                  "updatedAt": "2026-10-21T20:39:25.000Z",
+                  "uid": "35240-25583d35-4a1c-4b8e-8440-b953eaa6a900"
+                },
+                {
+                  "id": "b65cc610-f45b-4935-9c28-1803ee999821",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"execute_after\": \"<string,null-date-time>\",\n  \"status\": \"success\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/scheduled-checkout/:scheduled_checkout_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scheduled-checkout",
+                        ":scheduled_checkout_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduled_checkout_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:25.000Z",
+                  "updatedAt": "2026-10-21T20:39:25.000Z",
+                  "uid": "35240-b65cc610-f45b-4935-9c28-1803ee999821"
+                }
+              ],
+              "createdAt": "2026-10-21T20:39:25.000Z",
+              "updatedAt": "2026-10-21T20:39:25.000Z",
+              "uid": "35240-9e50a696-c5e1-4536-b22b-b0c7f6f61104"
+            }
+          ],
+          "id": "9f9dd998-bb53-4a52-8b3a-4119cc2ffe7e",
+          "createdAt": "2026-10-21T20:39:25.000Z",
+          "updatedAt": "2026-10-21T20:39:25.000Z",
+          "uid": "35240-9f9dd998-bb53-4a52-8b3a-4119cc2ffe7e"
+        },
+        {
+          "name": "List scheduled checkouts",
+          "id": "2c524403-7734-440f-8ced-c42aae7ee13a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "28ffa3b3-651c-4542-a982-74bac029227f",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "company_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"actor_type\": \"string\",\n      \"company_id\": \"string\",\n      \"created_at\": \"2006-11-12T01:09:33.684Z\",\n      \"execute_after\": \"2009-04-06T11:00:54.064Z\",\n      \"from_plan_id\": \"string\",\n      \"id\": \"string\",\n      \"status\": \"<string>\",\n      \"to_plan_id\": \"string\",\n      \"updated_at\": \"1968-05-19T04:31:50.051Z\",\n      \"completed_at\": null,\n      \"error_message\": \"string\",\n      \"scheduled_interval\": \"string\",\n      \"scheduled_price\": 6313,\n      \"started_at\": null\n    },\n    {\n      \"actor_type\": \"string\",\n      \"company_id\": \"string\",\n      \"created_at\": \"2018-08-15T01:06:42.228Z\",\n      \"execute_after\": \"2015-01-26T22:54:19.196Z\",\n      \"from_plan_id\": \"string\",\n      \"id\": \"string\",\n      \"status\": \"<string>\",\n      \"to_plan_id\": \"string\",\n      \"updated_at\": \"1974-03-09T15:05:12.549Z\",\n      \"completed_at\": null,\n      \"error_message\": null,\n      \"scheduled_interval\": \"string\",\n      \"scheduled_price\": 9381,\n      \"started_at\": \"1987-03-25T02:51:02.300Z\"\n    }\n  ],\n  \"params\": {\n    \"company_id\": \"string\",\n    \"limit\": 7399,\n    \"offset\": 716,\n    \"status\": \"<string>\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "699fb4e4-6560-422a-b07a-cc0dbfb6b2e1",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "company_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "647b9e70-57a2-417c-946e-f1cebb3e4555",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "company_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6a3c9b0a-08bf-47ea-8f45-2f299646ab9d",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "company_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2ad677b9-0af0-400e-b174-12c1d0d6808a",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "company_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4946d6c9-1b00-436e-a47b-9931cc07d61a",
-              "name": "Server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "company_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b886f31e-cf37-4199-ace2-afdf151067de",
-          "name": "Create scheduled checkout",
-          "request": {
-            "name": "Create scheduled checkout",
-            "description": {},
             "url": {
-              "path": [
-                "scheduled-checkout"
-              ],
+              "raw": "{{baseUrl}}/scheduled-checkout?company_id=<string>&status=cancelled&limit=<long>&offset=<long>",
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [],
-              "variable": []
+              "path": [
+                "scheduled-checkout"
+              ],
+              "query": [
+                {
+                  "key": "company_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "status",
+                  "value": "cancelled"
+                },
+                {
+                  "description": "Page limit (default 100)",
+                  "key": "limit",
+                  "value": "<long>"
+                },
+                {
+                  "description": "Page offset (default 0)",
+                  "key": "offset",
+                  "value": "<long>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e3f21dff-4bfb-4942-a196-16259784b814",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scheduled-checkout?company_id=<string>&status=cancelled&limit=<long>&offset=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scheduled-checkout"
+                  ],
+                  "query": [
+                    {
+                      "key": "company_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "cancelled"
+                    },
+                    {
+                      "description": "Page limit (default 100)",
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Page offset (default 0)",
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"actor_type\": \"<string>\",\n      \"company_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"execute_after\": \"<dateTime>\",\n      \"from_plan_id\": \"<string>\",\n      \"id\": \"<string>\",\n      \"status\": \"pending\",\n      \"to_plan_id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"completed_at\": \"<string,null-date-time>\",\n      \"error_message\": \"<string,null>\",\n      \"scheduled_interval\": \"<string,null>\",\n      \"scheduled_price\": \"<integer,null-int64>\",\n      \"started_at\": \"<string,null-date-time>\"\n    },\n    {\n      \"actor_type\": \"<string>\",\n      \"company_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"execute_after\": \"<dateTime>\",\n      \"from_plan_id\": \"<string>\",\n      \"id\": \"<string>\",\n      \"status\": \"error\",\n      \"to_plan_id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"completed_at\": \"<string,null-date-time>\",\n      \"error_message\": \"<string,null>\",\n      \"scheduled_interval\": \"<string,null>\",\n      \"scheduled_price\": \"<integer,null-int64>\",\n      \"started_at\": \"<string,null-date-time>\"\n    }\n  ],\n  \"params\": {\n    \"company_id\": \"<string>\",\n    \"limit\": \"<long>\",\n    \"offset\": \"<long>\",\n    \"status\": \"error\"\n  }\n}",
+              "createdAt": "2026-10-21T20:39:25.000Z",
+              "updatedAt": "2026-10-21T20:39:25.000Z",
+              "uid": "35240-e3f21dff-4bfb-4942-a196-16259784b814"
             },
+            {
+              "id": "50a37a7d-122d-4fde-aad5-0afa22ed2074",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scheduled-checkout?company_id=<string>&status=cancelled&limit=<long>&offset=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scheduled-checkout"
+                  ],
+                  "query": [
+                    {
+                      "key": "company_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "cancelled"
+                    },
+                    {
+                      "description": "Page limit (default 100)",
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Page offset (default 0)",
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:25.000Z",
+              "updatedAt": "2026-10-21T20:39:25.000Z",
+              "uid": "35240-50a37a7d-122d-4fde-aad5-0afa22ed2074"
+            },
+            {
+              "id": "89ad22f8-ff4c-4b48-9c52-e7085fb2b913",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scheduled-checkout?company_id=<string>&status=cancelled&limit=<long>&offset=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scheduled-checkout"
+                  ],
+                  "query": [
+                    {
+                      "key": "company_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "cancelled"
+                    },
+                    {
+                      "description": "Page limit (default 100)",
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Page offset (default 0)",
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:25.000Z",
+              "updatedAt": "2026-10-21T20:39:25.000Z",
+              "uid": "35240-89ad22f8-ff4c-4b48-9c52-e7085fb2b913"
+            },
+            {
+              "id": "78e26ec3-6713-4900-bb4e-dd064b36cb73",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scheduled-checkout?company_id=<string>&status=cancelled&limit=<long>&offset=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scheduled-checkout"
+                  ],
+                  "query": [
+                    {
+                      "key": "company_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "cancelled"
+                    },
+                    {
+                      "description": "Page limit (default 100)",
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Page offset (default 0)",
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:25.000Z",
+              "updatedAt": "2026-10-21T20:39:25.000Z",
+              "uid": "35240-78e26ec3-6713-4900-bb4e-dd064b36cb73"
+            },
+            {
+              "id": "af7e3550-dd35-496f-8cd9-4a7dec573a9a",
+              "name": "Not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scheduled-checkout?company_id=<string>&status=cancelled&limit=<long>&offset=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scheduled-checkout"
+                  ],
+                  "query": [
+                    {
+                      "key": "company_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "cancelled"
+                    },
+                    {
+                      "description": "Page limit (default 100)",
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Page offset (default 0)",
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:25.000Z",
+              "updatedAt": "2026-10-21T20:39:25.000Z",
+              "uid": "35240-af7e3550-dd35-496f-8cd9-4a7dec573a9a"
+            },
+            {
+              "id": "c8efe87e-84c7-45c0-b531-50831d96e2d7",
+              "name": "Server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scheduled-checkout?company_id=<string>&status=cancelled&limit=<long>&offset=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scheduled-checkout"
+                  ],
+                  "query": [
+                    {
+                      "key": "company_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "cancelled"
+                    },
+                    {
+                      "description": "Page limit (default 100)",
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Page offset (default 0)",
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:25.000Z",
+              "updatedAt": "2026-10-21T20:39:25.000Z",
+              "uid": "35240-c8efe87e-84c7-45c0-b531-50831d96e2d7"
+            }
+          ],
+          "createdAt": "2026-10-21T20:39:25.000Z",
+          "updatedAt": "2026-10-21T20:39:25.000Z",
+          "uid": "35240-2c524403-7734-440f-8ced-c42aae7ee13a"
+        },
+        {
+          "name": "Create scheduled checkout",
+          "id": "e0db4b18-c3d5-456a-8612-e1b3e9a0efe4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -449,1056 +1166,373 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "{\n  \"company_id\": \"<string>\",\n  \"execute_after\": \"<dateTime>\",\n  \"from_plan_id\": \"<string>\",\n  \"to_plan_id\": \"<string>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/scheduled-checkout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "scheduled-checkout"
+              ]
             }
           },
           "response": [
             {
-              "id": "4bc07c9f-e0ce-49f5-bfbc-f00d26b3e826",
+              "id": "30b6d8d2-5ab0-4895-9e1e-22d238c3ec61",
               "name": "Created",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"company_id\": \"<string>\",\n  \"execute_after\": \"<dateTime>\",\n  \"from_plan_id\": \"<string>\",\n  \"to_plan_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/scheduled-checkout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scheduled-checkout"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": {\n    \"actor_type\": \"string\",\n    \"company_id\": \"string\",\n    \"created_at\": \"2012-11-23T09:37:57.671Z\",\n    \"execute_after\": \"1954-09-07T11:54:26.575Z\",\n    \"from_plan_id\": \"string\",\n    \"id\": \"string\",\n    \"status\": \"<string>\",\n    \"to_plan_id\": \"string\",\n    \"updated_at\": \"2013-11-16T16:06:31.902Z\",\n    \"completed_at\": \"1996-12-12T06:22:59.706Z\",\n    \"error_message\": \"string\",\n    \"scheduled_interval\": null,\n    \"scheduled_price\": 9657,\n    \"started_at\": \"1980-04-12T15:50:00.755Z\"\n  },\n  \"params\": {}\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"actor_type\": \"<string>\",\n    \"company_id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"execute_after\": \"<dateTime>\",\n    \"from_plan_id\": \"<string>\",\n    \"id\": \"<string>\",\n    \"status\": \"executing\",\n    \"to_plan_id\": \"<string>\",\n    \"updated_at\": \"<dateTime>\",\n    \"completed_at\": \"<string,null-date-time>\",\n    \"error_message\": \"<string,null>\",\n    \"scheduled_interval\": \"<string,null>\",\n    \"scheduled_price\": \"<integer,null-int64>\",\n    \"started_at\": \"<string,null-date-time>\"\n  },\n  \"params\": {}\n}",
+              "createdAt": "2026-10-21T20:39:25.000Z",
+              "updatedAt": "2026-10-21T20:39:25.000Z",
+              "uid": "35240-30b6d8d2-5ab0-4895-9e1e-22d238c3ec61"
             },
             {
-              "id": "d5fb2a7e-ffd0-41b7-a232-c746ec979913",
+              "id": "29f3c504-1c5f-4937-b804-56e7ad498c89",
               "name": "Bad request",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"company_id\": \"<string>\",\n  \"execute_after\": \"<dateTime>\",\n  \"from_plan_id\": \"<string>\",\n  \"to_plan_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/scheduled-checkout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scheduled-checkout"
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:25.000Z",
+              "updatedAt": "2026-10-21T20:39:25.000Z",
+              "uid": "35240-29f3c504-1c5f-4937-b804-56e7ad498c89"
             },
             {
-              "id": "4a66d988-6b5f-4b40-a2d8-e2495f96c422",
+              "id": "a074254a-466d-4bbb-87b6-3aea4a0b2975",
               "name": "Unauthorized",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"company_id\": \"<string>\",\n  \"execute_after\": \"<dateTime>\",\n  \"from_plan_id\": \"<string>\",\n  \"to_plan_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/scheduled-checkout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scheduled-checkout"
+                  ]
                 }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:25.000Z",
+              "updatedAt": "2026-10-21T20:39:25.000Z",
+              "uid": "35240-a074254a-466d-4bbb-87b6-3aea4a0b2975"
             },
             {
-              "id": "3f869f12-d7a0-4503-bd93-35b749e4bdd2",
+              "id": "dbb5bbd4-bc92-40b4-aa92-4cc5ccb0711d",
               "name": "Forbidden",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"company_id\": \"<string>\",\n  \"execute_after\": \"<dateTime>\",\n  \"from_plan_id\": \"<string>\",\n  \"to_plan_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/scheduled-checkout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scheduled-checkout"
+                  ]
                 }
               },
               "status": "Forbidden",
               "code": 403,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:25.000Z",
+              "updatedAt": "2026-10-21T20:39:25.000Z",
+              "uid": "35240-dbb5bbd4-bc92-40b4-aa92-4cc5ccb0711d"
             },
             {
-              "id": "c19cf5eb-1c5b-4b61-8352-a9600ad2c89f",
+              "id": "88d6b1bc-fcee-4abb-8e88-cb0b6708e9f6",
               "name": "Not found",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"company_id\": \"<string>\",\n  \"execute_after\": \"<dateTime>\",\n  \"from_plan_id\": \"<string>\",\n  \"to_plan_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/scheduled-checkout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scheduled-checkout"
+                  ]
                 }
               },
               "status": "Not Found",
               "code": 404,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:25.000Z",
+              "updatedAt": "2026-10-21T20:39:25.000Z",
+              "uid": "35240-88d6b1bc-fcee-4abb-8e88-cb0b6708e9f6"
             },
             {
-              "id": "d67ba488-f3ff-4a00-81da-e230e6615dc8",
+              "id": "cdd98ea7-bbb7-465a-a274-5ec7984dac8b",
               "name": "Server error",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"company_id\": \"<string>\",\n  \"execute_after\": \"<dateTime>\",\n  \"from_plan_id\": \"<string>\",\n  \"to_plan_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/scheduled-checkout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scheduled-checkout"
+                  ]
                 }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:25.000Z",
+              "updatedAt": "2026-10-21T20:39:25.000Z",
+              "uid": "35240-cdd98ea7-bbb7-465a-a274-5ec7984dac8b"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "020a07fc-0e23-4f86-bed4-e5ff56b48c4d",
-          "name": "Get scheduled checkout",
-          "request": {
-            "name": "Get scheduled checkout",
-            "description": {},
-            "url": {
-              "path": [
-                "scheduled-checkout",
-                ":scheduled_checkout_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "scheduled_checkout_id",
-                  "description": "(Required) scheduled_checkout_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "20197ee8-9992-42df-95af-3a8f070d132e",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout",
-                    ":scheduled_checkout_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduled_checkout_id",
-                      "description": "(Required) scheduled_checkout_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"actor_type\": \"string\",\n    \"company_id\": \"string\",\n    \"created_at\": \"2009-07-22T13:41:17.482Z\",\n    \"execute_after\": \"1995-01-11T08:31:38.750Z\",\n    \"from_plan_id\": \"string\",\n    \"id\": \"string\",\n    \"status\": \"<string>\",\n    \"to_plan_id\": \"string\",\n    \"updated_at\": \"2009-11-26T12:00:10.874Z\",\n    \"completed_at\": \"1971-04-22T22:08:48.354Z\",\n    \"error_message\": \"string\",\n    \"scheduled_interval\": \"string\",\n    \"scheduled_price\": 4145,\n    \"started_at\": \"2003-03-16T14:44:19.795Z\"\n  },\n  \"params\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3989c342-3385-4aa7-a5b0-a49e1dffae5b",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout",
-                    ":scheduled_checkout_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduled_checkout_id",
-                      "description": "(Required) scheduled_checkout_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "30ffeb3b-6dc5-4958-91f0-eb0b637b2fa4",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout",
-                    ":scheduled_checkout_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduled_checkout_id",
-                      "description": "(Required) scheduled_checkout_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "223f4f9b-bfbf-499d-a812-6fef6598dd3f",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout",
-                    ":scheduled_checkout_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduled_checkout_id",
-                      "description": "(Required) scheduled_checkout_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "33a6f1b1-a5bd-4b5f-bfb7-ba589f96a3ac",
-              "name": "Server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout",
-                    ":scheduled_checkout_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduled_checkout_id",
-                      "description": "(Required) scheduled_checkout_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e8ba490f-f10e-4964-bd7e-a78b675be0d9",
-          "name": "Update scheduled checkout",
-          "request": {
-            "name": "Update scheduled checkout",
-            "description": {},
-            "url": {
-              "path": [
-                "scheduled-checkout",
-                ":scheduled_checkout_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "scheduled_checkout_id",
-                  "description": "(Required) scheduled_checkout_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"execute_after\": \"<string,null-date-time>\",\n  \"status\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "545c9fd9-a198-4a76-a588-251300ea71f5",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout",
-                    ":scheduled_checkout_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduled_checkout_id",
-                      "description": "(Required) scheduled_checkout_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"execute_after\": \"<string,null-date-time>\",\n  \"status\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"actor_type\": \"string\",\n    \"company_id\": \"string\",\n    \"created_at\": \"2021-11-23T05:37:31.707Z\",\n    \"execute_after\": \"1954-11-21T02:52:03.932Z\",\n    \"from_plan_id\": \"string\",\n    \"id\": \"string\",\n    \"status\": \"<string>\",\n    \"to_plan_id\": \"string\",\n    \"updated_at\": \"2015-05-12T06:09:11.688Z\",\n    \"completed_at\": null,\n    \"error_message\": \"string\",\n    \"scheduled_interval\": \"string\",\n    \"scheduled_price\": 8186,\n    \"started_at\": null\n  },\n  \"params\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a79367df-944c-4691-b916-376727248c8a",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout",
-                    ":scheduled_checkout_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduled_checkout_id",
-                      "description": "(Required) scheduled_checkout_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"execute_after\": \"<string,null-date-time>\",\n  \"status\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c6453247-0528-4cd2-9d17-8d086217e381",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout",
-                    ":scheduled_checkout_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduled_checkout_id",
-                      "description": "(Required) scheduled_checkout_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"execute_after\": \"<string,null-date-time>\",\n  \"status\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "56979756-6717-429f-9bcf-b95ef8bb78c7",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout",
-                    ":scheduled_checkout_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduled_checkout_id",
-                      "description": "(Required) scheduled_checkout_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"execute_after\": \"<string,null-date-time>\",\n  \"status\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ce4f7e70-171f-4282-b958-326cc37b4042",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout",
-                    ":scheduled_checkout_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduled_checkout_id",
-                      "description": "(Required) scheduled_checkout_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"execute_after\": \"<string,null-date-time>\",\n  \"status\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3317b0b2-5c05-4ecb-b5f4-8e9146bc3825",
-              "name": "Server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "scheduled-checkout",
-                    ":scheduled_checkout_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduled_checkout_id",
-                      "description": "(Required) scheduled_checkout_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"execute_after\": \"<string,null-date-time>\",\n  \"status\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T20:39:25.000Z",
+          "updatedAt": "2026-10-21T20:39:25.000Z",
+          "uid": "35240-e0db4b18-c3d5-456a-8612-e1b3e9a0efe4"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.schematichq.com",
-      "key": "baseUrl"
+      "id": "c47bd3f7-b235-453d-a07a-503dba92eb97",
+      "createdAt": "2026-10-21T20:39:25.000Z",
+      "updatedAt": "2026-10-21T20:39:25.000Z",
+      "uid": "35240-c47bd3f7-b235-453d-a07a-503dba92eb97"
     }
   ],
   "auth": {
@@ -1506,25 +1540,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Schematic-Api-Key"
+        "value": "X-Schematic-Api-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "648af977-4e2e-4e72-b57e-d78a4f13643f",
-    "name": "Schematic accesstokens Scheduledcheckout API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Schematic API",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.schematichq.com"
     }
-  }
+  ]
 }

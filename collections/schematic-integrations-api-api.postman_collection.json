@@ -1,0 +1,2192 @@
+{
+  "info": {
+    "_postman_id": "e6c879a0-2490-49ad-bf92-3325fc84e6a9",
+    "name": "Schematic Integrationsapi API",
+    "description": "Schematic API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:39:42.000Z",
+    "updatedAt": "2026-10-21T20:39:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e6c879a0-2490-49ad-bf92-3325fc84e6a9"
+  },
+  "item": [
+    {
+      "name": "integration",
+      "item": [
+        {
+          "name": "start",
+          "item": [
+            {
+              "name": "{integration_id}",
+              "item": [
+                {
+                  "name": "Run integration",
+                  "id": "54af34f8-389d-442f-ab92-e36574951cc4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integration/start/:integration_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integration",
+                        "start",
+                        ":integration_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a29851e6-8d27-4482-8c74-792ce53baf5e",
+                          "key": "integration_id",
+                          "value": "<string>",
+                          "description": "(Required) integration_id"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "dc8a2083-58b4-4d40-ae85-4010d026fb0b",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integration/start/:integration_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integration",
+                            "start",
+                            ":integration_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "integration_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"created_at\": \"<dateTime>\",\n    \"id\": \"<string>\",\n    \"state\": \"pending\",\n    \"type\": \"clerk\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  \"params\": {}\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-dc8a2083-58b4-4d40-ae85-4010d026fb0b"
+                    },
+                    {
+                      "id": "cbb01fde-d324-4854-b9ac-259e8f7af3d9",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integration/start/:integration_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integration",
+                            "start",
+                            ":integration_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "integration_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-cbb01fde-d324-4854-b9ac-259e8f7af3d9"
+                    },
+                    {
+                      "id": "73dd90ae-2d08-41e8-8b53-c47b2a258e32",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integration/start/:integration_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integration",
+                            "start",
+                            ":integration_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "integration_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-73dd90ae-2d08-41e8-8b53-c47b2a258e32"
+                    },
+                    {
+                      "id": "b6d1158a-215b-48df-978d-169b458d1c24",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integration/start/:integration_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integration",
+                            "start",
+                            ":integration_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "integration_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-b6d1158a-215b-48df-978d-169b458d1c24"
+                    },
+                    {
+                      "id": "8b2096c0-e5ad-410e-97f8-375f7beb3c46",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integration/start/:integration_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integration",
+                            "start",
+                            ":integration_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "integration_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-8b2096c0-e5ad-410e-97f8-375f7beb3c46"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:39:43.000Z",
+                  "updatedAt": "2026-10-21T20:39:43.000Z",
+                  "uid": "35240-54af34f8-389d-442f-ab92-e36574951cc4"
+                }
+              ],
+              "id": "b6d55530-620f-4009-aa2e-5285a20f218a",
+              "createdAt": "2026-10-21T20:39:43.000Z",
+              "updatedAt": "2026-10-21T20:39:43.000Z",
+              "uid": "35240-b6d55530-620f-4009-aa2e-5285a20f218a"
+            }
+          ],
+          "id": "d652549c-509a-4d27-8455-c624f66fe73e",
+          "createdAt": "2026-10-21T20:39:43.000Z",
+          "updatedAt": "2026-10-21T20:39:43.000Z",
+          "uid": "35240-d652549c-509a-4d27-8455-c624f66fe73e"
+        }
+      ],
+      "id": "8a471779-9a4d-458a-b3c6-8530a05b7cf6",
+      "createdAt": "2026-10-21T20:39:43.000Z",
+      "updatedAt": "2026-10-21T20:39:43.000Z",
+      "uid": "35240-8a471779-9a4d-458a-b3c6-8530a05b7cf6"
+    },
+    {
+      "name": "integrations",
+      "item": [
+        {
+          "name": "{type}",
+          "item": [
+            {
+              "name": "webhook-url",
+              "item": [
+                {
+                  "name": "Get integration webhook url",
+                  "id": "a49fd0e7-dfea-4542-aca0-c04184d37108",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integrations/:type/webhook-url",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrations",
+                        ":type",
+                        "webhook-url"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8188a48d-7949-4dec-854a-702bdf58ef11",
+                          "key": "type",
+                          "value": "<string>",
+                          "description": "(Required) type"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "364059ac-beba-4bd7-856b-e1286c300123",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrations/:type/webhook-url",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrations",
+                            ":type",
+                            "webhook-url"
+                          ],
+                          "variable": [
+                            {
+                              "key": "type"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"url\": \"<string>\",\n    \"type\": \"unknown\"\n  },\n  \"params\": {}\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-364059ac-beba-4bd7-856b-e1286c300123"
+                    },
+                    {
+                      "id": "4265402d-5197-4185-aad5-b5b3311ab10b",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrations/:type/webhook-url",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrations",
+                            ":type",
+                            "webhook-url"
+                          ],
+                          "variable": [
+                            {
+                              "key": "type"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-4265402d-5197-4185-aad5-b5b3311ab10b"
+                    },
+                    {
+                      "id": "44e5001f-7130-40bc-b7e0-400267983ba4",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrations/:type/webhook-url",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrations",
+                            ":type",
+                            "webhook-url"
+                          ],
+                          "variable": [
+                            {
+                              "key": "type"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-44e5001f-7130-40bc-b7e0-400267983ba4"
+                    },
+                    {
+                      "id": "175be3d6-d96f-4da1-8699-dcd1142ec939",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrations/:type/webhook-url",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrations",
+                            ":type",
+                            "webhook-url"
+                          ],
+                          "variable": [
+                            {
+                              "key": "type"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-175be3d6-d96f-4da1-8699-dcd1142ec939"
+                    },
+                    {
+                      "id": "9ca5d8e7-fb11-4ba7-b400-85eaffd40c8b",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrations/:type/webhook-url",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrations",
+                            ":type",
+                            "webhook-url"
+                          ],
+                          "variable": [
+                            {
+                              "key": "type"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-9ca5d8e7-fb11-4ba7-b400-85eaffd40c8b"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:39:43.000Z",
+                  "updatedAt": "2026-10-21T20:39:43.000Z",
+                  "uid": "35240-a49fd0e7-dfea-4542-aca0-c04184d37108"
+                }
+              ],
+              "id": "ce8812e6-3822-443d-817a-4c12f1950cc2",
+              "createdAt": "2026-10-21T20:39:43.000Z",
+              "updatedAt": "2026-10-21T20:39:43.000Z",
+              "uid": "35240-ce8812e6-3822-443d-817a-4c12f1950cc2"
+            }
+          ],
+          "id": "460ebc47-d24f-42d2-9178-8fafed48e97d",
+          "createdAt": "2026-10-21T20:39:43.000Z",
+          "updatedAt": "2026-10-21T20:39:43.000Z",
+          "uid": "35240-460ebc47-d24f-42d2-9178-8fafed48e97d"
+        },
+        {
+          "name": "start-data-import",
+          "item": [
+            {
+              "name": "Start data import",
+              "id": "183f994d-a1a9-4bb6-89d0-1f41cf01c8d8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"integration_id\": \"<string>\",\n  \"company_matching_criteria\": \"billing_meta_object\",\n  \"company_matching_field\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/integrations/start-data-import",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrations",
+                    "start-data-import"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "fb1f5300-b154-475c-9cde-8d6fa88d614f",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"integration_id\": \"<string>\",\n  \"company_matching_criteria\": \"billing_meta_object\",\n  \"company_matching_field\": \"<string,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/integrations/start-data-import",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrations",
+                        "start-data-import"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"created_at\": \"<dateTime>\",\n    \"id\": \"<string>\",\n    \"state\": \"active\",\n    \"type\": \"orb\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  \"params\": {}\n}",
+                  "createdAt": "2026-10-21T20:39:43.000Z",
+                  "updatedAt": "2026-10-21T20:39:43.000Z",
+                  "uid": "35240-fb1f5300-b154-475c-9cde-8d6fa88d614f"
+                },
+                {
+                  "id": "f58db0cb-7c5b-4eac-adbc-f1470357d721",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"integration_id\": \"<string>\",\n  \"company_matching_criteria\": \"billing_meta_object\",\n  \"company_matching_field\": \"<string,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/integrations/start-data-import",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrations",
+                        "start-data-import"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:43.000Z",
+                  "updatedAt": "2026-10-21T20:39:43.000Z",
+                  "uid": "35240-f58db0cb-7c5b-4eac-adbc-f1470357d721"
+                },
+                {
+                  "id": "8c1d3ef9-7f95-4ad6-a482-6060394657d7",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"integration_id\": \"<string>\",\n  \"company_matching_criteria\": \"billing_meta_object\",\n  \"company_matching_field\": \"<string,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/integrations/start-data-import",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrations",
+                        "start-data-import"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:43.000Z",
+                  "updatedAt": "2026-10-21T20:39:43.000Z",
+                  "uid": "35240-8c1d3ef9-7f95-4ad6-a482-6060394657d7"
+                },
+                {
+                  "id": "f8062b3e-7312-4a8d-8265-e33b57c3db83",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"integration_id\": \"<string>\",\n  \"company_matching_criteria\": \"billing_meta_object\",\n  \"company_matching_field\": \"<string,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/integrations/start-data-import",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrations",
+                        "start-data-import"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:43.000Z",
+                  "updatedAt": "2026-10-21T20:39:43.000Z",
+                  "uid": "35240-f8062b3e-7312-4a8d-8265-e33b57c3db83"
+                },
+                {
+                  "id": "146d6345-a007-4a30-bd3b-589d4fb4135e",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"integration_id\": \"<string>\",\n  \"company_matching_criteria\": \"billing_meta_object\",\n  \"company_matching_field\": \"<string,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/integrations/start-data-import",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrations",
+                        "start-data-import"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:43.000Z",
+                  "updatedAt": "2026-10-21T20:39:43.000Z",
+                  "uid": "35240-146d6345-a007-4a30-bd3b-589d4fb4135e"
+                },
+                {
+                  "id": "0f7eb57e-d516-4151-92ed-cc70e8fb42b0",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"integration_id\": \"<string>\",\n  \"company_matching_criteria\": \"billing_meta_object\",\n  \"company_matching_field\": \"<string,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/integrations/start-data-import",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrations",
+                        "start-data-import"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:43.000Z",
+                  "updatedAt": "2026-10-21T20:39:43.000Z",
+                  "uid": "35240-0f7eb57e-d516-4151-92ed-cc70e8fb42b0"
+                }
+              ],
+              "createdAt": "2026-10-21T20:39:43.000Z",
+              "updatedAt": "2026-10-21T20:39:43.000Z",
+              "uid": "35240-183f994d-a1a9-4bb6-89d0-1f41cf01c8d8"
+            }
+          ],
+          "id": "95bf8d69-4bd0-4ed8-a0b7-384656c0d64e",
+          "createdAt": "2026-10-21T20:39:43.000Z",
+          "updatedAt": "2026-10-21T20:39:43.000Z",
+          "uid": "35240-95bf8d69-4bd0-4ed8-a0b7-384656c0d64e"
+        },
+        {
+          "name": "stripe",
+          "item": [
+            {
+              "name": "dataset-sample-v2",
+              "item": [
+                {
+                  "name": "Load sample data set V2",
+                  "id": "28760054-e72e-4042-b544-3c8e98827407",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integrations/stripe/dataset-sample-v2",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrations",
+                        "stripe",
+                        "dataset-sample-v2"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "74c1f71a-2113-4b52-87b2-39d90aa43514",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrations/stripe/dataset-sample-v2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrations",
+                            "stripe",
+                            "dataset-sample-v2"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"keys\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"params\": {}\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-74c1f71a-2113-4b52-87b2-39d90aa43514"
+                    },
+                    {
+                      "id": "6275574b-9f82-4852-8e13-49070f97afcb",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrations/stripe/dataset-sample-v2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrations",
+                            "stripe",
+                            "dataset-sample-v2"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-6275574b-9f82-4852-8e13-49070f97afcb"
+                    },
+                    {
+                      "id": "309473b2-237d-4900-8e5a-10b271a01865",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrations/stripe/dataset-sample-v2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrations",
+                            "stripe",
+                            "dataset-sample-v2"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-309473b2-237d-4900-8e5a-10b271a01865"
+                    },
+                    {
+                      "id": "56cdcdeb-9f4e-4c1e-90d6-26cda9635e1d",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrations/stripe/dataset-sample-v2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrations",
+                            "stripe",
+                            "dataset-sample-v2"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-56cdcdeb-9f4e-4c1e-90d6-26cda9635e1d"
+                    },
+                    {
+                      "id": "6729059c-dde0-4f5f-a633-3d64d76ad3f3",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrations/stripe/dataset-sample-v2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrations",
+                            "stripe",
+                            "dataset-sample-v2"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-6729059c-dde0-4f5f-a633-3d64d76ad3f3"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:39:43.000Z",
+                  "updatedAt": "2026-10-21T20:39:43.000Z",
+                  "uid": "35240-28760054-e72e-4042-b544-3c8e98827407"
+                }
+              ],
+              "id": "4dbbb315-aae7-4b3f-ada2-350507089722",
+              "createdAt": "2026-10-21T20:39:43.000Z",
+              "updatedAt": "2026-10-21T20:39:43.000Z",
+              "uid": "35240-4dbbb315-aae7-4b3f-ada2-350507089722"
+            }
+          ],
+          "id": "2569d5ca-cca4-442d-ae9f-8fa8b390f775",
+          "createdAt": "2026-10-21T20:39:43.000Z",
+          "updatedAt": "2026-10-21T20:39:43.000Z",
+          "uid": "35240-2569d5ca-cca4-442d-ae9f-8fa8b390f775"
+        },
+        {
+          "name": "uninstall",
+          "item": [
+            {
+              "name": "{integration_id}",
+              "item": [
+                {
+                  "name": "Uninstall integration",
+                  "id": "a09dc09b-ce81-4d83-a82f-90bdd01697d6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integrations/uninstall/:integration_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrations",
+                        "uninstall",
+                        ":integration_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "619fda6b-cd77-45d5-9a68-c5037afb2527",
+                          "key": "integration_id",
+                          "value": "<string>",
+                          "description": "(Required) integration_id"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "563930ce-13be-437b-b06a-90c625df1445",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrations/uninstall/:integration_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrations",
+                            "uninstall",
+                            ":integration_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "integration_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"deleted\": \"<boolean>\"\n  },\n  \"params\": {}\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-563930ce-13be-437b-b06a-90c625df1445"
+                    },
+                    {
+                      "id": "7ef21c37-74a1-4501-96a4-934edfc479a5",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrations/uninstall/:integration_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrations",
+                            "uninstall",
+                            ":integration_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "integration_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-7ef21c37-74a1-4501-96a4-934edfc479a5"
+                    },
+                    {
+                      "id": "ab7ad2f2-a319-43a5-a96c-6f10287d81df",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrations/uninstall/:integration_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrations",
+                            "uninstall",
+                            ":integration_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "integration_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-ab7ad2f2-a319-43a5-a96c-6f10287d81df"
+                    },
+                    {
+                      "id": "fb16342c-127f-46c6-8dbe-ce1bbf872d89",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrations/uninstall/:integration_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrations",
+                            "uninstall",
+                            ":integration_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "integration_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-fb16342c-127f-46c6-8dbe-ce1bbf872d89"
+                    },
+                    {
+                      "id": "2066c3be-4b24-471c-9cf1-bc965141111b",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrations/uninstall/:integration_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrations",
+                            "uninstall",
+                            ":integration_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "integration_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-2066c3be-4b24-471c-9cf1-bc965141111b"
+                    },
+                    {
+                      "id": "5b09998b-7897-46ad-a6c7-b41121797155",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Schematic-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrations/uninstall/:integration_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrations",
+                            "uninstall",
+                            ":integration_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "integration_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:39:43.000Z",
+                      "updatedAt": "2026-10-21T20:39:43.000Z",
+                      "uid": "35240-5b09998b-7897-46ad-a6c7-b41121797155"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:39:43.000Z",
+                  "updatedAt": "2026-10-21T20:39:43.000Z",
+                  "uid": "35240-a09dc09b-ce81-4d83-a82f-90bdd01697d6"
+                }
+              ],
+              "id": "ea9baa04-f81c-4f74-8996-dc6982cfbef0",
+              "createdAt": "2026-10-21T20:39:43.000Z",
+              "updatedAt": "2026-10-21T20:39:43.000Z",
+              "uid": "35240-ea9baa04-f81c-4f74-8996-dc6982cfbef0"
+            }
+          ],
+          "id": "10fbd1a8-e4c9-4f6c-865f-57d1d488094b",
+          "createdAt": "2026-10-21T20:39:43.000Z",
+          "updatedAt": "2026-10-21T20:39:43.000Z",
+          "uid": "35240-10fbd1a8-e4c9-4f6c-865f-57d1d488094b"
+        },
+        {
+          "name": "List integrations",
+          "id": "d9fd61ca-db97-4d81-afdd-909e1a4981e2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/integrations?billing_only=<boolean>&exclude_ids=<string>&exclude_ids=<string>&id=<string>&state=created&type=unknown&limit=<long>&offset=<long>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "integrations"
+              ],
+              "query": [
+                {
+                  "key": "billing_only",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "exclude_ids",
+                  "value": "<string>"
+                },
+                {
+                  "key": "exclude_ids",
+                  "value": "<string>"
+                },
+                {
+                  "key": "id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "state",
+                  "value": "created"
+                },
+                {
+                  "key": "type",
+                  "value": "unknown"
+                },
+                {
+                  "description": "Page limit (default 100)",
+                  "key": "limit",
+                  "value": "<long>"
+                },
+                {
+                  "description": "Page offset (default 0)",
+                  "key": "offset",
+                  "value": "<long>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "26e77413-78c5-442b-a126-8a848dfafbaf",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrations?billing_only=<boolean>&exclude_ids=<string>&id=<string>&state=created&type=unknown&limit=<long>&offset=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrations"
+                  ],
+                  "query": [
+                    {
+                      "key": "billing_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "exclude_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "created"
+                    },
+                    {
+                      "key": "type",
+                      "value": "unknown"
+                    },
+                    {
+                      "description": "Page limit (default 100)",
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Page offset (default 0)",
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"capabilities\": {\n        \"author_plans\": \"<boolean>\",\n        \"checkout\": \"<boolean>\",\n        \"edit_billing\": \"<boolean>\"\n      },\n      \"id\": \"<string>\",\n      \"is_app_install\": \"<boolean>\",\n      \"is_connect_install\": \"<boolean>\",\n      \"state\": \"pending\",\n      \"type\": \"stripe\",\n      \"config\": {\n        \"type\": \"stripe\",\n        \"is_sandbox\": \"<boolean>\",\n        \"live_mode\": \"<boolean>\",\n        \"version\": \"<integer>\",\n        \"account_id\": \"<string,null>\",\n        \"account_name\": \"<string,null>\",\n        \"company_update_only\": \"<boolean>\",\n        \"onboard_url\": \"<string,null>\"\n      }\n    },\n    {\n      \"capabilities\": {\n        \"author_plans\": \"<boolean>\",\n        \"checkout\": \"<boolean>\",\n        \"edit_billing\": \"<boolean>\"\n      },\n      \"id\": \"<string>\",\n      \"is_app_install\": \"<boolean>\",\n      \"is_connect_install\": \"<boolean>\",\n      \"state\": \"pending\",\n      \"type\": \"clerk\",\n      \"config\": {\n        \"type\": \"stripe\",\n        \"is_sandbox\": \"<boolean>\",\n        \"live_mode\": \"<boolean>\",\n        \"version\": \"<integer>\",\n        \"account_id\": \"<string,null>\",\n        \"account_name\": \"<string,null>\",\n        \"company_update_only\": \"<boolean>\",\n        \"onboard_url\": \"<string,null>\"\n      }\n    }\n  ],\n  \"params\": {\n    \"billing_only\": \"<boolean>\",\n    \"exclude_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"id\": \"<string>\",\n    \"limit\": \"<long>\",\n    \"offset\": \"<long>\",\n    \"state\": \"active\",\n    \"type\": \"stripe\"\n  }\n}",
+              "createdAt": "2026-10-21T20:39:43.000Z",
+              "updatedAt": "2026-10-21T20:39:43.000Z",
+              "uid": "35240-26e77413-78c5-442b-a126-8a848dfafbaf"
+            },
+            {
+              "id": "57ecc41d-2917-402e-917f-6dfac9ccd054",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrations?billing_only=<boolean>&exclude_ids=<string>&id=<string>&state=created&type=unknown&limit=<long>&offset=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrations"
+                  ],
+                  "query": [
+                    {
+                      "key": "billing_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "exclude_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "created"
+                    },
+                    {
+                      "key": "type",
+                      "value": "unknown"
+                    },
+                    {
+                      "description": "Page limit (default 100)",
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Page offset (default 0)",
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:43.000Z",
+              "updatedAt": "2026-10-21T20:39:43.000Z",
+              "uid": "35240-57ecc41d-2917-402e-917f-6dfac9ccd054"
+            },
+            {
+              "id": "f3370b3b-bbad-420e-91b2-45ccccb919ea",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrations?billing_only=<boolean>&exclude_ids=<string>&id=<string>&state=created&type=unknown&limit=<long>&offset=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrations"
+                  ],
+                  "query": [
+                    {
+                      "key": "billing_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "exclude_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "created"
+                    },
+                    {
+                      "key": "type",
+                      "value": "unknown"
+                    },
+                    {
+                      "description": "Page limit (default 100)",
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Page offset (default 0)",
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:43.000Z",
+              "updatedAt": "2026-10-21T20:39:43.000Z",
+              "uid": "35240-f3370b3b-bbad-420e-91b2-45ccccb919ea"
+            },
+            {
+              "id": "a7663c6c-ecb5-4071-9ddd-990b1f412c93",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrations?billing_only=<boolean>&exclude_ids=<string>&id=<string>&state=created&type=unknown&limit=<long>&offset=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrations"
+                  ],
+                  "query": [
+                    {
+                      "key": "billing_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "exclude_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "created"
+                    },
+                    {
+                      "key": "type",
+                      "value": "unknown"
+                    },
+                    {
+                      "description": "Page limit (default 100)",
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Page offset (default 0)",
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:43.000Z",
+              "updatedAt": "2026-10-21T20:39:43.000Z",
+              "uid": "35240-a7663c6c-ecb5-4071-9ddd-990b1f412c93"
+            },
+            {
+              "id": "38db8f7a-e9c3-4a6e-b2df-e3f1cb3208c7",
+              "name": "Not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrations?billing_only=<boolean>&exclude_ids=<string>&id=<string>&state=created&type=unknown&limit=<long>&offset=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrations"
+                  ],
+                  "query": [
+                    {
+                      "key": "billing_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "exclude_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "created"
+                    },
+                    {
+                      "key": "type",
+                      "value": "unknown"
+                    },
+                    {
+                      "description": "Page limit (default 100)",
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Page offset (default 0)",
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:43.000Z",
+              "updatedAt": "2026-10-21T20:39:43.000Z",
+              "uid": "35240-38db8f7a-e9c3-4a6e-b2df-e3f1cb3208c7"
+            },
+            {
+              "id": "fceb0fd9-0f3b-45be-90e4-cc87486034f4",
+              "name": "Server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrations?billing_only=<boolean>&exclude_ids=<string>&id=<string>&state=created&type=unknown&limit=<long>&offset=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrations"
+                  ],
+                  "query": [
+                    {
+                      "key": "billing_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "exclude_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "created"
+                    },
+                    {
+                      "key": "type",
+                      "value": "unknown"
+                    },
+                    {
+                      "description": "Page limit (default 100)",
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Page offset (default 0)",
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:43.000Z",
+              "updatedAt": "2026-10-21T20:39:43.000Z",
+              "uid": "35240-fceb0fd9-0f3b-45be-90e4-cc87486034f4"
+            }
+          ],
+          "createdAt": "2026-10-21T20:39:43.000Z",
+          "updatedAt": "2026-10-21T20:39:43.000Z",
+          "uid": "35240-d9fd61ca-db97-4d81-afdd-909e1a4981e2"
+        }
+      ],
+      "id": "83d30d5d-6a8b-440a-bd3a-c24e251fc108",
+      "createdAt": "2026-10-21T20:39:43.000Z",
+      "updatedAt": "2026-10-21T20:39:43.000Z",
+      "uid": "35240-83d30d5d-6a8b-440a-bd3a-c24e251fc108"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Schematic-Api-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.schematichq.com"
+    }
+  ]
+}

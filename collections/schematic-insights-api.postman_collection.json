@@ -1,1255 +1,1265 @@
 {
+  "info": {
+    "_postman_id": "2f6d0044-81f0-4842-9f30-bff98125ba1d",
+    "name": "Schematic Insights API",
+    "description": "Schematic API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:38:57.000Z",
+    "updatedAt": "2026-10-21T20:38:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2f6d0044-81f0-4842-9f30-bff98125ba1d"
+  },
   "item": [
     {
-      "id": "3eaed8fa-6260-47c1-ab12-369c56f16e3c",
       "name": "insights",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
       "item": [
         {
-          "id": "5fab724f-0c04-4ecc-b556-19b3a776109e",
-          "name": "Get activity",
-          "request": {
-            "name": "Get activity",
-            "description": {},
-            "url": {
-              "path": [
-                "insights",
-                "activity"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "<long>"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "activity",
+          "item": [
             {
-              "id": "df648d99-2f71-482c-884d-bd23e809d9f2",
-              "name": "OK",
-              "originalRequest": {
+              "name": "Get activity",
+              "id": "3b662e75-64a7-404d-a1e8-759d59ddd4d1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/insights/activity?limit=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "insights",
                     "activity"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
                   ],
                   "query": [
                     {
                       "key": "limit",
                       "value": "<long>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ]
                 }
-              ],
-              "body": "{\n  \"data\": {\n    \"entries\": [\n      {\n        \"actor_name\": \"string\",\n        \"method\": \"string\",\n        \"resource_name\": \"string\",\n        \"resource_type\": \"string\",\n        \"timestamp\": \"1983-07-26T00:42:26.694Z\",\n        \"title\": \"string\"\n      },\n      {\n        \"actor_name\": \"string\",\n        \"method\": \"string\",\n        \"resource_name\": \"string\",\n        \"resource_type\": \"string\",\n        \"timestamp\": \"2011-09-07T17:00:36.349Z\",\n        \"title\": \"string\"\n      }\n    ]\n  },\n  \"params\": {\n    \"limit\": 34\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "22768151-2da7-4341-abdb-f08e5f500036",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "activity"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              },
+              "response": [
+                {
+                  "id": "abdfa390-fea2-419e-a303-8c5e333b6e13",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/activity?limit=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "activity"
+                      ],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "limit",
-                      "value": "<long>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"entries\": [\n      {\n        \"actor_name\": \"<string>\",\n        \"method\": \"<string>\",\n        \"resource_name\": \"<string>\",\n        \"resource_type\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"title\": \"<string>\"\n      },\n      {\n        \"actor_name\": \"<string>\",\n        \"method\": \"<string>\",\n        \"resource_name\": \"<string>\",\n        \"resource_type\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"title\": \"<string>\"\n      }\n    ]\n  },\n  \"params\": {\n    \"limit\": \"<long>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-abdfa390-fea2-419e-a303-8c5e333b6e13"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5cbcc143-fbde-46b0-b070-293e189465c3",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "activity"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "41c34dbf-bf3b-4aa9-aaa6-6398f764106b",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/activity?limit=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "activity"
+                      ],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "limit",
-                      "value": "<long>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-41c34dbf-bf3b-4aa9-aaa6-6398f764106b"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "55f6192e-7bb6-4fce-abec-24e1798be447",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "activity"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "be565646-b594-49fc-99ef-6bae92d2eceb",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/activity?limit=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "activity"
+                      ],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "limit",
-                      "value": "<long>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-be565646-b594-49fc-99ef-6bae92d2eceb"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "092cf368-924a-49e2-9395-3d7856489f9d",
-              "name": "Server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "activity"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "daeab926-dc0e-4319-85bc-146cc6f23bb4",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/activity?limit=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "activity"
+                      ],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "limit",
-                      "value": "<long>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-daeab926-dc0e-4319-85bc-146cc6f23bb4"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "16c63e0d-d2cc-4378-8fa1-95780089b993",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/activity?limit=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "activity"
+                      ],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-16c63e0d-d2cc-4378-8fa1-95780089b993"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T20:38:58.000Z",
+              "updatedAt": "2026-10-21T20:38:58.000Z",
+              "uid": "35240-3b662e75-64a7-404d-a1e8-759d59ddd4d1"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "5e4361b1-9370-436f-9ed4-d652b7332c42",
+          "createdAt": "2026-10-21T20:38:58.000Z",
+          "updatedAt": "2026-10-21T20:38:58.000Z",
+          "uid": "35240-5e4361b1-9370-436f-9ed4-d652b7332c42"
         },
         {
-          "id": "43be7769-e133-4094-a4ed-64cf866493a6",
-          "name": "Get environment feature usage time series",
-          "request": {
-            "name": "Get environment feature usage time series",
-            "description": {},
-            "url": {
-              "path": [
-                "insights",
-                "feature-usage-timeseries"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "end_time",
-                  "value": "<dateTime>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "feature_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "granularity",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "start_time",
-                  "value": "<dateTime>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "feature-usage-timeseries",
+          "item": [
             {
-              "id": "d87dce0d-df8e-4382-bff0-5cf9e68d2c58",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "feature-usage-timeseries"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "end_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "feature_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "granularity",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<dateTime>"
-                    }
-                  ],
-                  "variable": []
-                },
+              "name": "Get environment feature usage time series",
+              "id": "a45369f2-c235-48ab-96b8-06fa4c299c9e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"event_subtype\": \"string\",\n    \"feature_id\": \"string\",\n    \"points\": [\n      {\n        \"timestamp\": \"1997-07-02T06:47:59.752Z\",\n        \"usage\": 7622\n      },\n      {\n        \"timestamp\": \"2020-03-06T19:58:59.544Z\",\n        \"usage\": 2002\n      }\n    ]\n  },\n  \"params\": {\n    \"end_time\": \"1957-10-08T15:20:45.595Z\",\n    \"feature_id\": \"string\",\n    \"granularity\": \"<string>\",\n    \"start_time\": \"2007-12-25T05:57:34.223Z\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "22a93813-4858-4e19-8aef-02888b477585",
-              "name": "Unauthorized",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/insights/feature-usage-timeseries?end_time=<dateTime>&feature_id=<string>&granularity=hourly&start_time=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "insights",
                     "feature-usage-timeseries"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) ",
                       "key": "end_time",
                       "value": "<dateTime>"
                     },
                     {
+                      "description": "(Required) ",
                       "key": "feature_id",
                       "value": "<string>"
                     },
                     {
                       "key": "granularity",
-                      "value": "<string>"
+                      "value": "hourly"
                     },
                     {
+                      "description": "(Required) ",
                       "key": "start_time",
                       "value": "<dateTime>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ]
                 }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "fcc375b7-c6c8-4eca-b3bf-88a523b334dd",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "feature-usage-timeseries"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              },
+              "response": [
+                {
+                  "id": "d9793f2a-2970-4c22-80fd-b42c4547b511",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/feature-usage-timeseries?end_time=<dateTime>&feature_id=<string>&granularity=hourly&start_time=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "feature-usage-timeseries"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "feature_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "granularity",
+                          "value": "hourly"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "end_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "feature_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "granularity",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<dateTime>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"event_subtype\": \"<string>\",\n    \"feature_id\": \"<string>\",\n    \"points\": [\n      {\n        \"timestamp\": \"<dateTime>\",\n        \"usage\": \"<long>\"\n      },\n      {\n        \"timestamp\": \"<dateTime>\",\n        \"usage\": \"<long>\"\n      }\n    ]\n  },\n  \"params\": {\n    \"end_time\": \"<dateTime>\",\n    \"feature_id\": \"<string>\",\n    \"granularity\": \"weekly\",\n    \"start_time\": \"<dateTime>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-d9793f2a-2970-4c22-80fd-b42c4547b511"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "1f32a745-c683-448a-934f-5ff0551356a1",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "feature-usage-timeseries"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "df95871d-70b3-431f-b1e7-1cef79d86482",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/feature-usage-timeseries?end_time=<dateTime>&feature_id=<string>&granularity=hourly&start_time=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "feature-usage-timeseries"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "feature_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "granularity",
+                          "value": "hourly"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "end_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "feature_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "granularity",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<dateTime>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-df95871d-70b3-431f-b1e7-1cef79d86482"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a8268bde-c88f-4b73-b9be-1f3b83cad000",
-              "name": "Server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "feature-usage-timeseries"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "44d0035c-6bd9-4eae-9b35-cad9b077f68b",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/feature-usage-timeseries?end_time=<dateTime>&feature_id=<string>&granularity=hourly&start_time=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "feature-usage-timeseries"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "feature_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "granularity",
+                          "value": "hourly"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "end_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "feature_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "granularity",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<dateTime>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-44d0035c-6bd9-4eae-9b35-cad9b077f68b"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "1a5b62bf-ac73-41b5-b5e7-67dd78ebaf0c",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/feature-usage-timeseries?end_time=<dateTime>&feature_id=<string>&granularity=hourly&start_time=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "feature-usage-timeseries"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "feature_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "granularity",
+                          "value": "hourly"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-1a5b62bf-ac73-41b5-b5e7-67dd78ebaf0c"
+                },
+                {
+                  "id": "2e4acd60-4111-4d48-a474-e34f3fd02e02",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/feature-usage-timeseries?end_time=<dateTime>&feature_id=<string>&granularity=hourly&start_time=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "feature-usage-timeseries"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "feature_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "granularity",
+                          "value": "hourly"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-2e4acd60-4111-4d48-a474-e34f3fd02e02"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T20:38:58.000Z",
+              "updatedAt": "2026-10-21T20:38:58.000Z",
+              "uid": "35240-a45369f2-c235-48ab-96b8-06fa4c299c9e"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "c2257cb4-6418-44aa-ae1e-a54ac79283e2",
+          "createdAt": "2026-10-21T20:38:58.000Z",
+          "updatedAt": "2026-10-21T20:38:58.000Z",
+          "uid": "35240-c2257cb4-6418-44aa-ae1e-a54ac79283e2"
         },
         {
-          "id": "9abb9a14-c1b2-4cc5-ba13-4b27f9f7df6d",
-          "name": "Get plan growth",
-          "request": {
-            "name": "Get plan growth",
-            "description": {},
-            "url": {
-              "path": [
-                "insights",
-                "plan-growth"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "months",
-                  "value": "<long>"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "plan-growth",
+          "item": [
             {
-              "id": "0ff5550d-01a9-48ef-86c3-d0860e7f45d4",
-              "name": "OK",
-              "originalRequest": {
+              "name": "Get plan growth",
+              "id": "2a457076-c60b-457c-bebd-da3aa91c249c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/insights/plan-growth?months=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "insights",
                     "plan-growth"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
                   ],
                   "query": [
                     {
                       "key": "months",
                       "value": "<long>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ]
                 }
-              ],
-              "body": "{\n  \"data\": {\n    \"points\": [\n      {\n        \"month\": \"2000-08-13T10:57:15.181Z\",\n        \"plan_id\": \"string\",\n        \"plan_name\": \"string\",\n        \"subscribers\": 2742\n      },\n      {\n        \"month\": \"1983-04-21T11:53:53.267Z\",\n        \"plan_id\": \"string\",\n        \"plan_name\": \"string\",\n        \"subscribers\": 4874\n      }\n    ]\n  },\n  \"params\": {\n    \"months\": 13\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "cb6308dd-431b-4984-96ef-73c00e18f6e6",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "plan-growth"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              },
+              "response": [
+                {
+                  "id": "52d67779-2ef2-471f-bf72-61445e51ca6d",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/plan-growth?months=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "plan-growth"
+                      ],
+                      "query": [
+                        {
+                          "key": "months",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "months",
-                      "value": "<long>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"points\": [\n      {\n        \"month\": \"<dateTime>\",\n        \"plan_id\": \"<string>\",\n        \"plan_name\": \"<string>\",\n        \"subscribers\": \"<long>\"\n      },\n      {\n        \"month\": \"<dateTime>\",\n        \"plan_id\": \"<string>\",\n        \"plan_name\": \"<string>\",\n        \"subscribers\": \"<long>\"\n      }\n    ]\n  },\n  \"params\": {\n    \"months\": \"<long>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-52d67779-2ef2-471f-bf72-61445e51ca6d"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0b26441b-cf32-4235-8f51-246763284c41",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "plan-growth"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "95be59d7-8af1-4e17-8730-2f91d074347f",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/plan-growth?months=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "plan-growth"
+                      ],
+                      "query": [
+                        {
+                          "key": "months",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "months",
-                      "value": "<long>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-95be59d7-8af1-4e17-8730-2f91d074347f"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "92721e17-31df-49f1-95a0-dc6bb1149c52",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "plan-growth"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "b9c17956-bd6c-4fa9-915c-3fe6c4d661ca",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/plan-growth?months=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "plan-growth"
+                      ],
+                      "query": [
+                        {
+                          "key": "months",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "months",
-                      "value": "<long>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-b9c17956-bd6c-4fa9-915c-3fe6c4d661ca"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "dc1c04bc-1635-418b-9e5b-0df0143ecffc",
-              "name": "Server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "plan-growth"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "7088aa05-ba4d-4daf-b6ca-e7e8a0a6e70f",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/plan-growth?months=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "plan-growth"
+                      ],
+                      "query": [
+                        {
+                          "key": "months",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "months",
-                      "value": "<long>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-7088aa05-ba4d-4daf-b6ca-e7e8a0a6e70f"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "98a68c82-ce99-4b0b-afac-39e1cda57b31",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/plan-growth?months=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "plan-growth"
+                      ],
+                      "query": [
+                        {
+                          "key": "months",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-98a68c82-ce99-4b0b-afac-39e1cda57b31"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T20:38:58.000Z",
+              "updatedAt": "2026-10-21T20:38:58.000Z",
+              "uid": "35240-2a457076-c60b-457c-bebd-da3aa91c249c"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "b47db42d-5c74-4bfd-8e4b-76f7650bcc55",
+          "createdAt": "2026-10-21T20:38:58.000Z",
+          "updatedAt": "2026-10-21T20:38:58.000Z",
+          "uid": "35240-b47db42d-5c74-4bfd-8e4b-76f7650bcc55"
         },
         {
-          "id": "5d0737c3-98a2-4802-96cd-ae2fce6deb5a",
-          "name": "Get summary",
-          "request": {
-            "name": "Get summary",
-            "description": {},
-            "url": {
-              "path": [
-                "insights",
-                "summary"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "summary",
+          "item": [
             {
-              "id": "a36090e8-11fa-402a-92e2-b83236c659ec",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "summary"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Get summary",
+              "id": "1de4f86f-ec13-479e-a5a6-ca9a88d04bd5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"active_credits\": 5245.519758800184,\n    \"mrr\": [\n      {\n        \"amount\": 6138,\n        \"currency\": \"string\"\n      },\n      {\n        \"amount\": 6545,\n        \"currency\": \"string\"\n      }\n    ],\n    \"paid_companies\": 9794,\n    \"total_companies\": 9698,\n    \"total_features\": 1514,\n    \"total_plans\": 4379\n  },\n  \"params\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2fe5c0b5-40f5-42bf-a03d-838a6d0f2560",
-              "name": "Unauthorized",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "insights",
-                    "summary"
-                  ],
+                  "raw": "{{baseUrl}}/insights/summary",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "73f7361d-978b-457a-8fe0-20e36d2109dd",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "insights",
                     "summary"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "bc66982c-d8f1-45a7-8ade-f5e92e8086f0",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/summary",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "summary"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"active_credits\": \"<number>\",\n    \"mrr\": [\n      {\n        \"amount\": \"<long>\",\n        \"currency\": \"<string>\"\n      },\n      {\n        \"amount\": \"<long>\",\n        \"currency\": \"<string>\"\n      }\n    ],\n    \"paid_companies\": \"<long>\",\n    \"total_companies\": \"<long>\",\n    \"total_features\": \"<long>\",\n    \"total_plans\": \"<long>\"\n  },\n  \"params\": {}\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-bc66982c-d8f1-45a7-8ade-f5e92e8086f0"
+                },
+                {
+                  "id": "0eb7c9c1-a858-4d01-884a-542eef3c6176",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/summary",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "summary"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-0eb7c9c1-a858-4d01-884a-542eef3c6176"
+                },
+                {
+                  "id": "5688fa7d-2ab9-4804-b226-c4cc16519788",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/summary",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "summary"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-5688fa7d-2ab9-4804-b226-c4cc16519788"
+                },
+                {
+                  "id": "dedebf30-d22c-4ef4-a21b-7c623ebf66b2",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/summary",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "summary"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-dedebf30-d22c-4ef4-a21b-7c623ebf66b2"
+                },
+                {
+                  "id": "99748814-5131-4ec5-a169-29bfa0599621",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/summary",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "summary"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-99748814-5131-4ec5-a169-29bfa0599621"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3ce0ad4e-a60f-4fa7-ae54-2aaa1f5fa627",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "summary"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3fb06ad6-b686-4c1e-8542-5c32d6f6596c",
-              "name": "Server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "summary"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T20:38:58.000Z",
+              "updatedAt": "2026-10-21T20:38:58.000Z",
+              "uid": "35240-1de4f86f-ec13-479e-a5a6-ca9a88d04bd5"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "fbdef13f-256e-4075-922e-e41be928a5d1",
+          "createdAt": "2026-10-21T20:38:58.000Z",
+          "updatedAt": "2026-10-21T20:38:58.000Z",
+          "uid": "35240-fbdef13f-256e-4075-922e-e41be928a5d1"
         },
         {
-          "id": "a9dc0594-416c-4dc2-8df3-6fcc42949fb3",
-          "name": "Get top features by usage",
-          "request": {
-            "name": "Get top features by usage",
-            "description": {},
-            "url": {
-              "path": [
-                "insights",
-                "top-features"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "end_time",
-                  "value": "<dateTime>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "<long>"
-                },
-                {
-                  "disabled": false,
-                  "key": "start_time",
-                  "value": "<dateTime>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "top-features",
+          "item": [
             {
-              "id": "0c238f19-0005-4468-bb46-47a3bfd0b9f7",
-              "name": "OK",
-              "originalRequest": {
+              "name": "Get top features by usage",
+              "id": "5a829a0d-d162-4f74-aaf4-d6ec41ab83b8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/insights/top-features?end_time=<dateTime>&limit=<long>&start_time=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "insights",
                     "top-features"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) ",
                       "key": "end_time",
                       "value": "<dateTime>"
                     },
@@ -1258,647 +1268,706 @@
                       "value": "<long>"
                     },
                     {
+                      "description": "(Required) ",
                       "key": "start_time",
                       "value": "<dateTime>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ]
                 }
-              ],
-              "body": "{\n  \"data\": {\n    \"features\": [\n      {\n        \"feature_id\": \"string\",\n        \"feature_name\": \"string\",\n        \"prior_usage\": 5793,\n        \"usage\": 7382,\n        \"change_pct\": null,\n        \"plural_name\": null\n      },\n      {\n        \"feature_id\": \"string\",\n        \"feature_name\": \"string\",\n        \"prior_usage\": 8102,\n        \"usage\": 6294,\n        \"change_pct\": 7417.985469847064,\n        \"plural_name\": \"string\"\n      }\n    ]\n  },\n  \"params\": {\n    \"end_time\": \"1982-12-01T07:12:01.175Z\",\n    \"limit\": 2,\n    \"start_time\": \"2001-07-18T11:13:17.581Z\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8d89d15d-4831-4118-a958-1fe161c2329d",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "top-features"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              },
+              "response": [
+                {
+                  "id": "3712879c-f3d7-4f0a-b333-bbf68e82fb88",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/top-features?end_time=<dateTime>&limit=<long>&start_time=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "top-features"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "end_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<dateTime>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"features\": [\n      {\n        \"feature_id\": \"<string>\",\n        \"feature_name\": \"<string>\",\n        \"prior_usage\": \"<long>\",\n        \"usage\": \"<long>\",\n        \"change_pct\": \"<number,null>\",\n        \"plural_name\": \"<string,null>\"\n      },\n      {\n        \"feature_id\": \"<string>\",\n        \"feature_name\": \"<string>\",\n        \"prior_usage\": \"<long>\",\n        \"usage\": \"<long>\",\n        \"change_pct\": \"<number,null>\",\n        \"plural_name\": \"<string,null>\"\n      }\n    ]\n  },\n  \"params\": {\n    \"end_time\": \"<dateTime>\",\n    \"limit\": \"<long>\",\n    \"start_time\": \"<dateTime>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-3712879c-f3d7-4f0a-b333-bbf68e82fb88"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "1e5c96f6-5358-49eb-b0d7-1c5fe104dc51",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "top-features"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "1c87aa7a-2670-4286-b75d-a057d6af649c",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/top-features?end_time=<dateTime>&limit=<long>&start_time=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "top-features"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "end_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<dateTime>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-1c87aa7a-2670-4286-b75d-a057d6af649c"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "026fa21f-0c0c-417a-8255-6cb3d40becfb",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "top-features"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "6273f2ee-36f3-4178-888f-291e81a9d14a",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/top-features?end_time=<dateTime>&limit=<long>&start_time=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "top-features"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "end_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<dateTime>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-6273f2ee-36f3-4178-888f-291e81a9d14a"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e8809277-db8e-4b42-bf9b-906c5085a89e",
-              "name": "Server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "top-features"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "6452bdf7-6aef-4ec9-8e3f-7c2421d7a2b1",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/top-features?end_time=<dateTime>&limit=<long>&start_time=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "top-features"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "end_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<dateTime>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-6452bdf7-6aef-4ec9-8e3f-7c2421d7a2b1"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "91b78e17-fb5e-4d2a-b4a1-16abe3ad42b4",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/top-features?end_time=<dateTime>&limit=<long>&start_time=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "top-features"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-91b78e17-fb5e-4d2a-b4a1-16abe3ad42b4"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T20:38:58.000Z",
+              "updatedAt": "2026-10-21T20:38:58.000Z",
+              "uid": "35240-5a829a0d-d162-4f74-aaf4-d6ec41ab83b8"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "84c7003a-d8f9-47df-a1b0-d215011ce870",
+          "createdAt": "2026-10-21T20:38:58.000Z",
+          "updatedAt": "2026-10-21T20:38:58.000Z",
+          "uid": "35240-84c7003a-d8f9-47df-a1b0-d215011ce870"
         },
         {
-          "id": "44c6f5bb-d2c2-4cb3-8392-ce6a7c2c564d",
-          "name": "Get environment trait usage time series",
-          "request": {
-            "name": "Get environment trait usage time series",
-            "description": {},
-            "url": {
-              "path": [
-                "insights",
-                "trait-usage-timeseries"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "end_time",
-                  "value": "<dateTime>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "feature_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "granularity",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "start_time",
-                  "value": "<dateTime>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "trait-usage-timeseries",
+          "item": [
             {
-              "id": "dbbee142-5a69-4118-b77d-b65b5c16cd08",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "trait-usage-timeseries"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "end_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "feature_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "granularity",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<dateTime>"
-                    }
-                  ],
-                  "variable": []
-                },
+              "name": "Get environment trait usage time series",
+              "id": "7db1f2cd-404b-47a8-85e4-817018e6e51f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"feature_id\": \"string\",\n    \"points\": [\n      {\n        \"timestamp\": \"1989-07-28T01:35:29.053Z\",\n        \"usage\": 6948\n      },\n      {\n        \"timestamp\": \"1985-12-09T09:15:35.229Z\",\n        \"usage\": 7673\n      }\n    ],\n    \"trait_definition_id\": \"string\"\n  },\n  \"params\": {\n    \"end_time\": \"1966-08-23T22:17:59.450Z\",\n    \"feature_id\": \"string\",\n    \"granularity\": \"<string>\",\n    \"start_time\": \"1987-02-11T02:58:44.022Z\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "1653a3c6-5fd8-41f6-a9e5-67af0b60cc90",
-              "name": "Unauthorized",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/insights/trait-usage-timeseries?end_time=<dateTime>&feature_id=<string>&granularity=hourly&start_time=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "insights",
                     "trait-usage-timeseries"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) ",
                       "key": "end_time",
                       "value": "<dateTime>"
                     },
                     {
+                      "description": "(Required) ",
                       "key": "feature_id",
                       "value": "<string>"
                     },
                     {
                       "key": "granularity",
-                      "value": "<string>"
+                      "value": "hourly"
                     },
                     {
+                      "description": "(Required) ",
                       "key": "start_time",
                       "value": "<dateTime>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ]
                 }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "158a9b26-4db2-418c-b2cb-39c6d39a38fd",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "trait-usage-timeseries"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              },
+              "response": [
+                {
+                  "id": "41a4fd52-06fd-46dd-8d38-d5d1f085d00a",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/trait-usage-timeseries?end_time=<dateTime>&feature_id=<string>&granularity=hourly&start_time=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "trait-usage-timeseries"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "feature_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "granularity",
+                          "value": "hourly"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "end_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "feature_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "granularity",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<dateTime>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"feature_id\": \"<string>\",\n    \"points\": [\n      {\n        \"timestamp\": \"<dateTime>\",\n        \"usage\": \"<long>\"\n      },\n      {\n        \"timestamp\": \"<dateTime>\",\n        \"usage\": \"<long>\"\n      }\n    ],\n    \"trait_definition_id\": \"<string>\"\n  },\n  \"params\": {\n    \"end_time\": \"<dateTime>\",\n    \"feature_id\": \"<string>\",\n    \"granularity\": \"daily\",\n    \"start_time\": \"<dateTime>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-41a4fd52-06fd-46dd-8d38-d5d1f085d00a"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4ee755ba-24f9-4a2a-8de3-ab60ea0fbb5d",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "trait-usage-timeseries"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "19e3c592-edff-46c0-a34e-3dbf93bfff0f",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/trait-usage-timeseries?end_time=<dateTime>&feature_id=<string>&granularity=hourly&start_time=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "trait-usage-timeseries"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "feature_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "granularity",
+                          "value": "hourly"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "end_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "feature_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "granularity",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<dateTime>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-19e3c592-edff-46c0-a34e-3dbf93bfff0f"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "70c4f357-dc21-4e9b-9c5a-be663a157696",
-              "name": "Server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "insights",
-                    "trait-usage-timeseries"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "f2a3d6c4-a0fc-4dec-bb02-84eb430143cc",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/trait-usage-timeseries?end_time=<dateTime>&feature_id=<string>&granularity=hourly&start_time=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "trait-usage-timeseries"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "feature_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "granularity",
+                          "value": "hourly"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "end_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "feature_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "granularity",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<dateTime>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-f2a3d6c4-a0fc-4dec-bb02-84eb430143cc"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "4f272cc5-0ff1-4bd0-89b4-ce3a930847ad",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/trait-usage-timeseries?end_time=<dateTime>&feature_id=<string>&granularity=hourly&start_time=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "trait-usage-timeseries"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "feature_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "granularity",
+                          "value": "hourly"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-4f272cc5-0ff1-4bd0-89b4-ce3a930847ad"
+                },
+                {
+                  "id": "ad96472c-2e6d-4f5c-84e0-165d7f0b0f8d",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/trait-usage-timeseries?end_time=<dateTime>&feature_id=<string>&granularity=hourly&start_time=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "trait-usage-timeseries"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "feature_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "granularity",
+                          "value": "hourly"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:38:58.000Z",
+                  "updatedAt": "2026-10-21T20:38:58.000Z",
+                  "uid": "35240-ad96472c-2e6d-4f5c-84e0-165d7f0b0f8d"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T20:38:58.000Z",
+              "updatedAt": "2026-10-21T20:38:58.000Z",
+              "uid": "35240-7db1f2cd-404b-47a8-85e4-817018e6e51f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "b5957bca-d54f-4241-9b2e-b991f0a5e36b",
+          "createdAt": "2026-10-21T20:38:58.000Z",
+          "updatedAt": "2026-10-21T20:38:58.000Z",
+          "uid": "35240-b5957bca-d54f-4241-9b2e-b991f0a5e36b"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.schematichq.com",
-      "key": "baseUrl"
+      "id": "c2e6aaed-13d6-4390-835f-b62d46fdd592",
+      "createdAt": "2026-10-21T20:38:58.000Z",
+      "updatedAt": "2026-10-21T20:38:58.000Z",
+      "uid": "35240-c2e6aaed-13d6-4390-835f-b62d46fdd592"
     }
   ],
   "auth": {
@@ -1906,25 +1975,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Schematic-Api-Key"
+        "value": "X-Schematic-Api-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "8594f75b-7d80-4855-91da-ec4e3ea4776a",
-    "name": "Schematic accesstokens Insights API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Schematic API",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.schematichq.com"
     }
-  }
+  ]
 }

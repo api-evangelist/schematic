@@ -1,77 +1,556 @@
 {
+  "info": {
+    "_postman_id": "9062ce46-9e44-431b-b42c-5c5b483ee439",
+    "name": "Schematic Planmigrations API",
+    "description": "Schematic API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:39:13.000Z",
+    "updatedAt": "2026-10-21T20:39:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9062ce46-9e44-431b-b42c-5c5b483ee439"
+  },
   "item": [
     {
-      "id": "46d82d3a-2031-475b-8d41-40d1735a4f20",
-      "name": "planmigrations",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "plan-version-company-migrations",
       "item": [
         {
-          "id": "ba8fc625-3396-4304-bc85-e66e2cd3aa56",
+          "name": "count",
+          "item": [
+            {
+              "name": "Count company migrations",
+              "id": "271dcda4-f49e-40a0-8b67-ea673e414bee",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/plan-version-company-migrations/count?migration_id=<string>&q=<string>&status=failed&limit=<long>&offset=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plan-version-company-migrations",
+                    "count"
+                  ],
+                  "query": [
+                    {
+                      "key": "migration_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "failed"
+                    },
+                    {
+                      "description": "Page limit (default 100)",
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Page offset (default 0)",
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "7d2db3a5-26e3-4e89-b8e7-abca71939645",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-company-migrations/count?migration_id=<string>&q=<string>&status=failed&limit=<long>&offset=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-company-migrations",
+                        "count"
+                      ],
+                      "query": [
+                        {
+                          "key": "migration_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "failed"
+                        },
+                        {
+                          "description": "Page limit (default 100)",
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Page offset (default 0)",
+                          "key": "offset",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"count\": \"<integer>\"\n  },\n  \"params\": {\n    \"limit\": \"<long>\",\n    \"migration_id\": \"<string>\",\n    \"offset\": \"<long>\",\n    \"q\": \"<string>\",\n    \"status\": \"skipped\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-7d2db3a5-26e3-4e89-b8e7-abca71939645"
+                },
+                {
+                  "id": "4f07a3a3-63d5-4c33-8b98-d40a18a2190d",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-company-migrations/count?migration_id=<string>&q=<string>&status=failed&limit=<long>&offset=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-company-migrations",
+                        "count"
+                      ],
+                      "query": [
+                        {
+                          "key": "migration_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "failed"
+                        },
+                        {
+                          "description": "Page limit (default 100)",
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Page offset (default 0)",
+                          "key": "offset",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-4f07a3a3-63d5-4c33-8b98-d40a18a2190d"
+                },
+                {
+                  "id": "a0a27b34-d449-4f74-8bf1-9de9738a94f7",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-company-migrations/count?migration_id=<string>&q=<string>&status=failed&limit=<long>&offset=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-company-migrations",
+                        "count"
+                      ],
+                      "query": [
+                        {
+                          "key": "migration_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "failed"
+                        },
+                        {
+                          "description": "Page limit (default 100)",
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Page offset (default 0)",
+                          "key": "offset",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-a0a27b34-d449-4f74-8bf1-9de9738a94f7"
+                },
+                {
+                  "id": "a6deef1a-adc0-40d9-94c6-16760c81c690",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-company-migrations/count?migration_id=<string>&q=<string>&status=failed&limit=<long>&offset=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-company-migrations",
+                        "count"
+                      ],
+                      "query": [
+                        {
+                          "key": "migration_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "failed"
+                        },
+                        {
+                          "description": "Page limit (default 100)",
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Page offset (default 0)",
+                          "key": "offset",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-a6deef1a-adc0-40d9-94c6-16760c81c690"
+                },
+                {
+                  "id": "be16fd58-a6b1-4bb4-a91e-f50ec39a7953",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-company-migrations/count?migration_id=<string>&q=<string>&status=failed&limit=<long>&offset=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-company-migrations",
+                        "count"
+                      ],
+                      "query": [
+                        {
+                          "key": "migration_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "failed"
+                        },
+                        {
+                          "description": "Page limit (default 100)",
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Page offset (default 0)",
+                          "key": "offset",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-be16fd58-a6b1-4bb4-a91e-f50ec39a7953"
+                },
+                {
+                  "id": "d55d9b9b-d7bd-49f7-8af6-ac0e73834e6c",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-company-migrations/count?migration_id=<string>&q=<string>&status=failed&limit=<long>&offset=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-company-migrations",
+                        "count"
+                      ],
+                      "query": [
+                        {
+                          "key": "migration_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "failed"
+                        },
+                        {
+                          "description": "Page limit (default 100)",
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Page offset (default 0)",
+                          "key": "offset",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-d55d9b9b-d7bd-49f7-8af6-ac0e73834e6c"
+                }
+              ],
+              "createdAt": "2026-10-21T20:39:14.000Z",
+              "updatedAt": "2026-10-21T20:39:14.000Z",
+              "uid": "35240-271dcda4-f49e-40a0-8b67-ea673e414bee"
+            }
+          ],
+          "id": "36dfc546-e5a1-4765-89c3-b4ad511d256c",
+          "createdAt": "2026-10-21T20:39:14.000Z",
+          "updatedAt": "2026-10-21T20:39:14.000Z",
+          "uid": "35240-36dfc546-e5a1-4765-89c3-b4ad511d256c"
+        },
+        {
           "name": "List company migrations",
+          "id": "ba08d2bc-97f9-47e0-b33f-3f3fe638ed47",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "List company migrations",
-            "description": {},
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/plan-version-company-migrations?migration_id=<string>&q=<string>&status=failed&limit=<long>&offset=<long>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "plan-version-company-migrations"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
                   "key": "migration_id",
                   "value": "<string>"
                 },
                 {
-                  "disabled": false,
                   "key": "q",
                   "value": "<string>"
                 },
                 {
-                  "disabled": false,
                   "key": "status",
-                  "value": "<string>"
+                  "value": "failed"
                 },
                 {
-                  "disabled": false,
+                  "description": "Page limit (default 100)",
                   "key": "limit",
-                  "value": "<long>",
-                  "description": "Page limit (default 100)"
+                  "value": "<long>"
                 },
                 {
-                  "disabled": false,
+                  "description": "Page offset (default 0)",
                   "key": "offset",
-                  "value": "<long>",
-                  "description": "Page offset (default 0)"
+                  "value": "<long>"
                 }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+              ]
+            }
           },
           "response": [
             {
-              "id": "51adde51-21ce-4df1-a844-e67681c3d9a3",
+              "id": "4b9efc9f-5778-4889-b56c-49d6809dc3da",
               "name": "OK",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "plan-version-company-migrations"
-                  ],
+                  "raw": "{{baseUrl}}/plan-version-company-migrations?migration_id=<string>&q=<string>&status=failed&limit=<long>&offset=<long>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plan-version-company-migrations"
                   ],
                   "query": [
                     {
@@ -84,58 +563,60 @@
                     },
                     {
                       "key": "status",
-                      "value": "<string>"
+                      "value": "failed"
                     },
                     {
+                      "description": "Page limit (default 100)",
                       "key": "limit",
                       "value": "<long>"
                     },
                     {
+                      "description": "Page offset (default 0)",
                       "key": "offset",
                       "value": "<long>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"company_id\": \"string\",\n      \"company_name\": \"string\",\n      \"created_at\": \"1980-02-14T12:13:12.101Z\",\n      \"id\": \"string\",\n      \"migration_id\": \"string\",\n      \"status\": \"<string>\",\n      \"updated_at\": \"2023-03-18T19:48:48.859Z\",\n      \"completed_at\": null,\n      \"error\": null,\n      \"plan_version_id_from\": \"string\",\n      \"started_at\": \"1994-06-02T22:39:31.566Z\"\n    },\n    {\n      \"company_id\": \"string\",\n      \"company_name\": \"string\",\n      \"created_at\": \"1975-08-01T07:30:19.101Z\",\n      \"id\": \"string\",\n      \"migration_id\": \"string\",\n      \"status\": \"<string>\",\n      \"updated_at\": \"1989-11-11T04:51:04.863Z\",\n      \"completed_at\": null,\n      \"error\": \"string\",\n      \"plan_version_id_from\": null,\n      \"started_at\": \"1965-09-30T13:10:23.537Z\"\n    }\n  ],\n  \"params\": {\n    \"limit\": 6328,\n    \"migration_id\": \"string\",\n    \"offset\": 7225,\n    \"q\": \"string\",\n    \"status\": \"<string>\"\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"company_id\": \"<string>\",\n      \"company_name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"id\": \"<string>\",\n      \"migration_id\": \"<string>\",\n      \"status\": \"completed\",\n      \"updated_at\": \"<dateTime>\",\n      \"completed_at\": \"<string,null-date-time>\",\n      \"error\": \"<string,null>\",\n      \"plan_version_id_from\": \"<string,null>\",\n      \"started_at\": \"<string,null-date-time>\"\n    },\n    {\n      \"company_id\": \"<string>\",\n      \"company_name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"id\": \"<string>\",\n      \"migration_id\": \"<string>\",\n      \"status\": \"in_progress\",\n      \"updated_at\": \"<dateTime>\",\n      \"completed_at\": \"<string,null-date-time>\",\n      \"error\": \"<string,null>\",\n      \"plan_version_id_from\": \"<string,null>\",\n      \"started_at\": \"<string,null-date-time>\"\n    }\n  ],\n  \"params\": {\n    \"limit\": \"<long>\",\n    \"migration_id\": \"<string>\",\n    \"offset\": \"<long>\",\n    \"q\": \"<string>\",\n    \"status\": \"in_progress\"\n  }\n}",
+              "createdAt": "2026-10-21T20:39:14.000Z",
+              "updatedAt": "2026-10-21T20:39:14.000Z",
+              "uid": "35240-4b9efc9f-5778-4889-b56c-49d6809dc3da"
             },
             {
-              "id": "4c25152c-7c40-4cfe-a1fc-394475948d86",
+              "id": "a0b50179-07e5-4302-8380-60fa373e2071",
               "name": "Bad request",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "plan-version-company-migrations"
-                  ],
+                  "raw": "{{baseUrl}}/plan-version-company-migrations?migration_id=<string>&q=<string>&status=failed&limit=<long>&offset=<long>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plan-version-company-migrations"
                   ],
                   "query": [
                     {
@@ -148,58 +629,60 @@
                     },
                     {
                       "key": "status",
-                      "value": "<string>"
+                      "value": "failed"
                     },
                     {
+                      "description": "Page limit (default 100)",
                       "key": "limit",
                       "value": "<long>"
                     },
                     {
+                      "description": "Page offset (default 0)",
                       "key": "offset",
                       "value": "<long>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:14.000Z",
+              "updatedAt": "2026-10-21T20:39:14.000Z",
+              "uid": "35240-a0b50179-07e5-4302-8380-60fa373e2071"
             },
             {
-              "id": "fb1f15bf-b684-49ad-8f9a-b5a6aa847f17",
+              "id": "08580906-5ac8-4649-b6cb-cb362b738729",
               "name": "Unauthorized",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "plan-version-company-migrations"
-                  ],
+                  "raw": "{{baseUrl}}/plan-version-company-migrations?migration_id=<string>&q=<string>&status=failed&limit=<long>&offset=<long>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plan-version-company-migrations"
                   ],
                   "query": [
                     {
@@ -212,58 +695,60 @@
                     },
                     {
                       "key": "status",
-                      "value": "<string>"
+                      "value": "failed"
                     },
                     {
+                      "description": "Page limit (default 100)",
                       "key": "limit",
                       "value": "<long>"
                     },
                     {
+                      "description": "Page offset (default 0)",
                       "key": "offset",
                       "value": "<long>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:14.000Z",
+              "updatedAt": "2026-10-21T20:39:14.000Z",
+              "uid": "35240-08580906-5ac8-4649-b6cb-cb362b738729"
             },
             {
-              "id": "be39053d-63ac-4426-bb8e-60f79867886e",
+              "id": "cd132f93-7e7d-40e9-a114-868e79ff1b7b",
               "name": "Forbidden",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "plan-version-company-migrations"
-                  ],
+                  "raw": "{{baseUrl}}/plan-version-company-migrations?migration_id=<string>&q=<string>&status=failed&limit=<long>&offset=<long>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plan-version-company-migrations"
                   ],
                   "query": [
                     {
@@ -276,59 +761,61 @@
                     },
                     {
                       "key": "status",
-                      "value": "<string>"
+                      "value": "failed"
                     },
                     {
+                      "description": "Page limit (default 100)",
                       "key": "limit",
                       "value": "<long>"
                     },
                     {
+                      "description": "Page offset (default 0)",
                       "key": "offset",
                       "value": "<long>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Forbidden",
               "code": 403,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:14.000Z",
+              "updatedAt": "2026-10-21T20:39:14.000Z",
+              "uid": "35240-cd132f93-7e7d-40e9-a114-868e79ff1b7b"
             },
             {
-              "id": "57b0b5b6-9c68-4056-9526-5aa834bfb271",
+              "id": "f3030e63-1cb2-4ba1-813d-5dab7a51498a",
               "name": "Not found",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/plan-version-company-migrations?migration_id=<string>&q=<string>&status=failed&limit=<long>&offset=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "plan-version-company-migrations"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
                       "key": "migration_id",
@@ -340,59 +827,61 @@
                     },
                     {
                       "key": "status",
-                      "value": "<string>"
+                      "value": "failed"
                     },
                     {
+                      "description": "Page limit (default 100)",
                       "key": "limit",
                       "value": "<long>"
                     },
                     {
+                      "description": "Page offset (default 0)",
                       "key": "offset",
                       "value": "<long>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Not Found",
               "code": 404,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:14.000Z",
+              "updatedAt": "2026-10-21T20:39:14.000Z",
+              "uid": "35240-f3030e63-1cb2-4ba1-813d-5dab7a51498a"
             },
             {
-              "id": "8c6041b3-cf0f-4712-8e88-064c3b870ac0",
+              "id": "9f8871fe-a149-4aa0-9e18-4405ef81a79e",
               "name": "Server error",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/plan-version-company-migrations?migration_id=<string>&q=<string>&status=failed&limit=<long>&offset=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "plan-version-company-migrations"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
                       "key": "migration_id",
@@ -404,1282 +893,845 @@
                     },
                     {
                       "key": "status",
-                      "value": "<string>"
+                      "value": "failed"
                     },
                     {
+                      "description": "Page limit (default 100)",
                       "key": "limit",
                       "value": "<long>"
                     },
                     {
+                      "description": "Page offset (default 0)",
                       "key": "offset",
                       "value": "<long>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:14.000Z",
+              "updatedAt": "2026-10-21T20:39:14.000Z",
+              "uid": "35240-9f8871fe-a149-4aa0-9e18-4405ef81a79e"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
+          "createdAt": "2026-10-21T20:39:14.000Z",
+          "updatedAt": "2026-10-21T20:39:14.000Z",
+          "uid": "35240-ba08d2bc-97f9-47e0-b33f-3f3fe638ed47"
+        }
+      ],
+      "id": "eea27c03-2590-41f4-836e-3dbbd1c15c7f",
+      "createdAt": "2026-10-21T20:39:14.000Z",
+      "updatedAt": "2026-10-21T20:39:14.000Z",
+      "uid": "35240-eea27c03-2590-41f4-836e-3dbbd1c15c7f"
+    },
+    {
+      "name": "plan-version-migrations",
+      "item": [
         {
-          "id": "776a2af1-8744-487c-91fc-ed518166b0a0",
-          "name": "Count company migrations",
-          "request": {
-            "name": "Count company migrations",
-            "description": {},
-            "url": {
-              "path": [
-                "plan-version-company-migrations",
-                "count"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "migration_id",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "q",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "status",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "<long>",
-                  "description": "Page limit (default 100)"
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "<long>",
-                  "description": "Page offset (default 0)"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{plan_version_migration_id}",
+          "item": [
             {
-              "id": "4ef0b2e7-fae1-4477-8ca0-36d5cf1f0b3d",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plan-version-company-migrations",
-                    "count"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "migration_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
-                    }
-                  ],
-                  "variable": []
-                },
+              "name": "Get migration",
+              "id": "d7a07f2e-4235-4747-b18a-36e5ea06683a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"count\": 7397\n  },\n  \"params\": {\n    \"limit\": 4587,\n    \"migration_id\": \"string\",\n    \"offset\": 85,\n    \"q\": \"string\",\n    \"status\": \"<string>\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a28c6fa9-c058-437e-ae43-249716ea2895",
-              "name": "Bad request",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "plan-version-company-migrations",
-                    "count"
-                  ],
+                  "raw": "{{baseUrl}}/plan-version-migrations/:plan_version_migration_id",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
-                    {
-                      "key": "migration_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b8fb3e63-a79d-4196-b7da-04ad9c74f26e",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
                   "path": [
-                    "plan-version-company-migrations",
-                    "count"
+                    "plan-version-migrations",
+                    ":plan_version_migration_id"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "variable": [
                     {
-                      "key": "migration_id",
-                      "value": "<string>"
-                    },
+                      "id": "ea2cd767-be33-47d5-9142-060d6cf51fe7",
+                      "key": "plan_version_migration_id",
+                      "value": "<string>",
+                      "description": "(Required) plan_version_migration_id"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "10475c2a-9c7c-4936-8ceb-9b7d4dbcff09",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-migrations/:plan_version_migration_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-migrations",
+                        ":plan_version_migration_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "plan_version_migration_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "q",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"completed_companies\": \"<long>\",\n    \"created_at\": \"<dateTime>\",\n    \"failed_companies\": \"<long>\",\n    \"id\": \"<string>\",\n    \"plan_id\": \"<string>\",\n    \"plan_version_id_to\": \"<string>\",\n    \"skipped_companies\": \"<long>\",\n    \"status\": \"failed\",\n    \"strategy\": \"leave\",\n    \"total_companies\": \"<long>\",\n    \"updated_at\": \"<dateTime>\",\n    \"completed_at\": \"<string,null-date-time>\",\n    \"error\": \"<string,null>\",\n    \"plan_version_id_from\": \"<string,null>\",\n    \"started_at\": \"<string,null-date-time>\"\n  },\n  \"params\": {}\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-10475c2a-9c7c-4936-8ceb-9b7d4dbcff09"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e7fc9d60-010f-4dcb-8815-600f57686e86",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plan-version-company-migrations",
-                    "count"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "a797710e-f173-449a-b278-bf7458a6618b",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-migrations/:plan_version_migration_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-migrations",
+                        ":plan_version_migration_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "plan_version_migration_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "migration_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-a797710e-f173-449a-b278-bf7458a6618b"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c349740b-1a2b-41c4-9f13-61a0e96d1dba",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plan-version-company-migrations",
-                    "count"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "8085f202-dd93-4217-8d1d-850243a26ddc",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-migrations/:plan_version_migration_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-migrations",
+                        ":plan_version_migration_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "plan_version_migration_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "migration_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-8085f202-dd93-4217-8d1d-850243a26ddc"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a64dbbf0-1a08-4be5-9dfd-b113393838c2",
-              "name": "Server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plan-version-company-migrations",
-                    "count"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "6f26e59b-f830-4047-9d80-6a0ac2465da3",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-migrations/:plan_version_migration_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-migrations",
+                        ":plan_version_migration_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "plan_version_migration_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "migration_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-6f26e59b-f830-4047-9d80-6a0ac2465da3"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "98da3528-6053-4d08-be87-33489f86d832",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-migrations/:plan_version_migration_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-migrations",
+                        ":plan_version_migration_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "plan_version_migration_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-98da3528-6053-4d08-be87-33489f86d832"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T20:39:14.000Z",
+              "updatedAt": "2026-10-21T20:39:14.000Z",
+              "uid": "35240-d7a07f2e-4235-4747-b18a-36e5ea06683a"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "77e044ef-01e4-4ebd-aff1-b7aa262df63f",
+          "createdAt": "2026-10-21T20:39:14.000Z",
+          "updatedAt": "2026-10-21T20:39:14.000Z",
+          "uid": "35240-77e044ef-01e4-4ebd-aff1-b7aa262df63f"
         },
         {
-          "id": "d08e5fbb-118c-4649-8452-d51fc139524a",
+          "name": "count",
+          "item": [
+            {
+              "name": "Count migrations",
+              "id": "e673bea4-d4df-41aa-9322-08cb84ab886b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/plan-version-migrations/count?plan_version_id=<string>&status=pending&limit=<long>&offset=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plan-version-migrations",
+                    "count"
+                  ],
+                  "query": [
+                    {
+                      "key": "plan_version_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "pending"
+                    },
+                    {
+                      "description": "Page limit (default 100)",
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Page offset (default 0)",
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "2b16c777-7f26-4e69-9536-c2c0e6f6b176",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-migrations/count?plan_version_id=<string>&status=pending&limit=<long>&offset=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-migrations",
+                        "count"
+                      ],
+                      "query": [
+                        {
+                          "key": "plan_version_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "pending"
+                        },
+                        {
+                          "description": "Page limit (default 100)",
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Page offset (default 0)",
+                          "key": "offset",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"count\": \"<integer>\"\n  },\n  \"params\": {\n    \"limit\": \"<long>\",\n    \"offset\": \"<long>\",\n    \"plan_version_id\": \"<string>\",\n    \"status\": \"completed\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-2b16c777-7f26-4e69-9536-c2c0e6f6b176"
+                },
+                {
+                  "id": "25476f25-4849-468a-91f5-24a224aaf53a",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-migrations/count?plan_version_id=<string>&status=pending&limit=<long>&offset=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-migrations",
+                        "count"
+                      ],
+                      "query": [
+                        {
+                          "key": "plan_version_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "pending"
+                        },
+                        {
+                          "description": "Page limit (default 100)",
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Page offset (default 0)",
+                          "key": "offset",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-25476f25-4849-468a-91f5-24a224aaf53a"
+                },
+                {
+                  "id": "eab9cda5-d55d-4165-9dee-2e756c7072ec",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-migrations/count?plan_version_id=<string>&status=pending&limit=<long>&offset=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-migrations",
+                        "count"
+                      ],
+                      "query": [
+                        {
+                          "key": "plan_version_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "pending"
+                        },
+                        {
+                          "description": "Page limit (default 100)",
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Page offset (default 0)",
+                          "key": "offset",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-eab9cda5-d55d-4165-9dee-2e756c7072ec"
+                },
+                {
+                  "id": "248f2792-9eb0-494b-9b26-78474235cad3",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-migrations/count?plan_version_id=<string>&status=pending&limit=<long>&offset=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-migrations",
+                        "count"
+                      ],
+                      "query": [
+                        {
+                          "key": "plan_version_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "pending"
+                        },
+                        {
+                          "description": "Page limit (default 100)",
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Page offset (default 0)",
+                          "key": "offset",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-248f2792-9eb0-494b-9b26-78474235cad3"
+                },
+                {
+                  "id": "ab612903-6989-415e-a811-8b23708d2aed",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-migrations/count?plan_version_id=<string>&status=pending&limit=<long>&offset=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-migrations",
+                        "count"
+                      ],
+                      "query": [
+                        {
+                          "key": "plan_version_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "pending"
+                        },
+                        {
+                          "description": "Page limit (default 100)",
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Page offset (default 0)",
+                          "key": "offset",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-ab612903-6989-415e-a811-8b23708d2aed"
+                },
+                {
+                  "id": "15f2e9bb-20f8-46f8-8685-9d654dce3f33",
+                  "name": "Server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Schematic-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan-version-migrations/count?plan_version_id=<string>&status=pending&limit=<long>&offset=<long>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan-version-migrations",
+                        "count"
+                      ],
+                      "query": [
+                        {
+                          "key": "plan_version_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "pending"
+                        },
+                        {
+                          "description": "Page limit (default 100)",
+                          "key": "limit",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Page offset (default 0)",
+                          "key": "offset",
+                          "value": "<long>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:39:14.000Z",
+                  "updatedAt": "2026-10-21T20:39:14.000Z",
+                  "uid": "35240-15f2e9bb-20f8-46f8-8685-9d654dce3f33"
+                }
+              ],
+              "createdAt": "2026-10-21T20:39:14.000Z",
+              "updatedAt": "2026-10-21T20:39:14.000Z",
+              "uid": "35240-e673bea4-d4df-41aa-9322-08cb84ab886b"
+            }
+          ],
+          "id": "45884811-17c4-47d4-9847-dd20e23775f2",
+          "createdAt": "2026-10-21T20:39:14.000Z",
+          "updatedAt": "2026-10-21T20:39:14.000Z",
+          "uid": "35240-45884811-17c4-47d4-9847-dd20e23775f2"
+        },
+        {
           "name": "List migrations",
+          "id": "5dc98d30-f507-4115-a8f1-5d552e33039a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "List migrations",
-            "description": {},
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/plan-version-migrations?plan_version_id=<string>&status=pending&limit=<long>&offset=<long>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "plan-version-migrations"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
                   "key": "plan_version_id",
                   "value": "<string>"
                 },
                 {
-                  "disabled": false,
                   "key": "status",
-                  "value": "<string>"
+                  "value": "pending"
                 },
                 {
-                  "disabled": false,
+                  "description": "Page limit (default 100)",
                   "key": "limit",
-                  "value": "<long>",
-                  "description": "Page limit (default 100)"
+                  "value": "<long>"
                 },
                 {
-                  "disabled": false,
+                  "description": "Page offset (default 0)",
                   "key": "offset",
-                  "value": "<long>",
-                  "description": "Page offset (default 0)"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "cb84d908-e953-4d4d-86f2-7c7c07edde5f",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plan-version-migrations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "plan_version_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"completed_companies\": 1640,\n      \"created_at\": \"2012-04-04T12:35:43.492Z\",\n      \"failed_companies\": 997,\n      \"id\": \"string\",\n      \"plan_id\": \"string\",\n      \"plan_version_id_to\": \"string\",\n      \"skipped_companies\": 9083,\n      \"status\": \"<string>\",\n      \"strategy\": \"immediate\",\n      \"total_companies\": 4656,\n      \"updated_at\": \"1999-02-22T04:34:18.762Z\",\n      \"completed_at\": null,\n      \"error\": null,\n      \"plan_version_id_from\": null,\n      \"started_at\": \"1952-04-05T02:58:11.722Z\"\n    },\n    {\n      \"completed_companies\": 3066,\n      \"created_at\": \"2010-09-23T20:19:43.106Z\",\n      \"failed_companies\": 57,\n      \"id\": \"string\",\n      \"plan_id\": \"string\",\n      \"plan_version_id_to\": \"string\",\n      \"skipped_companies\": 5236,\n      \"status\": \"<string>\",\n      \"strategy\": \"leave\",\n      \"total_companies\": 3317,\n      \"updated_at\": \"1991-07-20T15:55:12.815Z\",\n      \"completed_at\": null,\n      \"error\": null,\n      \"plan_version_id_from\": null,\n      \"started_at\": \"2024-10-12T10:37:34.310Z\"\n    }\n  ],\n  \"params\": {\n    \"limit\": 7837,\n    \"offset\": 2912,\n    \"plan_version_id\": \"string\",\n    \"status\": \"<string>\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3b781027-7689-45c5-9dd3-5669cd302681",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plan-version-migrations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "plan_version_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "93b1717a-a0ae-4d74-a03e-ba073ee80f88",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plan-version-migrations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "plan_version_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "16feffd7-991e-46fc-a490-998ce229f086",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plan-version-migrations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "plan_version_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9fac2d36-4398-4f77-980c-e67989e6b712",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plan-version-migrations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "plan_version_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "7028a324-f75b-467c-a112-e178823c5d64",
-              "name": "Server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plan-version-migrations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "plan_version_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<long>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "85edb77a-bb16-4852-b14f-93fce4664ec4",
-          "name": "Get migration",
-          "request": {
-            "name": "Get migration",
-            "description": {},
-            "url": {
-              "path": [
-                "plan-version-migrations",
-                ":plan_version_migration_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "plan_version_migration_id",
-                  "description": "(Required) plan_version_migration_id"
+                  "value": "<long>"
                 }
               ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "a83d90a8-8ce6-4c77-8cba-cce7b2623597",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plan-version-migrations",
-                    ":plan_version_migration_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "plan_version_migration_id",
-                      "description": "(Required) plan_version_migration_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"completed_companies\": 5190,\n    \"created_at\": \"1967-08-03T08:01:37.381Z\",\n    \"failed_companies\": 6814,\n    \"id\": \"string\",\n    \"plan_id\": \"string\",\n    \"plan_version_id_to\": \"string\",\n    \"skipped_companies\": 1574,\n    \"status\": \"<string>\",\n    \"strategy\": \"leave\",\n    \"total_companies\": 2894,\n    \"updated_at\": \"1958-03-01T07:18:47.620Z\",\n    \"completed_at\": null,\n    \"error\": \"string\",\n    \"plan_version_id_from\": \"string\",\n    \"started_at\": \"2016-09-21T13:44:59.285Z\"\n  },\n  \"params\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8338743e-89f3-41df-9dd8-49de845d307a",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plan-version-migrations",
-                    ":plan_version_migration_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "plan_version_migration_id",
-                      "description": "(Required) plan_version_migration_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "27978a46-fdbc-4bc9-a557-6389e64e01e7",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plan-version-migrations",
-                    ":plan_version_migration_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "plan_version_migration_id",
-                      "description": "(Required) plan_version_migration_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0a069918-3f3f-4f70-832a-8bd75d58a92d",
-              "name": "Not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plan-version-migrations",
-                    ":plan_version_migration_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "plan_version_migration_id",
-                      "description": "(Required) plan_version_migration_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bbada7c7-ba8e-4a49-9a95-f885c7d5a55a",
-              "name": "Server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plan-version-migrations",
-                    ":plan_version_migration_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "plan_version_migration_id",
-                      "description": "(Required) plan_version_migration_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
             }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a2491ea4-9e64-4419-a7db-b7b6a8f949a0",
-          "name": "Count migrations",
-          "request": {
-            "name": "Count migrations",
-            "description": {},
-            "url": {
-              "path": [
-                "plan-version-migrations",
-                "count"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "plan_version_id",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "status",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "<long>",
-                  "description": "Page limit (default 100)"
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "<long>",
-                  "description": "Page offset (default 0)"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
           },
           "response": [
             {
-              "id": "2ffcd939-f757-4c32-9256-1e7a8a801b6e",
+              "id": "63af32a9-d6a0-4f9f-8ce1-ded5403c8575",
               "name": "OK",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "plan-version-migrations",
-                    "count"
-                  ],
+                  "raw": "{{baseUrl}}/plan-version-migrations?plan_version_id=<string>&status=pending&limit=<long>&offset=<long>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plan-version-migrations"
                   ],
                   "query": [
                     {
@@ -1688,59 +1740,60 @@
                     },
                     {
                       "key": "status",
-                      "value": "<string>"
+                      "value": "pending"
                     },
                     {
+                      "description": "Page limit (default 100)",
                       "key": "limit",
                       "value": "<long>"
                     },
                     {
+                      "description": "Page offset (default 0)",
                       "key": "offset",
                       "value": "<long>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": {\n    \"count\": 2555\n  },\n  \"params\": {\n    \"limit\": 476,\n    \"offset\": 6344,\n    \"plan_version_id\": \"string\",\n    \"status\": \"<string>\"\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"completed_companies\": \"<long>\",\n      \"created_at\": \"<dateTime>\",\n      \"failed_companies\": \"<long>\",\n      \"id\": \"<string>\",\n      \"plan_id\": \"<string>\",\n      \"plan_version_id_to\": \"<string>\",\n      \"skipped_companies\": \"<long>\",\n      \"status\": \"completed\",\n      \"strategy\": \"leave\",\n      \"total_companies\": \"<long>\",\n      \"updated_at\": \"<dateTime>\",\n      \"completed_at\": \"<string,null-date-time>\",\n      \"error\": \"<string,null>\",\n      \"plan_version_id_from\": \"<string,null>\",\n      \"started_at\": \"<string,null-date-time>\"\n    },\n    {\n      \"completed_companies\": \"<long>\",\n      \"created_at\": \"<dateTime>\",\n      \"failed_companies\": \"<long>\",\n      \"id\": \"<string>\",\n      \"plan_id\": \"<string>\",\n      \"plan_version_id_to\": \"<string>\",\n      \"skipped_companies\": \"<long>\",\n      \"status\": \"completed\",\n      \"strategy\": \"leave\",\n      \"total_companies\": \"<long>\",\n      \"updated_at\": \"<dateTime>\",\n      \"completed_at\": \"<string,null-date-time>\",\n      \"error\": \"<string,null>\",\n      \"plan_version_id_from\": \"<string,null>\",\n      \"started_at\": \"<string,null-date-time>\"\n    }\n  ],\n  \"params\": {\n    \"limit\": \"<long>\",\n    \"offset\": \"<long>\",\n    \"plan_version_id\": \"<string>\",\n    \"status\": \"completed\"\n  }\n}",
+              "createdAt": "2026-10-21T20:39:14.000Z",
+              "updatedAt": "2026-10-21T20:39:14.000Z",
+              "uid": "35240-63af32a9-d6a0-4f9f-8ce1-ded5403c8575"
             },
             {
-              "id": "e4538c84-a691-4704-955a-9865ded79c3d",
+              "id": "cba160f8-183f-485f-b960-88f9e7143ee5",
               "name": "Bad request",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "plan-version-migrations",
-                    "count"
-                  ],
+                  "raw": "{{baseUrl}}/plan-version-migrations?plan_version_id=<string>&status=pending&limit=<long>&offset=<long>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plan-version-migrations"
                   ],
                   "query": [
                     {
@@ -1749,59 +1802,60 @@
                     },
                     {
                       "key": "status",
-                      "value": "<string>"
+                      "value": "pending"
                     },
                     {
+                      "description": "Page limit (default 100)",
                       "key": "limit",
                       "value": "<long>"
                     },
                     {
+                      "description": "Page offset (default 0)",
                       "key": "offset",
                       "value": "<long>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:14.000Z",
+              "updatedAt": "2026-10-21T20:39:14.000Z",
+              "uid": "35240-cba160f8-183f-485f-b960-88f9e7143ee5"
             },
             {
-              "id": "44201c74-b5a4-41b0-aabb-5f19ff8c9877",
+              "id": "d45cf83b-3523-4fe1-be6a-ada661f2ccfa",
               "name": "Unauthorized",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "plan-version-migrations",
-                    "count"
-                  ],
+                  "raw": "{{baseUrl}}/plan-version-migrations?plan_version_id=<string>&status=pending&limit=<long>&offset=<long>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plan-version-migrations"
                   ],
                   "query": [
                     {
@@ -1810,59 +1864,60 @@
                     },
                     {
                       "key": "status",
-                      "value": "<string>"
+                      "value": "pending"
                     },
                     {
+                      "description": "Page limit (default 100)",
                       "key": "limit",
                       "value": "<long>"
                     },
                     {
+                      "description": "Page offset (default 0)",
                       "key": "offset",
                       "value": "<long>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:14.000Z",
+              "updatedAt": "2026-10-21T20:39:14.000Z",
+              "uid": "35240-d45cf83b-3523-4fe1-be6a-ada661f2ccfa"
             },
             {
-              "id": "65dd5443-96d7-46f6-8221-e62b19105ac5",
+              "id": "0dd1e91b-21df-4d57-b998-64fdbded3ab8",
               "name": "Forbidden",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "plan-version-migrations",
-                    "count"
-                  ],
+                  "raw": "{{baseUrl}}/plan-version-migrations?plan_version_id=<string>&status=pending&limit=<long>&offset=<long>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plan-version-migrations"
                   ],
                   "query": [
                     {
@@ -1871,59 +1926,60 @@
                     },
                     {
                       "key": "status",
-                      "value": "<string>"
+                      "value": "pending"
                     },
                     {
+                      "description": "Page limit (default 100)",
                       "key": "limit",
                       "value": "<long>"
                     },
                     {
+                      "description": "Page offset (default 0)",
                       "key": "offset",
                       "value": "<long>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Forbidden",
               "code": 403,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:14.000Z",
+              "updatedAt": "2026-10-21T20:39:14.000Z",
+              "uid": "35240-0dd1e91b-21df-4d57-b998-64fdbded3ab8"
             },
             {
-              "id": "f310c2bc-f30e-4215-a9df-e0903a008815",
+              "id": "e92910ab-8cb8-41fa-8faf-370aef0e5b98",
               "name": "Not found",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "plan-version-migrations",
-                    "count"
-                  ],
+                  "raw": "{{baseUrl}}/plan-version-migrations?plan_version_id=<string>&status=pending&limit=<long>&offset=<long>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plan-version-migrations"
                   ],
                   "query": [
                     {
@@ -1932,59 +1988,60 @@
                     },
                     {
                       "key": "status",
-                      "value": "<string>"
+                      "value": "pending"
                     },
                     {
+                      "description": "Page limit (default 100)",
                       "key": "limit",
                       "value": "<long>"
                     },
                     {
+                      "description": "Page offset (default 0)",
                       "key": "offset",
                       "value": "<long>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Not Found",
               "code": 404,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:14.000Z",
+              "updatedAt": "2026-10-21T20:39:14.000Z",
+              "uid": "35240-e92910ab-8cb8-41fa-8faf-370aef0e5b98"
             },
             {
-              "id": "ee9d2795-c857-498a-bdbe-d866b993d3f2",
+              "id": "c5125e64-af58-4969-8fcd-397b372eff93",
               "name": "Server error",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Schematic-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "plan-version-migrations",
-                    "count"
-                  ],
+                  "raw": "{{baseUrl}}/plan-version-migrations?plan_version_id=<string>&status=pending&limit=<long>&offset=<long>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plan-version-migrations"
                   ],
                   "query": [
                     {
@@ -1993,64 +2050,47 @@
                     },
                     {
                       "key": "status",
-                      "value": "<string>"
+                      "value": "pending"
                     },
                     {
+                      "description": "Page limit (default 100)",
                       "key": "limit",
                       "value": "<long>"
                     },
                     {
+                      "description": "Page offset (default 0)",
                       "key": "offset",
                       "value": "<long>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Schematic-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:39:14.000Z",
+              "updatedAt": "2026-10-21T20:39:14.000Z",
+              "uid": "35240-c5125e64-af58-4969-8fcd-397b372eff93"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T20:39:14.000Z",
+          "updatedAt": "2026-10-21T20:39:14.000Z",
+          "uid": "35240-5dc98d30-f507-4115-a8f1-5d552e33039a"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.schematichq.com",
-      "key": "baseUrl"
+      "id": "19086baf-4bad-430c-bb77-90ec5f36c705",
+      "createdAt": "2026-10-21T20:39:14.000Z",
+      "updatedAt": "2026-10-21T20:39:14.000Z",
+      "uid": "35240-19086baf-4bad-430c-bb77-90ec5f36c705"
     }
   ],
   "auth": {
@@ -2058,25 +2098,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Schematic-Api-Key"
+        "value": "X-Schematic-Api-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "ef9d759a-ca3c-43df-9e71-4aecdd573dde",
-    "name": "Schematic accesstokens Planmigrations API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Schematic API",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.schematichq.com"
     }
-  }
+  ]
 }
